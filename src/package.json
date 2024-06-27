@@ -1,0 +1,33 @@
+{
+  "name": "jexl-extended",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest"
+  },
+  "keywords": [
+    "jexl",
+    "expression"
+  ],
+  "author": "niko.raes@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "jexl": "^2.3.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.5.0",
+    "@types/jexl": "^2.3.4",
+    "@typescript-eslint/eslint-plugin": "^7.14.1",
+    "@typescript-eslint/parser": "^7.14.1",
+    "eslint": "^9.5.0",
+    "eslint-config-alloy": "^5.1.2",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-promise": "^6.2.0",
+    "globals": "^15.6.0",
+    "typescript": "^5.5.2",
+    "typescript-eslint": "^7.14.1",
+    "vitest": "^1.6.0"
+  }
+}

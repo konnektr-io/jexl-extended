@@ -1,0 +1,10 @@
+.idea
+*.iml
+.vscode
+*.code-workspace
+
+node_modules
+coverage
+dist
+
+.DS_Store
