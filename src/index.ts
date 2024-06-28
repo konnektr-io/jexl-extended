@@ -2,7 +2,8 @@ import { Jexl } from 'jexl';
 import {
     toString,
     length,
-    substring
+    substring,
+    substringBefore
 } from './extended-grammar';
 
 export class JexlExtended extends Jexl {
@@ -28,9 +29,10 @@ export class JexlExtended extends Jexl {
         this.addFunction('substring', substring);
         this.addFunction('$substring', substring);
         this.addTransform('substring', substring);
-
-
-
+        // SubstringBefore
+        this.addFunction('substringBefore', substringBefore);
+        this.addFunction('$substringBefore', substringBefore);
+        this.addTransform('substringBefore', substringBefore);
 
 
 
@@ -38,4 +40,4 @@ export class JexlExtended extends Jexl {
     }
 }
 
-export default new JexlExtended();  
+export default new JexlExtended();

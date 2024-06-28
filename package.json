@@ -2,15 +2,35 @@
   "name": "jexl-extended",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">= 16.0.0"
+  },
   "scripts": {
-    "test": "vitest"
+    "test": "vitest",
+    "build": "tsc",
+    "docs": "typedoc"
   },
   "keywords": [
+    "JSON",
+    "expression",
+    "evaluator",
+    "parser",
+    "target",
+    "context",
     "jexl",
-    "expression"
+    "filter",
+    "selector"
   ],
-  "author": "niko.raes@gmail.com",
+  "author": "Niko Raes <niko.raes@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nikoraes/jexl-extended"
+  },
   "license": "MIT",
   "dependencies": {
     "jexl": "^2.3.0"
@@ -18,16 +38,20 @@
   "devDependencies": {
     "@eslint/js": "^9.5.0",
     "@types/jexl": "^2.3.4",
+    "@types/node": "^20.14.9",
     "@typescript-eslint/eslint-plugin": "^7.14.1",
     "@typescript-eslint/parser": "^7.14.1",
     "eslint": "^9.5.0",
-    "eslint-config-alloy": "^5.1.2",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^17.9.0",
     "eslint-plugin-promise": "^6.2.0",
     "globals": "^15.6.0",
+    "typedoc": "^0.26.3",
+    "typedoc-plugin-markdown": "^4.1.0",
     "typescript": "^5.5.2",
     "typescript-eslint": "^7.14.1",
+    "vite-tsconfig-paths": "^4.3.2",
     "vitest": "^1.6.0"
   }
 }

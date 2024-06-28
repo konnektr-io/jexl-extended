@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest'
-import jexl from '.'
+import jexl from '../src'
 
 test('convert to string', () => {
     expect(jexl.evalSync('string(123)')).toBe('123')
@@ -17,4 +17,11 @@ test('substring', () => {
     expect(jexl.evalSync('substring(123456,2,2)')).toBe('34')
     expect(jexl.evalSync('$substring(\'test\',(-2))')).toBe('st')
     expect(jexl.evalSync('$substring($string({a:123456}, true),0,1)')).toBe('{')
+})
+
+test('substringBefore', () => {
+    expect(jexl.evalSync('"hello world"|substringBefore(" ")')).toBe('hello')
+    /* expect(jexl.evalSync('substringBefore("hello world", "o")')).toBe('hell')
+    expect(jexl.evalSync('substringBefore("hello world", "x")')).toBe('hello world')
+    expect(jexl.evalSync('substringBefore(123456,2)')).toBe('1') */
 })
