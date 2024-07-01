@@ -1,0 +1,32 @@
+name: Release library
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+    steps:
+      - name: 'Checkout GitHub Action'
+        uses: actions/checkout@master
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'     
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: 'Install packages'
+        run: pnpm install
+
+      - name: 'Build library'
+        run: npm run build
+        working-directory: ${{ env.APP_BASE_DIR }}
+
+      - name: 'Publish library'
+        run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

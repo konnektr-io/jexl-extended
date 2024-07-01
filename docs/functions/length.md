@@ -22,4 +22,4 @@ The number of characters in a string, or the length of an array.
 
 ## Defined in
 
-[extended-grammar.ts:26](https://github.com/nikoraes/jexl-extended/blob/22d1c50e7f0a5908830abb12f697176ef1e251db/src/extended-grammar.ts#L26)
+[extended-grammar.ts:30](https://github.com/nikoraes/jexl-extended/blob/0f5e836bd796a7ceb7bc07f325b2ca770e2551a1/src/extended-grammar.ts#L30)
