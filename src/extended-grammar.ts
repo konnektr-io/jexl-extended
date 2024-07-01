@@ -1,4 +1,5 @@
 import { parse as dateParse, add as dateAdd } from 'date-fns';
+
 import { v4 as uuidv4 } from 'uuid';
 import jexl from '.';
 
@@ -571,7 +572,10 @@ export const toDateTime = (input: number | string, format?: string) => {
     }
     if (typeof input === 'string') {
         if (format) {
-            return dateParse(input, format, new Date()).toISOString();
+            // Add UTC as timezone if not provided
+            const _format = (format.includes('x') || format.includes('X')) ? format : `${format} X`;
+            const _input = (format.includes('x') || format.includes('X')) ? input : `${input} Z`;
+            return dateParse(_input, _format, new Date()).toISOString();
         }
         return new Date(input).toISOString();
     }
@@ -589,7 +593,11 @@ export const dateTimeToMillis = (input: string) => {
  * Adds a time range to a date and time in the ISO 8601 format.
  */
 export const dateTimeAdd = (input: string, unit: string, value: number) => {
-    dateAdd(new Date(input), { [unit]: value });
+    // if unit doesn't end with 's' add it
+    const _unit = unit.toLowerCase().endsWith('s') ? unit.toLowerCase() : `${unit.toLowerCase()}s`;
+    const returnDate = dateAdd(new Date(input), { [_unit]: value });
+    return returnDate.toISOString();
+    // dateAdd(new Date(input), { [unit]: value });
 }
 
 /**
@@ -599,8 +607,9 @@ export const dateTimeAdd = (input: string, unit: string, value: number) => {
         /// The expression uses the default JEXL extended grammar and can't use any custom defined functions or transforms.
  */
 export const _eval = (input: unknown, expression: string) => {
-    if (typeof input === 'string') {
-        return jexl.evalSync(input);
+    if (expression === undefined) {
+        const _input = typeof input === 'string' ? input : JSON.stringify(input);
+        return jexl.evalSync(_input);
     }
     if (typeof input === 'object') {
         return jexl.evalSync(expression, input);
