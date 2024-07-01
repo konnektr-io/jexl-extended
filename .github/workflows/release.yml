@@ -1,11 +1,12 @@
 name: Release library
 
 on:
+  workflow_dispatch:
   release:
     types: [created]
 
 jobs:
-  build:
+  build-release:
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -18,6 +19,9 @@ jobs:
         with:
           node-version: '20'     
           registry-url: 'https://registry.npmjs.org'
+
+      - name: 'Install PNPM'
+        run: pnpm install
 
       - name: 'Install packages'
         run: pnpm install
