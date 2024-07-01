@@ -22,9 +22,11 @@ jobs:
       - name: 'Install packages'
         run: pnpm install
 
+      - name: 'Run tests'
+        run: pnpm run test
+
       - name: 'Build library'
         run: pnpm run build
-        working-directory: ${{ env.APP_BASE_DIR }}
 
       - name: 'Publish library'
         run: npm publish --provenance --access public

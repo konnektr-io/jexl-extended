@@ -1,12 +1,13 @@
 {
   "name": "jexl-extended",
   "version": "1.0.0",
-  "description": "",
+  "description": "Extended grammar for Javascript Expression Language (JEXL)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
+  "readme": "README.md",
   "engines": {
     "node": ">= 16.0.0"
   },
@@ -31,6 +32,7 @@
     "type": "git",
     "url": "https://github.com/nikoraes/jexl-extended"
   },
+  "homepage": "https://github.com/nikoraes/jexl-extended",
   "license": "MIT",
   "dependencies": {
     "date-fns": "^3.6.0",
