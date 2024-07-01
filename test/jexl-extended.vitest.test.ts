@@ -234,3 +234,11 @@ test('eval', () => {
     expect(jexl.evalSync('assoc[0]|eval(\'age\')', context)).toBe(32)
     expect(jexl.evalSync('assoc[2]|eval(expression)', context)).toBe(45)
 })
+
+import jexl2 from 'jexl'
+import { arrayMap } from '../src/extended-grammar'
+
+test('importSeparate', () => {
+    jexl2.addTransform('map', arrayMap)
+    expect(jexl2.evalSync('[1,2,3]|map("value+1")')).toEqual([2, 3, 4])
+})
