@@ -84,14 +84,13 @@ export const substring = (input: unknown, start: number, length: number | undefi
  * @returns The substring before the first occurrence of the character sequence chars in str.
  */
 export const substringBefore = (input: unknown, chars: unknown) => {
-    if (typeof input === 'string' && typeof chars === 'string') {
-        const index = input.indexOf(chars);
-        if (index === -1) {
-            return input;
-        }
-        return input.substring(0, index);
+    const str = typeof input === 'string' ? input : JSON.stringify(input);
+    const charsStr = typeof chars === 'string' ? chars : JSON.stringify(chars);
+    const index = str.indexOf(charsStr);
+    if (index === -1) {
+        return str;
     }
-    return '';
+    return str.substring(0, index);
 }
 
 /**
@@ -105,36 +104,32 @@ export const substringBefore = (input: unknown, chars: unknown) => {
  * @returns The substring after the first occurrence of the character sequence chars in str.
  */
 export const substringAfter = (input: unknown, chars: unknown) => {
-    if (typeof input === 'string' && typeof chars === 'string') {
-        const index = input.indexOf(chars);
-        if (index === -1) {
-            return '';
-        }
-        return input.substring(index + chars.length);
+    const str = typeof input === 'string' ? input : JSON.stringify(input);
+    const charsStr = typeof chars === 'string' ? chars : JSON.stringify(chars);
+    const index = str.indexOf(charsStr);
+    if (index === -1) {
+        return '';
     }
-    return '';
+    return str.substring(index + charsStr.length);
 }
 
 // Converts the input string to uppercase.
 export const uppercase = (input: unknown) => {
-    if (typeof input === 'string') {
-        return input.toUpperCase();
-    }
-    return '';
+    const str = typeof input === 'string' ? input : JSON.stringify(input);
+    return str.toUpperCase();
 }
 
 // Converts the input string to lowercase.
 export const lowercase = (input: unknown) => {
-    if (typeof input === 'string') {
-        return input.toLowerCase();
-    }
-    return '';
+    const str = typeof input === 'string' ? input : JSON.stringify(input);
+    return str.toLowerCase();
 }
+const splitRegex = /(?<!^)(?=[A-Z])|[\s_]+/;
 
 // Converts the input string to camel case.
 export const camelCase = (input: unknown) => {
     if (typeof input !== 'string') return '';
-    return input.split(' ').map((word, index) => {
+    return input.split(splitRegex).map((word, index) => {
         if (index === 0) return word.toLowerCase();
         return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
     }).join('');
@@ -143,7 +138,7 @@ export const camelCase = (input: unknown) => {
 // Converts the input string to pascal case.
 export const pascalCase = (input: unknown) => {
     if (typeof input !== 'string') return '';
-    return input.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join('');
+    return input.split(splitRegex).map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join('');
 }
 
 // Trims whitespace from both ends of a string.
@@ -155,12 +150,13 @@ export const trim = (input: unknown) => {
 }
 
 // Pads the input string on both sides to center it.
-export const pad = (input: unknown, length: number, char: string = ' ') => {
+export const pad = (input: unknown, width: number, char: string = ' ') => {
     const str = typeof input !== 'string' ? JSON.stringify(input) : input;
-    const padLength = length - str.length;
-    const padStart = Math.floor(padLength / 2);
-    const padEnd = padLength - padStart;
-    return char.repeat(padStart) + str + char.repeat(padEnd);
+    if (width > 0) {
+        return str.padEnd(width, char);
+    } else {
+        return str.padStart(-width, char);
+    }
 }
 
 // Checks if the input string contains the specified substring.
