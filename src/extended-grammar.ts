@@ -256,59 +256,82 @@ export const randomNumber = () => {
     return Math.random();
 }
 
-// Formats a number using fixed-point notation.
-export const formatNumber = (input: unknown, digits: number) => {
-    const num = toNumber(input);
-    return isNaN(num) ? '' : num.toFixed(digits);
+/*         public static JsonNode FormatNumber(JsonNode input, JsonNode picture)
+        {
+            if (input is JsonValue value && picture is JsonValue pictureValue)
+            {
+                decimal number = value.ToDecimal();
+                return number.ToString(pictureValue.ToString(), System.Globalization.CultureInfo.InvariantCulture);
+            }
+            return null;
+        } */
+
+// Casts the number to a string and formats it to a decimal representation as specified by the format string.
+export const formatNumber = (input: unknown, format: string) => {
+    const num = typeof input === 'number' ? input : parseInt(toNumber(input).toString(), 10);
+    return isNaN(num) ? '' : num.toLocaleString('en-us', {
+        minimumFractionDigits: format.split('.')[1]?.length,
+        maximumFractionDigits: format.split('.')[1]?.length,
+        useGrouping: format.split('.')[0]?.includes(',')
+    });
 }
 
 // Formats a number as a string in the specified base.
 export const formatBase = (input: unknown, base: number) => {
-    const num = parseInt(toNumber(input).toString(), 10);
+    const num = typeof input === 'number' ? input : parseInt(toNumber(input).toString(), 10);
     return isNaN(num) ? '' : num.toString(base);
 }
 
 // Formats a number as an integer.
-export const formatInteger = (input: unknown) => {
+export const formatInteger = (input: unknown, format: string) => {
     const num = toNumber(input);
-    return isNaN(num) ? '' : Math.floor(num).toString();
+    return isNaN(num) ? '' : pad(Math.floor(num).toString(), -format.length, '0');
 }
 
 // Parses a string and returns an integer.
 export const parseInteger = (input: unknown) => {
     if (typeof input === 'string') {
         return parseInt(input, 10);
+    } else if (typeof input === 'number') {
+        return Math.floor(input);
     }
     return NaN;
 }
 
 // Calculates the sum of an array of numbers.
-export const sum = (input: unknown[]) => {
+export const sum = (...input: unknown[]) => {
     if (!Array.isArray(input)) return NaN;
-    return input.reduce<number>((acc, val) => acc + toNumber(val), 0);
+    return input.flat().reduce<number>((acc, val) => acc + toNumber(val), 0);
 }
 
 // Finds the maximum value in an array of numbers.
-export const max = (input: unknown[]) => {
+export const max = (...input: unknown[]) => {
     if (!Array.isArray(input)) return NaN;
-    return Math.max(...input.map(toNumber));
+    return Math.max(...input.flat().map(toNumber));
 }
 
 // Finds the minimum value in an array of numbers.
-export const min = (input: unknown[]) => {
+export const min = (...input: unknown[]) => {
     if (!Array.isArray(input)) return NaN;
-    return Math.min(...input.map(toNumber));
+    return Math.min(...input.flat().map(toNumber));
 }
 
 // Calculates the average of an array of numbers.
-export const average = (input: unknown[]) => {
+export const average = (...input: unknown[]) => {
     if (!Array.isArray(input)) return NaN;
-    const total = sum(input);
-    return total / input.length;
+    const total = sum(...input);
+    return total / input.flat().length;
 }
 
 // Converts the input to a boolean.
 export const toBoolean = (input: unknown) => {
+    if (typeof input === 'boolean') return input;
+    if (typeof input === 'number') return input !== 0;
+    if (typeof input === 'string') {
+        if (input.trim().toLowerCase() === 'true' || input.trim() === '1') return true;
+        if (input.trim().toLowerCase() === 'false' || input.trim() === '0') return false;
+        else return undefined
+    }
     return Boolean(input);
 }
 
@@ -318,15 +341,15 @@ export const not = (input: unknown) => {
 }
 
 // Appends an element to an array.
-export const arrayAppend = (input: unknown[], element: unknown) => {
+export const arrayAppend = (...input: unknown[]) => {
     if (!Array.isArray(input)) return [];
-    return [...input, element];
+    return [...input.flat()];
 }
 
 // Reverses the elements of an array.
-export const arrayReverse = (input: unknown[]) => {
+export const arrayReverse = (...input: unknown[]) => {
     if (!Array.isArray(input)) return [];
-    return [...input].reverse();
+    return [...input.flat()].reverse();
 }
 
 // Shuffles the elements of an array.
@@ -339,9 +362,60 @@ export const arrayShuffle = (input: unknown[]) => {
     return input;
 }
 
+/* 
+        public static JsonNode ArraySort(JsonNode input, JsonNode expression = null, JsonNode descending = null)
+        {
+            if (input is JsonArray array)
+            {
+                bool isDescending = descending is JsonValue descVal && descVal.GetValueKind() == JsonValueKind.True;
+                Expression jExpression = null;
+                if (expression != null)
+                {
+                    Jexl jexl = new Jexl(new ExtendedGrammar());
+                    jExpression = jexl.CreateExpression(expression.ToString());
+                }
+                JsonValue getValue(JsonNode x)
+                {
+                    if (expression == null)
+                    {
+                        return x?.AsValue();
+                    }
+                    else if (x is JsonObject obj)
+                    {
+                        return jExpression.Eval(obj)?.AsValue();
+                    }
+                    else
+                    {
+                        var context = new JsonObject()
+                        {
+                            ["value"] = x?.DeepClone()
+                        };
+                        return jExpression.Eval(context)?.AsValue();
+                    }
+                }
+
+                var sortedArray = isDescending
+                    ? array.Select(x => x.DeepClone()).OrderByDescending(getValue, new JsonValueComparer()).ToArray()
+                    : array.Select(x => x.DeepClone()).OrderBy(getValue, new JsonValueComparer()).ToArray();
+
+                return new JsonArray(sortedArray);
+            }
+            return null;
+        } */
+
+
 // Sorts the elements of an array.
-export const arraySort = (input: unknown[], compareFunction?: (a: unknown, b: unknown) => number) => {
+export const arraySort = (input: unknown[], expression?: string, descending?: boolean) => {
     if (!Array.isArray(input)) return [];
+    if (!expression) return [...input].sort();
+    const expr = jexl.compile(expression);
+    const compareFunction = (a: unknown, b: unknown) => {
+        const aValue = expr.evalSync(a);
+        const bValue = expr.evalSync(b);
+        if (aValue < bValue) return descending ? -1 : 1;
+        if (aValue > bValue) return descending ? 1 : -1;
+        return 0;
+    };
     return [...input].sort(compareFunction);
 }
 
