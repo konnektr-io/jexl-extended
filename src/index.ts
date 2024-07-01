@@ -3,8 +3,62 @@ import {
     toString,
     length,
     substring,
-    substringBefore
+    substringBefore,
+    substringAfter,
+    absoluteValue,
+    arrayAppend,
+    arrayReverse,
+    arrayShuffle,
+    arraySort,
+    average,
+    base64Decode,
+    base64Encode,
+    camelCase,
+    ceil,
+    contains,
+    floor,
+    formatBase,
+    formatInteger,
+    formatNumber,
+    lowercase,
+    max,
+    min,
+    not,
+    pad,
+    parseInteger,
+    pascalCase,
+    power,
+    randomNumber,
+    replace,
+    round,
+    split,
+    sqrt,
+    sum,
+    toBoolean,
+    toNumber,
+    trim,
+    uppercase,
+    arrayDistinct,
+    arrayToObject,
+    mapField,
+    arrayMap,
+    arrayAny,
+    arrayEvery,
+    arrayFilter,
+    arrayReduce,
+    objectKeys,
+    _eval,
+    dateTimeAdd,
+    dateTimeToMillis,
+    objectEntries,
+    objectMerge,
+    objectValues,
+    toDateTime,
+    uuid,
+    now,
+    millis
 } from './extended-grammar';
+import { join } from 'path';
 
 export class JexlExtended extends Jexl {
     constructor () {
@@ -34,9 +88,304 @@ export class JexlExtended extends Jexl {
         this.addFunction('$substringBefore', substringBefore);
         this.addTransform('substringBefore', substringBefore);
 
+        // SubstringAfter
+        this.addFunction('substringAfter', substringAfter);
+        this.addFunction('$substringAfter', substringAfter);
+        this.addTransform('substringAfter', substringAfter);
 
+        // Uppercase
+        this.addFunction('uppercase', uppercase);
+        this.addFunction('$uppercase', uppercase);
+        this.addTransform('uppercase', uppercase);
+        this.addFunction('upper', uppercase);
+        this.addFunction('$upper', uppercase);
+        this.addTransform('upper', uppercase);
 
-        this.addTransform('toUpper', (value: string) => value.toUpperCase());
+        // Lowercase
+        this.addFunction('lowercase', lowercase);
+        this.addFunction('$lowercase', lowercase);
+        this.addTransform('lowercase', lowercase);
+        this.addFunction('lower', lowercase);
+        this.addFunction('$lower', lowercase);
+        this.addTransform('lower', lowercase);
+
+        // CamelCase
+        this.addFunction('camelCase', camelCase);
+        this.addFunction('$camelCase', camelCase);
+        this.addTransform('camelcase', camelCase);
+        this.addTransform('camelCase', camelCase);
+        this.addTransform('toCamelCase', camelCase);
+
+        // PascalCase
+        this.addFunction('pascalCase', pascalCase);
+        this.addFunction('$pascalCase', pascalCase);
+        this.addTransform('pascalcase', pascalCase);
+        this.addTransform('pascalCase', pascalCase);
+        this.addTransform('toPascalCase', pascalCase);
+
+        // Trim
+        this.addFunction('trim', trim);
+        this.addFunction('$trim', trim);
+        this.addTransform('trim', trim);
+
+        // Pad
+        this.addFunction('pad', pad);
+        this.addFunction('$pad', pad);
+        this.addTransform('pad', pad);
+
+        // Contains
+        this.addFunction('contains', contains);
+        this.addFunction('$contains', contains);
+        this.addTransform('contains', contains);
+        this.addFunction('includes', contains);
+        this.addFunction('$includes', contains);
+        this.addTransform('includes', contains);
+
+        // Split
+        this.addFunction('split', split);
+        this.addFunction('$split', split);
+        this.addTransform('split', split);
+
+        // Join
+        this.addFunction('join', join);
+        this.addFunction('$join', join);
+        this.addTransform('join', join);
+
+        // Replace
+        this.addFunction('replace', replace);
+        this.addFunction('$replace', replace);
+        this.addTransform('replace', replace);
+
+        // Base64Encode
+        this.addFunction('base64Encode', base64Encode);
+        this.addFunction('$base64Encode', base64Encode);
+        this.addTransform('base64Encode', base64Encode);
+
+        // Base64Decode
+        this.addFunction('base64Decode', base64Decode);
+        this.addFunction('$base64Decode', base64Decode);
+        this.addTransform('base64Decode', base64Decode);
+
+        // Number
+        this.addFunction('number', toNumber);
+        this.addFunction('$number', toNumber);
+        this.addTransform('number', toNumber);
+        this.addTransform('toNumber', toNumber);
+
+        // AbsoluteValue
+        this.addFunction('abs', absoluteValue);
+        this.addFunction('$abs', absoluteValue);
+        this.addTransform('abs', absoluteValue);
+
+        // Floor
+        this.addFunction('floor', floor);
+        this.addFunction('$floor', floor);
+        this.addTransform('floor', floor);
+
+        // Ceil
+        this.addFunction('ceil', ceil);
+        this.addFunction('$ceil', ceil);
+        this.addTransform('ceil', ceil);
+
+        // Round
+        this.addFunction('round', round);
+        this.addFunction('$round', round);
+        this.addTransform('round', round);
+
+        // Power
+        this.addFunction('power', power);
+        this.addFunction('$power', power);
+        this.addTransform('power', power);
+
+        // Sqrt
+        this.addFunction('sqrt', sqrt);
+        this.addFunction('$sqrt', sqrt);
+        this.addTransform('sqrt', sqrt);
+
+        // Random
+        this.addFunction('random', randomNumber);
+        this.addFunction('$random', randomNumber);
+
+        // FormatNumber
+        this.addFunction('formatNumber', formatNumber);
+        this.addFunction('$formatNumber', formatNumber);
+        this.addTransform('formatNumber', formatNumber);
+
+        // FormatBase
+        this.addFunction('formatBase', formatBase);
+        this.addFunction('$formatBase', formatBase);
+        this.addTransform('formatBase', formatBase);
+
+        // FormatInteger
+        this.addFunction('formatInteger', formatInteger);
+        this.addFunction('$formatInteger', formatInteger);
+        this.addTransform('formatInteger', formatInteger);
+
+        // ParseInteger
+        this.addFunction('parseInteger', parseInteger);
+        this.addFunction('parseInt', parseInteger);
+        this.addFunction('$parseInteger', parseInteger);
+        this.addTransform('parseInteger', parseInteger);
+        this.addTransform('parseInt', parseInteger);
+        this.addTransform('toInt', parseInteger);
+
+        // Sum
+        this.addFunction('sum', sum);
+        this.addFunction('$sum', sum);
+        this.addTransform('sum', sum);
+
+        // Max
+        this.addFunction('max', max);
+        this.addFunction('$max', max);
+        this.addTransform('max', max);
+
+        // Min
+        this.addFunction('min', min);
+        this.addFunction('$min', min);
+        this.addTransform('min', min);
+
+        // Average
+        this.addFunction('average', average);
+        this.addFunction('avg', average);
+        this.addFunction('$average', average);
+        this.addTransform('average', average);
+        this.addTransform('avg', average);
+
+        // Boolean
+        this.addFunction('boolean', toBoolean);
+        this.addFunction('$boolean', toBoolean);
+        this.addTransform('boolean', toBoolean);
+        this.addFunction('bool', toBoolean);
+        this.addFunction('$bool', toBoolean);
+        this.addTransform('bool', toBoolean);
+        this.addTransform('toBoolean', toBoolean);
+        this.addTransform('toBool', toBoolean);
+
+        // Not
+        this.addFunction('not', not);
+        this.addFunction('$not', not);
+        this.addTransform('not', not);
+
+        // Array operations
+        this.addFunction('append', arrayAppend);
+        this.addFunction('$append', arrayAppend);
+        this.addTransform('append', arrayAppend);
+        this.addFunction('concat', arrayAppend);
+        this.addFunction('$concat', arrayAppend);
+        this.addTransform('concat', arrayAppend);
+
+        this.addFunction('reverse', arrayReverse);
+        this.addFunction('$reverse', arrayReverse);
+        this.addTransform('reverse', arrayReverse);
+
+        this.addFunction('shuffle', arrayShuffle);
+        this.addFunction('$shuffle', arrayShuffle);
+        this.addTransform('shuffle', arrayShuffle);
+
+        this.addFunction('sort', arraySort);
+        this.addFunction('$sort', arraySort);
+        this.addTransform('sort', arraySort);
+        this.addFunction('order', arraySort);
+        this.addFunction('$order', arraySort);
+        this.addTransform('order', arraySort);
+
+        this.addFunction('distinct', arrayDistinct);
+        this.addFunction('$distinct', arrayDistinct);
+        this.addTransform('distinct', arrayDistinct);
+
+        this.addFunction('toObject', arrayToObject);
+        this.addFunction('$toObject', arrayToObject);
+        this.addTransform('toObject', arrayToObject);
+        this.addFunction('fromEntries', arrayToObject);
+        this.addFunction('$fromEntries', arrayToObject);
+        this.addTransform('fromEntries', arrayToObject);
+
+        // Map and filter operations
+        this.addFunction('mapField', mapField);
+        this.addFunction('$mapField', mapField);
+        this.addTransform('mapField', mapField);
+
+        this.addFunction('map', arrayMap);
+        this.addFunction('$map', arrayMap);
+        this.addTransform('map', arrayMap);
+
+        this.addFunction('any', arrayAny);
+        this.addFunction('$any', arrayAny);
+        this.addTransform('any', arrayAny);
+        this.addFunction('some', arrayAny);
+        this.addFunction('$some', arrayAny);
+        this.addTransform('some', arrayAny);
+
+        this.addFunction('all', arrayEvery);
+        this.addFunction('$all', arrayEvery);
+        this.addTransform('all', arrayEvery);
+        this.addFunction('every', arrayEvery);
+        this.addFunction('$every', arrayEvery);
+        this.addTransform('every', arrayEvery);
+
+        this.addFunction('filter', arrayFilter);
+        this.addFunction('$filter', arrayFilter);
+        this.addTransform('filter', arrayFilter);
+
+        this.addFunction('reduce', arrayReduce);
+        this.addFunction('$reduce', arrayReduce);
+        this.addTransform('reduce', arrayReduce);
+
+        // Object operations
+        this.addFunction('keys', objectKeys);
+        this.addFunction('$keys', objectKeys);
+        this.addTransform('keys', objectKeys);
+
+        this.addFunction('values', objectValues);
+        this.addFunction('$values', objectValues);
+        this.addTransform('values', objectValues);
+
+        this.addFunction('entries', objectEntries);
+        this.addFunction('$entries', objectEntries);
+        this.addTransform('entries', objectEntries);
+
+        this.addFunction('merge', objectMerge);
+        this.addFunction('$merge', objectMerge);
+        this.addTransform('merge', objectMerge);
+
+        // Now
+        this.addFunction('now', now);
+        this.addFunction('$now', now);
+
+        // Millis
+        this.addFunction('millis', millis);
+        this.addFunction('$millis', millis);
+
+        // MillisToDateTime
+        this.addFunction('millisToDateTime', toDateTime);
+        this.addFunction('$millisToDateTime', toDateTime);
+        this.addTransform('millisToDateTime', toDateTime);
+        this.addFunction('fromMillis', toDateTime);
+        this.addFunction('$fromMillis', toDateTime);
+        this.addTransform('fromMillis', toDateTime);
+        this.addFunction('toDateTime', toDateTime);
+        this.addFunction('$toDateTime', toDateTime);
+        this.addTransform('toDateTime', toDateTime);
+        // DateTimeToMillis
+        this.addFunction('dateTimeToMillis', dateTimeToMillis);
+        this.addFunction('$dateTimeToMillis', dateTimeToMillis);
+        this.addTransform('dateTimeToMillis', dateTimeToMillis);
+        this.addFunction('toMillis', dateTimeToMillis);
+        this.addFunction('$toMillis', dateTimeToMillis);
+        this.addTransform('toMillis', dateTimeToMillis);
+        // DateTimeAdd
+        this.addFunction('dateTimeAdd', dateTimeAdd);
+        this.addFunction('$dateTimeAdd', dateTimeAdd);
+        this.addTransform('dateTimeAdd', dateTimeAdd);
+        // Eval
+        this.addFunction('eval', _eval);
+        this.addFunction('$eval', _eval);
+        this.addTransform('eval', _eval);
+        // Uuid
+        this.addFunction('uuid', uuid);
+        this.addFunction('$uuid', uuid);
+        this.addFunction('uid', uuid);
+        this.addFunction('$uid', uuid);
     }
 }
 

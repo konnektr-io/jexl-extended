@@ -1,3 +1,6 @@
+import { parse as dateParse, add as dateAdd } from 'date-fns';
+import { v4 as uuidv4 } from 'uuid';
+import jexl from '.';
 
 /**
  * Casts the input to a string.
@@ -70,30 +73,6 @@ export const substring = (input: unknown, start: number, length: number | undefi
     return '';
 }
 
-/*         /// <summary>
-        /// Returns the substring before the first occurrence of the character sequence chars in str. 
-        /// </summary>
-        /// <example><code>substringBefore(str, chars)</code><code>$substringBefore(str, chars)</code><code>str|substringBefore(chars)</code></example>
-        /// <returns>The substring before the first occurrence of the character sequence chars in str</returns>
-
-        public static JsonNode SubstringBefore(JsonNode input, JsonNode chars)
-        {
-            if (input is JsonValue value && chars is JsonValue charsValue)
-            {
-                string str = value.ToString();
-                string charsStr = charsValue.ToString();
-                int index = str.IndexOf(charsStr);
-                if (index == -1)
-                {
-                    return str;
-                }
-                return str.Substring(0, index);
-            }
-            return null;
-        }
-
- */
-
 /**
  * Returns the substring before the first occurrence of the character sequence chars in str. 
  * 
@@ -113,4 +92,454 @@ export const substringBefore = (input: unknown, chars: unknown) => {
         return input.substring(0, index);
     }
     return '';
+}
+
+/**
+ * Returns the substring after the first occurrence of the character sequence chars in str. 
+ * 
+ * ```jexl
+ * substringAfter("hello world", " ") // "world"
+ * ```
+ * @param input The input string.
+ * @param chars The character sequence to search for.
+ * @returns The substring after the first occurrence of the character sequence chars in str.
+ */
+export const substringAfter = (input: unknown, chars: unknown) => {
+    if (typeof input === 'string' && typeof chars === 'string') {
+        const index = input.indexOf(chars);
+        if (index === -1) {
+            return '';
+        }
+        return input.substring(index + chars.length);
+    }
+    return '';
+}
+
+// Converts the input string to uppercase.
+export const uppercase = (input: unknown) => {
+    if (typeof input === 'string') {
+        return input.toUpperCase();
+    }
+    return '';
+}
+
+// Converts the input string to lowercase.
+export const lowercase = (input: unknown) => {
+    if (typeof input === 'string') {
+        return input.toLowerCase();
+    }
+    return '';
+}
+
+// Converts the input string to camel case.
+export const camelCase = (input: unknown) => {
+    if (typeof input !== 'string') return '';
+    return input.split(' ').map((word, index) => {
+        if (index === 0) return word.toLowerCase();
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    }).join('');
+}
+
+// Converts the input string to pascal case.
+export const pascalCase = (input: unknown) => {
+    if (typeof input !== 'string') return '';
+    return input.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join('');
+}
+
+// Trims whitespace from both ends of a string.
+export const trim = (input: unknown) => {
+    if (typeof input === 'string') {
+        return input.trim();
+    }
+    return '';
+}
+
+// Pads the input string on both sides to center it.
+export const pad = (input: unknown, length: number, char: string = ' ') => {
+    const str = typeof input !== 'string' ? JSON.stringify(input) : input;
+    const padLength = length - str.length;
+    const padStart = Math.floor(padLength / 2);
+    const padEnd = padLength - padStart;
+    return char.repeat(padStart) + str + char.repeat(padEnd);
+}
+
+// Checks if the input string contains the specified substring.
+export const contains = (input: unknown, search: string) => {
+    if (typeof input === 'string') {
+        return input.includes(search);
+    }
+    return false;
+}
+
+// Splits the input string into an array of substrings.
+export const split = (input: unknown, separator: string) => {
+    if (typeof input === 'string') {
+        return input.split(separator);
+    }
+    return [];
+}
+
+// Joins elements of an array into a string.
+export const join = (input: unknown[], separator: string) => {
+    if (Array.isArray(input)) {
+        return input.join(separator);
+    }
+    return '';
+}
+
+// Replaces occurrences of a specified string.
+export const replace = (input: unknown, search: string, replacement: string) => {
+    if (typeof input === 'string') {
+        return input.replace(new RegExp(search, 'g'), replacement);
+    }
+    return '';
+}
+
+// Encodes a string to Base64.
+export const base64Encode = (input: unknown) => {
+    if (typeof input === 'string') {
+        return Buffer.from(input).toString('base64');
+    }
+    return '';
+}
+
+// Decodes a Base64 encoded string.
+export const base64Decode = (input: unknown) => {
+    if (typeof input === 'string') {
+        return Buffer.from(input, 'base64').toString('utf-8');
+    }
+    return '';
+}
+
+// Converts the input to a number.
+export const toNumber = (input: unknown) => {
+    if (typeof input === 'number') return input;
+    if (typeof input === 'string') return parseFloat(input);
+    return NaN;
+}
+
+// Returns the absolute value of a number.
+export const absoluteValue = (input: unknown) => {
+    const num = toNumber(input);
+    return isNaN(num) ? NaN : Math.abs(num);
+}
+
+// Rounds a number down to the nearest integer.
+export const floor = (input: unknown) => {
+    const num = toNumber(input);
+    return isNaN(num) ? NaN : Math.floor(num);
+}
+
+// Rounds a number up to the nearest integer.
+export const ceil = (input: unknown) => {
+    const num = toNumber(input);
+    return isNaN(num) ? NaN : Math.ceil(num);
+}
+
+// Rounds a number to the nearest integer.
+export const round = (input: unknown) => {
+    const num = toNumber(input);
+    return isNaN(num) ? NaN : Math.round(num);
+}
+
+// Returns the value of a number raised to a power.
+export const power = (input: unknown, exponent: number) => {
+    const num = toNumber(input);
+    return isNaN(num) ? NaN : Math.pow(num, exponent);
+}
+
+// Returns the square root of a number.
+export const sqrt = (input: unknown) => {
+    const num = toNumber(input);
+    return isNaN(num) ? NaN : Math.sqrt(num);
+}
+
+// Generates a random number between 0 (inclusive) and 1 (exclusive).
+export const randomNumber = () => {
+    return Math.random();
+}
+
+// Formats a number using fixed-point notation.
+export const formatNumber = (input: unknown, digits: number) => {
+    const num = toNumber(input);
+    return isNaN(num) ? '' : num.toFixed(digits);
+}
+
+// Formats a number as a string in the specified base.
+export const formatBase = (input: unknown, base: number) => {
+    const num = parseInt(toNumber(input).toString(), 10);
+    return isNaN(num) ? '' : num.toString(base);
+}
+
+// Formats a number as an integer.
+export const formatInteger = (input: unknown) => {
+    const num = toNumber(input);
+    return isNaN(num) ? '' : Math.floor(num).toString();
+}
+
+// Parses a string and returns an integer.
+export const parseInteger = (input: unknown) => {
+    if (typeof input === 'string') {
+        return parseInt(input, 10);
+    }
+    return NaN;
+}
+
+// Calculates the sum of an array of numbers.
+export const sum = (input: unknown[]) => {
+    if (!Array.isArray(input)) return NaN;
+    return input.reduce<number>((acc, val) => acc + toNumber(val), 0);
+}
+
+// Finds the maximum value in an array of numbers.
+export const max = (input: unknown[]) => {
+    if (!Array.isArray(input)) return NaN;
+    return Math.max(...input.map(toNumber));
+}
+
+// Finds the minimum value in an array of numbers.
+export const min = (input: unknown[]) => {
+    if (!Array.isArray(input)) return NaN;
+    return Math.min(...input.map(toNumber));
+}
+
+// Calculates the average of an array of numbers.
+export const average = (input: unknown[]) => {
+    if (!Array.isArray(input)) return NaN;
+    const total = sum(input);
+    return total / input.length;
+}
+
+// Converts the input to a boolean.
+export const toBoolean = (input: unknown) => {
+    return Boolean(input);
+}
+
+// Returns the logical NOT of the input.
+export const not = (input: unknown) => {
+    return !toBoolean(input);
+}
+
+// Appends an element to an array.
+export const arrayAppend = (input: unknown[], element: unknown) => {
+    if (!Array.isArray(input)) return [];
+    return [...input, element];
+}
+
+// Reverses the elements of an array.
+export const arrayReverse = (input: unknown[]) => {
+    if (!Array.isArray(input)) return [];
+    return [...input].reverse();
+}
+
+// Shuffles the elements of an array.
+export const arrayShuffle = (input: unknown[]) => {
+    if (!Array.isArray(input)) return [];
+    for (let i = input.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [input[i], input[j]] = [input[j], input[i]];
+    }
+    return input;
+}
+
+// Sorts the elements of an array.
+export const arraySort = (input: unknown[], compareFunction?: (a: unknown, b: unknown) => number) => {
+    if (!Array.isArray(input)) return [];
+    return [...input].sort(compareFunction);
+}
+
+// Returns a new array with the elements of the input array with duplicates removed.
+export const arrayDistinct = (input: unknown[]) => {
+    if (!Array.isArray(input)) return [];
+    return [...new Set(input)];
+}
+
+// Create a new object based on an array of key-value pairs.
+export const arrayToObject = (input: unknown[]) => {
+    if (!Array.isArray(input)) return {};
+    return input.reduce((acc, [key, value]) => {
+        acc[key] = value;
+        return acc;
+    }, {});
+}
+
+// Returns a new array with the elements of the input array transformed by the specified map function.
+export const mapField = (input: unknown[], field: string) => {
+    if (!Array.isArray(input)) return [];
+    return input.map(item => item[field]);
+}
+
+/** 
+ * Returns an array containing the results of applying the expression parameter to each value in the array parameter.
+ * The expression must be a valid JEXL expression string, which is applied to each element of the array.
+ * The relative context provided to the expression is an object with the properties value, index and array (the original array). 
+ */
+export const arrayMap = (input: unknown[], expression: string) => {
+    if (!Array.isArray(input)) return undefined;
+    const expr = jexl.compile(expression);
+    return input.map((value, index, array) => {
+        return expr.evalSync({ value, index, array });
+    });
+}
+
+/**
+ * Checks whether the provided array has any elements that match the specified expression.
+ * The expression must be a valid JEXL expression string, and is applied to each element of the array.
+ * The relative context provided to the expression is an object with the properties value and array (the original array).
+ */
+export const arrayAny = (input: unknown[], expression: string) => {
+    if (!Array.isArray(input)) return false;
+    const expr = jexl.compile(expression);
+    return input.some((value, index, array) => {
+        return expr.evalSync({ value, index, array });
+    });
+}
+
+/**
+ * Checks whether the provided array has all elements that match the specified expression.
+ * The expression must be a valid JEXL expression string, and is applied to each element of the array.
+ * The relative context provided to the expression is an object with the properties value and array (the original array).
+ */
+export const arrayEvery = (input: unknown[], expression: string) => {
+    if (!Array.isArray(input)) return false;
+    const expr = jexl.compile(expression);
+    return input.every((value, index, array) => {
+        return expr.evalSync({ value, index, array });
+    });
+}
+
+
+/**
+ * Returns a new array with the elements of the input array that match the specified expression.
+ * The expression must be a valid JEXL expression string, and is applied to each element of the array.
+ * The relative context provided to the expression is an object with the properties value and array (the original array).
+ */
+export const arrayFilter = (input: unknown[], expression: string) => {
+    if (!Array.isArray(input)) return [];
+    const expr = jexl.compile(expression);
+    return input.filter((value, index, array) => {
+        return expr.evalSync({ value, index, array });
+    });
+}
+
+/**
+ * Returns an aggregated value derived from applying the function parameter successively to each value in array in combination with the result of the previous application of the function.
+ * The expression must be a valid JEXL expression string, and behaves like an infix operator between each value within the array.
+ * The relative context provided to the expression is an object with the properties accumulator, value, index and array (the original array).
+ */
+export const arrayReduce = (input: unknown[], expression: string, initialValue: unknown) => {
+    if (!Array.isArray(input)) return undefined;
+    const expr = jexl.compile(expression);
+    return input.reduce((accumulator, value, index, array) => {
+        return expr.evalSync({ accumulator, value, index, array });
+    }, initialValue);
+}
+
+/**
+ * Returns the keys of an object.
+ */
+export const objectKeys = (input: unknown) => {
+    if (typeof input === 'object' && input !== null) {
+        return Object.keys(input);
+    }
+    return undefined;
+}
+
+/**
+ * Returns the values of an object.
+ */
+export const objectValues = (input: unknown) => {
+    if (typeof input === 'object' && input !== null) {
+        return Object.values(input);
+    }
+    return undefined;
+}
+
+/**
+ * Returns an array of key-value pairs from the input object.
+ */
+export const objectEntries = (input: unknown) => {
+    if (typeof input === 'object' && input !== null) {
+        return Object.entries(input);
+    }
+    return undefined;
+}
+
+/**
+ * Returns a new object with the properties of the input objects merged together.
+ */
+export const objectMerge = (...args: unknown[]) => {
+    return args.reduce<Record<string, unknown>>((acc, obj) => {
+        if (typeof obj === 'object' && obj !== null) {
+            return { ...acc, ...obj };
+        }
+        return acc;
+    }, {});
+}
+
+/**
+ * Returns the current date and time in the ISO 8601 format.
+ */
+export const now = () => {
+    return new Date().toISOString();
+}
+
+/**
+ * Returns the current date and time in milliseconds since the Unix epoch.
+ */
+export const millis = () => {
+    return Date.now();
+}
+
+/**
+ * Parses the number of milliseconds since the Unix epoch or parses a string (with or without specified format) and returns the date and time in the ISO 8601 format.
+ */
+export const toDateTime = (input: number | string, format?: string) => {
+    if (typeof input === 'number') {
+        return new Date(input).toISOString();
+    }
+    if (typeof input === 'string') {
+        if (format) {
+            return dateParse(input, format, new Date()).toISOString();
+        }
+        return new Date(input).toISOString();
+    }
+    return undefined;
+}
+
+/**
+ * Parses the date and time in the ISO 8601 format and returns the number of milliseconds since the Unix epoch.
+ */
+export const dateTimeToMillis = (input: string) => {
+    return new Date(input).getTime();
+}
+
+/**
+ * Adds a time range to a date and time in the ISO 8601 format.
+ */
+export const dateTimeAdd = (input: string, unit: string, value: number) => {
+    dateAdd(new Date(input), { [unit]: value });
+}
+
+/**
+ * Evaluate provided and return the result.
+        /// If only one argument is provided, it is expected that the first argument is a JEXL expression.
+        /// If two arguments are provided, the first argument is the context (must be an object) and the second argument is the JEXL expression.
+        /// The expression uses the default JEXL extended grammar and can't use any custom defined functions or transforms.
+ */
+export const _eval = (input: unknown, expression: string) => {
+    if (typeof input === 'string') {
+        return jexl.evalSync(input);
+    }
+    if (typeof input === 'object') {
+        return jexl.evalSync(expression, input);
+    }
+    return undefined;
+}
+
+/**
+ * Generate a new UUID (Universally Unique Identifier).
+ */
+export const uuid = () => {
+    return uuidv4();
 }
