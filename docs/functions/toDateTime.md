@@ -2,7 +2,7 @@
 
 ***
 
-[jexl-extended](../README.md) / toDateTime
+[jexl-extended](../globals.md) / toDateTime
 
 # Function: toDateTime()
 
@@ -22,4 +22,4 @@ Parses the number of milliseconds since the Unix epoch or parses a string (with 
 
 ## Defined in
 
-[extended-grammar.ts:569](https://github.com/nikoraes/jexl-extended/blob/0f5e836bd796a7ceb7bc07f325b2ca770e2551a1/src/extended-grammar.ts#L569)
+[extended-grammar.ts:571](https://github.com/nikoraes/jexl-extended/blob/db8adde102268337995e72b2224f129152316ed5/src/extended-grammar.ts#L571)

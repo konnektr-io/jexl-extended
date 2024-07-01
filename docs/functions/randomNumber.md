@@ -2,7 +2,7 @@
 
 ***
 
-[jexl-extended](../README.md) / randomNumber
+[jexl-extended](../globals.md) / randomNumber
 
 # Function: randomNumber()
 
@@ -14,4 +14,4 @@
 
 ## Defined in
 
-[extended-grammar.ts:256](https://github.com/nikoraes/jexl-extended/blob/0f5e836bd796a7ceb7bc07f325b2ca770e2551a1/src/extended-grammar.ts#L256)
+[extended-grammar.ts:258](https://github.com/nikoraes/jexl-extended/blob/db8adde102268337995e72b2224f129152316ed5/src/extended-grammar.ts#L258)

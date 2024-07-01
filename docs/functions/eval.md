@@ -2,7 +2,7 @@
 
 ***
 
-[jexl-extended](../README.md) / \_eval
+[jexl-extended](../globals.md) / \_eval
 
 # Function: \_eval()
 
@@ -25,4 +25,4 @@ Evaluate provided and return the result.
 
 ## Defined in
 
-[extended-grammar.ts:609](https://github.com/nikoraes/jexl-extended/blob/0f5e836bd796a7ceb7bc07f325b2ca770e2551a1/src/extended-grammar.ts#L609)
+[extended-grammar.ts:611](https://github.com/nikoraes/jexl-extended/blob/db8adde102268337995e72b2224f129152316ed5/src/extended-grammar.ts#L611)

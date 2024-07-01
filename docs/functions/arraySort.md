@@ -2,7 +2,7 @@
 
 ***
 
-[jexl-extended](../README.md) / arraySort
+[jexl-extended](../globals.md) / arraySort
 
 # Function: arraySort()
 
@@ -22,4 +22,4 @@
 
 ## Defined in
 
-[extended-grammar.ts:409](https://github.com/nikoraes/jexl-extended/blob/0f5e836bd796a7ceb7bc07f325b2ca770e2551a1/src/extended-grammar.ts#L409)
+[extended-grammar.ts:411](https://github.com/nikoraes/jexl-extended/blob/db8adde102268337995e72b2224f129152316ed5/src/extended-grammar.ts#L411)

@@ -2,7 +2,7 @@
 
 ***
 
-[jexl-extended](../README.md) / now
+[jexl-extended](../globals.md) / now
 
 # Function: now()
 
@@ -16,4 +16,4 @@ Returns the current date and time in the ISO 8601 format.
 
 ## Defined in
 
-[extended-grammar.ts:555](https://github.com/nikoraes/jexl-extended/blob/0f5e836bd796a7ceb7bc07f325b2ca770e2551a1/src/extended-grammar.ts#L555)
+[extended-grammar.ts:557](https://github.com/nikoraes/jexl-extended/blob/db8adde102268337995e72b2224f129152316ed5/src/extended-grammar.ts#L557)

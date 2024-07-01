@@ -2,7 +2,7 @@
 
 ***
 
-[jexl-extended](../README.md) / arrayEvery
+[jexl-extended](../globals.md) / arrayEvery
 
 # Function: arrayEvery()
 
@@ -24,4 +24,4 @@ The relative context provided to the expression is an object with the properties
 
 ## Defined in
 
-[extended-grammar.ts:475](https://github.com/nikoraes/jexl-extended/blob/0f5e836bd796a7ceb7bc07f325b2ca770e2551a1/src/extended-grammar.ts#L475)
+[extended-grammar.ts:477](https://github.com/nikoraes/jexl-extended/blob/db8adde102268337995e72b2224f129152316ed5/src/extended-grammar.ts#L477)

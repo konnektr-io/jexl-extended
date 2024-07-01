@@ -2,7 +2,7 @@
 
 ***
 
-[jexl-extended](../README.md) / trim
+[jexl-extended](../globals.md) / trim
 
 # Function: trim()
 
@@ -18,4 +18,4 @@
 
 ## Defined in
 
-[extended-grammar.ts:146](https://github.com/nikoraes/jexl-extended/blob/0f5e836bd796a7ceb7bc07f325b2ca770e2551a1/src/extended-grammar.ts#L146)
+[extended-grammar.ts:148](https://github.com/nikoraes/jexl-extended/blob/db8adde102268337995e72b2224f129152316ed5/src/extended-grammar.ts#L148)

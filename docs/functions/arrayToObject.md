@@ -2,7 +2,7 @@
 
 ***
 
-[jexl-extended](../README.md) / arrayToObject
+[jexl-extended](../globals.md) / arrayToObject
 
 # Function: arrayToObject()
 
@@ -18,4 +18,4 @@
 
 ## Defined in
 
-[extended-grammar.ts:430](https://github.com/nikoraes/jexl-extended/blob/0f5e836bd796a7ceb7bc07f325b2ca770e2551a1/src/extended-grammar.ts#L430)
+[extended-grammar.ts:432](https://github.com/nikoraes/jexl-extended/blob/db8adde102268337995e72b2224f129152316ed5/src/extended-grammar.ts#L432)

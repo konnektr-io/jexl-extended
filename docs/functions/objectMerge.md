@@ -2,7 +2,7 @@
 
 ***
 
-[jexl-extended](../README.md) / objectMerge
+[jexl-extended](../globals.md) / objectMerge
 
 # Function: objectMerge()
 
@@ -20,4 +20,4 @@ Returns a new object with the properties of the input objects merged together.
 
 ## Defined in
 
-[extended-grammar.ts:543](https://github.com/nikoraes/jexl-extended/blob/0f5e836bd796a7ceb7bc07f325b2ca770e2551a1/src/extended-grammar.ts#L543)
+[extended-grammar.ts:545](https://github.com/nikoraes/jexl-extended/blob/db8adde102268337995e72b2224f129152316ed5/src/extended-grammar.ts#L545)

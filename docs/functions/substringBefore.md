@@ -2,7 +2,7 @@
 
 ***
 
-[jexl-extended](../README.md) / substringBefore
+[jexl-extended](../globals.md) / substringBefore
 
 # Function: substringBefore()
 
@@ -26,4 +26,4 @@ The substring before the first occurrence of the character sequence chars in str
 
 ## Defined in
 
-[extended-grammar.ts:87](https://github.com/nikoraes/jexl-extended/blob/0f5e836bd796a7ceb7bc07f325b2ca770e2551a1/src/extended-grammar.ts#L87)
+[extended-grammar.ts:89](https://github.com/nikoraes/jexl-extended/blob/db8adde102268337995e72b2224f129152316ed5/src/extended-grammar.ts#L89)

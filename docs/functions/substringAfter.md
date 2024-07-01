@@ -2,7 +2,7 @@
 
 ***
 
-[jexl-extended](../README.md) / substringAfter
+[jexl-extended](../globals.md) / substringAfter
 
 # Function: substringAfter()
 
@@ -26,4 +26,4 @@ The substring after the first occurrence of the character sequence chars in str.
 
 ## Defined in
 
-[extended-grammar.ts:107](https://github.com/nikoraes/jexl-extended/blob/0f5e836bd796a7ceb7bc07f325b2ca770e2551a1/src/extended-grammar.ts#L107)
+[extended-grammar.ts:109](https://github.com/nikoraes/jexl-extended/blob/db8adde102268337995e72b2224f129152316ed5/src/extended-grammar.ts#L109)

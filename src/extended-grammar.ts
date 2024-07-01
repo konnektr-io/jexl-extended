@@ -6,10 +6,13 @@ import jexl from '.';
 /**
  * Casts the input to a string.
  * 
+ * @example
  * ```jexl
  * string(123) // "123"
  * 123|string // "123"
  * ```
+ * @group Type Conversion
+ *
  * @param input The input can be any type.
  * @param prettify If true, the output will be pretty-printed.
  */
@@ -20,10 +23,12 @@ export const toString = (input: unknown, prettify = false) => {
 /**
  * Returns the number of characters in a string, or the length of an array.
  * 
+ * @example
  * ```jexl
  * length("hello") // 5
  * length([1, 2, 3]) // 3
  * ```
+ * 
  * @param input The input can be a string, an array, or an object.
  * @returns The number of characters in a string, or the length of an array.
  */
@@ -42,6 +47,11 @@ export const length = (input: unknown) => {
 
 /**
  * Gets a substring of a string.
+ * 
+ * @example
+ * ```jexl
+ * substring("hello world", 0, 5) // "hello"
+ * ```
  * 
  * @param input The input string.
  * @param start The starting index of the substring.
@@ -77,6 +87,7 @@ export const substring = (input: unknown, start: number, length: number | undefi
 /**
  * Returns the substring before the first occurrence of the character sequence chars in str. 
  * 
+ * @example
  * ```jexl
  * substringBefore("hello world", " ") // "hello"
  * ```
@@ -97,9 +108,11 @@ export const substringBefore = (input: unknown, chars: unknown) => {
 /**
  * Returns the substring after the first occurrence of the character sequence chars in str. 
  * 
+ * @example
  * ```jexl
  * substringAfter("hello world", " ") // "world"
  * ```
+ * 
  * @param input The input string.
  * @param chars The character sequence to search for.
  * @returns The substring after the first occurrence of the character sequence chars in str.

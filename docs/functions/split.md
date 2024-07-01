@@ -2,7 +2,7 @@
 
 ***
 
-[jexl-extended](../README.md) / split
+[jexl-extended](../globals.md) / split
 
 # Function: split()
 
@@ -20,4 +20,4 @@
 
 ## Defined in
 
-[extended-grammar.ts:172](https://github.com/nikoraes/jexl-extended/blob/0f5e836bd796a7ceb7bc07f325b2ca770e2551a1/src/extended-grammar.ts#L172)
+[extended-grammar.ts:174](https://github.com/nikoraes/jexl-extended/blob/db8adde102268337995e72b2224f129152316ed5/src/extended-grammar.ts#L174)

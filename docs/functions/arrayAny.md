@@ -2,7 +2,7 @@
 
 ***
 
-[jexl-extended](../README.md) / arrayAny
+[jexl-extended](../globals.md) / arrayAny
 
 # Function: arrayAny()
 
@@ -24,4 +24,4 @@ The relative context provided to the expression is an object with the properties
 
 ## Defined in
 
-[extended-grammar.ts:462](https://github.com/nikoraes/jexl-extended/blob/0f5e836bd796a7ceb7bc07f325b2ca770e2551a1/src/extended-grammar.ts#L462)
+[extended-grammar.ts:464](https://github.com/nikoraes/jexl-extended/blob/db8adde102268337995e72b2224f129152316ed5/src/extended-grammar.ts#L464)

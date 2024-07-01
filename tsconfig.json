@@ -12,9 +12,12 @@
     "declaration": true
   },
   "include": [
+    "*.ts",
     "src/**/*.ts",
     "test/*.*.test.ts",
     "./vitest.config.ts",
+    "build-docs.cjs",
+    "docs/build-docs.ts",
   ],
   "exclude": [
     "node_modules",

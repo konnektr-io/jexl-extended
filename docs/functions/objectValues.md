@@ -2,7 +2,7 @@
 
 ***
 
-[jexl-extended](../README.md) / objectValues
+[jexl-extended](../globals.md) / objectValues
 
 # Function: objectValues()
 
@@ -20,4 +20,4 @@ Returns the values of an object.
 
 ## Defined in
 
-[extended-grammar.ts:523](https://github.com/nikoraes/jexl-extended/blob/0f5e836bd796a7ceb7bc07f325b2ca770e2551a1/src/extended-grammar.ts#L523)
+[extended-grammar.ts:525](https://github.com/nikoraes/jexl-extended/blob/db8adde102268337995e72b2224f129152316ed5/src/extended-grammar.ts#L525)

@@ -2,7 +2,7 @@
 
 ***
 
-[jexl-extended](../README.md) / absoluteValue
+[jexl-extended](../globals.md) / absoluteValue
 
 # Function: absoluteValue()
 
@@ -18,4 +18,4 @@
 
 ## Defined in
 
-[extended-grammar.ts:219](https://github.com/nikoraes/jexl-extended/blob/0f5e836bd796a7ceb7bc07f325b2ca770e2551a1/src/extended-grammar.ts#L219)
+[extended-grammar.ts:221](https://github.com/nikoraes/jexl-extended/blob/db8adde102268337995e72b2224f129152316ed5/src/extended-grammar.ts#L221)

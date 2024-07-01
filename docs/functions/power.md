@@ -2,7 +2,7 @@
 
 ***
 
-[jexl-extended](../README.md) / power
+[jexl-extended](../globals.md) / power
 
 # Function: power()
 
@@ -20,4 +20,4 @@
 
 ## Defined in
 
-[extended-grammar.ts:243](https://github.com/nikoraes/jexl-extended/blob/0f5e836bd796a7ceb7bc07f325b2ca770e2551a1/src/extended-grammar.ts#L243)
+[extended-grammar.ts:245](https://github.com/nikoraes/jexl-extended/blob/db8adde102268337995e72b2224f129152316ed5/src/extended-grammar.ts#L245)

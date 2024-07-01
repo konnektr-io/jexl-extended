@@ -2,7 +2,7 @@
 
 ***
 
-[jexl-extended](../README.md) / uuid
+[jexl-extended](../globals.md) / uuid
 
 # Function: uuid()
 
@@ -16,4 +16,4 @@ Generate a new UUID (Universally Unique Identifier).
 
 ## Defined in
 
-[extended-grammar.ts:623](https://github.com/nikoraes/jexl-extended/blob/0f5e836bd796a7ceb7bc07f325b2ca770e2551a1/src/extended-grammar.ts#L623)
+[extended-grammar.ts:625](https://github.com/nikoraes/jexl-extended/blob/db8adde102268337995e72b2224f129152316ed5/src/extended-grammar.ts#L625)
