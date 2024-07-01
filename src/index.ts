@@ -56,9 +56,9 @@ import {
     toDateTime,
     uuid,
     now,
-    millis
+    millis,
+    arrayJoin
 } from './extended-grammar';
-import { join } from 'path';
 
 export class JexlExtended extends Jexl {
     constructor () {
@@ -147,9 +147,9 @@ export class JexlExtended extends Jexl {
         this.addTransform('split', split);
 
         // Join
-        this.addFunction('join', join);
-        this.addFunction('$join', join);
-        this.addTransform('join', join);
+        this.addFunction('join', arrayJoin);
+        this.addFunction('$join', arrayJoin);
+        this.addTransform('join', arrayJoin);
 
         // Replace
         this.addFunction('replace', replace);

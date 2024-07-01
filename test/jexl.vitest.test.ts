@@ -60,3 +60,46 @@ test('trimPad', () => {
     expect(jexl.evalSync('pad("foo",5)')).toBe('foo  ')
     expect(jexl.evalSync('pad("foo",(-5),0)')).toBe('00foo')
 })
+
+test('contains', () => {
+    expect(jexl.evalSync('\'foo-bar\'|contains(\'bar\')')).toBe(true)
+    expect(jexl.evalSync('\'foo-bar\'|contains(\'baz\')')).toBe(false)
+    expect(jexl.evalSync('["foo-bar"]|contains("bar")')).toBe(false)
+    expect(jexl.evalSync('["foo-bar"]|contains("foo-bar")')).toBe(true)
+    expect(jexl.evalSync('["baz", "foo", "bar"]|contains("bar")')).toBe(true)
+})
+
+test('replace', () => {
+    expect(jexl.evalSync('replace("foo-bar", "-", "_")')).toBe('foo_bar')
+    expect(jexl.evalSync('replace("foo-bar", "-", "")')).toBe('foobar')
+    expect(jexl.evalSync('replace("foo-bar", "-", "")')).toBe('foobar')
+    expect(jexl.evalSync('replace("foo-bar", "-", "")')).toBe('foobar')
+    expect(jexl.evalSync('replace("foo-bar", "-", "")')).toBe('foobar')
+})
+
+test('split', () => {
+    expect(jexl.evalSync('split("foo-bar", "-")')).toEqual(['foo', 'bar'])
+})
+
+test('join', () => {
+    expect(jexl.evalSync('join(["foo", "bar"], "-")')).toBe('foo-bar')
+    expect(jexl.evalSync('join(["foo", "bar"], "")')).toBe('foobar')
+})
+
+test('convertBase64', () => {
+    expect(jexl.evalSync('\'foobar\'|base64Encode')).toBe('Zm9vYmFy')
+    expect(jexl.evalSync('\'Zm9vYmFy\'|base64Decode')).toBe('foobar')
+})
+
+test('number', () => {
+    expect(jexl.evalSync('$number("1")')).toBe(1)
+    expect(jexl.evalSync('$number("1.1")')).toBe(1.1)
+    expect(jexl.evalSync('$number("-1.1")')).toBe(-1.1)
+    expect(jexl.evalSync('$number(-1.1)')).toBe(-1.1)
+    expect(jexl.evalSync('$number(-1.1)|floor')).toBe(-2)
+    expect(jexl.evalSync('$number("10.6")|ceil')).toBe(11)
+    expect(jexl.evalSync('10.123456|round(2)')).toBe(10.12)
+    expect(jexl.evalSync('3|power(2)')).toBe(9)
+    expect(jexl.evalSync('3|power')).toBe(9)
+    expect(jexl.evalSync('9|sqrt')).toBe(3)
+})

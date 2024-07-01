@@ -161,7 +161,7 @@ export const pad = (input: unknown, width: number, char: string = ' ') => {
 
 // Checks if the input string contains the specified substring.
 export const contains = (input: unknown, search: string) => {
-    if (typeof input === 'string') {
+    if (typeof input === 'string' || Array.isArray(input)) {
         return input.includes(search);
     }
     return false;
@@ -176,8 +176,8 @@ export const split = (input: unknown, separator: string) => {
 }
 
 // Joins elements of an array into a string.
-export const join = (input: unknown[], separator: string) => {
-    if (Array.isArray(input)) {
+export const arrayJoin = (input: unknown, separator: string) => {
+    if (Array.isArray(input) && typeof separator === 'string') {
         return input.join(separator);
     }
     return '';
@@ -233,15 +233,16 @@ export const ceil = (input: unknown) => {
 }
 
 // Rounds a number to the nearest integer.
-export const round = (input: unknown) => {
+export const round = (input: unknown, decimals?: number) => {
     const num = toNumber(input);
-    return isNaN(num) ? NaN : Math.round(num);
+    return isNaN(num) ? NaN : decimals ? Math.round(num * Math.pow(10, decimals)) / Math.pow(10, decimals) : Math.round(num);
 }
 
 // Returns the value of a number raised to a power.
-export const power = (input: unknown, exponent: number) => {
+export const power = (input: unknown, exponent?: number) => {
     const num = toNumber(input);
-    return isNaN(num) ? NaN : Math.pow(num, exponent);
+    const exp = exponent === undefined ? 2 : exponent;
+    return isNaN(num) ? NaN : Math.pow(num, exp);
 }
 
 // Returns the square root of a number.
