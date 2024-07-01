@@ -9,12 +9,12 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "declaration": true
+    "declaration": true,
+    "outDir": "dist",
+    "rootDir": "src"
   },
   "include": [
-    "src/**/*.ts",
-    "test/*.*.test.ts",
-    "./vitest.config.ts",
+    "src/**/*.ts"
   ],
   "exclude": [
     "node_modules",
