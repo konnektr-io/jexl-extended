@@ -566,7 +566,7 @@ export const millis = () => {
 /**
  * Parses the number of milliseconds since the Unix epoch or parses a string (with or without specified format) and returns the date and time in the ISO 8601 format.
  */
-export const toDateTime = (input: number | string, format?: string) => {
+export const toDateTime = (input?: number | string, format?: string) => {
     if (typeof input === 'number') {
         return new Date(input).toISOString();
     }
@@ -578,6 +578,9 @@ export const toDateTime = (input: number | string, format?: string) => {
             return dateParse(_input, _format, new Date()).toISOString();
         }
         return new Date(input).toISOString();
+    }
+    if (input === undefined) {
+        return new Date().toISOString();
     }
     return undefined;
 }

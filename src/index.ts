@@ -306,7 +306,7 @@ export class JexlExtended extends Jexl {
         // Millis
         this.addFunction('millis', millis);
         this.addFunction('$millis', millis);
-        // MillisToDateTime
+        // ToDateTime
         this.addFunction('millisToDateTime', toDateTime);
         this.addFunction('$millisToDateTime', toDateTime);
         this.addTransform('millisToDateTime', toDateTime);
@@ -316,6 +316,7 @@ export class JexlExtended extends Jexl {
         this.addFunction('toDateTime', toDateTime);
         this.addFunction('$toDateTime', toDateTime);
         this.addTransform('toDateTime', toDateTime);
+        this.addFunction('dateTimeString', toDateTime);
         // DateTimeToMillis
         this.addFunction('dateTimeToMillis', dateTimeToMillis);
         this.addFunction('$dateTimeToMillis', dateTimeToMillis);
