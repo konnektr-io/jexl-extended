@@ -428,10 +428,12 @@ export const arrayDistinct = (input: unknown[]) => {
 }
 
 // Create a new object based on an array of key-value pairs.
-export const arrayToObject = (input: unknown[]) => {
+export const arrayToObject = (input: unknown, val?: unknown) => {
+    if (typeof input === 'string') return { [input]: val };
     if (!Array.isArray(input)) return {};
     return input.reduce((acc, [key, value]) => {
-        acc[key] = value;
+        const _value = value === undefined && val !== undefined ? val : value;
+        acc[key] = _value;
         return acc;
     }, {});
 }
