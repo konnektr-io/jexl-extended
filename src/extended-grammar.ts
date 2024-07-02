@@ -177,8 +177,8 @@ export const split = (input: unknown, separator: string) => {
 }
 
 // Joins elements of an array into a string.
-export const arrayJoin = (input: unknown, separator: string) => {
-    if (Array.isArray(input) && typeof separator === 'string') {
+export const arrayJoin = (input: unknown, separator?: string) => {
+    if (Array.isArray(input)) {
         return input.join(separator);
     }
     return undefined;

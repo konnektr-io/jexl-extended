@@ -84,6 +84,8 @@ test('split', () => {
 test('join', () => {
     expect(jexl.evalSync('join(["foo", "bar"], "-")')).toBe('foo-bar')
     expect(jexl.evalSync('join(["foo", "bar"], "")')).toBe('foobar')
+    expect(jexl.evalSync('"f,b,a,d,e,c"|split(",")|sort|join')).toEqual('a,b,c,d,e,f')
+    expect(jexl.evalSync('"f,b,a,d,e,c"|split(",")|sort|join("")')).toEqual('abcdef')
 })
 
 test('convertBase64', () => {
