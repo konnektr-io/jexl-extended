@@ -125,7 +125,7 @@ export const lowercase = (input: unknown) => {
     const str = typeof input === 'string' ? input : JSON.stringify(input);
     return str.toLowerCase();
 }
-const splitRegex = /(?<!^)(?=[A-Z])|[\s_]+/;
+const splitRegex = /(?<!^)(?=[A-Z])|[`~!@#%^&*()|+\\\-=?;:'.,\s_']+/;
 
 // Converts the input string to camel case.
 export const camelCase = (input: unknown) => {
@@ -602,9 +602,9 @@ export const dateTimeAdd = (input: string, unit: string, value: number) => {
 
 /**
  * Evaluate provided and return the result.
-        /// If only one argument is provided, it is expected that the first argument is a JEXL expression.
-        /// If two arguments are provided, the first argument is the context (must be an object) and the second argument is the JEXL expression.
-        /// The expression uses the default JEXL extended grammar and can't use any custom defined functions or transforms.
+ * If only one argument is provided, it is expected that the first argument is a JEXL expression.
+ * If two arguments are provided, the first argument is the context (must be an object) and the second argument is the JEXL expression.
+ * The expression uses the default JEXL extended grammar and can't use any custom defined functions or transforms.
  */
 export const _eval = (input: unknown, expression: string) => {
     if (expression === undefined) {
