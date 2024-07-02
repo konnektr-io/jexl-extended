@@ -72,11 +72,10 @@ test('contains', () => {
 
 test('replace', () => {
     expect(jexl.evalSync('replace("foo-bar", "-", "_")')).toBe('foo_bar')
-    expect(jexl.evalSync('replace("foo-bar", "-", "")')).toBe('foobar')
-    expect(jexl.evalSync('replace("foo-bar", "-", "")')).toBe('foobar')
-    expect(jexl.evalSync('replace("foo-bar", "-", "")')).toBe('foobar')
-    expect(jexl.evalSync('replace("foo-bar", "-", "")')).toBe('foobar')
+    expect(jexl.evalSync('replace("foo-bar---", "-", "")')).toBe('foobar')
+    expect(jexl.evalSync('"123ab123ab123ab"|replace("123")')).toEqual('ababab')
 })
+
 
 test('split', () => {
     expect(jexl.evalSync('split("foo-bar", "-")')).toEqual(['foo', 'bar'])

@@ -1,6 +1,6 @@
 {
   "name": "jexl-extended",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Extended grammar for Javascript Expression Language (JEXL)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

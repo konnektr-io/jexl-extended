@@ -181,15 +181,16 @@ export const arrayJoin = (input: unknown, separator: string) => {
     if (Array.isArray(input) && typeof separator === 'string') {
         return input.join(separator);
     }
-    return '';
+    return undefined;
 }
 
 // Replaces occurrences of a specified string.
 export const replace = (input: unknown, search: string, replacement: string) => {
-    if (typeof input === 'string') {
-        return input.replace(new RegExp(search, 'g'), replacement);
+    if (typeof input === 'string' && typeof search === 'string') {
+        const _replacement = replacement === undefined ? '' : replacement;
+        return input.replace(new RegExp(search, 'g'), _replacement);
     }
-    return '';
+    return undefined;
 }
 
 // Encodes a string to Base64.
