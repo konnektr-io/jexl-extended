@@ -8,6 +8,8 @@
 
 > **max**(...`input`): `number`
 
+Finds the maximum value in an array of numbers.
+
 ## Parameters
 
 • ...**input**: `unknown`[]
@@ -18,4 +20,4 @@
 
 ## Defined in
 
-[extended-grammar.ts:311](https://github.com/nikoraes/jexl-extended/blob/db8adde102268337995e72b2224f129152316ed5/src/extended-grammar.ts#L311)
+[extended-grammar.ts:313](https://github.com/nikoraes/jexl-extended/blob/0d088073b18839315bb7964d107cdd49b0d074cd/src/extended-grammar.ts#L313)

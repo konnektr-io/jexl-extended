@@ -8,6 +8,8 @@
 
 > **absoluteValue**(`input`): `number`
 
+Returns the absolute value of a number.
+
 ## Parameters
 
 • **input**: `unknown`
@@ -18,4 +20,4 @@
 
 ## Defined in
 
-[extended-grammar.ts:221](https://github.com/nikoraes/jexl-extended/blob/db8adde102268337995e72b2224f129152316ed5/src/extended-grammar.ts#L221)
+[extended-grammar.ts:233](https://github.com/nikoraes/jexl-extended/blob/0d088073b18839315bb7964d107cdd49b0d074cd/src/extended-grammar.ts#L233)

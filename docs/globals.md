@@ -13,6 +13,7 @@
 - [arrayDistinct](functions/arrayDistinct.md)
 - [arrayEvery](functions/arrayEvery.md)
 - [arrayFilter](functions/arrayFilter.md)
+- [arrayFind](functions/arrayFind.md)
 - [arrayJoin](functions/arrayJoin.md)
 - [arrayMap](functions/arrayMap.md)
 - [arrayReduce](functions/arrayReduce.md)
@@ -60,7 +61,10 @@
 - [toBoolean](functions/toBoolean.md)
 - [toDateTime](functions/toDateTime.md)
 - [toNumber](functions/toNumber.md)
-- [toString](functions/toString.md)
 - [trim](functions/trim.md)
 - [uppercase](functions/uppercase.md)
 - [uuid](functions/uuid.md)
+
+## Type Conversion
+
+- [toString](functions/toString.md)

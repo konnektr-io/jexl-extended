@@ -24,4 +24,4 @@ Adds a time range to a date and time in the ISO 8601 format.
 
 ## Defined in
 
-[extended-grammar.ts:597](https://github.com/nikoraes/jexl-extended/blob/db8adde102268337995e72b2224f129152316ed5/src/extended-grammar.ts#L597)
+[extended-grammar.ts:580](https://github.com/nikoraes/jexl-extended/blob/0d088073b18839315bb7964d107cdd49b0d074cd/src/extended-grammar.ts#L580)

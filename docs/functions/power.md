@@ -8,6 +8,8 @@
 
 > **power**(`input`, `exponent`?): `number`
 
+Returns the value of a number raised to a power.
+
 ## Parameters
 
 • **input**: `unknown`
@@ -20,4 +22,4 @@
 
 ## Defined in
 
-[extended-grammar.ts:245](https://github.com/nikoraes/jexl-extended/blob/db8adde102268337995e72b2224f129152316ed5/src/extended-grammar.ts#L245)
+[extended-grammar.ts:257](https://github.com/nikoraes/jexl-extended/blob/0d088073b18839315bb7964d107cdd49b0d074cd/src/extended-grammar.ts#L257)

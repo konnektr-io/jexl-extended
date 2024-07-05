@@ -6,16 +6,20 @@
 
 # Function: arrayToObject()
 
-> **arrayToObject**(`input`): `unknown`
+> **arrayToObject**(`input`, `val`?): `any`
+
+Create a new object based on an array of key-value pairs.
 
 ## Parameters
 
-• **input**: `unknown`[]
+• **input**: `unknown`
+
+• **val?**: `unknown`
 
 ## Returns
 
-`unknown`
+`any`
 
 ## Defined in
 
-[extended-grammar.ts:432](https://github.com/nikoraes/jexl-extended/blob/db8adde102268337995e72b2224f129152316ed5/src/extended-grammar.ts#L432)
+[extended-grammar.ts:392](https://github.com/nikoraes/jexl-extended/blob/0d088073b18839315bb7964d107cdd49b0d074cd/src/extended-grammar.ts#L392)

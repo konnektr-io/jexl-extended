@@ -8,6 +8,8 @@
 
 > **pad**(`input`, `width`, `char`): `string`
 
+Pads the input string on both sides to center it.
+
 ## Parameters
 
 • **input**: `unknown`
@@ -22,4 +24,4 @@
 
 ## Defined in
 
-[extended-grammar.ts:156](https://github.com/nikoraes/jexl-extended/blob/db8adde102268337995e72b2224f129152316ed5/src/extended-grammar.ts#L156)
+[extended-grammar.ts:167](https://github.com/nikoraes/jexl-extended/blob/0d088073b18839315bb7964d107cdd49b0d074cd/src/extended-grammar.ts#L167)

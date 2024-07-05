@@ -26,4 +26,4 @@ The substring after the first occurrence of the character sequence chars in str.
 
 ## Defined in
 
-[extended-grammar.ts:109](https://github.com/nikoraes/jexl-extended/blob/db8adde102268337995e72b2224f129152316ed5/src/extended-grammar.ts#L109)
+[extended-grammar.ts:120](https://github.com/nikoraes/jexl-extended/blob/0d088073b18839315bb7964d107cdd49b0d074cd/src/extended-grammar.ts#L120)

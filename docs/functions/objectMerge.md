@@ -20,4 +20,4 @@ Returns a new object with the properties of the input objects merged together.
 
 ## Defined in
 
-[extended-grammar.ts:545](https://github.com/nikoraes/jexl-extended/blob/db8adde102268337995e72b2224f129152316ed5/src/extended-grammar.ts#L545)
+[extended-grammar.ts:525](https://github.com/nikoraes/jexl-extended/blob/0d088073b18839315bb7964d107cdd49b0d074cd/src/extended-grammar.ts#L525)

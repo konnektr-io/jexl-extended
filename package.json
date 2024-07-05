@@ -14,7 +14,7 @@
   "scripts": {
     "test": "vitest",
     "build": "tsc -p tsconfig.release.json",
-    "docs": "typedoc"
+    "docs": "typedoc && ts-node ./src/build-docs.ts"
   },
   "keywords": [
     "JSON",

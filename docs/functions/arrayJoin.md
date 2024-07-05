@@ -6,13 +6,15 @@
 
 # Function: arrayJoin()
 
-> **arrayJoin**(`input`, `separator`): `string`
+> **arrayJoin**(`input`, `separator`?): `string`
+
+Joins elements of an array into a string.
 
 ## Parameters
 
 • **input**: `unknown`
 
-• **separator**: `string`
+• **separator?**: `string`
 
 ## Returns
 
@@ -20,4 +22,4 @@
 
 ## Defined in
 
-[extended-grammar.ts:182](https://github.com/nikoraes/jexl-extended/blob/db8adde102268337995e72b2224f129152316ed5/src/extended-grammar.ts#L182)
+[extended-grammar.ts:193](https://github.com/nikoraes/jexl-extended/blob/0d088073b18839315bb7964d107cdd49b0d074cd/src/extended-grammar.ts#L193)
