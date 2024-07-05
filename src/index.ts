@@ -57,7 +57,8 @@ import {
     uuid,
     now,
     millis,
-    arrayJoin
+    arrayJoin,
+    arrayFind
 } from './extended-grammar';
 
 export class JexlExtended extends Jexl {
@@ -284,6 +285,9 @@ export class JexlExtended extends Jexl {
         this.addFunction('filter', arrayFilter);
         this.addFunction('$filter', arrayFilter);
         this.addTransform('filter', arrayFilter);
+        this.addFunction('find', arrayFind);
+        this.addFunction('$find', arrayFind);
+        this.addTransform('find', arrayFind);
         this.addFunction('reduce', arrayReduce);
         this.addFunction('$reduce', arrayReduce);
         this.addTransform('reduce', arrayReduce);

@@ -258,16 +258,6 @@ export const randomNumber = () => {
     return Math.random();
 }
 
-/*         public static JsonNode FormatNumber(JsonNode input, JsonNode picture)
-        {
-            if (input is JsonValue value && picture is JsonValue pictureValue)
-            {
-                decimal number = value.ToDecimal();
-                return number.ToString(pictureValue.ToString(), System.Globalization.CultureInfo.InvariantCulture);
-            }
-            return null;
-        } */
-
 // Casts the number to a string and formats it to a decimal representation as specified by the format string.
 export const formatNumber = (input: unknown, format: string) => {
     const num = typeof input === 'number' ? input : parseInt(toNumber(input).toString(), 10);
@@ -364,48 +354,6 @@ export const arrayShuffle = (input: unknown[]) => {
     return input;
 }
 
-/* 
-        public static JsonNode ArraySort(JsonNode input, JsonNode expression = null, JsonNode descending = null)
-        {
-            if (input is JsonArray array)
-            {
-                bool isDescending = descending is JsonValue descVal && descVal.GetValueKind() == JsonValueKind.True;
-                Expression jExpression = null;
-                if (expression != null)
-                {
-                    Jexl jexl = new Jexl(new ExtendedGrammar());
-                    jExpression = jexl.CreateExpression(expression.ToString());
-                }
-                JsonValue getValue(JsonNode x)
-                {
-                    if (expression == null)
-                    {
-                        return x?.AsValue();
-                    }
-                    else if (x is JsonObject obj)
-                    {
-                        return jExpression.Eval(obj)?.AsValue();
-                    }
-                    else
-                    {
-                        var context = new JsonObject()
-                        {
-                            ["value"] = x?.DeepClone()
-                        };
-                        return jExpression.Eval(context)?.AsValue();
-                    }
-                }
-
-                var sortedArray = isDescending
-                    ? array.Select(x => x.DeepClone()).OrderByDescending(getValue, new JsonValueComparer()).ToArray()
-                    : array.Select(x => x.DeepClone()).OrderBy(getValue, new JsonValueComparer()).ToArray();
-
-                return new JsonArray(sortedArray);
-            }
-            return null;
-        } */
-
-
 // Sorts the elements of an array.
 export const arraySort = (input: unknown[], expression?: string, descending?: boolean) => {
     if (!Array.isArray(input)) return [];
@@ -498,6 +446,19 @@ export const arrayFilter = (input: unknown[], expression: string) => {
     if (!Array.isArray(input)) return [];
     const expr = jexl.compile(expression);
     return input.filter((value, index, array) => {
+        return expr.evalSync({ value, index, array });
+    });
+}
+
+/**
+ * Finds the first element in an array that matches the specified expression.
+ * The expression must be a valid JEXL expression string, and is applied to each element of the array.
+ * The relative context provided to the expression is an object with the properties value and array (the original array).
+ */
+export const arrayFind = (input: unknown[], expression: string) => {
+    if (!Array.isArray(input)) return undefined;
+    const expr = jexl.compile(expression);
+    return input.find((value, index, array) => {
         return expr.evalSync({ value, index, array });
     });
 }
