@@ -431,9 +431,14 @@ export const arrayDistinct = (input: unknown[]) => {
 export const arrayToObject = (input: unknown, val?: unknown) => {
     if (typeof input === 'string') return { [input]: val };
     if (!Array.isArray(input)) return {};
-    return input.reduce((acc, [key, value]) => {
-        const _value = value === undefined && val !== undefined ? val : value;
-        acc[key] = _value;
+    return input.reduce((acc, kv) => {
+        if (Array.isArray(kv) && kv.length === 2) {
+            acc[kv[0]] = kv[1];
+            return acc;
+        } else if (typeof kv === 'string') {
+            acc[kv] = val;
+            return acc;
+        }
         return acc;
     }, {});
 }
