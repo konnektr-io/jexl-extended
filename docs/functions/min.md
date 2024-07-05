@@ -20,4 +20,4 @@ Finds the minimum value in an array of numbers.
 
 ## Defined in
 
-[extended-grammar.ts:319](https://github.com/nikoraes/jexl-extended/blob/0d088073b18839315bb7964d107cdd49b0d074cd/src/extended-grammar.ts#L319)
+[extended-grammar.ts:319](https://github.com/nikoraes/jexl-extended/blob/06a031f168fa218082d7ed9df57973f42e70c755/src/extended-grammar.ts#L319)

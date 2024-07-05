@@ -49,4 +49,4 @@ for (const [type, lib] of Object.entries(libs)) {
 console.log(docs)
 
 // Save output as json file
-fs.writeFileSync('./docs/docs.json', JSON.stringify(docs, null, 2))
+fs.writeFileSync('./dist/docs.json', JSON.stringify(docs, null, 2))

@@ -16,8 +16,6 @@
     "src/**/*.ts",
     "test/*.*.test.ts",
     "./vitest.config.ts",
-    "build-docs.cjs",
-    "src/build-docs.ts",
   ],
   "exclude": [
     "node_modules",
