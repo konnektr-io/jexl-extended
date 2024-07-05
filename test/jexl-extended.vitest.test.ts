@@ -214,6 +214,7 @@ test('objects', () => {
     expect(jexl.evalSync('$merge({foo:\'bar\'},{baz:\'tek\'})')).toEqual(expected)
     expect(jexl.evalSync('{foo:"bar"}|merge({baz:"tek"})')).toEqual(expected)
     expect(jexl.evalSync('[["foo","bar"],["baz","tek"]]|toObject')).toEqual(expected)
+    expect(jexl.evalSync('["foo","bar"]|toObject(true)')).toEqual({ foo: true, bar: true })
     expect(jexl.evalSync('["a","b","c"]|toObject(true)')).toEqual({ a: true, b: true, c: true })
 })
 
