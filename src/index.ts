@@ -344,4 +344,9 @@ export class JexlExtended extends Jexl {
     }
 }
 
+export enum GrammarType {
+    Function = 'Function',
+    Transform = 'Transform'
+}
+
 export default new JexlExtended();

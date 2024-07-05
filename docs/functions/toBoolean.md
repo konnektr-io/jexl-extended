@@ -20,4 +20,4 @@ Converts the input to a boolean.
 
 ## Defined in
 
-[extended-grammar.ts:332](https://github.com/nikoraes/jexl-extended/blob/06a031f168fa218082d7ed9df57973f42e70c755/src/extended-grammar.ts#L332)
+[extended-grammar.ts:332](https://github.com/nikoraes/jexl-extended/blob/6615aed6c8a07c2ecf0502c413d5c565a91b5f13/src/extended-grammar.ts#L332)

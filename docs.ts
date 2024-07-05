@@ -1,6 +1,7 @@
-import jexl from '.'
-import typedoc from '../docs/typedoc.json'
+import jexl from './src'
+import typedoc from './docs/typedoc.json'
 import fs from 'fs'
+import { GrammarType } from './src'
 
 interface Grammar {
     elements: { [symbol: string]: Element };
@@ -8,10 +9,6 @@ interface Grammar {
     transforms: { [name: string]: (...args: [unknown, ...unknown[]]) => unknown }; // There's a typo in the official types
 }
 
-export enum GrammarType {
-    Function = 'Function',
-    Transform = 'Transform'
-}
 
 const libs = {
     [GrammarType.Function]: jexl._grammar.functions,

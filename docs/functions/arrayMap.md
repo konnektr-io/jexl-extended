@@ -24,4 +24,4 @@ The relative context provided to the expression is an object with the properties
 
 ## Defined in
 
-[extended-grammar.ts:418](https://github.com/nikoraes/jexl-extended/blob/06a031f168fa218082d7ed9df57973f42e70c755/src/extended-grammar.ts#L418)
+[extended-grammar.ts:418](https://github.com/nikoraes/jexl-extended/blob/6615aed6c8a07c2ecf0502c413d5c565a91b5f13/src/extended-grammar.ts#L418)
