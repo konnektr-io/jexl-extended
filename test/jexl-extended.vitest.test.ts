@@ -72,11 +72,10 @@ test('contains', () => {
 
 test('replace', () => {
     expect(jexl.evalSync('replace("foo-bar", "-", "_")')).toBe('foo_bar')
-    expect(jexl.evalSync('replace("foo-bar", "-", "")')).toBe('foobar')
-    expect(jexl.evalSync('replace("foo-bar", "-", "")')).toBe('foobar')
-    expect(jexl.evalSync('replace("foo-bar", "-", "")')).toBe('foobar')
-    expect(jexl.evalSync('replace("foo-bar", "-", "")')).toBe('foobar')
+    expect(jexl.evalSync('replace("foo-bar---", "-", "")')).toBe('foobar')
+    expect(jexl.evalSync('"123ab123ab123ab"|replace("123")')).toEqual('ababab')
 })
+
 
 test('split', () => {
     expect(jexl.evalSync('split("foo-bar", "-")')).toEqual(['foo', 'bar'])
@@ -85,6 +84,8 @@ test('split', () => {
 test('join', () => {
     expect(jexl.evalSync('join(["foo", "bar"], "-")')).toBe('foo-bar')
     expect(jexl.evalSync('join(["foo", "bar"], "")')).toBe('foobar')
+    expect(jexl.evalSync('"f,b,a,d,e,c"|split(",")|sort|join')).toEqual('a,b,c,d,e,f')
+    expect(jexl.evalSync('"f,b,a,d,e,c"|split(",")|sort|join("")')).toEqual('abcdef')
 })
 
 test('convertBase64', () => {
@@ -213,6 +214,8 @@ test('objects', () => {
     expect(jexl.evalSync('$merge({foo:\'bar\'},{baz:\'tek\'})')).toEqual(expected)
     expect(jexl.evalSync('{foo:"bar"}|merge({baz:"tek"})')).toEqual(expected)
     expect(jexl.evalSync('[["foo","bar"],["baz","tek"]]|toObject')).toEqual(expected)
+    expect(jexl.evalSync('["foo","bar"]|toObject(true)')).toEqual({ foo: true, bar: true })
+    expect(jexl.evalSync('["a","b","c"]|toObject(true)')).toEqual({ a: true, b: true, c: true })
 })
 
 test('time', () => {

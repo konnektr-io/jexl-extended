@@ -190,19 +190,20 @@ export const split = (input: unknown, separator: string) => {
 }
 
 // Joins elements of an array into a string.
-export const arrayJoin = (input: unknown, separator: string) => {
-    if (Array.isArray(input) && typeof separator === 'string') {
+export const arrayJoin = (input: unknown, separator?: string) => {
+    if (Array.isArray(input)) {
         return input.join(separator);
     }
-    return '';
+    return undefined;
 }
 
 // Replaces occurrences of a specified string.
 export const replace = (input: unknown, search: string, replacement: string) => {
-    if (typeof input === 'string') {
-        return input.replace(new RegExp(search, 'g'), replacement);
+    if (typeof input === 'string' && typeof search === 'string') {
+        const _replacement = replacement === undefined ? '' : replacement;
+        return input.replace(new RegExp(search, 'g'), _replacement);
     }
-    return '';
+    return undefined;
 }
 
 // Encodes a string to Base64.
@@ -269,16 +270,6 @@ export const sqrt = (input: unknown) => {
 export const randomNumber = () => {
     return Math.random();
 }
-
-/*         public static JsonNode FormatNumber(JsonNode input, JsonNode picture)
-        {
-            if (input is JsonValue value && picture is JsonValue pictureValue)
-            {
-                decimal number = value.ToDecimal();
-                return number.ToString(pictureValue.ToString(), System.Globalization.CultureInfo.InvariantCulture);
-            }
-            return null;
-        } */
 
 // Casts the number to a string and formats it to a decimal representation as specified by the format string.
 export const formatNumber = (input: unknown, format: string) => {
@@ -376,48 +367,6 @@ export const arrayShuffle = (input: unknown[]) => {
     return input;
 }
 
-/* 
-        public static JsonNode ArraySort(JsonNode input, JsonNode expression = null, JsonNode descending = null)
-        {
-            if (input is JsonArray array)
-            {
-                bool isDescending = descending is JsonValue descVal && descVal.GetValueKind() == JsonValueKind.True;
-                Expression jExpression = null;
-                if (expression != null)
-                {
-                    Jexl jexl = new Jexl(new ExtendedGrammar());
-                    jExpression = jexl.CreateExpression(expression.ToString());
-                }
-                JsonValue getValue(JsonNode x)
-                {
-                    if (expression == null)
-                    {
-                        return x?.AsValue();
-                    }
-                    else if (x is JsonObject obj)
-                    {
-                        return jExpression.Eval(obj)?.AsValue();
-                    }
-                    else
-                    {
-                        var context = new JsonObject()
-                        {
-                            ["value"] = x?.DeepClone()
-                        };
-                        return jExpression.Eval(context)?.AsValue();
-                    }
-                }
-
-                var sortedArray = isDescending
-                    ? array.Select(x => x.DeepClone()).OrderByDescending(getValue, new JsonValueComparer()).ToArray()
-                    : array.Select(x => x.DeepClone()).OrderBy(getValue, new JsonValueComparer()).ToArray();
-
-                return new JsonArray(sortedArray);
-            }
-            return null;
-        } */
-
-
 // Sorts the elements of an array.
 export const arraySort = (input: unknown[], expression?: string, descending?: boolean) => {
     if (!Array.isArray(input)) return [];
@@ -440,10 +389,17 @@ export const arrayDistinct = (input: unknown[]) => {
 }
 
 // Create a new object based on an array of key-value pairs.
-export const arrayToObject = (input: unknown[]) => {
+export const arrayToObject = (input: unknown, val?: unknown) => {
+    if (typeof input === 'string') return { [input]: val };
     if (!Array.isArray(input)) return {};
-    return input.reduce((acc, [key, value]) => {
-        acc[key] = value;
+    return input.reduce((acc, kv) => {
+        if (Array.isArray(kv) && kv.length === 2) {
+            acc[kv[0]] = kv[1];
+            return acc;
+        } else if (typeof kv === 'string') {
+            acc[kv] = val;
+            return acc;
+        }
         return acc;
     }, {});
 }
@@ -503,6 +459,19 @@ export const arrayFilter = (input: unknown[], expression: string) => {
     if (!Array.isArray(input)) return [];
     const expr = jexl.compile(expression);
     return input.filter((value, index, array) => {
+        return expr.evalSync({ value, index, array });
+    });
+}
+
+/**
+ * Finds the first element in an array that matches the specified expression.
+ * The expression must be a valid JEXL expression string, and is applied to each element of the array.
+ * The relative context provided to the expression is an object with the properties value and array (the original array).
+ */
+export const arrayFind = (input: unknown[], expression: string) => {
+    if (!Array.isArray(input)) return undefined;
+    const expr = jexl.compile(expression);
+    return input.find((value, index, array) => {
         return expr.evalSync({ value, index, array });
     });
 }
@@ -579,7 +548,7 @@ export const millis = () => {
 /**
  * Parses the number of milliseconds since the Unix epoch or parses a string (with or without specified format) and returns the date and time in the ISO 8601 format.
  */
-export const toDateTime = (input: number | string, format?: string) => {
+export const toDateTime = (input?: number | string, format?: string) => {
     if (typeof input === 'number') {
         return new Date(input).toISOString();
     }
@@ -591,6 +560,9 @@ export const toDateTime = (input: number | string, format?: string) => {
             return dateParse(_input, _format, new Date()).toISOString();
         }
         return new Date(input).toISOString();
+    }
+    if (input === undefined) {
+        return new Date().toISOString();
     }
     return undefined;
 }

@@ -57,7 +57,8 @@ import {
     uuid,
     now,
     millis,
-    arrayJoin
+    arrayJoin,
+    arrayFind
 } from './extended-grammar';
 
 export class JexlExtended extends Jexl {
@@ -284,6 +285,9 @@ export class JexlExtended extends Jexl {
         this.addFunction('filter', arrayFilter);
         this.addFunction('$filter', arrayFilter);
         this.addTransform('filter', arrayFilter);
+        this.addFunction('find', arrayFind);
+        this.addFunction('$find', arrayFind);
+        this.addTransform('find', arrayFind);
         this.addFunction('reduce', arrayReduce);
         this.addFunction('$reduce', arrayReduce);
         this.addTransform('reduce', arrayReduce);
@@ -306,7 +310,7 @@ export class JexlExtended extends Jexl {
         // Millis
         this.addFunction('millis', millis);
         this.addFunction('$millis', millis);
-        // MillisToDateTime
+        // ToDateTime
         this.addFunction('millisToDateTime', toDateTime);
         this.addFunction('$millisToDateTime', toDateTime);
         this.addTransform('millisToDateTime', toDateTime);
@@ -316,6 +320,7 @@ export class JexlExtended extends Jexl {
         this.addFunction('toDateTime', toDateTime);
         this.addFunction('$toDateTime', toDateTime);
         this.addTransform('toDateTime', toDateTime);
+        this.addFunction('dateTimeString', toDateTime);
         // DateTimeToMillis
         this.addFunction('dateTimeToMillis', dateTimeToMillis);
         this.addFunction('$dateTimeToMillis', dateTimeToMillis);
