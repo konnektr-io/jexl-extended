@@ -29,7 +29,7 @@ for (const [type, lib] of Object.entries(libs)) {
         const functionName = lib[key].name
         const doc = typedoc.children.find(child => child.name === functionName)
         if (!doc) {
-            console.error(`No documentation found for ${functionName}`)
+            console.warn(`No documentation found for ${functionName}`)
             continue
         }
         const docsJson = {
@@ -43,7 +43,7 @@ for (const [type, lib] of Object.entries(libs)) {
         docs.push(docsJson)
     }
 }
-console.log(docs)
+// console.log(docs)
 
 // Save output as json file
 fs.writeFileSync('./dist/docs.json', JSON.stringify(docs, null, 2))
