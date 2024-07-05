@@ -12,6 +12,7 @@
     "declaration": true
   },
   "include": [
+    "*.ts",
     "src/**/*.ts",
     "test/*.*.test.ts",
     "./vitest.config.ts",

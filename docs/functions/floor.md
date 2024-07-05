@@ -2,11 +2,13 @@
 
 ***
 
-[jexl-extended](../README.md) / floor
+[jexl-extended](../globals.md) / floor
 
 # Function: floor()
 
 > **floor**(`input`): `number`
+
+Rounds a number down to the nearest integer.
 
 ## Parameters
 
@@ -18,4 +20,4 @@
 
 ## Defined in
 
-[extended-grammar.ts:225](https://github.com/nikoraes/jexl-extended/blob/0f5e836bd796a7ceb7bc07f325b2ca770e2551a1/src/extended-grammar.ts#L225)
+[extended-grammar.ts:239](https://github.com/nikoraes/jexl-extended/blob/06a031f168fa218082d7ed9df57973f42e70c755/src/extended-grammar.ts#L239)

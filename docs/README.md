@@ -1,66 +1,36 @@
-**jexl-extended** • **Docs**
+**jexl-extended** • [**Docs**](globals.md)
 
 ***
 
-# jexl-extended
+# Jexl Extended Grammar
 
-## Functions
+This package includes an extended grammar for the [Jexl expression parser and evaluator](https://github.com/TomFrost/Jexl).
 
-- [\_eval](functions/eval.md)
-- [absoluteValue](functions/absoluteValue.md)
-- [arrayAny](functions/arrayAny.md)
-- [arrayAppend](functions/arrayAppend.md)
-- [arrayDistinct](functions/arrayDistinct.md)
-- [arrayEvery](functions/arrayEvery.md)
-- [arrayFilter](functions/arrayFilter.md)
-- [arrayJoin](functions/arrayJoin.md)
-- [arrayMap](functions/arrayMap.md)
-- [arrayReduce](functions/arrayReduce.md)
-- [arrayReverse](functions/arrayReverse.md)
-- [arrayShuffle](functions/arrayShuffle.md)
-- [arraySort](functions/arraySort.md)
-- [arrayToObject](functions/arrayToObject.md)
-- [average](functions/average.md)
-- [base64Decode](functions/base64Decode.md)
-- [base64Encode](functions/base64Encode.md)
-- [camelCase](functions/camelCase.md)
-- [ceil](functions/ceil.md)
-- [contains](functions/contains.md)
-- [dateTimeAdd](functions/dateTimeAdd.md)
-- [dateTimeToMillis](functions/dateTimeToMillis.md)
-- [floor](functions/floor.md)
-- [formatBase](functions/formatBase.md)
-- [formatInteger](functions/formatInteger.md)
-- [formatNumber](functions/formatNumber.md)
-- [length](functions/length.md)
-- [lowercase](functions/lowercase.md)
-- [mapField](functions/mapField.md)
-- [max](functions/max.md)
-- [millis](functions/millis.md)
-- [min](functions/min.md)
-- [not](functions/not.md)
-- [now](functions/now.md)
-- [objectEntries](functions/objectEntries.md)
-- [objectKeys](functions/objectKeys.md)
-- [objectMerge](functions/objectMerge.md)
-- [objectValues](functions/objectValues.md)
-- [pad](functions/pad.md)
-- [parseInteger](functions/parseInteger.md)
-- [pascalCase](functions/pascalCase.md)
-- [power](functions/power.md)
-- [randomNumber](functions/randomNumber.md)
-- [replace](functions/replace.md)
-- [round](functions/round.md)
-- [split](functions/split.md)
-- [sqrt](functions/sqrt.md)
-- [substring](functions/substring.md)
-- [substringAfter](functions/substringAfter.md)
-- [substringBefore](functions/substringBefore.md)
-- [sum](functions/sum.md)
-- [toBoolean](functions/toBoolean.md)
-- [toDateTime](functions/toDateTime.md)
-- [toNumber](functions/toNumber.md)
-- [toString](functions/toString.md)
-- [trim](functions/trim.md)
-- [uppercase](functions/uppercase.md)
-- [uuid](functions/uuid.md)
+## Installation
+
+```bash
+npm install jexl-extended
+```
+
+## Usage
+
+Use the entire library as you would the original Jexl library, but import from `jexl-extended` instead of `jexl`.
+
+```javascript
+import jexl from 'jexl-extended';
+
+const result = jexl.evalSync('[{name:"tek",age:32}, {name:"bar",age:34}, {name:"baz",age:33}, {name:"foo",age:35}]|map("value.age")');
+// [32, 34, 33, 35]
+
+```
+
+It is also possible to use the extended grammar in the original Jexl library by importing parts of the grammar you need and adding it to the Jexl instance.
+
+```javascript
+import jexl from 'jexl';
+import { arrayMap } from 'jexl-extended/extended-grammar';
+
+jexl.addTransform('map', arrayMap);
+const result = jexl.evalSync('[{name:"tek",age:32}, {name:"bar",age:34}, {name:"baz",age:33}, {name:"foo",age:35}]|map("value.age")');
+// [32, 34, 33, 35]
+```

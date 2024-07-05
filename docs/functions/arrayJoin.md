@@ -2,17 +2,19 @@
 
 ***
 
-[jexl-extended](../README.md) / arrayJoin
+[jexl-extended](../globals.md) / arrayJoin
 
 # Function: arrayJoin()
 
-> **arrayJoin**(`input`, `separator`): `string`
+> **arrayJoin**(`input`, `separator`?): `string`
+
+Joins elements of an array into a string.
 
 ## Parameters
 
 • **input**: `unknown`
 
-• **separator**: `string`
+• **separator?**: `string`
 
 ## Returns
 
@@ -20,4 +22,4 @@
 
 ## Defined in
 
-[extended-grammar.ts:180](https://github.com/nikoraes/jexl-extended/blob/0f5e836bd796a7ceb7bc07f325b2ca770e2551a1/src/extended-grammar.ts#L180)
+[extended-grammar.ts:193](https://github.com/nikoraes/jexl-extended/blob/06a031f168fa218082d7ed9df57973f42e70c755/src/extended-grammar.ts#L193)

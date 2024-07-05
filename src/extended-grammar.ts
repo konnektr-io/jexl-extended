@@ -6,10 +6,13 @@ import jexl from '.';
 /**
  * Casts the input to a string.
  * 
+ * @example
  * ```jexl
  * string(123) // "123"
  * 123|string // "123"
  * ```
+ * @group Type Conversion
+ *
  * @param input The input can be any type.
  * @param prettify If true, the output will be pretty-printed.
  */
@@ -20,10 +23,12 @@ export const toString = (input: unknown, prettify = false) => {
 /**
  * Returns the number of characters in a string, or the length of an array.
  * 
+ * @example
  * ```jexl
  * length("hello") // 5
  * length([1, 2, 3]) // 3
  * ```
+ * 
  * @param input The input can be a string, an array, or an object.
  * @returns The number of characters in a string, or the length of an array.
  */
@@ -42,6 +47,11 @@ export const length = (input: unknown) => {
 
 /**
  * Gets a substring of a string.
+ * 
+ * @example
+ * ```jexl
+ * substring("hello world", 0, 5) // "hello"
+ * ```
  * 
  * @param input The input string.
  * @param start The starting index of the substring.
@@ -77,6 +87,7 @@ export const substring = (input: unknown, start: number, length: number | undefi
 /**
  * Returns the substring before the first occurrence of the character sequence chars in str. 
  * 
+ * @example
  * ```jexl
  * substringBefore("hello world", " ") // "hello"
  * ```
@@ -97,9 +108,11 @@ export const substringBefore = (input: unknown, chars: unknown) => {
 /**
  * Returns the substring after the first occurrence of the character sequence chars in str. 
  * 
+ * @example
  * ```jexl
  * substringAfter("hello world", " ") // "world"
  * ```
+ * 
  * @param input The input string.
  * @param chars The character sequence to search for.
  * @returns The substring after the first occurrence of the character sequence chars in str.
@@ -114,20 +127,20 @@ export const substringAfter = (input: unknown, chars: unknown) => {
     return str.substring(index + charsStr.length);
 }
 
-// Converts the input string to uppercase.
+/** Converts the input string to uppercase. */
 export const uppercase = (input: unknown) => {
     const str = typeof input === 'string' ? input : JSON.stringify(input);
     return str.toUpperCase();
 }
 
-// Converts the input string to lowercase.
+/** Converts the input string to lowercase. */
 export const lowercase = (input: unknown) => {
     const str = typeof input === 'string' ? input : JSON.stringify(input);
     return str.toLowerCase();
 }
 const splitRegex = /(?<!^)(?=[A-Z])|[`~!@#%^&*()|+\\\-=?;:'.,\s_']+/;
 
-// Converts the input string to camel case.
+/** Converts the input string to camel case. */
 export const camelCase = (input: unknown) => {
     if (typeof input !== 'string') return '';
     return input.split(splitRegex).map((word, index) => {
@@ -136,13 +149,13 @@ export const camelCase = (input: unknown) => {
     }).join('');
 }
 
-// Converts the input string to pascal case.
+/** Converts the input string to pascal case. */
 export const pascalCase = (input: unknown) => {
     if (typeof input !== 'string') return '';
     return input.split(splitRegex).map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join('');
 }
 
-// Trims whitespace from both ends of a string.
+/** Trims whitespace from both ends of a string. */
 export const trim = (input: unknown) => {
     if (typeof input === 'string') {
         return input.trim();
@@ -150,7 +163,7 @@ export const trim = (input: unknown) => {
     return '';
 }
 
-// Pads the input string on both sides to center it.
+/** Pads the input string on both sides to center it. */
 export const pad = (input: unknown, width: number, char: string = ' ') => {
     const str = typeof input !== 'string' ? JSON.stringify(input) : input;
     if (width > 0) {
@@ -160,7 +173,7 @@ export const pad = (input: unknown, width: number, char: string = ' ') => {
     }
 }
 
-// Checks if the input string contains the specified substring.
+/** Checks if the input string contains the specified substring. */
 export const contains = (input: unknown, search: string) => {
     if (typeof input === 'string' || Array.isArray(input)) {
         return input.includes(search);
@@ -168,7 +181,7 @@ export const contains = (input: unknown, search: string) => {
     return false;
 }
 
-// Splits the input string into an array of substrings.
+/** Splits the input string into an array of substrings. */
 export const split = (input: unknown, separator: string) => {
     if (typeof input === 'string') {
         return input.split(separator);
@@ -176,7 +189,7 @@ export const split = (input: unknown, separator: string) => {
     return [];
 }
 
-// Joins elements of an array into a string.
+/** Joins elements of an array into a string. */
 export const arrayJoin = (input: unknown, separator?: string) => {
     if (Array.isArray(input)) {
         return input.join(separator);
@@ -184,7 +197,7 @@ export const arrayJoin = (input: unknown, separator?: string) => {
     return undefined;
 }
 
-// Replaces occurrences of a specified string.
+/** Replaces occurrences of a specified string. */
 export const replace = (input: unknown, search: string, replacement: string) => {
     if (typeof input === 'string' && typeof search === 'string') {
         const _replacement = replacement === undefined ? '' : replacement;
@@ -193,7 +206,7 @@ export const replace = (input: unknown, search: string, replacement: string) => 
     return undefined;
 }
 
-// Encodes a string to Base64.
+/** Encodes a string to Base64. */
 export const base64Encode = (input: unknown) => {
     if (typeof input === 'string') {
         return Buffer.from(input).toString('base64');
@@ -201,7 +214,7 @@ export const base64Encode = (input: unknown) => {
     return '';
 }
 
-// Decodes a Base64 encoded string.
+/** Decodes a Base64 encoded string. */
 export const base64Decode = (input: unknown) => {
     if (typeof input === 'string') {
         return Buffer.from(input, 'base64').toString('utf-8');
@@ -209,56 +222,56 @@ export const base64Decode = (input: unknown) => {
     return '';
 }
 
-// Converts the input to a number.
+/** Converts the input to a number. */
 export const toNumber = (input: unknown) => {
     if (typeof input === 'number') return input;
     if (typeof input === 'string') return parseFloat(input);
     return NaN;
 }
 
-// Returns the absolute value of a number.
+/** Returns the absolute value of a number. */
 export const absoluteValue = (input: unknown) => {
     const num = toNumber(input);
     return isNaN(num) ? NaN : Math.abs(num);
 }
 
-// Rounds a number down to the nearest integer.
+/** Rounds a number down to the nearest integer. */
 export const floor = (input: unknown) => {
     const num = toNumber(input);
     return isNaN(num) ? NaN : Math.floor(num);
 }
 
-// Rounds a number up to the nearest integer.
+/** Rounds a number up to the nearest integer. */
 export const ceil = (input: unknown) => {
     const num = toNumber(input);
     return isNaN(num) ? NaN : Math.ceil(num);
 }
 
-// Rounds a number to the nearest integer.
+/** Rounds a number to the nearest integer. */
 export const round = (input: unknown, decimals?: number) => {
     const num = toNumber(input);
     return isNaN(num) ? NaN : decimals ? Math.round(num * Math.pow(10, decimals)) / Math.pow(10, decimals) : Math.round(num);
 }
 
-// Returns the value of a number raised to a power.
+/** Returns the value of a number raised to a power. */
 export const power = (input: unknown, exponent?: number) => {
     const num = toNumber(input);
     const exp = exponent === undefined ? 2 : exponent;
     return isNaN(num) ? NaN : Math.pow(num, exp);
 }
 
-// Returns the square root of a number.
+/** Returns the square root of a number. */
 export const sqrt = (input: unknown) => {
     const num = toNumber(input);
     return isNaN(num) ? NaN : Math.sqrt(num);
 }
 
-// Generates a random number between 0 (inclusive) and 1 (exclusive).
+/** Generates a random number between 0 (inclusive) and 1 (exclusive). */
 export const randomNumber = () => {
     return Math.random();
 }
 
-// Casts the number to a string and formats it to a decimal representation as specified by the format string.
+/** Casts the number to a string and formats it to a decimal representation as specified by the format string. */
 export const formatNumber = (input: unknown, format: string) => {
     const num = typeof input === 'number' ? input : parseInt(toNumber(input).toString(), 10);
     return isNaN(num) ? '' : num.toLocaleString('en-us', {
@@ -268,19 +281,19 @@ export const formatNumber = (input: unknown, format: string) => {
     });
 }
 
-// Formats a number as a string in the specified base.
+/** Formats a number as a string in the specified base. */
 export const formatBase = (input: unknown, base: number) => {
     const num = typeof input === 'number' ? input : parseInt(toNumber(input).toString(), 10);
     return isNaN(num) ? '' : num.toString(base);
 }
 
-// Formats a number as an integer.
+/** Formats a number as an integer. */
 export const formatInteger = (input: unknown, format: string) => {
     const num = toNumber(input);
     return isNaN(num) ? '' : pad(Math.floor(num).toString(), -format.length, '0');
 }
 
-// Parses a string and returns an integer.
+/** Parses a string and returns an integer. */
 export const parseInteger = (input: unknown) => {
     if (typeof input === 'string') {
         return parseInt(input, 10);
@@ -290,32 +303,32 @@ export const parseInteger = (input: unknown) => {
     return NaN;
 }
 
-// Calculates the sum of an array of numbers.
+/** Calculates the sum of an array of numbers. */
 export const sum = (...input: unknown[]) => {
     if (!Array.isArray(input)) return NaN;
     return input.flat().reduce<number>((acc, val) => acc + toNumber(val), 0);
 }
 
-// Finds the maximum value in an array of numbers.
+/** Finds the maximum value in an array of numbers. */
 export const max = (...input: unknown[]) => {
     if (!Array.isArray(input)) return NaN;
     return Math.max(...input.flat().map(toNumber));
 }
 
-// Finds the minimum value in an array of numbers.
+/** Finds the minimum value in an array of numbers. */
 export const min = (...input: unknown[]) => {
     if (!Array.isArray(input)) return NaN;
     return Math.min(...input.flat().map(toNumber));
 }
 
-// Calculates the average of an array of numbers.
+/** Calculates the average of an array of numbers. */
 export const average = (...input: unknown[]) => {
     if (!Array.isArray(input)) return NaN;
     const total = sum(...input);
     return total / input.flat().length;
 }
 
-// Converts the input to a boolean.
+/** Converts the input to a boolean. */
 export const toBoolean = (input: unknown) => {
     if (typeof input === 'boolean') return input;
     if (typeof input === 'number') return input !== 0;
@@ -327,24 +340,24 @@ export const toBoolean = (input: unknown) => {
     return Boolean(input);
 }
 
-// Returns the logical NOT of the input.
+/** Returns the logical NOT of the input. */
 export const not = (input: unknown) => {
     return !toBoolean(input);
 }
 
-// Appends an element to an array.
+/** Appends an element to an array. */
 export const arrayAppend = (...input: unknown[]) => {
     if (!Array.isArray(input)) return [];
     return [...input.flat()];
 }
 
-// Reverses the elements of an array.
+/** Reverses the elements of an array. */
 export const arrayReverse = (...input: unknown[]) => {
     if (!Array.isArray(input)) return [];
     return [...input.flat()].reverse();
 }
 
-// Shuffles the elements of an array.
+/** Shuffles the elements of an array. */
 export const arrayShuffle = (input: unknown[]) => {
     if (!Array.isArray(input)) return [];
     for (let i = input.length - 1; i > 0; i--) {
@@ -354,7 +367,7 @@ export const arrayShuffle = (input: unknown[]) => {
     return input;
 }
 
-// Sorts the elements of an array.
+/** Sorts the elements of an array. */
 export const arraySort = (input: unknown[], expression?: string, descending?: boolean) => {
     if (!Array.isArray(input)) return [];
     if (!expression) return [...input].sort();
@@ -369,13 +382,13 @@ export const arraySort = (input: unknown[], expression?: string, descending?: bo
     return [...input].sort(compareFunction);
 }
 
-// Returns a new array with the elements of the input array with duplicates removed.
+/** Returns a new array with the elements of the input array with duplicates removed. */
 export const arrayDistinct = (input: unknown[]) => {
     if (!Array.isArray(input)) return [];
     return [...new Set(input)];
 }
 
-// Create a new object based on an array of key-value pairs.
+/** Create a new object based on an array of key-value pairs. */
 export const arrayToObject = (input: unknown, val?: unknown) => {
     if (typeof input === 'string') return { [input]: val };
     if (!Array.isArray(input)) return {};
@@ -391,7 +404,7 @@ export const arrayToObject = (input: unknown, val?: unknown) => {
     }, {});
 }
 
-// Returns a new array with the elements of the input array transformed by the specified map function.
+/** Returns a new array with the elements of the input array transformed by the specified map function. */
 export const mapField = (input: unknown[], field: string) => {
     if (!Array.isArray(input)) return [];
     return input.map(item => item[field]);

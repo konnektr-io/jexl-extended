@@ -2,11 +2,13 @@
 
 ***
 
-[jexl-extended](../README.md) / pad
+[jexl-extended](../globals.md) / pad
 
 # Function: pad()
 
 > **pad**(`input`, `width`, `char`): `string`
+
+Pads the input string on both sides to center it.
 
 ## Parameters
 
@@ -22,4 +24,4 @@
 
 ## Defined in
 
-[extended-grammar.ts:154](https://github.com/nikoraes/jexl-extended/blob/0f5e836bd796a7ceb7bc07f325b2ca770e2551a1/src/extended-grammar.ts#L154)
+[extended-grammar.ts:167](https://github.com/nikoraes/jexl-extended/blob/06a031f168fa218082d7ed9df57973f42e70c755/src/extended-grammar.ts#L167)

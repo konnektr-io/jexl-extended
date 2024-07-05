@@ -34,6 +34,9 @@ jobs:
       - name: 'Build library'
         run: pnpm run build
 
+      - name: 'Build docs'
+        run: pnpm run docs
+
       - name: 'Publish library'
         run: npm publish --provenance --access public
         env:

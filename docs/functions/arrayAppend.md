@@ -2,11 +2,13 @@
 
 ***
 
-[jexl-extended](../README.md) / arrayAppend
+[jexl-extended](../globals.md) / arrayAppend
 
 # Function: arrayAppend()
 
 > **arrayAppend**(...`input`): `unknown`[]
+
+Appends an element to an array.
 
 ## Parameters
 
@@ -18,4 +20,4 @@
 
 ## Defined in
 
-[extended-grammar.ts:345](https://github.com/nikoraes/jexl-extended/blob/0f5e836bd796a7ceb7bc07f325b2ca770e2551a1/src/extended-grammar.ts#L345)
+[extended-grammar.ts:349](https://github.com/nikoraes/jexl-extended/blob/06a031f168fa218082d7ed9df57973f42e70c755/src/extended-grammar.ts#L349)

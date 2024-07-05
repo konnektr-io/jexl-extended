@@ -2,11 +2,13 @@
 
 ***
 
-[jexl-extended](../README.md) / parseInteger
+[jexl-extended](../globals.md) / parseInteger
 
 # Function: parseInteger()
 
 > **parseInteger**(`input`): `number`
+
+Parses a string and returns an integer.
 
 ## Parameters
 
@@ -18,4 +20,4 @@
 
 ## Defined in
 
-[extended-grammar.ts:293](https://github.com/nikoraes/jexl-extended/blob/0f5e836bd796a7ceb7bc07f325b2ca770e2551a1/src/extended-grammar.ts#L293)
+[extended-grammar.ts:297](https://github.com/nikoraes/jexl-extended/blob/06a031f168fa218082d7ed9df57973f42e70c755/src/extended-grammar.ts#L297)

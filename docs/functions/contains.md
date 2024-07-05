@@ -2,11 +2,13 @@
 
 ***
 
-[jexl-extended](../README.md) / contains
+[jexl-extended](../globals.md) / contains
 
 # Function: contains()
 
 > **contains**(`input`, `search`): `boolean`
+
+Checks if the input string contains the specified substring.
 
 ## Parameters
 
@@ -20,4 +22,4 @@
 
 ## Defined in
 
-[extended-grammar.ts:164](https://github.com/nikoraes/jexl-extended/blob/0f5e836bd796a7ceb7bc07f325b2ca770e2551a1/src/extended-grammar.ts#L164)
+[extended-grammar.ts:177](https://github.com/nikoraes/jexl-extended/blob/06a031f168fa218082d7ed9df57973f42e70c755/src/extended-grammar.ts#L177)

@@ -2,11 +2,13 @@
 
 ***
 
-[jexl-extended](../README.md) / min
+[jexl-extended](../globals.md) / min
 
 # Function: min()
 
 > **min**(...`input`): `number`
+
+Finds the minimum value in an array of numbers.
 
 ## Parameters
 
@@ -18,4 +20,4 @@
 
 ## Defined in
 
-[extended-grammar.ts:315](https://github.com/nikoraes/jexl-extended/blob/0f5e836bd796a7ceb7bc07f325b2ca770e2551a1/src/extended-grammar.ts#L315)
+[extended-grammar.ts:319](https://github.com/nikoraes/jexl-extended/blob/06a031f168fa218082d7ed9df57973f42e70c755/src/extended-grammar.ts#L319)

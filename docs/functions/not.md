@@ -2,11 +2,13 @@
 
 ***
 
-[jexl-extended](../README.md) / not
+[jexl-extended](../globals.md) / not
 
 # Function: not()
 
 > **not**(`input`): `boolean`
+
+Returns the logical NOT of the input.
 
 ## Parameters
 
@@ -18,4 +20,4 @@
 
 ## Defined in
 
-[extended-grammar.ts:340](https://github.com/nikoraes/jexl-extended/blob/0f5e836bd796a7ceb7bc07f325b2ca770e2551a1/src/extended-grammar.ts#L340)
+[extended-grammar.ts:344](https://github.com/nikoraes/jexl-extended/blob/06a031f168fa218082d7ed9df57973f42e70c755/src/extended-grammar.ts#L344)

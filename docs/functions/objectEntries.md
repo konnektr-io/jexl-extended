@@ -2,7 +2,7 @@
 
 ***
 
-[jexl-extended](../README.md) / objectEntries
+[jexl-extended](../globals.md) / objectEntries
 
 # Function: objectEntries()
 
@@ -20,4 +20,4 @@ Returns an array of key-value pairs from the input object.
 
 ## Defined in
 
-[extended-grammar.ts:533](https://github.com/nikoraes/jexl-extended/blob/0f5e836bd796a7ceb7bc07f325b2ca770e2551a1/src/extended-grammar.ts#L533)
+[extended-grammar.ts:515](https://github.com/nikoraes/jexl-extended/blob/06a031f168fa218082d7ed9df57973f42e70c755/src/extended-grammar.ts#L515)

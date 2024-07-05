@@ -1,6 +1,6 @@
 {
   "name": "jexl-extended",
-  "version": "1.0.8",
+  "version": "1.1.0",
   "description": "Extended grammar for Javascript Expression Language (JEXL)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,7 +14,7 @@
   "scripts": {
     "test": "vitest",
     "build": "tsc -p tsconfig.release.json",
-    "docs": "typedoc"
+    "docs": "typedoc && ts-node ./src/docs.ts"
   },
   "keywords": [
     "JSON",

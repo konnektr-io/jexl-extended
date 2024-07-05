@@ -2,7 +2,7 @@
 
 ***
 
-[jexl-extended](../README.md) / arrayFilter
+[jexl-extended](../globals.md) / arrayFilter
 
 # Function: arrayFilter()
 
@@ -24,4 +24,4 @@ The relative context provided to the expression is an object with the properties
 
 ## Defined in
 
-[extended-grammar.ts:489](https://github.com/nikoraes/jexl-extended/blob/0f5e836bd796a7ceb7bc07f325b2ca770e2551a1/src/extended-grammar.ts#L489)
+[extended-grammar.ts:458](https://github.com/nikoraes/jexl-extended/blob/06a031f168fa218082d7ed9df57973f42e70c755/src/extended-grammar.ts#L458)

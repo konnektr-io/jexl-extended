@@ -2,11 +2,13 @@
 
 ***
 
-[jexl-extended](../README.md) / base64Decode
+[jexl-extended](../globals.md) / base64Decode
 
 # Function: base64Decode()
 
 > **base64Decode**(`input`): `string`
+
+Decodes a Base64 encoded string.
 
 ## Parameters
 
@@ -18,4 +20,4 @@
 
 ## Defined in
 
-[extended-grammar.ts:204](https://github.com/nikoraes/jexl-extended/blob/0f5e836bd796a7ceb7bc07f325b2ca770e2551a1/src/extended-grammar.ts#L204)
+[extended-grammar.ts:218](https://github.com/nikoraes/jexl-extended/blob/06a031f168fa218082d7ed9df57973f42e70c755/src/extended-grammar.ts#L218)

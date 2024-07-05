@@ -2,11 +2,13 @@
 
 ***
 
-[jexl-extended](../README.md) / power
+[jexl-extended](../globals.md) / power
 
 # Function: power()
 
 > **power**(`input`, `exponent`?): `number`
+
+Returns the value of a number raised to a power.
 
 ## Parameters
 
@@ -20,4 +22,4 @@
 
 ## Defined in
 
-[extended-grammar.ts:243](https://github.com/nikoraes/jexl-extended/blob/0f5e836bd796a7ceb7bc07f325b2ca770e2551a1/src/extended-grammar.ts#L243)
+[extended-grammar.ts:257](https://github.com/nikoraes/jexl-extended/blob/06a031f168fa218082d7ed9df57973f42e70c755/src/extended-grammar.ts#L257)

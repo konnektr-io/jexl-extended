@@ -2,11 +2,13 @@
 
 ***
 
-[jexl-extended](../README.md) / split
+[jexl-extended](../globals.md) / split
 
 # Function: split()
 
 > **split**(`input`, `separator`): `string`[]
+
+Splits the input string into an array of substrings.
 
 ## Parameters
 
@@ -20,4 +22,4 @@
 
 ## Defined in
 
-[extended-grammar.ts:172](https://github.com/nikoraes/jexl-extended/blob/0f5e836bd796a7ceb7bc07f325b2ca770e2551a1/src/extended-grammar.ts#L172)
+[extended-grammar.ts:185](https://github.com/nikoraes/jexl-extended/blob/06a031f168fa218082d7ed9df57973f42e70c755/src/extended-grammar.ts#L185)

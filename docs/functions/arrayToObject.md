@@ -2,20 +2,24 @@
 
 ***
 
-[jexl-extended](../README.md) / arrayToObject
+[jexl-extended](../globals.md) / arrayToObject
 
 # Function: arrayToObject()
 
-> **arrayToObject**(`input`): `unknown`
+> **arrayToObject**(`input`, `val`?): `any`
+
+Create a new object based on an array of key-value pairs.
 
 ## Parameters
 
-• **input**: `unknown`[]
+• **input**: `unknown`
+
+• **val?**: `unknown`
 
 ## Returns
 
-`unknown`
+`any`
 
 ## Defined in
 
-[extended-grammar.ts:430](https://github.com/nikoraes/jexl-extended/blob/0f5e836bd796a7ceb7bc07f325b2ca770e2551a1/src/extended-grammar.ts#L430)
+[extended-grammar.ts:392](https://github.com/nikoraes/jexl-extended/blob/06a031f168fa218082d7ed9df57973f42e70c755/src/extended-grammar.ts#L392)

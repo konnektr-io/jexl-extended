@@ -2,7 +2,7 @@
 
 ***
 
-[jexl-extended](../README.md) / dateTimeAdd
+[jexl-extended](../globals.md) / dateTimeAdd
 
 # Function: dateTimeAdd()
 
@@ -24,4 +24,4 @@ Adds a time range to a date and time in the ISO 8601 format.
 
 ## Defined in
 
-[extended-grammar.ts:595](https://github.com/nikoraes/jexl-extended/blob/0f5e836bd796a7ceb7bc07f325b2ca770e2551a1/src/extended-grammar.ts#L595)
+[extended-grammar.ts:580](https://github.com/nikoraes/jexl-extended/blob/06a031f168fa218082d7ed9df57973f42e70c755/src/extended-grammar.ts#L580)

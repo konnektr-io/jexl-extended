@@ -2,18 +2,13 @@
 
 ***
 
-[jexl-extended](../README.md) / toString
+[jexl-extended](../globals.md) / toString
 
 # Function: toString()
 
 > **toString**(`input`, `prettify`): `string`
 
 Casts the input to a string.
-
-```jexl
-string(123) // "123"
-123|string // "123"
-```
 
 ## Parameters
 
@@ -29,6 +24,13 @@ If true, the output will be pretty-printed.
 
 `string`
 
+## Example
+
+```jexl
+string(123) // "123"
+123|string // "123"
+```
+
 ## Defined in
 
-[extended-grammar.ts:16](https://github.com/nikoraes/jexl-extended/blob/0f5e836bd796a7ceb7bc07f325b2ca770e2551a1/src/extended-grammar.ts#L16)
+[extended-grammar.ts:19](https://github.com/nikoraes/jexl-extended/blob/06a031f168fa218082d7ed9df57973f42e70c755/src/extended-grammar.ts#L19)
