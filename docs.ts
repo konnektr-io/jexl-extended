@@ -47,3 +47,4 @@ for (const [type, lib] of Object.entries(libs)) {
 
 // Save output as json file
 fs.writeFileSync('./dist/docs.json', JSON.stringify(docs, null, 2))
+console.info('Docs file generated successfully (./dist/docs.json)')
