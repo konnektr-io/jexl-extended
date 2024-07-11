@@ -11,6 +11,7 @@ test('length', () => {
     expect(jexl.evalSync('\'test123\'|length')).toBe(7)
     expect(jexl.evalSync('["a",1,"b"]|length')).toBe(3)
     expect(jexl.evalSync('$length(["a",1,"b"])')).toBe(3)
+    expect(jexl.evalSync('{a:1,b:2,c:3}|length')).toBe(3)
 })
 
 test('substring', () => {
@@ -43,6 +44,7 @@ test('lowercase', () => {
     expect(jexl.evalSync('lowercase("HELLO WORLD")')).toBe('hello world')
     expect(jexl.evalSync('lowercase(123456)')).toBe('123456')
     expect(jexl.evalSync('$lowercase(\'FOObar\')')).toBe('foobar')
+    expect(jexl.evalSync('"FOObar"|lower')).toBe('foobar')
 })
 
 test('camelPascalCase', () => {
