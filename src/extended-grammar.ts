@@ -229,6 +229,16 @@ export const toNumber = (input: unknown) => {
     return NaN;
 }
 
+/** Parses a string and returns an integer. */
+export const parseInteger = (input: unknown) => {
+    if (typeof input === 'string') {
+        return parseInt(input, 10);
+    } else if (typeof input === 'number') {
+        return Math.floor(input);
+    }
+    return NaN;
+}
+
 /** Returns the absolute value of a number. */
 export const absoluteValue = (input: unknown) => {
     const num = toNumber(input);
@@ -291,16 +301,6 @@ export const formatBase = (input: unknown, base: number) => {
 export const formatInteger = (input: unknown, format: string) => {
     const num = toNumber(input);
     return isNaN(num) ? '' : pad(Math.floor(num).toString(), -format.length, '0');
-}
-
-/** Parses a string and returns an integer. */
-export const parseInteger = (input: unknown) => {
-    if (typeof input === 'string') {
-        return parseInt(input, 10);
-    } else if (typeof input === 'number') {
-        return Math.floor(input);
-    }
-    return NaN;
 }
 
 /** Calculates the sum of an array of numbers. */

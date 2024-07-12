@@ -72,13 +72,6 @@ test('contains', () => {
     expect(jexl.evalSync('["baz", "foo", "bar"]|contains("bar")')).toBe(true)
 })
 
-test('replace', () => {
-    expect(jexl.evalSync('replace("foo-bar", "-", "_")')).toBe('foo_bar')
-    expect(jexl.evalSync('replace("foo-bar---", "-", "")')).toBe('foobar')
-    expect(jexl.evalSync('"123ab123ab123ab"|replace("123")')).toEqual('ababab')
-})
-
-
 test('split', () => {
     expect(jexl.evalSync('split("foo-bar", "-")')).toEqual(['foo', 'bar'])
 })
@@ -88,6 +81,12 @@ test('join', () => {
     expect(jexl.evalSync('join(["foo", "bar"], "")')).toBe('foobar')
     expect(jexl.evalSync('"f,b,a,d,e,c"|split(",")|sort|join')).toEqual('a,b,c,d,e,f')
     expect(jexl.evalSync('"f,b,a,d,e,c"|split(",")|sort|join("")')).toEqual('abcdef')
+})
+
+test('replace', () => {
+    expect(jexl.evalSync('replace("foo-bar", "-", "_")')).toBe('foo_bar')
+    expect(jexl.evalSync('replace("foo-bar---", "-", "")')).toBe('foobar')
+    expect(jexl.evalSync('"123ab123ab123ab"|replace("123")')).toEqual('ababab')
 })
 
 test('convertBase64', () => {
@@ -108,6 +107,7 @@ test('number', () => {
     expect(jexl.evalSync('3|power(2)')).toBe(9)
     expect(jexl.evalSync('3|power')).toBe(9)
     expect(jexl.evalSync('9|sqrt')).toBe(3)
+    expect(jexl.evalSync('random() < 1')).toBe(true)
 })
 
 test('formatting', () => {

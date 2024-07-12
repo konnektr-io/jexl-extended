@@ -158,6 +158,10 @@ export class JexlExtended extends Jexl {
         this.addFunction('$number', toNumber);
         this.addTransform('number', toNumber);
         this.addTransform('toNumber', toNumber);
+        this.addFunction('parseFloat', toNumber);
+        this.addFunction('$parseFloat', toNumber);
+        this.addTransform('float', toNumber);
+        this.addTransform('toFloat', toNumber);
         // AbsoluteValue
         this.addFunction('abs', absoluteValue);
         this.addFunction('$abs', absoluteValue);
@@ -204,6 +208,7 @@ export class JexlExtended extends Jexl {
         this.addTransform('parseInteger', parseInteger);
         this.addTransform('parseInt', parseInteger);
         this.addTransform('toInt', parseInteger);
+        this.addTransform('integer', parseInteger);
         // Sum
         this.addFunction('sum', sum);
         this.addFunction('$sum', sum);
