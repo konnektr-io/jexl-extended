@@ -58,7 +58,9 @@ import {
     now,
     millis,
     arrayJoin,
-    arrayFind
+    arrayFind,
+    startsWith,
+    endsWith
 } from './extended-grammar';
 
 export class JexlExtended extends Jexl {
@@ -133,6 +135,14 @@ export class JexlExtended extends Jexl {
         this.addFunction('includes', contains);
         this.addFunction('$includes', contains);
         this.addTransform('includes', contains);
+        // StartsWith
+        this.addFunction('startsWith', startsWith);
+        this.addFunction('$startsWith', startsWith);
+        this.addTransform('startsWith', startsWith);
+        // EndsWith
+        this.addFunction('endsWith', endsWith);
+        this.addFunction('$endsWith', endsWith);
+        this.addTransform('endsWith', endsWith);
         // Split
         this.addFunction('split', split);
         this.addFunction('$split', split);

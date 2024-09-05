@@ -181,6 +181,22 @@ export const contains = (input: unknown, search: string) => {
     return false;
 }
 
+/** Checks if the input string starts with the specified substring. */
+export const startsWith = (input: unknown, search: string) => {
+    if (typeof input === 'string') {
+        return input.startsWith(search);
+    }
+    return false;
+}
+
+/** Checks if the input string ends with the specified substring. */
+export const endsWith = (input: unknown, search: string) => {
+    if (typeof input === 'string') {
+        return input.endsWith(search);
+    }
+    return false;
+}
+
 /** Splits the input string into an array of substrings. */
 export const split = (input: unknown, separator: string) => {
     if (typeof input === 'string') {
