@@ -72,6 +72,13 @@ test('contains', () => {
   expect(jexl.evalSync('["baz", "foo", "bar"]|contains("bar")')).toBe(true)
 })
 
+test('startsWithEndsWith', () => {
+  expect(jexl.evalSync('\'foo-bar\'|startsWith(\'foo\')')).toBe(true)
+  expect(jexl.evalSync('\'foo-bar\'|startsWith(\'baz\')')).toBe(false)
+  expect(jexl.evalSync('\'foo-bar\'|endsWith(\'bar\')')).toBe(true)
+  expect(jexl.evalSync('\'foo-bar\'|startsWith(\'baz\')')).toBe(false)
+})
+
 test('split', () => {
   expect(jexl.evalSync('split("foo-bar", "-")')).toEqual(['foo', 'bar'])
 })
