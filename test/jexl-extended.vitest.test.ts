@@ -60,6 +60,7 @@ test('camelPascalCase', () => {
 test('trimPad', () => {
   expect(jexl.evalSync('trim(" baz  ")')).toBe('baz')
   expect(jexl.evalSync('trim("  baz  ")')).toBe('baz')
+  expect(jexl.evalSync('trim("__baz--","--")')).toBe('__baz')
   expect(jexl.evalSync('pad("foo",5)')).toBe('foo  ')
   expect(jexl.evalSync('pad("foo",(-5),0)')).toBe('00foo')
 })

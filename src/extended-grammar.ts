@@ -156,8 +156,11 @@ export const pascalCase = (input: unknown) => {
 }
 
 /** Trims whitespace from both ends of a string. */
-export const trim = (input: unknown) => {
+export const trim = (input: unknown, trimChar?: string) => {
     if (typeof input === 'string') {
+        if (trimChar) {
+            return input.replace(new RegExp(`^${trimChar}+|${trimChar}+$`, 'g'), '');
+        }
         return input.trim();
     }
     return '';
