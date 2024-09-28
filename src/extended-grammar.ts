@@ -543,8 +543,15 @@ export const objectEntries = (input: unknown) => {
  */
 export const objectMerge = (...args: unknown[]) => {
     return args.reduce<Record<string, unknown>>((acc, obj) => {
-        if (typeof obj === 'object' && obj !== null) {
+        if (!Array.isArray(obj) && typeof obj === 'object' && obj !== null) {
             return { ...acc, ...obj };
+        }
+        if (Array.isArray(obj)) {
+            for (const item of obj) {
+                if (typeof item === 'object' && item !== null) {
+                    acc = { ...acc, ...item };
+                }
+            }
         }
         return acc;
     }, {});
