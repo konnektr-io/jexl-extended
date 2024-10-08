@@ -157,6 +157,12 @@ test('booleans', () => {
   expect(jexl.evalSync('\'TRUE\'|toBool|not')).toBe(false)
 })
 
+test('case', () => {
+  expect(jexl.evalSync('2|case(1,"a",2,"b",3,"c")')).toBe("b")
+  expect(jexl.evalSync('$case("bar","foo","a","bar","b","baz","c")')).toBe("b")
+  expect(jexl.evalSync("'notfound'|case('bar','foo','a','bar','b','baz','c','b')")).toBe("b")
+})
+
 test('arrays', () => {
   expect(jexl.evalSync('["foo", "bar", "baz"]|append("tek")')).toEqual(['foo', 'bar', 'baz', 'tek'])
   expect(jexl.evalSync('["foo", "bar"]|append(["baz","tek"])')).toEqual(['foo', 'bar', 'baz', 'tek'])

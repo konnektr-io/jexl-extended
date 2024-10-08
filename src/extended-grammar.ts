@@ -364,6 +364,36 @@ export const not = (input: unknown) => {
     return !toBoolean(input);
 }
 
+/**
+ * Evaluates a list of predicates and returns the first result expression whose predicate is satisfied.
+ * 
+ * @example
+ * ```jexl
+ * switch(expression, case1, result1, case2, result2, ..., default)
+ * ```
+ * 
+ * @param args The arguments array where the first element is the expression to evaluate, followed by pairs of case and result, and optionally a default value.
+ * @returns The result of the first case whose predicate is satisfied, or the default value if no case is satisfied.
+ */
+export const switchCase = (...args: unknown[]) => {
+    if (args.length < 3) return null;
+
+    const expressionResult = args[0];
+
+    for (let i = 1; i < args.length - 1; i += 2) {
+        const caseResult = args[i];
+        if (JSON.stringify(expressionResult) === JSON.stringify(caseResult)) {
+            return args[i + 1];
+        }
+    }
+    // Return default
+    if (args.length % 2 === 1) {
+        return args[args.length - 1];
+    }
+    // Return null if no default specified
+    return null;
+}
+
 /** Appends an element to an array. */
 export const arrayAppend = (...input: unknown[]) => {
     if (!Array.isArray(input)) return [];

@@ -24,6 +24,7 @@ import {
     max,
     min,
     not,
+    switchCase,
     pad,
     parseInteger,
     pascalCase,
@@ -250,6 +251,13 @@ export class JexlExtended extends Jexl {
         this.addFunction('not', not);
         this.addFunction('$not', not);
         this.addTransform('not', not);
+        // SwitchCase
+        this.addFunction('case', switchCase);
+        this.addFunction('$case', switchCase);
+        this.addTransform('case', switchCase);
+        this.addFunction('switch', switchCase);
+        this.addFunction('$switch', switchCase);
+        this.addTransform('switch', switchCase);
         // Array operations
         this.addFunction('append', arrayAppend);
         this.addFunction('$append', arrayAppend);
