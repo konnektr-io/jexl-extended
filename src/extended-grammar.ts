@@ -241,6 +241,15 @@ export const base64Decode = (input: unknown) => {
     return '';
 }
 
+export const formUrlEncoded = (input: unknown) => {
+    if (typeof input === 'string') {
+        return encodeURIComponent(input);
+    } else if (typeof input === 'object') {
+        return Object.keys(input).map(key => `${encodeURIComponent(key)}=${encodeURIComponent(input[key])}`).join('&');
+    }
+    return '';
+}
+
 /** Converts the input to a number. */
 export const toNumber = (input: unknown) => {
     if (typeof input === 'number') return input;
