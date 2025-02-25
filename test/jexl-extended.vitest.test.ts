@@ -247,6 +247,7 @@ test('time', () => {
   expect(jexl.evalSync('(((millis() / 1000) | ceil) * 1000) | toDateTime | dateTimeAdd(\'second\',5) == (((now()|toMillis / 1000) + 5) | ceil * 1000) | toDateTime')).toBe(true)
   expect(jexl.evalSync('\'02-22-24 00:00:00\'|toDateTime(\'MM-dd-yy HH:mm:ss\') == \'2024-02-22T00:00:00Z\'|toDateTime')).toBe(true)
   expect(jexl.evalSync('\'02-22-24 00:00:00\'|toDateTime(\'MM-dd-yy HH:mm:ss\')')).toBe(jexl.evalSync('\'2024-02-22T00:00:00.0000000+00:00\'|toDateTime'))
+  expect(jexl.evalSync('\'2024-02-22T00:00:00.000000Z\'|dateTimeFormat(\'dd.MM.yyyy\')')).toBe('22.02.2024');
 })
 
 test('eval', () => {

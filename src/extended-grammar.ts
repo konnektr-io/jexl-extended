@@ -1,4 +1,4 @@
-import { parse as dateParse, add as dateAdd } from 'date-fns';
+import { parse as dateParse, add as dateAdd, format as dateFormat } from 'date-fns';
 
 import { v4 as uuidv4 } from 'uuid';
 import jexl from '.';
@@ -631,6 +631,33 @@ export const toDateTime = (input?: number | string, format?: string) => {
     }
     return undefined;
 }
+
+/**
+ * Converts a date and time to a provided format.
+ * 
+ * @example
+ * ```typescript
+ * dateTimeFormat(datetime, format)
+ * $dateTimeFormat(datetime, format)
+ * datetime|dateTimeFormat(format)
+ * ```
+ * 
+ * @param input The input date and time, either as a string or number.
+ * @param format The format to convert the date and time to.
+ * @returns The date and time in the specified format.
+ */
+export const dateTimeFormat = (input: number | string, format: string): string | null => {
+    let dateTime: Date;
+    if (typeof input === 'string') {
+        dateTime = new Date(input);
+    } else if (typeof input === 'number') {
+        dateTime = new Date(input);
+    } else {
+        return null;
+    }
+    return dateFormat(dateTime, format);
+};
+
 
 /**
  * Parses the date and time in the ISO 8601 format and returns the number of milliseconds since the Unix epoch.

@@ -61,7 +61,8 @@ import {
     arrayJoin,
     arrayFind,
     startsWith,
-    endsWith
+    endsWith,
+    dateTimeFormat
 } from './extended-grammar';
 
 export class JexlExtended extends Jexl {
@@ -355,6 +356,10 @@ export class JexlExtended extends Jexl {
         this.addFunction('toMillis', dateTimeToMillis);
         this.addFunction('$toMillis', dateTimeToMillis);
         this.addTransform('toMillis', dateTimeToMillis);
+        // DateTimeFormat
+        this.addFunction('dateTimeFormat', dateTimeFormat);
+        this.addFunction('$dateTimeFormat', dateTimeFormat);
+        this.addTransform('dateTimeFormat', dateTimeFormat);
         // DateTimeAdd
         this.addFunction('dateTimeAdd', dateTimeAdd);
         this.addFunction('$dateTimeAdd', dateTimeAdd);
