@@ -396,8 +396,9 @@ export const switchCase = (...args: unknown[]) => {
         }
     }
     // Return default
-    if (args.length % 2 === 1) {
-        return args[args.length - 1];
+    if (args.length % 2 === 0) {
+        const defaultResult = args[args.length - 1];
+        return defaultResult;
     }
     // Return null if no default specified
     return null;

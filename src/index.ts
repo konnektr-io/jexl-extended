@@ -62,7 +62,8 @@ import {
     arrayFind,
     startsWith,
     endsWith,
-    dateTimeFormat
+    dateTimeFormat,
+    formUrlEncoded
 } from './extended-grammar';
 
 export class JexlExtended extends Jexl {
@@ -166,9 +167,9 @@ export class JexlExtended extends Jexl {
         this.addFunction('$base64Decode', base64Decode);
         this.addTransform('base64Decode', base64Decode);
         // Form URL Encoded
-        this.addFunction('formUrlEncoded', base64Encode);
-        this.addFunction('$formUrlEncoded', base64Encode);
-        this.addTransform('formUrlEncoded', base64Encode);
+        this.addFunction('formUrlEncoded', formUrlEncoded);
+        this.addFunction('$formUrlEncoded', formUrlEncoded);
+        this.addTransform('formUrlEncoded', formUrlEncoded);
         // Number
         this.addFunction('number', toNumber);
         this.addFunction('$number', toNumber);
