@@ -248,6 +248,7 @@ test('time', () => {
   expect(jexl.evalSync('\'02-22-24 00:00:00\'|toDateTime(\'MM-dd-yy HH:mm:ss\') == \'2024-02-22T00:00:00Z\'|toDateTime')).toBe(true)
   expect(jexl.evalSync('\'02-22-24 00:00:00\'|toDateTime(\'MM-dd-yy HH:mm:ss\')')).toBe(jexl.evalSync('\'2024-02-22T00:00:00.0000000+00:00\'|toDateTime'))
   expect(jexl.evalSync('\'2024-02-22T00:00:00.000000Z\'|dateTimeFormat(\'dd.MM.yyyy\')')).toBe('22.02.2024');
+  expect(jexl.evalSync('1740445200000|dateTimeFormat("yyyyMMdd-HHmmss")')).toBe('20250225-010000');
 })
 
 test('eval', () => {

@@ -656,7 +656,12 @@ export const dateTimeFormat = (input: number | string, format: string): string |
     } else {
         return null;
     }
-    return dateFormat(dateTime, format);
+    
+    // Convert to UTC
+    const utcDateTime = new Date(dateTime.getTime() + dateTime.getTimezoneOffset() * 60000);
+
+    // Format the date
+    return dateFormat(utcDateTime, format);
 };
 
 
