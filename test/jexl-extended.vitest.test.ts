@@ -100,6 +100,7 @@ test('replace', () => {
 test('convertBase64', () => {
   expect(jexl.evalSync('\'foobar\'|base64Encode')).toBe('Zm9vYmFy')
   expect(jexl.evalSync('\'Zm9vYmFy\'|base64Decode')).toBe('foobar')
+  expect(jexl.evalSync('\'hello⛳❤️🧀\'|base64Encode|base64Decode')).toBe('hello⛳❤️🧀')
 })
 
 test('formUrlEncoded', () => {

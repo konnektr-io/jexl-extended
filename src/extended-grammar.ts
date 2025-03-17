@@ -228,7 +228,14 @@ export const replace = (input: unknown, search: string, replacement: string) => 
 /** Encodes a string to Base64. */
 export const base64Encode = (input: unknown) => {
     if (typeof input === 'string') {
-        return Buffer.from(input).toString('base64');
+        try {
+          encodeURIComponent(input);
+          const bytes = new TextEncoder().encode(input);
+          const binString = String.fromCodePoint(...bytes);
+          return btoa(binString);
+        } catch (error) {
+            return '';
+        }
     }
     return '';
 }
@@ -236,11 +243,14 @@ export const base64Encode = (input: unknown) => {
 /** Decodes a Base64 encoded string. */
 export const base64Decode = (input: unknown) => {
     if (typeof input === 'string') {
-        return Buffer.from(input, 'base64').toString('utf-8');
+      const binString = atob(input);
+      const bytes = Uint8Array.from(binString, (m) => m.codePointAt(0));
+      return new TextDecoder().decode(bytes);
     }
     return '';
 }
 
+/** Encodes a string or object to URI. */
 export const formUrlEncoded = (input: unknown) => {
     if (typeof input === 'string') {
         return encodeURIComponent(input);
