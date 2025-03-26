@@ -21,6 +21,18 @@ export const toString = (input: unknown, prettify = false) => {
 }
 
 /**
+ * Parses the string and returns a JSON object.
+ * 
+ * @example
+ * ```jexl
+ * parseJson('{"key": "value"}') // { key: "value" }
+ * '{"key": "value"}'|toJson // { key: "value" }
+ */
+export const toJson = (input: string) => {
+    return JSON.parse(input);
+}
+
+/**
  * Returns the number of characters in a string, or the length of an array.
  * 
  * @example

@@ -63,7 +63,8 @@ import {
     startsWith,
     endsWith,
     dateTimeFormat,
-    formUrlEncoded
+    formUrlEncoded,
+    toJson
 } from './extended-grammar';
 
 export class JexlExtended extends Jexl {
@@ -75,6 +76,13 @@ export class JexlExtended extends Jexl {
         this.addTransform('string', toString);
         // toString causes issues in javascript
         // this.addTransform('toString', toString);
+        //Json
+        this.addFunction('json', toJson);
+        this.addFunction('$json', toJson);
+        this.addTransform('toJson', toJson);
+        this.addFunction('parseJson', toJson);
+        this.addFunction('$parseJson', toJson);
+        this.addTransform('parseJson', toJson);
         // Length
         this.addFunction('length', length);
         this.addFunction('$length', length);
