@@ -390,4 +390,7 @@ export enum GrammarType {
     Transform = 'Transform'
 }
 
+// Monaco Editor support (optional)
+export * as Monaco from './monaco';
+
 export default new JexlExtended();
