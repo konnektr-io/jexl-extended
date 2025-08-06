@@ -1,7 +1,4 @@
 {
-    "plugin": [
-        "typedoc-plugin-markdown"
-    ],
     "entryPoints": [
         "./src/extended-grammar.ts"
     ],

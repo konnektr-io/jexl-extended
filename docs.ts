@@ -35,7 +35,7 @@ for (const [type, lib] of Object.entries(libs)) {
         const docsJson = {
             type: type as GrammarType,
             name: key,
-            description: doc.comment?.summary[0]?.text,
+            description: doc.signatures[0]?.comment?.summary[0]?.text,
             args: (doc.signatures[0] as unknown as { parameters: { name: string }[] })?.parameters?.map(param => param.name).join(', '),
             returns: (doc.signatures[0].type as { type: string; name: string; }).name || doc.signatures[0].type.type,
             code: lib[key].toString()
