@@ -659,7 +659,7 @@ export const toDateTime = (input?: number | string, format?: string) => {
  * Converts a date and time to a provided format.
  * 
  * @example
- * ```typescript
+ * ```jexl
  * dateTimeFormat(datetime, format)
  * $dateTimeFormat(datetime, format)
  * datetime|dateTimeFormat(format)
