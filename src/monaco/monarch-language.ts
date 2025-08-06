@@ -17,74 +17,51 @@ export const jexlMonarchLanguage: IMonarchLanguage = {
   // Set defaultToken to invalid to see what tokens are missed
   defaultToken: 'invalid',
 
-  // Keywords (JEXL operators and logical keywords)
+  // Keywords (JEXL literals and reserved words)
   keywords: [
-    'true', 'false', 'null', 'undefined',
-    'and', 'or', 'not', 'in',
-    'if', 'else', 'endif'
+    'true', 'false', 'null', 'undefined', 'in'
   ],
 
-  // Operators
+  // Operators (accurate JEXL operators from grammar)
   operators: [
-    '=', '>', '<', '!', '~', '?', ':',
-    '==', '<=', '>=', '!=', '&&', '||', '++', '--',
-    '+', '-', '*', '/', '&', '|', '^', '%', '<<',
-    '>>', '>>>', '+=', '-=', '*=', '/=', '&=', '|=',
-    '^=', '%=', '<<=', '>>=', '>>>='
+    '+', '-', '*', '/', '//', '%', '^',
+    '==', '!=', '>', '>=', '<', '<=',
+    '&&', '||', '!', 'in'
   ],
 
-  // Common delimiters and separators
-  symbols: /[=><!~?:&|+\-*\/\^%]+/,
+  // Common delimiters and separators (JEXL specific)
+  symbols: /[+\-*\/%\^=!><&|?:]+/,
 
-  // String and transform functions from jexl-extended
+  // Functions and transforms from jexl-extended (automatically generated)
   builtinFunctions: [
-    // Type conversion
-    'string', '$string', 'json', '$json', 'parseJson', '$parseJson', 'toJson',
-    'number', '$number', 'toNumber', 'parseFloat', '$parseFloat', 'float', 'toFloat',
-    'boolean', '$boolean', 'toBoolean', 'bool', '$bool', 'toBool',
-    'parseInteger', 'parseInt', '$parseInteger', 'toInt', 'integer',
-    
-    // String functions
-    'length', '$length', 'count', '$count', 'size', '$size',
-    'substring', '$substring', 'substringBefore', '$substringBefore',
-    'substringAfter', '$substringAfter', 'uppercase', '$uppercase', 'upper', '$upper',
-    'lowercase', '$lowercase', 'lower', '$lower', 'camelCase', '$camelCase',
-    'toCamelCase', 'pascalCase', '$pascalCase', 'toPascalCase', 'trim', '$trim',
-    'pad', '$pad', 'contains', '$contains', 'includes', '$includes',
-    'startsWith', '$startsWith', 'endsWith', '$endsWith', 'split', '$split',
-    'replace', '$replace', 'base64Encode', '$base64Encode', 'base64Decode', '$base64Decode',
-    'formUrlEncoded', '$formUrlEncoded',
-    
-    // Math functions
-    'abs', '$abs', 'floor', '$floor', 'ceil', '$ceil', 'round', '$round',
-    'power', '$power', 'sqrt', '$sqrt', 'random', '$random',
-    'formatNumber', '$formatNumber', 'formatBase', '$formatBase',
-    'formatInteger', '$formatInteger', 'sum', '$sum', 'max', '$max',
-    'min', '$min', 'average', 'avg', '$average',
-    
-    // Logic functions
-    'not', '$not', 'case', '$case', 'switch', '$switch',
-    
-    // Array functions
-    'append', '$append', 'concat', '$concat', 'reverse', '$reverse',
-    'shuffle', '$shuffle', 'sort', '$sort', 'order', '$order',
-    'distinct', '$distinct', 'toObject', '$toObject', 'fromEntries', '$fromEntries',
-    'mapField', '$mapField', 'map', '$map', 'any', '$any', 'some', '$some',
-    'all', '$all', 'every', '$every', 'filter', '$filter', 'find', '$find',
-    'reduce', '$reduce', 'join', '$join',
-    
-    // Object functions
-    'keys', '$keys', 'values', '$values', 'entries', '$entries',
-    'merge', '$merge',
-    
-    // Date/Time functions
-    'now', '$now', 'millis', '$millis', 'millisToDateTime', '$millisToDateTime',
-    'fromMillis', '$fromMillis', 'toDateTime', '$toDateTime', 'dateTimeString',
-    'dateTimeToMillis', '$dateTimeToMillis', 'toMillis', '$toMillis',
-    'dateTimeFormat', '$dateTimeFormat', 'dateTimeAdd', '$dateTimeAdd',
-    
-    // Utility functions
-    'eval', '$eval', 'uuid', '$uuid', 'uid', '$uid'
+    '$abs', '$all', '$any', '$append', '$average', '$base64Decode', '$base64Encode',
+    '$bool', '$boolean', '$camelCase', '$case', '$ceil', '$concat', '$contains',
+    '$count', '$dateTimeAdd', '$dateTimeFormat', '$dateTimeToMillis', '$distinct',
+    '$endsWith', '$entries', '$eval', '$every', '$filter', '$find', '$floor',
+    '$formUrlEncoded', '$formatBase', '$formatInteger', '$formatNumber',
+    '$fromEntries', '$fromMillis', '$includes', '$join', '$json', '$keys', '$length',
+    '$lower', '$lowercase', '$map', '$mapField', '$max', '$merge', '$millis',
+    '$millisToDateTime', '$min', '$not', '$now', '$number', '$order', '$pad',
+    '$parseFloat', '$parseInteger', '$parseJson', '$pascalCase', '$power', '$random',
+    '$reduce', '$replace', '$reverse', '$round', '$shuffle', '$size', '$some',
+    '$sort', '$split', '$sqrt', '$startsWith', '$string', '$substring',
+    '$substringAfter', '$substringBefore', '$sum', '$switch', '$toDateTime',
+    '$toMillis', '$toObject', '$trim', '$uid', '$upper', '$uppercase', '$uuid',
+    '$values', 'abs', 'all', 'any', 'append', 'average', 'avg', 'base64Decode',
+    'base64Encode', 'bool', 'boolean', 'camelCase', 'camelcase', 'case', 'ceil',
+    'concat', 'contains', 'count', 'dateTimeAdd', 'dateTimeFormat', 'dateTimeString',
+    'dateTimeToMillis', 'distinct', 'endsWith', 'entries', 'eval', 'every', 'filter',
+    'find', 'float', 'floor', 'formUrlEncoded', 'formatBase', 'formatInteger',
+    'formatNumber', 'fromEntries', 'fromMillis', 'includes', 'integer', 'join',
+    'json', 'keys', 'length', 'lower', 'lowercase', 'map', 'mapField', 'max',
+    'merge', 'millis', 'millisToDateTime', 'min', 'not', 'now', 'number', 'order',
+    'pad', 'parseFloat', 'parseInt', 'parseInteger', 'parseJson', 'pascalCase',
+    'pascalcase', 'power', 'random', 'reduce', 'replace', 'reverse', 'round',
+    'shuffle', 'size', 'some', 'sort', 'split', 'sqrt', 'startsWith', 'string',
+    'substring', 'substringAfter', 'substringBefore', 'sum', 'switch', 'toBool',
+    'toBoolean', 'toCamelCase', 'toDateTime', 'toFloat', 'toInt', 'toJson',
+    'toMillis', 'toNumber', 'toObject', 'toPascalCase', 'trim', 'uid', 'upper',
+    'uppercase', 'uuid', 'values'
   ],
 
   // The main tokenizer for the JEXL language
@@ -123,14 +100,11 @@ export const jexlMonarchLanguage: IMonarchLanguage = {
       [/0[xX][0-9a-fA-F]+/, 'number.hex'],
       [/\d+/, 'number'],
 
-      // Strings
+      // Strings (JEXL supports single and double quotes only)
       [/"([^"\\]|\\.)*$/, 'string.invalid'],  // non-terminated string
       [/'([^'\\]|\\.)*$/, 'string.invalid'],  // non-terminated string
       [/"/, { token: 'string.quote', bracket: '@open', next: '@string_double' }],
       [/'/, { token: 'string.quote', bracket: '@open', next: '@string_single' }],
-
-      // Template literals (for expressions within strings)
-      [/`/, { token: 'string.quote', bracket: '@open', next: '@string_backtick' }],
 
       // Operators
       [/@symbols/, {
@@ -176,31 +150,9 @@ export const jexlMonarchLanguage: IMonarchLanguage = {
       [/'/, { token: 'string.quote', bracket: '@close', next: '@pop' }]
     ],
 
-    string_backtick: [
-      [/[^\\`$]+/, 'string'],
-      [/\$\{/, { token: 'delimiter.bracket', next: '@expressionInTemplate' }],
-      [/\\./, 'string.escape'],
-      [/`/, { token: 'string.quote', bracket: '@close', next: '@pop' }]
-    ],
-
-    // Expression within template literals
-    expressionInTemplate: [
-      [/\}/, { token: 'delimiter.bracket', next: '@pop' }],
-      { include: '@root' }
-    ],
-
-    // Whitespace and comments
+    // Whitespace (JEXL does not support comments)
     whitespace: [
-      [/[ \t\r\n]+/, 'white'],
-      [/\/\*/, 'comment', '@comment'],
-      [/\/\/.*$/, 'comment']
-    ],
-
-    comment: [
-      [/[^\/*]+/, 'comment'],
-      [/\/\*/, 'comment', '@push'],    // nested comment
-      ["\\*/", 'comment', '@pop'],
-      [/[\/*]/, 'comment']
+      [/[ \t\r\n]+/, 'white']
     ]
   }
 };

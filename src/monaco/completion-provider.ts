@@ -16,37 +16,44 @@ export interface ICompletionList {
   suggestions: ICompletionItem[];
 }
 
-// JEXL function documentation
+// JEXL function documentation with accurate descriptions and examples
 const functionDocs: Record<string, { description: string; example: string }> = {
+  // Type Conversion
+  'string': { description: 'Casts the input to a string', example: 'string(123) // "123" or 123|string' },
+  'number': { description: 'Converts the input to a number', example: 'number("123") // 123 or "123"|number' },
+  'boolean': { description: 'Converts the input to a boolean', example: 'boolean("true") // true or "false"|boolean' },
+  
   // String functions
-  'length': { description: 'Returns the length of a string or array', example: '"hello"|length // 5' },
-  'substring': { description: 'Extracts a substring from a string', example: '"hello"|substring(1, 3) // "el"' },
-  'substringBefore': { description: 'Gets substring before a delimiter', example: '"hello-world"|substringBefore("-") // "hello"' },
-  'substringAfter': { description: 'Gets substring after a delimiter', example: '"hello-world"|substringAfter("-") // "world"' },
-  'uppercase': { description: 'Converts string to uppercase', example: '"hello"|uppercase // "HELLO"' },
-  'lowercase': { description: 'Converts string to lowercase', example: '"HELLO"|lowercase // "hello"' },
-  'camelCase': { description: 'Converts string to camelCase', example: '"hello world"|camelCase // "helloWorld"' },
-  'pascalCase': { description: 'Converts string to PascalCase', example: '"hello world"|pascalCase // "HelloWorld"' },
-  'trim': { description: 'Removes whitespace from both ends', example: '" hello "|trim // "hello"' },
-  'pad': { description: 'Pads string to specified length', example: '"hi"|pad(5, "0") // "hi000"' },
-  'contains': { description: 'Checks if string contains substring', example: '"hello"|contains("ell") // true' },
-  'split': { description: 'Splits string into array', example: '"a,b,c"|split(",") // ["a", "b", "c"]' },
-  'replace': { description: 'Replaces occurrences in string', example: '"hello"|replace("l", "x") // "hexxo"' },
-  'base64Encode': { description: 'Encodes string to base64', example: '"hello"|base64Encode // "aGVsbG8="' },
-  'base64Decode': { description: 'Decodes base64 string', example: '"aGVsbG8="|base64Decode // "hello"' },
+  'length': { description: 'Returns the length of a string, array, or object', example: '"hello"|length // 5, [1,2,3]|length // 3' },
+  'substring': { description: 'Extracts a substring from a string', example: 'substring(123456,2,2) // "34" or "hello"|substring(1, 3)' },
+  'substringBefore': { description: 'Gets substring before a delimiter', example: '"hello world"|substringBefore(" ") // "hello"' },
+  'substringAfter': { description: 'Gets substring after a delimiter', example: '"hello world"|substringAfter(" ") // "world"' },
+  'uppercase': { description: 'Converts string to uppercase', example: '"hello"|uppercase // "HELLO" or uppercase("hello")' },
+  'lowercase': { description: 'Converts string to lowercase', example: '"HELLO"|lowercase // "hello" or lowercase("HELLO")' },
+  'camelCase': { description: 'Converts string to camelCase', example: '"foo bar"|camelCase // "fooBar"' },
+  'pascalCase': { description: 'Converts string to PascalCase', example: '"foo bar"|toPascalCase // "FooBar"' },
+  'trim': { description: 'Removes whitespace from both ends', example: 'trim(" hello ") // "hello" or "__baz--"|trim("--")' },
+  'pad': { description: 'Pads string to specified length', example: 'pad("foo",5) // "foo  " or pad("foo",(-5),0)' },
+  'contains': { description: 'Checks if string/array contains value', example: '"foo-bar"|contains("bar") // true or [1,2,3]|contains(2)' },
+  'startsWith': { description: 'Checks if string starts with substring', example: '"foo-bar"|startsWith("foo") // true' },
+  'endsWith': { description: 'Checks if string ends with substring', example: '"foo-bar"|endsWith("bar") // true' },
+  'split': { description: 'Splits string into array', example: 'split("foo-bar", "-") // ["foo", "bar"]' },
+  'replace': { description: 'Replaces occurrences in string', example: 'replace("foo-bar", "-", "_") // "foo_bar"' },
+  'base64Encode': { description: 'Encodes string to base64', example: '"foobar"|base64Encode // "Zm9vYmFy"' },
+  'base64Decode': { description: 'Decodes base64 string', example: '"Zm9vYmFy"|base64Decode // "foobar"' },
 
   // Math functions
-  'abs': { description: 'Returns absolute value', example: '-5|abs // 5' },
-  'floor': { description: 'Rounds down to nearest integer', example: '3.7|floor // 3' },
-  'ceil': { description: 'Rounds up to nearest integer', example: '3.2|ceil // 4' },
-  'round': { description: 'Rounds to nearest integer', example: '3.7|round // 4' },
-  'power': { description: 'Raises number to power', example: '2|power(3) // 8' },
-  'sqrt': { description: 'Returns square root', example: '9|sqrt // 3' },
+  'abs': { description: 'Returns absolute value', example: 'abs(-5) // 5 or (-10)|abs' },
+  'floor': { description: 'Rounds down to nearest integer', example: 'floor(3.7) // 3 or (3.14)|floor' },
+  'ceil': { description: 'Rounds up to nearest integer', example: 'ceil(3.2) // 4 or (3.14)|ceil' },
+  'round': { description: 'Rounds to nearest integer', example: 'round(3.7) // 4 or round(3.14159, 2)' },
+  'power': { description: 'Raises number to power', example: 'power(2, 3) // 8 or (2)|power(3)' },
+  'sqrt': { description: 'Returns square root', example: 'sqrt(16) // 4 or (25)|sqrt' },
   'random': { description: 'Returns random number between 0-1', example: 'random() // 0.123...' },
-  'sum': { description: 'Sums array of numbers', example: '[1,2,3]|sum // 6' },
-  'max': { description: 'Returns maximum value', example: '[1,5,3]|max // 5' },
-  'min': { description: 'Returns minimum value', example: '[1,5,3]|min // 1' },
-  'average': { description: 'Returns average of numbers', example: '[1,2,3]|average // 2' },
+  'sum': { description: 'Sums array of numbers', example: '[1,2,3,4]|sum // 10 or sum([1,2,3,4])' },
+  'max': { description: 'Returns maximum value', example: '[1,5,3]|max // 5 or max([1,5,3])' },
+  'min': { description: 'Returns minimum value', example: '[1,5,3]|min // 1 or min([1,5,3])' },
+  'average': { description: 'Returns average of numbers', example: '[1,2,3,4]|average // 2.5 or average([1,2,3,4])' },
 
   // Array functions
   'append': { description: 'Appends item to array', example: '[1,2]|append(3) // [1,2,3]' },
@@ -136,7 +143,8 @@ export function createJexlCompletionItems(): ICompletionItem[] {
 }
 
 export function createJexlKeywords(): ICompletionItem[] {
-  const keywords = ['true', 'false', 'null', 'undefined', 'and', 'or', 'not', 'in', 'if', 'else', 'endif'];
+  // Accurate JEXL keywords based on actual grammar
+  const keywords = ['true', 'false', 'null', 'undefined', 'in'];
   
   return keywords.map(keyword => ({
     label: keyword,
@@ -148,6 +156,7 @@ export function createJexlKeywords(): ICompletionItem[] {
 }
 
 export function createJexlOperators(): ICompletionItem[] {
+  // Accurate JEXL operators based on actual grammar
   const operators = [
     { label: '==', desc: 'Equality comparison' },
     { label: '!=', desc: 'Inequality comparison' },
@@ -157,12 +166,16 @@ export function createJexlOperators(): ICompletionItem[] {
     { label: '<=', desc: 'Less than or equal' },
     { label: '&&', desc: 'Logical AND' },
     { label: '||', desc: 'Logical OR' },
+    { label: '!', desc: 'Logical NOT' },
+    { label: 'in', desc: 'Membership test' },
     { label: '|', desc: 'Transform pipe operator' },
     { label: '+', desc: 'Addition' },
     { label: '-', desc: 'Subtraction' },
     { label: '*', desc: 'Multiplication' },
     { label: '/', desc: 'Division' },
+    { label: '//', desc: 'Floor division' },
     { label: '%', desc: 'Modulus' },
+    { label: '^', desc: 'Exponentiation' },
     { label: '?', desc: 'Conditional operator' },
     { label: ':', desc: 'Conditional separator' }
   ];
