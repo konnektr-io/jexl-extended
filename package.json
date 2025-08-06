@@ -34,6 +34,14 @@
   },
   "homepage": "https://github.com/nikoraes/jexl-extended",
   "license": "MIT",
+  "peerDependencies": {
+    "monaco-editor": ">=0.40.0"
+  },
+  "peerDependenciesMeta": {
+    "monaco-editor": {
+      "optional": true
+    }
+  },
   "dependencies": {
     "date-fns": "^3.6.0",
     "jexl": "^2.3.0",
