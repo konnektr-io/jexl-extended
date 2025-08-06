@@ -20,10 +20,7 @@ export interface ILanguageConfiguration {
 }
 
 export const jexlLanguageConfiguration: ILanguageConfiguration = {
-  comments: {
-    lineComment: '//',
-    blockComment: ['/*', '*/']
-  },
+  // JEXL does not support comments
   brackets: [
     ['{', '}'],
     ['[', ']'],
