@@ -6,7 +6,6 @@
 import { jexlLanguageConfiguration } from './language-configuration';
 import { jexlMonarchLanguage } from './monarch-language';
 import { 
-  createJexlCompletionItems, 
   createJexlFunctionItems,
   createJexlTransformItems,
   createJexlKeywords, 
@@ -22,6 +21,14 @@ export const JEXL_LANGUAGE_ID = 'jexl';
  * @param monaco - The Monaco Editor instance
  */
 export function registerJexlLanguage(monaco: any) {
+  // Check if language is already registered using Monaco's API
+  const registeredLanguages = monaco.languages.getLanguages();
+  const isAlreadyRegistered = registeredLanguages.some((lang: any) => lang.id === JEXL_LANGUAGE_ID);
+  
+  if (isAlreadyRegistered) {
+    return;
+  }
+
   // Register the language
   monaco.languages.register({
     id: JEXL_LANGUAGE_ID,
@@ -165,6 +172,7 @@ export function registerJexlLanguage(monaco: any) {
             word.endColumn
           ),
           contents: [
+            { value: `**${doc.label}** (${doc.type}) - ${doc.detail}` },
             { value: doc.documentation }
           ]
         };
@@ -245,6 +253,16 @@ export function registerJexlLanguage(monaco: any) {
 }
 
 /**
+ * Checks if JEXL language has been registered
+ * @param monaco - The Monaco Editor instance  
+ * @returns true if language is already registered
+ */
+export function isJexlLanguageRegistered(monaco: any): boolean {
+  const registeredLanguages = monaco.languages.getLanguages();
+  return registeredLanguages.some((lang: any) => lang.id === JEXL_LANGUAGE_ID);
+}
+
+/**
  * Creates a Monaco Editor instance with JEXL language support
  * @param monaco - The Monaco Editor instance
  * @param container - The DOM element to mount the editor
@@ -252,7 +270,7 @@ export function registerJexlLanguage(monaco: any) {
  * @returns Monaco Editor instance
  */
 export function createJexlEditor(monaco: any, container: HTMLElement, options: any = {}) {
-  // Ensure JEXL language is registered
+  // Ensure JEXL language is registered (safe to call multiple times)
   registerJexlLanguage(monaco);
 
   return monaco.editor.create(container, {
