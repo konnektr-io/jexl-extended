@@ -32,54 +32,36 @@ export const jexlMonarchLanguage: IMonarchLanguage = {
   // Common delimiters and separators (JEXL specific)
   symbols: /[+\-*\/%\^=!><&|?:]+/,
 
-  // Functions and transforms from jexl-extended (automatically generated)
-  builtinFunctions: [
-    '$abs', '$all', '$any', '$append', '$average', '$base64Decode', '$base64Encode',
-    '$bool', '$boolean', '$camelCase', '$case', '$ceil', '$concat', '$contains',
-    '$count', '$dateTimeAdd', '$dateTimeFormat', '$dateTimeToMillis', '$distinct',
-    '$endsWith', '$entries', '$eval', '$every', '$filter', '$find', '$floor',
-    '$formUrlEncoded', '$formatBase', '$formatInteger', '$formatNumber',
-    '$fromEntries', '$fromMillis', '$includes', '$join', '$json', '$keys', '$length',
-    '$lower', '$lowercase', '$map', '$mapField', '$max', '$merge', '$millis',
-    '$millisToDateTime', '$min', '$not', '$now', '$number', '$order', '$pad',
-    '$parseFloat', '$parseInteger', '$parseJson', '$pascalCase', '$power', '$random',
-    '$reduce', '$replace', '$reverse', '$round', '$shuffle', '$size', '$some',
-    '$sort', '$split', '$sqrt', '$startsWith', '$string', '$substring',
-    '$substringAfter', '$substringBefore', '$sum', '$switch', '$toDateTime',
-    '$toMillis', '$toObject', '$trim', '$uid', '$upper', '$uppercase', '$uuid',
-    '$values', 'abs', 'all', 'any', 'append', 'average', 'avg', 'base64Decode',
-    'base64Encode', 'bool', 'boolean', 'camelCase', 'camelcase', 'case', 'ceil',
-    'concat', 'contains', 'count', 'dateTimeAdd', 'dateTimeFormat', 'dateTimeString',
-    'dateTimeToMillis', 'distinct', 'endsWith', 'entries', 'eval', 'every', 'filter',
-    'find', 'float', 'floor', 'formUrlEncoded', 'formatBase', 'formatInteger',
-    'formatNumber', 'fromEntries', 'fromMillis', 'includes', 'integer', 'join',
-    'json', 'keys', 'length', 'lower', 'lowercase', 'map', 'mapField', 'max',
-    'merge', 'millis', 'millisToDateTime', 'min', 'not', 'now', 'number', 'order',
-    'pad', 'parseFloat', 'parseInt', 'parseInteger', 'parseJson', 'pascalCase',
-    'pascalcase', 'power', 'random', 'reduce', 'replace', 'reverse', 'round',
-    'shuffle', 'size', 'some', 'sort', 'split', 'sqrt', 'startsWith', 'string',
-    'substring', 'substringAfter', 'substringBefore', 'sum', 'switch', 'toBool',
-    'toBoolean', 'toCamelCase', 'toDateTime', 'toFloat', 'toInt', 'toJson',
-    'toMillis', 'toNumber', 'toObject', 'toPascalCase', 'trim', 'uid', 'upper',
-    'uppercase', 'uuid', 'values'
-  ],
-
   // The main tokenizer for the JEXL language
   tokenizer: {
     root: [
-      // Identifiers and keywords
-      [/[a-zA-Z_$][\w$]*/, {
-        cases: {
-          '@keywords': 'keyword',
-          '@builtinFunctions': 'function.builtin',
-          '@default': 'identifier'
-        }
-      }],
+      // Strings first (to avoid interference)
+      [/"([^"\\]|\\.)*$/, 'string.invalid'],  // non-terminated string
+      [/'([^'\\]|\\.)*$/, 'string.invalid'],  // non-terminated string
+      [/"/, { token: 'string.quote', bracket: '@open', next: '@string_double' }],
+      [/'/, { token: 'string.quote', bracket: '@open', next: '@string_single' }],
 
-      // Transform pipe operator
-      [/\|/, 'operator.pipe'],
+      // Numbers (including negative numbers)
+      [/-?\d*\.\d+([eE][\-+]?\d+)?/, 'number.float'],
+      [/0[xX][0-9a-fA-F]+/, 'number.hex'],
+      [/-?\d+/, 'number'],
 
-      // Property access with dot notation
+      // Multi-character operators (must come before single character ones)
+      [/==|!=|<=|>=|&&|\|\||\/\//, 'operator'],
+      
+      // Transform pipe operator - followed by transform name
+      [/\|/, { token: 'operator.pipe', next: '@afterPipe' }],
+      
+      // Single character operators and symbols
+      [/[+\-*\/%\^><!=?:]/, 'operator'],
+      
+      // Function calls: any identifier followed by opening parenthesis
+      [/\$?[a-zA-Z_$][\w$]*(?=\s*\()/, 'function'],
+
+      // Keywords
+      [/\b(true|false|null|undefined|in)\b/, 'keyword'],
+
+      // Property access with dot notation (including leading dot for filters)
       [/\.[\w$]+/, 'property'],
 
       // Array access and filters
@@ -88,44 +70,54 @@ export const jexlMonarchLanguage: IMonarchLanguage = {
       // Object literals
       [/\{/, { token: 'delimiter.curly', bracket: '@open', next: '@objectLiteral' }],
 
-      // Function calls
-      [/([a-zA-Z_$][\w$]*)\s*(\()/, ['function', 'delimiter.parenthesis']],
-
       // Parentheses for grouping
       [/\(/, { token: 'delimiter.parenthesis', bracket: '@open' }],
       [/\)/, { token: 'delimiter.parenthesis', bracket: '@close' }],
 
-      // Numbers
-      [/\d*\.\d+([eE][\-+]?\d+)?/, 'number.float'],
-      [/0[xX][0-9a-fA-F]+/, 'number.hex'],
-      [/\d+/, 'number'],
-
-      // Strings (JEXL supports single and double quotes only)
-      [/"([^"\\]|\\.)*$/, 'string.invalid'],  // non-terminated string
-      [/'([^'\\]|\\.)*$/, 'string.invalid'],  // non-terminated string
-      [/"/, { token: 'string.quote', bracket: '@open', next: '@string_double' }],
-      [/'/, { token: 'string.quote', bracket: '@open', next: '@string_single' }],
-
-      // Operators
-      [/@symbols/, {
-        cases: {
-          '@operators': 'operator',
-          '@default': ''
-        }
-      }],
+      // Regular identifiers (variables)
+      [/[a-zA-Z_$][\w$]*/, 'identifier'],
 
       // Delimiters
-      [/[;,.]/, 'delimiter'],
+      [/[;,]/, 'delimiter'],
+      [/\./, 'delimiter.dot'],
 
       // Whitespace
       { include: '@whitespace' }
     ],
 
+    // After pipe operator - next identifier is a transform
+    afterPipe: [
+      [/\s+/, 'white'],
+      [/[a-zA-Z_$][\w$]*/, { token: 'transform', next: '@pop' }],
+      [/./, { token: '@rematch', next: '@pop' }]
+    ],
+
     // Array access context (for filters and indexing)
     arrayAccess: [
       [/\]/, { token: 'delimiter.bracket', bracket: '@close', next: '@pop' }],
+      
+      // Property access within array filters (e.g., .attributeName)
       [/\.[\w$]+/, 'property'],
+      
+      // Comparison operators
       [/==|!=|<=|>=|<|>/, 'operator.comparison'],
+      
+      // Logical operators
+      [/&&|\|\|/, 'operator.logical'],
+      
+      // Numbers in array context
+      [/-?\d+(\.\d+)?/, 'number'],
+      
+      // Strings in array context
+      [/"([^"\\]|\\.)*"/, 'string'],
+      [/'([^'\\]|\\.)*'/, 'string'],
+      
+      // Identifiers in array context
+      [/[a-zA-Z_$][\w$]*/, 'identifier'],
+      
+      // Other operators
+      [/[+\-*\/%\^!]/, 'operator'],
+      
       { include: '@root' }
     ],
 
