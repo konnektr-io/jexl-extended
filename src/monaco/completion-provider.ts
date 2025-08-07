@@ -76,14 +76,51 @@ export function createJexlTransformItems(): ICompletionItem[] {
   return createJexlCompletionItems('transform');
 }
 
-export function getJexlCompletionDoc(functionName: string): CompletionDocItem | undefined {
-  console.log('getJexlCompletionDoc called with:', functionName);
+export function getJexlCompletionDoc(functionName: string, preferredType?: 'function' | 'transform'): CompletionDocItem | undefined {
+  console.log('getJexlCompletionDoc called with:', functionName, 'preferredType:', preferredType);
   console.log('Total docs loaded:', completionDocs.length);
-  console.log('First 5 doc labels:', completionDocs.slice(0, 5).map(d => d.label));
   
-  const result = completionDocs.find(doc => doc.label === functionName || doc.name === functionName || doc.aliases?.includes(functionName));
-  console.log('Found result:', result ? result.label : 'none');
+  // Find all matches for the function name
+  const matches = completionDocs.filter(doc => 
+    doc.label === functionName || 
+    doc.name === functionName || 
+    doc.aliases?.includes(functionName)
+  );
+  
+  console.log('Found matches:', matches.length, matches.map(m => `${m.label}(${m.type})`));
+  
+  if (matches.length === 0) {
+    return undefined;
+  }
+  
+  // If we have a preferred type, try to find that first
+  if (preferredType) {
+    const preferredMatch = matches.find(doc => doc.type === preferredType);
+    if (preferredMatch) {
+      console.log('Found preferred match:', preferredMatch.label, preferredMatch.type);
+      return preferredMatch;
+    }
+  }
+  
+  // Otherwise return the first match
+  const result = matches[0];
+  console.log('Found result:', result ? `${result.label}(${result.type})` : 'none');
   return result;
+}
+
+export function getOperatorDoc(operator: string): { label: string; documentation: string; detail: string } | undefined {
+  const operators = createJexlOperators();
+  const operatorItem = operators.find(op => op.label === operator);
+  
+  if (operatorItem) {
+    return {
+      label: operatorItem.label,
+      documentation: operatorItem.documentation || '',
+      detail: operatorItem.detail || 'JEXL Operator'
+    };
+  }
+  
+  return undefined;
 }
 
 export function createJexlKeywords(): ICompletionItem[] {

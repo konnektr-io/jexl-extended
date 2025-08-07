@@ -11,7 +11,8 @@ import {
   createJexlTransformItems,
   createJexlKeywords, 
   createJexlOperators,
-  getJexlCompletionDoc
+  getJexlCompletionDoc,
+  getOperatorDoc
 } from './completion-provider';
 
 export const JEXL_LANGUAGE_ID = 'jexl';
@@ -46,7 +47,7 @@ export function registerJexlLanguage(monaco: any) {
         endColumn: word.endColumn
       };
 
-      // Check if we're after a pipe operator
+      // Get text before cursor to analyze context
       const textBeforeCursor = model.getValueInRange({
         startLineNumber: position.lineNumber,
         startColumn: 1,
@@ -59,13 +60,26 @@ export function registerJexlLanguage(monaco: any) {
       const isAfterPipe = lastPipeIndex !== -1 && 
         // Make sure there's no significant content after the pipe (just whitespace and partial word)
         /^\s*\w*$/.test(textBeforeCursor.substring(lastPipeIndex + 1));
+
+      // Check if we're after an identifier (function, variable, etc.)
+      // This regex matches: word characters, closing brackets/parens, or numbers at the end
+      const afterIdentifierMatch = textBeforeCursor.match(/[\w\]\)]\s*$/);
+      const isAfterIdentifier = afterIdentifierMatch !== null && !isAfterPipe;
       
-      // Debug logging (can be removed in production)
+      // Check if we're at the start or after an operator
+      const afterOperatorMatch = textBeforeCursor.match(/[+\-*/%^=!<>&|?:,(\[\s]\s*$/);
+      const isAfterOperatorOrStart = afterOperatorMatch !== null || textBeforeCursor.trim() === '';
+      
+      // Debug logging
       console.log('Completion context:', {
         textBeforeCursor,
         lastPipeIndex,
         afterPipe: lastPipeIndex !== -1 ? textBeforeCursor.substring(lastPipeIndex + 1) : 'none',
-        isAfterPipe
+        isAfterPipe,
+        isAfterIdentifier,
+        isAfterOperatorOrStart,
+        afterIdentifierMatch: afterIdentifierMatch?.[0],
+        afterOperatorMatch: afterOperatorMatch?.[0]
       });
 
       if (isAfterPipe) {
@@ -74,8 +88,25 @@ export function registerJexlLanguage(monaco: any) {
         return {
           suggestions: transformItems.map(item => ({ ...item, range }))
         };
+      } else if (isAfterIdentifier) {
+        // After identifier: suggest operators and pipe
+        const operatorItems = createJexlOperators();
+        return {
+          suggestions: operatorItems.map(item => ({ ...item, range }))
+        };
+      } else if (isAfterOperatorOrStart) {
+        // At start or after operator: show functions and keywords
+        const functionItems = createJexlFunctionItems();
+        const keywordItems = createJexlKeywords();
+
+        return {
+          suggestions: [
+            ...functionItems.map(item => ({ ...item, range })),
+            ...keywordItems.map(item => ({ ...item, range }))
+          ]
+        };
       } else {
-        // Regular context: show functions and keywords (no operators to avoid duplicates)
+        // Fallback: show all functions and keywords
         const functionItems = createJexlFunctionItems();
         const keywordItems = createJexlKeywords();
 
@@ -97,12 +128,35 @@ export function registerJexlLanguage(monaco: any) {
 
       console.log('Hover for word:', word.word);
 
-      // Get documentation for the specific function/transform
-      const doc = getJexlCompletionDoc(word.word);
+      // Check if we're after a pipe operator to determine context
+      const textBeforeCursor = model.getValueInRange({
+        startLineNumber: position.lineNumber,
+        startColumn: 1,
+        endLineNumber: position.lineNumber,
+        endColumn: word.startColumn
+      });
 
-      console.log('Found doc:', doc ? doc.label : 'none');
+      // Look for the last pipe operator before this word
+      const lastPipeIndex = textBeforeCursor.lastIndexOf('|');
+      const isAfterPipe = lastPipeIndex !== -1 && 
+        // Make sure there's no significant content after the pipe (just whitespace)
+        /^\s*$/.test(textBeforeCursor.substring(lastPipeIndex + 1));
+
+      console.log('Hover context:', {
+        textBeforeCursor,
+        lastPipeIndex,
+        isAfterPipe,
+        wordAtPosition: word.word
+      });
+
+      // Determine preferred type based on context
+      const preferredType = isAfterPipe ? 'transform' : 'function';
+
+      // Try to get documentation for function/transform
+      const doc = getJexlCompletionDoc(word.word, preferredType);
 
       if (doc) {
+        console.log('Found function/transform doc:', `${doc.label}(${doc.type})`);
         return {
           range: new monaco.Range(
             position.lineNumber,
@@ -111,11 +165,29 @@ export function registerJexlLanguage(monaco: any) {
             word.endColumn
           ),
           contents: [
-            { value: `**${doc.label}** (${doc.type}) - ${doc.detail}` },
             { value: doc.documentation }
           ]
         };
       }
+
+      // If no function/transform found, try operators
+      const operatorDoc = getOperatorDoc(word.word);
+      if (operatorDoc) {
+        console.log('Found operator doc:', operatorDoc.label);
+        return {
+          range: new monaco.Range(
+            position.lineNumber,
+            word.startColumn,
+            position.lineNumber,
+            word.endColumn
+          ),
+          contents: [
+            { value: `**${operatorDoc.label}** - ${operatorDoc.detail}\n\n${operatorDoc.documentation}` }
+          ]
+        };
+      }
+
+      console.log('No documentation found for:', word.word);
     }
   });
 
