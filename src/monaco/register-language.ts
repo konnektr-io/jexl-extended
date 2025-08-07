@@ -57,8 +57,16 @@ export function registerJexlLanguage(monaco: any) {
       // Look for the last pipe operator before the cursor
       const lastPipeIndex = textBeforeCursor.lastIndexOf('|');
       const isAfterPipe = lastPipeIndex !== -1 && 
-        // Make sure there's no significant content after the pipe (just whitespace and current word)
+        // Make sure there's no significant content after the pipe (just whitespace and partial word)
         /^\s*\w*$/.test(textBeforeCursor.substring(lastPipeIndex + 1));
+      
+      // Debug logging (can be removed in production)
+      console.log('Completion context:', {
+        textBeforeCursor,
+        lastPipeIndex,
+        afterPipe: lastPipeIndex !== -1 ? textBeforeCursor.substring(lastPipeIndex + 1) : 'none',
+        isAfterPipe
+      });
 
       if (isAfterPipe) {
         // After pipe: only show transforms
@@ -67,16 +75,14 @@ export function registerJexlLanguage(monaco: any) {
           suggestions: transformItems.map(item => ({ ...item, range }))
         };
       } else {
-        // Regular context: show functions, keywords, and operators
+        // Regular context: show functions and keywords (no operators to avoid duplicates)
         const functionItems = createJexlFunctionItems();
         const keywordItems = createJexlKeywords();
-        const operatorItems = createJexlOperators();
 
         return {
           suggestions: [
             ...functionItems.map(item => ({ ...item, range })),
-            ...keywordItems.map(item => ({ ...item, range })),
-            ...operatorItems.map(item => ({ ...item, range }))
+            ...keywordItems.map(item => ({ ...item, range }))
           ]
         };
       }
@@ -89,8 +95,12 @@ export function registerJexlLanguage(monaco: any) {
       const word = model.getWordAtPosition(position);
       if (!word) return;
 
+      console.log('Hover for word:', word.word);
+
       // Get documentation for the specific function/transform
       const doc = getJexlCompletionDoc(word.word);
+
+      console.log('Found doc:', doc ? doc.label : 'none');
 
       if (doc) {
         return {

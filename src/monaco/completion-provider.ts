@@ -3,6 +3,9 @@
  * This provides IntelliSense completion items without requiring Monaco as a dependency
  */
 
+// Import completion docs directly (generated file)
+import { completionDocs, type CompletionDocItem } from './completion-docs.generated';
+
 export interface ICompletionItem {
   label: string;
   kind: number;
@@ -14,28 +17,6 @@ export interface ICompletionItem {
 
 export interface ICompletionList {
   suggestions: ICompletionItem[];
-}
-
-export interface CompletionDocItem {
-  type: 'function' | 'transform';
-  name: string;
-  label: string;
-  description: string;
-  detail: string;
-  documentation: string;
-  examples: string[];
-  parameters: {
-    name: string;
-    description: string;
-    type: string;
-    optional: boolean;
-  }[];
-  returns: {
-    type: string;
-    description: string;
-  };
-  insertText: string;
-  aliases?: string[];
 }
 
 // Monaco CompletionItemKind enum values (to avoid Monaco dependency)
@@ -70,60 +51,8 @@ export const CompletionItemKind = {
   Snippet: 27
 };
 
-// Load completion documentation from generated file
-let completionDocsCache: CompletionDocItem[] | null = null;
-
-function loadCompletionDocs(): CompletionDocItem[] {
-  if (completionDocsCache) {
-    return completionDocsCache;
-  }
-  
-  try {
-    // In Node.js environment, try to load from file system
-    if (typeof require !== 'undefined') {
-      const fs = require('fs');
-      const path = require('path');
-      const docsPath = path.resolve(__dirname, '../../dist/completion-docs.json');
-      if (fs.existsSync(docsPath)) {
-        const data = fs.readFileSync(docsPath, 'utf8');
-        completionDocsCache = JSON.parse(data);
-        return completionDocsCache;
-      }
-    }
-  } catch (error) {
-    console.warn('Could not load completion docs from file system:', error);
-  }
-  
-  // Fallback to embedded documentation
-  completionDocsCache = getFallbackCompletionDocs();
-  return completionDocsCache;
-}
-
-function getFallbackCompletionDocs(): CompletionDocItem[] {
-  // Fallback documentation for when the generated file is not available
-  return [
-    {
-      type: 'function',
-      name: 'toString',
-      label: 'string',
-      description: 'Casts the input to a string',
-      detail: 'JEXL Function',
-      documentation: 'Casts the input to a string\n\n**Examples:**\n`string(123) // "123"`\n`123|string // "123"`',
-      examples: ['string(123) // "123"', '123|string // "123"'],
-      parameters: [
-        { name: 'input', description: 'The input can be any type.', type: 'unknown', optional: false },
-        { name: 'prettify', description: 'If true, the output will be pretty-printed.', type: 'boolean', optional: true }
-      ],
-      returns: { type: 'string', description: 'The input converted to a JSON string representation.' },
-      insertText: 'string(${1:input})'
-    }
-    // Add more fallback items as needed
-  ];
-}
-
 export function createJexlCompletionItems(type?: 'function' | 'transform'): ICompletionItem[] {
-  const docs = loadCompletionDocs();
-  const filteredDocs = type ? docs.filter(doc => doc.type === type) : docs;
+  const filteredDocs = type ? completionDocs.filter(doc => doc.type === type) : completionDocs;
   
   return filteredDocs.map(doc => {
     const kind = doc.type === 'function' ? CompletionItemKind.Function : CompletionItemKind.Method;
@@ -148,8 +77,13 @@ export function createJexlTransformItems(): ICompletionItem[] {
 }
 
 export function getJexlCompletionDoc(functionName: string): CompletionDocItem | undefined {
-  const docs = loadCompletionDocs();
-  return docs.find(doc => doc.label === functionName || doc.name === functionName || doc.aliases?.includes(functionName));
+  console.log('getJexlCompletionDoc called with:', functionName);
+  console.log('Total docs loaded:', completionDocs.length);
+  console.log('First 5 doc labels:', completionDocs.slice(0, 5).map(d => d.label));
+  
+  const result = completionDocs.find(doc => doc.label === functionName || doc.name === functionName || doc.aliases?.includes(functionName));
+  console.log('Found result:', result ? result.label : 'none');
+  return result;
 }
 
 export function createJexlKeywords(): ICompletionItem[] {

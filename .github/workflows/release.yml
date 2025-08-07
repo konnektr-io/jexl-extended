@@ -35,11 +35,14 @@ jobs:
       - name: 'Install packages'
         run: pnpm install --no-frozen-lockfile
 
+      - name: 'Generate completion docs'
+        run: pnpm run docs:completion
+
       - name: 'Build library'
         run: pnpm run build
 
-      - name: 'Build docs'
-        run: pnpm run docs
+      - name: 'Generate HTML docs'
+        run: pnpm run docs:html
 
       - name: 'Run tests'
         run: pnpm run test

@@ -20,7 +20,7 @@ export interface ILanguageConfiguration {
 }
 
 export const jexlLanguageConfiguration: ILanguageConfiguration = {
-  // JEXL does not support comments
+  // JEXL does not support comments - removed comment configuration
   brackets: [
     ['{', '}'],
     ['[', ']'],
@@ -39,11 +39,6 @@ export const jexlLanguageConfiguration: ILanguageConfiguration = {
     { open: '(', close: ')' },
     { open: '"', close: '"' },
     { open: "'", close: "'" }
-  ],
-  folding: {
-    markers: {
-      start: new RegExp('^\\s*//\\s*#?region\\b'),
-      end: new RegExp('^\\s*//\\s*#?endregion\\b')
-    }
-  }
+  ]
+  // Removed folding configuration as JEXL doesn't support comments
 };

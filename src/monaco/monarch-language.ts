@@ -55,9 +55,6 @@ export const jexlMonarchLanguage: IMonarchLanguage = {
       // Single character operators and symbols
       [/[+\-*\/%\^><!=?:]/, 'operator'],
       
-      // Function calls: any identifier followed by opening parenthesis
-      [/[a-zA-Z_$][\w$]*(?=\s*\()/, 'support.function'],
-
       // Keywords
       [/\b(true|false|null|undefined|in)\b/, 'keyword'],
 
@@ -82,10 +79,10 @@ export const jexlMonarchLanguage: IMonarchLanguage = {
       { include: '@whitespace' }
     ],
 
-    // After pipe operator - next identifier is a transform (use type.identifier)
+    // After pipe operator - next identifier is a transform
     afterPipe: [
       [/\s+/, 'white'],
-      [/[a-zA-Z_$][\w$]*/, { token: 'type.identifier', next: '@pop' }],
+      [/[a-zA-Z_$][\w$]*/, { token: 'identifier', next: '@pop' }],
       [/./, { token: '@rematch', next: '@pop' }]
     ],
 
