@@ -16,83 +16,27 @@ export interface ICompletionList {
   suggestions: ICompletionItem[];
 }
 
-// JEXL function documentation with accurate descriptions and examples
-const functionDocs: Record<string, { description: string; example: string }> = {
-  // Type Conversion
-  'string': { description: 'Casts the input to a string', example: 'string(123) // "123" or 123|string' },
-  'number': { description: 'Converts the input to a number', example: 'number("123") // 123 or "123"|number' },
-  'boolean': { description: 'Converts the input to a boolean', example: 'boolean("true") // true or "false"|boolean' },
-  
-  // String functions
-  'length': { description: 'Returns the length of a string, array, or object', example: '"hello"|length // 5, [1,2,3]|length // 3' },
-  'substring': { description: 'Extracts a substring from a string', example: 'substring(123456,2,2) // "34" or "hello"|substring(1, 3)' },
-  'substringBefore': { description: 'Gets substring before a delimiter', example: '"hello world"|substringBefore(" ") // "hello"' },
-  'substringAfter': { description: 'Gets substring after a delimiter', example: '"hello world"|substringAfter(" ") // "world"' },
-  'uppercase': { description: 'Converts string to uppercase', example: '"hello"|uppercase // "HELLO" or uppercase("hello")' },
-  'lowercase': { description: 'Converts string to lowercase', example: '"HELLO"|lowercase // "hello" or lowercase("HELLO")' },
-  'camelCase': { description: 'Converts string to camelCase', example: '"foo bar"|camelCase // "fooBar"' },
-  'pascalCase': { description: 'Converts string to PascalCase', example: '"foo bar"|toPascalCase // "FooBar"' },
-  'trim': { description: 'Removes whitespace from both ends', example: 'trim(" hello ") // "hello" or "__baz--"|trim("--")' },
-  'pad': { description: 'Pads string to specified length', example: 'pad("foo",5) // "foo  " or pad("foo",(-5),0)' },
-  'contains': { description: 'Checks if string/array contains value', example: '"foo-bar"|contains("bar") // true or [1,2,3]|contains(2)' },
-  'startsWith': { description: 'Checks if string starts with substring', example: '"foo-bar"|startsWith("foo") // true' },
-  'endsWith': { description: 'Checks if string ends with substring', example: '"foo-bar"|endsWith("bar") // true' },
-  'split': { description: 'Splits string into array', example: 'split("foo-bar", "-") // ["foo", "bar"]' },
-  'replace': { description: 'Replaces occurrences in string', example: 'replace("foo-bar", "-", "_") // "foo_bar"' },
-  'base64Encode': { description: 'Encodes string to base64', example: '"foobar"|base64Encode // "Zm9vYmFy"' },
-  'base64Decode': { description: 'Decodes base64 string', example: '"Zm9vYmFy"|base64Decode // "foobar"' },
-
-  // Math functions
-  'abs': { description: 'Returns absolute value', example: 'abs(-5) // 5 or (-10)|abs' },
-  'floor': { description: 'Rounds down to nearest integer', example: 'floor(3.7) // 3 or (3.14)|floor' },
-  'ceil': { description: 'Rounds up to nearest integer', example: 'ceil(3.2) // 4 or (3.14)|ceil' },
-  'round': { description: 'Rounds to nearest integer', example: 'round(3.7) // 4 or round(3.14159, 2)' },
-  'power': { description: 'Raises number to power', example: 'power(2, 3) // 8 or (2)|power(3)' },
-  'sqrt': { description: 'Returns square root', example: 'sqrt(16) // 4 or (25)|sqrt' },
-  'random': { description: 'Returns random number between 0-1', example: 'random() // 0.123...' },
-  'sum': { description: 'Sums array of numbers', example: '[1,2,3,4]|sum // 10 or sum([1,2,3,4])' },
-  'max': { description: 'Returns maximum value', example: '[1,5,3]|max // 5 or max([1,5,3])' },
-  'min': { description: 'Returns minimum value', example: '[1,5,3]|min // 1 or min([1,5,3])' },
-  'average': { description: 'Returns average of numbers', example: '[1,2,3,4]|average // 2.5 or average([1,2,3,4])' },
-
-  // Array functions
-  'append': { description: 'Appends item to array', example: '[1,2]|append(3) // [1,2,3]' },
-  'reverse': { description: 'Reverses array order', example: '[1,2,3]|reverse // [3,2,1]' },
-  'shuffle': { description: 'Randomly shuffles array', example: '[1,2,3]|shuffle // [2,1,3]' },
-  'sort': { description: 'Sorts array', example: '[3,1,2]|sort // [1,2,3]' },
-  'distinct': { description: 'Removes duplicates from array', example: '[1,2,2,3]|distinct // [1,2,3]' },
-  'map': { description: 'Transforms each array element', example: 'users|map("value.name") // ["John", "Jane"]' },
-  'filter': { description: 'Filters array elements', example: 'users|filter("value.age > 30") // filtered array' },
-  'find': { description: 'Finds first matching element', example: 'users|find("value.name == \'John\'") // first match' },
-  'reduce': { description: 'Reduces array to single value', example: '[1,2,3]|reduce("accumulator + value", 0) // 6' },
-  'join': { description: 'Joins array elements into string', example: '[1,2,3]|join(",") // "1,2,3"' },
-  'any': { description: 'Tests if any element matches', example: 'users|any("value.age > 30") // true/false' },
-  'every': { description: 'Tests if all elements match', example: 'users|every("value.age > 18") // true/false' },
-
-  // Object functions
-  'keys': { description: 'Returns object keys as array', example: '{a:1,b:2}|keys // ["a","b"]' },
-  'values': { description: 'Returns object values as array', example: '{a:1,b:2}|values // [1,2]' },
-  'entries': { description: 'Returns key-value pairs', example: '{a:1}|entries // [["a",1]]' },
-  'merge': { description: 'Merges objects', example: '{a:1}|merge({b:2}) // {a:1,b:2}' },
-
-  // Type conversion
-  'toString': { description: 'Converts value to string', example: '123|toString // "123"' },
-  'toNumber': { description: 'Converts value to number', example: '"123"|toNumber // 123' },
-  'toBoolean': { description: 'Converts value to boolean', example: '"true"|toBoolean // true' },
-  'parseInteger': { description: 'Parses string to integer', example: '"123"|parseInteger // 123' },
-
-  // Date/Time functions
-  'now': { description: 'Returns current date/time', example: 'now() // "2023-12-25T10:30:00Z"' },
-  'millis': { description: 'Returns current timestamp', example: 'millis() // 1703505000000' },
-  'toDateTime': { description: 'Converts to date/time', example: '1703505000000|toDateTime // "2023-12-25T10:30:00Z"' },
-  'dateTimeToMillis': { description: 'Converts date to timestamp', example: '"2023-12-25T10:30:00Z"|dateTimeToMillis // 1703505000000' },
-  'dateTimeAdd': { description: 'Adds time to date', example: 'now()|dateTimeAdd("day", 1) // tomorrow' },
-
-  // Utility functions
-  'eval': { description: 'Evaluates JEXL expression', example: '"1+2"|eval // 3' },
-  'uuid': { description: 'Generates UUID', example: 'uuid() // "123e4567-e89b-12d3-a456-426614174000"' },
-  'not': { description: 'Logical NOT operation', example: 'true|not // false' }
-};
+export interface CompletionDocItem {
+  type: 'function' | 'transform';
+  name: string;
+  label: string;
+  description: string;
+  detail: string;
+  documentation: string;
+  examples: string[];
+  parameters: {
+    name: string;
+    description: string;
+    type: string;
+    optional: boolean;
+  }[];
+  returns: {
+    type: string;
+    description: string;
+  };
+  insertText: string;
+  aliases?: string[];
+}
 
 // Monaco CompletionItemKind enum values (to avoid Monaco dependency)
 export const CompletionItemKind = {
@@ -126,20 +70,86 @@ export const CompletionItemKind = {
   Snippet: 27
 };
 
-export function createJexlCompletionItems(): ICompletionItem[] {
-  const functions = Object.keys(functionDocs);
+// Load completion documentation from generated file
+let completionDocsCache: CompletionDocItem[] | null = null;
+
+function loadCompletionDocs(): CompletionDocItem[] {
+  if (completionDocsCache) {
+    return completionDocsCache;
+  }
   
-  return functions.map(func => {
-    const doc = functionDocs[func];
+  try {
+    // In Node.js environment, try to load from file system
+    if (typeof require !== 'undefined') {
+      const fs = require('fs');
+      const path = require('path');
+      const docsPath = path.resolve(__dirname, '../../dist/completion-docs.json');
+      if (fs.existsSync(docsPath)) {
+        const data = fs.readFileSync(docsPath, 'utf8');
+        completionDocsCache = JSON.parse(data);
+        return completionDocsCache;
+      }
+    }
+  } catch (error) {
+    console.warn('Could not load completion docs from file system:', error);
+  }
+  
+  // Fallback to embedded documentation
+  completionDocsCache = getFallbackCompletionDocs();
+  return completionDocsCache;
+}
+
+function getFallbackCompletionDocs(): CompletionDocItem[] {
+  // Fallback documentation for when the generated file is not available
+  return [
+    {
+      type: 'function',
+      name: 'toString',
+      label: 'string',
+      description: 'Casts the input to a string',
+      detail: 'JEXL Function',
+      documentation: 'Casts the input to a string\n\n**Examples:**\n`string(123) // "123"`\n`123|string // "123"`',
+      examples: ['string(123) // "123"', '123|string // "123"'],
+      parameters: [
+        { name: 'input', description: 'The input can be any type.', type: 'unknown', optional: false },
+        { name: 'prettify', description: 'If true, the output will be pretty-printed.', type: 'boolean', optional: true }
+      ],
+      returns: { type: 'string', description: 'The input converted to a JSON string representation.' },
+      insertText: 'string(${1:input})'
+    }
+    // Add more fallback items as needed
+  ];
+}
+
+export function createJexlCompletionItems(type?: 'function' | 'transform'): ICompletionItem[] {
+  const docs = loadCompletionDocs();
+  const filteredDocs = type ? docs.filter(doc => doc.type === type) : docs;
+  
+  return filteredDocs.map(doc => {
+    const kind = doc.type === 'function' ? CompletionItemKind.Function : CompletionItemKind.Method;
+    
     return {
-      label: func,
-      kind: CompletionItemKind.Function,
-      insertText: func + '(${1})',
+      label: doc.label,
+      kind,
+      insertText: doc.insertText,
       insertTextRules: 4, // InsertTextRule.InsertAsSnippet
-      documentation: `${doc.description}\n\nExample: ${doc.example}`,
-      detail: 'JEXL Function'
+      documentation: doc.documentation,
+      detail: doc.detail
     };
   });
+}
+
+export function createJexlFunctionItems(): ICompletionItem[] {
+  return createJexlCompletionItems('function');
+}
+
+export function createJexlTransformItems(): ICompletionItem[] {
+  return createJexlCompletionItems('transform');
+}
+
+export function getJexlCompletionDoc(functionName: string): CompletionDocItem | undefined {
+  const docs = loadCompletionDocs();
+  return docs.find(doc => doc.label === functionName || doc.name === functionName || doc.aliases?.includes(functionName));
 }
 
 export function createJexlKeywords(): ICompletionItem[] {

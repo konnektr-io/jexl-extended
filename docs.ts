@@ -19,6 +19,7 @@ export const docs: {
     type: GrammarType
     name: string;
     description?: string | undefined;
+    example?: string | undefined;
     args?: string | undefined;
     returns?: string | undefined;
     code?: string | undefined;
@@ -26,6 +27,7 @@ export const docs: {
 
 for (const [type, lib] of Object.entries(libs)) {
     for (const key in lib) {
+        if (key.startsWith('$')) continue
         const functionName = lib[key].name
         const doc = typedoc.children.find(child => child.name === functionName)
         if (!doc) {

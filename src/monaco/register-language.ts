@@ -5,7 +5,14 @@
 
 import { jexlLanguageConfiguration } from './language-configuration';
 import { jexlMonarchLanguage } from './monarch-language';
-import { createJexlCompletionItems, createJexlKeywords, createJexlOperators } from './completion-provider';
+import { 
+  createJexlCompletionItems, 
+  createJexlFunctionItems,
+  createJexlTransformItems,
+  createJexlKeywords, 
+  createJexlOperators,
+  getJexlCompletionDoc
+} from './completion-provider';
 
 export const JEXL_LANGUAGE_ID = 'jexl';
 
@@ -39,13 +46,16 @@ export function registerJexlLanguage(monaco: any) {
         endColumn: word.endColumn
       };
 
-      const functionItems = createJexlCompletionItems();
+      // Get all completion items (functions and transforms)
+      const functionItems = createJexlFunctionItems();
+      const transformItems = createJexlTransformItems();
       const keywordItems = createJexlKeywords();
       const operatorItems = createJexlOperators();
 
       return {
         suggestions: [
           ...functionItems.map(item => ({ ...item, range })),
+          ...transformItems.map(item => ({ ...item, range })),
           ...keywordItems.map(item => ({ ...item, range })),
           ...operatorItems.map(item => ({ ...item, range }))
         ]
@@ -59,10 +69,10 @@ export function registerJexlLanguage(monaco: any) {
       const word = model.getWordAtPosition(position);
       if (!word) return;
 
-      const functionItems = createJexlCompletionItems();
-      const functionItem = functionItems.find(item => item.label === word.word);
+      // Get documentation for the specific function/transform
+      const doc = getJexlCompletionDoc(word.word);
 
-      if (functionItem) {
+      if (doc) {
         return {
           range: new monaco.Range(
             position.lineNumber,
@@ -71,8 +81,8 @@ export function registerJexlLanguage(monaco: any) {
             word.endColumn
           ),
           contents: [
-            { value: `**${functionItem.label}** - ${functionItem.detail}` },
-            { value: functionItem.documentation }
+            { value: `**${doc.label}** (${doc.type}) - ${doc.detail}` },
+            { value: doc.documentation }
           ]
         };
       }

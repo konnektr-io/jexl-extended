@@ -15,9 +15,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 714,
+					"line": 1257,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L714"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L1257"
 				}
 			],
 			"signatures": [
@@ -31,16 +31,36 @@
 						"summary": [
 							{
 								"kind": "text",
-								"text": "Evaluate provided and return the result.\r\nIf only one argument is provided, it is expected that the first argument is a JEXL expression.\r\nIf two arguments are provided, the first argument is the context (must be an object) and the second argument is the JEXL expression.\r\nThe expression uses the default JEXL extended grammar and can't use any custom defined functions or transforms."
+								"text": "Evaluates a JEXL expression and returns the result.\r\nIf only one argument is provided, it is expected that the first argument is a JEXL expression.\r\nIf two arguments are provided, the first argument is the context (must be an object) and the second argument is the JEXL expression.\r\nThe expression uses the default JEXL extended grammar and can't use any custom defined functions or transforms."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\n_eval(\"1 + 2\") // 3\r\n_eval({x: 5, y: 10}, \"x + y\") // 15\r\n\"2 * 3\"|_eval // 6\r\n_eval({name: \"John\"}, \"name\") // \"John\"\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The result of evaluating the expression, or undefined if evaluation fails."
+									}
+								]
 							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 714,
+							"line": 1257,
 							"character": 21,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L714"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L1257"
 						}
 					],
 					"parameters": [
@@ -50,6 +70,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Either a JEXL expression string or a context object."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "unknown"
@@ -61,6 +89,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Optional JEXL expression when first argument is context."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "string"
@@ -83,9 +119,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 293,
+					"line": 474,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L293"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L474"
 				}
 			],
 			"signatures": [
@@ -101,14 +137,34 @@
 								"kind": "text",
 								"text": "Returns the absolute value of a number."
 							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nabsoluteValue(-5) // 5\r\n(-10)|absoluteValue // 10\r\nabsoluteValue(3.14) // 3.14\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The absolute value, or NaN if input cannot be converted to a number."
+									}
+								]
+							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 293,
+							"line": 474,
 							"character": 29,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L293"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L474"
 						}
 					],
 					"parameters": [
@@ -118,6 +174,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input number to get the absolute value of."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "unknown"
@@ -140,9 +204,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 512,
+					"line": 939,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L512"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L939"
 				}
 			],
 			"signatures": [
@@ -156,16 +220,36 @@
 						"summary": [
 							{
 								"kind": "text",
-								"text": "Checks whether the provided array has any elements that match the specified expression.\r\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value and array (the original array)."
+								"text": "Checks whether the provided array has any elements that match the specified expression.\r\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value, index and array (the original array)."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\narrayAny([1, 2, 3], \"value > 2\") // true\r\n[{age: 25}, {age: 35}]|arrayAny(\"value.age > 30\") // true\r\narrayAny([1, 2, 3], \"value > 5\") // false\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "True if any element matches the expression, false otherwise or if input is not an array."
+									}
+								]
 							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 512,
+							"line": 939,
 							"character": 24,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L512"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L939"
 						}
 					],
 					"parameters": [
@@ -175,6 +259,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input array to test."
+									}
+								]
+							},
 							"type": {
 								"type": "array",
 								"elementType": {
@@ -189,6 +281,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The JEXL expression to test against each element."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "string"
@@ -211,9 +311,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 430,
+					"line": 774,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L430"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L774"
 				}
 			],
 			"signatures": [
@@ -227,16 +327,36 @@
 						"summary": [
 							{
 								"kind": "text",
-								"text": "Appends an element to an array."
+								"text": "Appends elements to an array."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\narrayAppend([1, 2], 3) // [1, 2, 3]\r\n[1, 2]|arrayAppend(3, 4) // [1, 2, 3, 4]\r\narrayAppend([], 1, 2, 3) // [1, 2, 3]\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "A new array with all inputs flattened and appended, or empty array if no valid input."
+									}
+								]
 							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 430,
+							"line": 774,
 							"character": 27,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L430"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L774"
 						}
 					],
 					"parameters": [
@@ -247,6 +367,14 @@
 							"kind": 32768,
 							"flags": {
 								"isRest": true
+							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input values to append to an array."
+									}
+								]
 							},
 							"type": {
 								"type": "array",
@@ -276,9 +404,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 467,
+					"line": 854,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L467"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L854"
 				}
 			],
 			"signatures": [
@@ -292,16 +420,36 @@
 						"summary": [
 							{
 								"kind": "text",
-								"text": "Returns a new array with the elements of the input array with duplicates removed."
+								"text": "Returns a new array with duplicate elements removed."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\narrayDistinct([1, 2, 2, 3, 1]) // [1, 2, 3]\r\n[1, 2, 2, 3]|arrayDistinct // [1, 2, 3]\r\narrayDistinct([\"a\", \"b\", \"a\", \"c\"]) // [\"a\", \"b\", \"c\"]\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "A new array with duplicates removed, or empty array if input is not an array."
+									}
+								]
 							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 467,
+							"line": 854,
 							"character": 29,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L467"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L854"
 						}
 					],
 					"parameters": [
@@ -311,6 +459,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input array to remove duplicates from."
+									}
+								]
+							},
 							"type": {
 								"type": "array",
 								"elementType": {
@@ -339,9 +495,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 525,
+					"line": 961,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L525"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L961"
 				}
 			],
 			"signatures": [
@@ -355,16 +511,36 @@
 						"summary": [
 							{
 								"kind": "text",
-								"text": "Checks whether the provided array has all elements that match the specified expression.\r\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value and array (the original array)."
+								"text": "Checks whether the provided array has all elements that match the specified expression.\r\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value, index and array (the original array)."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\narrayEvery([2, 4, 6], \"value % 2 == 0\") // true\r\n[{age: 25}, {age: 35}]|arrayEvery(\"value.age > 20\") // true\r\narrayEvery([1, 2, 3], \"value > 2\") // false\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "True if all elements match the expression, false otherwise or if input is not an array."
+									}
+								]
 							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 525,
+							"line": 961,
 							"character": 26,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L525"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L961"
 						}
 					],
 					"parameters": [
@@ -374,6 +550,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input array to test."
+									}
+								]
+							},
 							"type": {
 								"type": "array",
 								"elementType": {
@@ -388,6 +572,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The JEXL expression to test against each element."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "string"
@@ -410,9 +602,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 539,
+					"line": 984,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L539"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L984"
 				}
 			],
 			"signatures": [
@@ -426,16 +618,36 @@
 						"summary": [
 							{
 								"kind": "text",
-								"text": "Returns a new array with the elements of the input array that match the specified expression.\r\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value and array (the original array)."
+								"text": "Returns a new array with the elements of the input array that match the specified expression.\r\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value, index and array (the original array)."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\narrayFilter([1, 2, 3, 4], \"value > 2\") // [3, 4]\r\n[{age: 25}, {age: 35}]|arrayFilter(\"value.age > 30\") // [{age: 35}]\r\narrayFilter([1, 2, 3, 4], \"value % 2 == 0\") // [2, 4]\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "A new array containing only elements that match the expression, or empty array if input is not an array."
+									}
+								]
 							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 539,
+							"line": 984,
 							"character": 27,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L539"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L984"
 						}
 					],
 					"parameters": [
@@ -445,6 +657,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input array to filter."
+									}
+								]
+							},
 							"type": {
 								"type": "array",
 								"elementType": {
@@ -459,6 +679,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The JEXL expression to test against each element."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "string"
@@ -484,9 +712,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 552,
+					"line": 1006,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L552"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L1006"
 				}
 			],
 			"signatures": [
@@ -500,16 +728,36 @@
 						"summary": [
 							{
 								"kind": "text",
-								"text": "Finds the first element in an array that matches the specified expression.\r\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value and array (the original array)."
+								"text": "Finds the first element in an array that matches the specified expression.\r\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value, index and array (the original array)."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\narrayFind([1, 2, 3, 4], \"value > 2\") // 3\r\n[{name: \"John\"}, {name: \"Jane\"}]|arrayFind(\"value.name == 'Jane'\") // {name: \"Jane\"}\r\narrayFind([1, 2, 3], \"value > 5\") // undefined\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The first element that matches the expression, or undefined if no match found or input is not an array."
+									}
+								]
 							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 552,
+							"line": 1006,
 							"character": 25,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L552"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L1006"
 						}
 					],
 					"parameters": [
@@ -519,6 +767,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input array to search."
+									}
+								]
+							},
 							"type": {
 								"type": "array",
 								"elementType": {
@@ -533,6 +789,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The JEXL expression to test against each element."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "string"
@@ -555,9 +819,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 224,
+					"line": 333,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L224"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L333"
 				}
 			],
 			"signatures": [
@@ -573,14 +837,34 @@
 								"kind": "text",
 								"text": "Joins elements of an array into a string."
 							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\narrayJoin([\"foo\", \"bar\", \"baz\"], \",\") // \"foo,bar,baz\"\r\n[\"one\", \"two\", \"three\"]|arrayJoin(\"-\") // \"one-two-three\"\r\narrayJoin([1, 2, 3]) // \"1,2,3\"\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The joined string, or undefined if input is not an array."
+									}
+								]
+							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 224,
+							"line": 333,
 							"character": 25,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L224"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L333"
 						}
 					],
 					"parameters": [
@@ -590,6 +874,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input array to join."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "unknown"
@@ -602,6 +894,14 @@
 							"kind": 32768,
 							"flags": {
 								"isOptional": true
+							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The separator string to use between elements. Defaults to comma."
+									}
+								]
 							},
 							"type": {
 								"type": "intrinsic",
@@ -625,9 +925,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 499,
+					"line": 917,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L499"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L917"
 				}
 			],
 			"signatures": [
@@ -643,14 +943,34 @@
 								"kind": "text",
 								"text": "Returns an array containing the results of applying the expression parameter to each value in the array parameter.\r\nThe expression must be a valid JEXL expression string, which is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value, index and array (the original array)."
 							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\narrayMap([1, 2, 3], \"value * 2\") // [2, 4, 6]\r\n[{name: \"John\"}, {name: \"Jane\"}]|arrayMap(\"value.name\") // [\"John\", \"Jane\"]\r\narrayMap([1, 2, 3], \"value + index\") // [1, 3, 5]\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "A new array with transformed elements, or undefined if input is not an array."
+									}
+								]
+							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 499,
+							"line": 917,
 							"character": 24,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L499"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L917"
 						}
 					],
 					"parameters": [
@@ -660,6 +980,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input array to transform."
+									}
+								]
+							},
 							"type": {
 								"type": "array",
 								"elementType": {
@@ -674,6 +1002,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The JEXL expression to apply to each element."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "string"
@@ -699,9 +1035,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 565,
+					"line": 1029,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L565"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L1029"
 				}
 			],
 			"signatures": [
@@ -717,14 +1053,34 @@
 								"kind": "text",
 								"text": "Returns an aggregated value derived from applying the function parameter successively to each value in array in combination with the result of the previous application of the function.\r\nThe expression must be a valid JEXL expression string, and behaves like an infix operator between each value within the array.\r\nThe relative context provided to the expression is an object with the properties accumulator, value, index and array (the original array)."
 							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\narrayReduce([1, 2, 3, 4], \"accumulator + value\", 0) // 10\r\n[1, 2, 3]|arrayReduce(\"accumulator * value\", 1) // 6\r\narrayReduce([\"a\", \"b\", \"c\"], \"accumulator + value\", \"\") // \"abc\"\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The final accumulated value, or undefined if input is not an array."
+									}
+								]
+							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 565,
+							"line": 1029,
 							"character": 27,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L565"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L1029"
 						}
 					],
 					"parameters": [
@@ -734,6 +1090,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input array to reduce."
+									}
+								]
+							},
 							"type": {
 								"type": "array",
 								"elementType": {
@@ -748,6 +1112,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The JEXL expression to apply for each reduction step."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "string"
@@ -759,6 +1131,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The initial value for the accumulator."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "unknown"
@@ -781,9 +1161,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 436,
+					"line": 790,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L436"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L790"
 				}
 			],
 			"signatures": [
@@ -799,14 +1179,34 @@
 								"kind": "text",
 								"text": "Reverses the elements of an array."
 							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\narrayReverse([1, 2, 3]) // [3, 2, 1]\r\n[1, 2, 3]|arrayReverse // [3, 2, 1]\r\narrayReverse([\"a\", \"b\", \"c\"]) // [\"c\", \"b\", \"a\"]\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "A new array with elements in reverse order, or empty array if no valid input."
+									}
+								]
+							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 436,
+							"line": 790,
 							"character": 28,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L436"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L790"
 						}
 					],
 					"parameters": [
@@ -817,6 +1217,14 @@
 							"kind": 32768,
 							"flags": {
 								"isRest": true
+							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input values to reverse."
+									}
+								]
 							},
 							"type": {
 								"type": "array",
@@ -846,9 +1254,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 442,
+					"line": 806,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L442"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L806"
 				}
 			],
 			"signatures": [
@@ -862,16 +1270,36 @@
 						"summary": [
 							{
 								"kind": "text",
-								"text": "Shuffles the elements of an array."
+								"text": "Shuffles the elements of an array randomly."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\narrayShuffle([1, 2, 3]) // [2, 1, 3] (random order)\r\n[1, 2, 3]|arrayShuffle // [3, 1, 2] (random order)\r\narrayShuffle([\"a\", \"b\", \"c\"]) // [\"c\", \"a\", \"b\"] (random order)\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The same array with elements randomly shuffled, or empty array if input is not an array."
+									}
+								]
 							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 442,
+							"line": 806,
 							"character": 28,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L442"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L806"
 						}
 					],
 					"parameters": [
@@ -881,6 +1309,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input array to shuffle."
+									}
+								]
+							},
 							"type": {
 								"type": "array",
 								"elementType": {
@@ -909,9 +1345,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 452,
+					"line": 829,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L452"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L829"
 				}
 			],
 			"signatures": [
@@ -927,14 +1363,34 @@
 								"kind": "text",
 								"text": "Sorts the elements of an array."
 							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\narraySort([3, 1, 2]) // [1, 2, 3]\r\n[3, 1, 2]|arraySort // [1, 2, 3]\r\narraySort([{age: 30}, {age: 20}], \"age\") // [{age: 20}, {age: 30}]\r\narraySort([{age: 30}, {age: 20}], \"age\", true) // [{age: 30}, {age: 20}]\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "A new sorted array, or empty array if input is not an array."
+									}
+								]
+							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 452,
+							"line": 829,
 							"character": 25,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L452"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L829"
 						}
 					],
 					"parameters": [
@@ -944,6 +1400,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input array to sort."
+									}
+								]
+							},
 							"type": {
 								"type": "array",
 								"elementType": {
@@ -960,6 +1424,14 @@
 							"flags": {
 								"isOptional": true
 							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Optional JEXL expression to determine sort value for objects."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "string"
@@ -972,6 +1444,14 @@
 							"kind": 32768,
 							"flags": {
 								"isOptional": true
+							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Optional flag to sort in descending order."
+									}
+								]
 							},
 							"type": {
 								"type": "intrinsic",
@@ -998,9 +1478,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 473,
+					"line": 871,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L473"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L871"
 				}
 			],
 			"signatures": [
@@ -1014,16 +1494,36 @@
 						"summary": [
 							{
 								"kind": "text",
-								"text": "Create a new object based on an array of key-value pairs."
+								"text": "Creates a new object based on key-value pairs or string keys."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\narrayToObject([[\"name\", \"John\"], [\"age\", 30]]) // {name: \"John\", age: 30}\r\narrayToObject(\"name\", \"John\") // {name: \"John\"}\r\narrayToObject([\"key1\", \"key2\"], \"defaultValue\") // {key1: \"defaultValue\", key2: \"defaultValue\"}\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "A new object created from the input, or empty object if input is invalid."
+									}
+								]
 							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 473,
+							"line": 871,
 							"character": 29,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L473"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L871"
 						}
 					],
 					"parameters": [
@@ -1033,6 +1533,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input string key or array of key-value pairs."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "unknown"
@@ -1045,6 +1553,14 @@
 							"kind": 32768,
 							"flags": {
 								"isOptional": true
+							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Optional default value for string keys or when array elements are strings."
+									}
+								]
 							},
 							"type": {
 								"type": "intrinsic",
@@ -1068,9 +1584,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 375,
+					"line": 689,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L375"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L689"
 				}
 			],
 			"signatures": [
@@ -1086,14 +1602,34 @@
 								"kind": "text",
 								"text": "Calculates the average of an array of numbers."
 							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\naverage([1, 2, 3, 4]) // 2.5\r\n[10, 20, 30]|average // 20\r\naverage(1, 2, 3, 4) // 2.5\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The average value, or NaN if input is not an array."
+									}
+								]
+							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 375,
+							"line": 689,
 							"character": 23,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L375"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L689"
 						}
 					],
 					"parameters": [
@@ -1104,6 +1640,14 @@
 							"kind": 32768,
 							"flags": {
 								"isRest": true
+							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input array of numbers or individual number arguments."
+									}
+								]
 							},
 							"type": {
 								"type": "array",
@@ -1130,9 +1674,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 256,
+					"line": 397,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L256"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L397"
 				}
 			],
 			"signatures": [
@@ -1148,14 +1692,34 @@
 								"kind": "text",
 								"text": "Decodes a Base64 encoded string."
 							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nbase64Decode(\"aGVsbG8=\") // \"hello\"\r\n\"aGVsbG8gd29ybGQ=\"|base64Decode // \"hello world\"\r\nbase64Decode(\"dGVzdA==\") // \"test\"\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The decoded string, or empty string if input is not a string."
+									}
+								]
+							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 256,
+							"line": 397,
 							"character": 28,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L256"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L397"
 						}
 					],
 					"parameters": [
@@ -1165,6 +1729,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The Base64 encoded string to decode."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "unknown"
@@ -1187,9 +1759,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 241,
+					"line": 372,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L241"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L372"
 				}
 			],
 			"signatures": [
@@ -1205,14 +1777,34 @@
 								"kind": "text",
 								"text": "Encodes a string to Base64."
 							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nbase64Encode(\"hello\") // \"aGVsbG8=\"\r\n\"hello world\"|base64Encode // \"aGVsbG8gd29ybGQ=\"\r\nbase64Encode(\"test\") // \"dGVzdA==\"\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The Base64 encoded string, or empty string if input is not a string or encoding fails."
+									}
+								]
+							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 241,
+							"line": 372,
 							"character": 28,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L241"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L372"
 						}
 					],
 					"parameters": [
@@ -1222,6 +1814,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input string to encode."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "unknown"
@@ -1244,9 +1844,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 156,
+					"line": 177,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L156"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L177"
 				}
 			],
 			"signatures": [
@@ -1262,14 +1862,34 @@
 								"kind": "text",
 								"text": "Converts the input string to camel case."
 							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\ncamelCase(\"foo bar\") // \"fooBar\"\r\n\"hello-world\"|camelCase // \"helloWorld\"\r\ncamelCase(\"HELLO_WORLD\") // \"helloWorld\"\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The camel case string, or empty string if input is not a string."
+									}
+								]
+							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 156,
+							"line": 177,
 							"character": 25,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L156"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L177"
 						}
 					],
 					"parameters": [
@@ -1279,6 +1899,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input string to convert to camel case."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "unknown"
@@ -1301,9 +1929,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 305,
+					"line": 506,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L305"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L506"
 				}
 			],
 			"signatures": [
@@ -1319,14 +1947,34 @@
 								"kind": "text",
 								"text": "Rounds a number up to the nearest integer."
 							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nceil(3.2) // 4\r\n(3.14)|ceil // 4\r\nceil(-2.8) // -2\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The rounded up integer, or NaN if input cannot be converted to a number."
+									}
+								]
+							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 305,
+							"line": 506,
 							"character": 20,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L305"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L506"
 						}
 					],
 					"parameters": [
@@ -1336,6 +1984,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input number to round up."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "unknown"
@@ -1358,9 +2014,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 192,
+					"line": 257,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L192"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L257"
 				}
 			],
 			"signatures": [
@@ -1374,16 +2030,36 @@
 						"summary": [
 							{
 								"kind": "text",
-								"text": "Checks if the input string contains the specified substring."
+								"text": "Checks if the input string or array contains the specified value."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\ncontains(\"hello world\", \"world\") // true\r\n\"foo-bar\"|contains(\"bar\") // true\r\ncontains([1, 2, 3], 2) // true\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "True if the input contains the search value, false otherwise."
+									}
+								]
 							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 192,
+							"line": 257,
 							"character": 24,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L192"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L257"
 						}
 					],
 					"parameters": [
@@ -1393,6 +2069,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input string or array to search in."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "unknown"
@@ -1404,6 +2088,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The value to search for."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "string"
@@ -1426,9 +2118,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 700,
+					"line": 1233,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L700"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L1233"
 				}
 			],
 			"signatures": [
@@ -1444,14 +2136,34 @@
 								"kind": "text",
 								"text": "Adds a time range to a date and time in the ISO 8601 format."
 							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\ndateTimeAdd(\"2023-12-25T10:30:00.000Z\", \"day\", 1) // \"2023-12-26T10:30:00.000Z\"\r\nnow()|dateTimeAdd(\"hour\", -2) // Two hours ago\r\ndateTimeAdd(\"2023-01-01T00:00:00.000Z\", \"month\", 3) // \"2023-04-01T00:00:00.000Z\"\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The new date and time as an ISO 8601 string."
+									}
+								]
+							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 700,
+							"line": 1233,
 							"character": 27,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L700"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L1233"
 						}
 					],
 					"parameters": [
@@ -1461,6 +2173,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input date and time string in ISO 8601 format."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "string"
@@ -1472,6 +2192,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The time unit to add (\"day\", \"hour\", \"minute\", \"second\", \"month\", \"year\", etc.)."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "string"
@@ -1483,6 +2211,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The amount to add (can be negative to subtract)."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "number"
@@ -1505,9 +2241,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 672,
+					"line": 1187,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L672"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L1187"
 				}
 			],
 			"signatures": [
@@ -1530,7 +2266,7 @@
 								"content": [
 									{
 										"kind": "code",
-										"text": "```typescript\r\ndateTimeFormat(datetime, format)\r\n$dateTimeFormat(datetime, format)\r\ndatetime|dateTimeFormat(format)\r\n```"
+										"text": "```ts\ndateTimeFormat(datetime, format)\r\ndatetime|dateTimeFormat(format)\n```"
 									}
 								]
 							},
@@ -1548,9 +2284,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 672,
+							"line": 1187,
 							"character": 30,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L672"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L1187"
 						}
 					],
 					"parameters": [
@@ -1618,9 +2354,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 693,
+					"line": 1216,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L693"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L1216"
 				}
 			],
 			"signatures": [
@@ -1636,14 +2372,34 @@
 								"kind": "text",
 								"text": "Parses the date and time in the ISO 8601 format and returns the number of milliseconds since the Unix epoch."
 							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\ndateTimeToMillis(\"2023-12-25T10:30:00.000Z\") // 1703505000000\r\n\"2023-01-01T00:00:00.000Z\"|dateTimeToMillis // 1672531200000\r\ndateTimeToMillis(\"2023-12-25\") // 1703462400000\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The timestamp in milliseconds since Unix epoch."
+									}
+								]
+							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 693,
+							"line": 1216,
 							"character": 32,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L693"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L1216"
 						}
 					],
 					"parameters": [
@@ -1653,6 +2409,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The date and time string to parse."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "string"
@@ -1675,9 +2439,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 208,
+					"line": 295,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L208"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L295"
 				}
 			],
 			"signatures": [
@@ -1693,14 +2457,34 @@
 								"kind": "text",
 								"text": "Checks if the input string ends with the specified substring."
 							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nendsWith(\"hello world\", \"world\") // true\r\n\"foo-bar\"|endsWith(\"bar\") // true\r\nendsWith(\"test\", \"xyz\") // false\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "True if the input ends with the search string, false otherwise."
+									}
+								]
+							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 208,
+							"line": 295,
 							"character": 24,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L208"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L295"
 						}
 					],
 					"parameters": [
@@ -1710,6 +2494,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input string to check."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "unknown"
@@ -1721,6 +2513,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The substring to search for at the end."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "string"
@@ -1743,9 +2543,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 299,
+					"line": 490,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L299"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L490"
 				}
 			],
 			"signatures": [
@@ -1761,14 +2561,34 @@
 								"kind": "text",
 								"text": "Rounds a number down to the nearest integer."
 							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nfloor(3.7) // 3\r\n(3.14)|floor // 3\r\nfloor(-2.8) // -3\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The rounded down integer, or NaN if input cannot be converted to a number."
+									}
+								]
+							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 299,
+							"line": 490,
 							"character": 21,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L299"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L490"
 						}
 					],
 					"parameters": [
@@ -1778,6 +2598,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input number to round down."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "unknown"
@@ -1800,9 +2628,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 345,
+					"line": 608,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L345"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L608"
 				}
 			],
 			"signatures": [
@@ -1818,14 +2646,34 @@
 								"kind": "text",
 								"text": "Formats a number as a string in the specified base."
 							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nformatBase(255, 16) // \"ff\"\r\n(10)|formatBase(2) // \"1010\"\r\nformatBase(64, 8) // \"100\"\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The number formatted in the specified base, or empty string if input cannot be converted to a number."
+									}
+								]
+							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 345,
+							"line": 608,
 							"character": 26,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L345"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L608"
 						}
 					],
 					"parameters": [
@@ -1835,6 +2683,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input number to format."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "unknown"
@@ -1846,6 +2702,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The numeric base to convert to (2-36)."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "number"
@@ -1868,9 +2732,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 351,
+					"line": 625,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L351"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L625"
 				}
 			],
 			"signatures": [
@@ -1884,16 +2748,36 @@
 						"summary": [
 							{
 								"kind": "text",
-								"text": "Formats a number as an integer."
+								"text": "Formats a number as an integer with zero padding."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nformatInteger(42, \"000\") // \"042\"\r\n(7)|formatInteger(\"0000\") // \"0007\"\r\nformatInteger(123, \"00\") // \"123\"\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The zero-padded integer string, or empty string if input cannot be converted to a number."
+									}
+								]
 							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 351,
+							"line": 625,
 							"character": 29,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L351"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L625"
 						}
 					],
 					"parameters": [
@@ -1903,6 +2787,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input number to format."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "unknown"
@@ -1914,6 +2806,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The format string indicating the minimum number of digits."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "string"
@@ -1936,9 +2836,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 335,
+					"line": 587,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L335"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L587"
 				}
 			],
 			"signatures": [
@@ -1952,16 +2852,36 @@
 						"summary": [
 							{
 								"kind": "text",
-								"text": "Casts the number to a string and formats it to a decimal representation as specified by the format string."
+								"text": "Formats a number to a decimal representation as specified by the format string."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nformatNumber(1234.567, \"#,##0.00\") // \"1,234.57\"\r\n(1000)|formatNumber(\"0.00\") // \"1000.00\"\r\nformatNumber(42, \"#,###\") // \"42\"\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The formatted number string, or empty string if input cannot be converted to a number."
+									}
+								]
 							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 335,
+							"line": 587,
 							"character": 28,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L335"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L587"
 						}
 					],
 					"parameters": [
@@ -1971,6 +2891,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input number to format."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "unknown"
@@ -1982,6 +2910,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The format string specifying decimal places and grouping."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "string"
@@ -2004,9 +2940,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 266,
+					"line": 417,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L266"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L417"
 				}
 			],
 			"signatures": [
@@ -2020,16 +2956,36 @@
 						"summary": [
 							{
 								"kind": "text",
-								"text": "Encodes a string or object to URI."
+								"text": "Encodes a string or object to URI component format."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nformUrlEncoded(\"hello world\") // \"hello%20world\"\r\nformUrlEncoded({name: \"John\", age: 30}) // \"name=John&age=30\"\r\n\"hello & world\"|formUrlEncoded // \"hello%20%26%20world\"\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The URL encoded string, or empty string if input is not a string or object."
+									}
+								]
 							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 266,
+							"line": 417,
 							"character": 30,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L266"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L417"
 						}
 					],
 					"parameters": [
@@ -2039,6 +2995,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input string or object to encode."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "unknown"
@@ -2063,7 +3027,7 @@
 					"fileName": "extended-grammar.ts",
 					"line": 47,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L47"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L47"
 				}
 			],
 			"signatures": [
@@ -2086,7 +3050,7 @@
 								"content": [
 									{
 										"kind": "code",
-										"text": "```jexl\r\nlength(\"hello\") // 5\r\nlength([1, 2, 3]) // 3\r\n```"
+										"text": "```ts\nlength(\"hello\") // 5\r\nlength([1, 2, 3]) // 3\n```"
 									}
 								]
 							},
@@ -2106,7 +3070,7 @@
 							"fileName": "extended-grammar.ts",
 							"line": 47,
 							"character": 22,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L47"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L47"
 						}
 					],
 					"parameters": [
@@ -2146,9 +3110,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 149,
+					"line": 160,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L149"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L160"
 				}
 			],
 			"signatures": [
@@ -2164,14 +3128,34 @@
 								"kind": "text",
 								"text": "Converts the input string to lowercase."
 							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nlowercase(\"HELLO\") // \"hello\"\r\n\"HELLO WORLD\"|lowercase // \"hello world\"\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The lowercase string."
+									}
+								]
+							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 149,
+							"line": 160,
 							"character": 25,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L149"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L160"
 						}
 					],
 					"parameters": [
@@ -2181,6 +3165,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input to convert to lowercase. Non-string inputs are converted to JSON string first."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "unknown"
@@ -2203,9 +3195,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 489,
+					"line": 898,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L489"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L898"
 				}
 			],
 			"signatures": [
@@ -2219,16 +3211,36 @@
 						"summary": [
 							{
 								"kind": "text",
-								"text": "Returns a new array with the elements of the input array transformed by the specified map function."
+								"text": "Returns a new array with elements transformed by extracting a specific field."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nmapField([{name: \"John\"}, {name: \"Jane\"}], \"name\") // [\"John\", \"Jane\"]\r\n[{age: 30}, {age: 25}]|mapField(\"age\") // [30, 25]\r\nmapField([{x: 1, y: 2}, {x: 3, y: 4}], \"x\") // [1, 3]\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "A new array with extracted field values, or empty array if input is not an array."
+									}
+								]
 							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 489,
+							"line": 898,
 							"character": 24,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L489"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L898"
 						}
 					],
 					"parameters": [
@@ -2238,6 +3250,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input array of objects to extract fields from."
+									}
+								]
+							},
 							"type": {
 								"type": "array",
 								"elementType": {
@@ -2252,6 +3272,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The field name to extract from each object."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "string"
@@ -2277,9 +3305,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 363,
+					"line": 657,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L363"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L657"
 				}
 			],
 			"signatures": [
@@ -2295,14 +3323,34 @@
 								"kind": "text",
 								"text": "Finds the maximum value in an array of numbers."
 							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nmax([1, 5, 3, 2]) // 5\r\n[10, 20, 15]|max // 20\r\nmax(1, 5, 3, 2) // 5\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The maximum value, or NaN if input is not an array."
+									}
+								]
+							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 363,
+							"line": 657,
 							"character": 19,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L363"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L657"
 						}
 					],
 					"parameters": [
@@ -2313,6 +3361,14 @@
 							"kind": 32768,
 							"flags": {
 								"isRest": true
+							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input array of numbers or individual number arguments."
+									}
+								]
 							},
 							"type": {
 								"type": "array",
@@ -2339,9 +3395,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 632,
+					"line": 1140,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L632"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L1140"
 				}
 			],
 			"signatures": [
@@ -2357,14 +3413,34 @@
 								"kind": "text",
 								"text": "Returns the current date and time in milliseconds since the Unix epoch."
 							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nmillis() // 1703505000000\r\nmillis() // 1703505123456 (different time)\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The current timestamp in milliseconds."
+									}
+								]
+							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 632,
+							"line": 1140,
 							"character": 22,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L632"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L1140"
 						}
 					],
 					"type": {
@@ -2383,9 +3459,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 369,
+					"line": 673,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L369"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L673"
 				}
 			],
 			"signatures": [
@@ -2401,14 +3477,34 @@
 								"kind": "text",
 								"text": "Finds the minimum value in an array of numbers."
 							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nmin([1, 5, 3, 2]) // 1\r\n[10, 20, 15]|min // 10\r\nmin(1, 5, 3, 2) // 1\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The minimum value, or NaN if input is not an array."
+									}
+								]
+							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 369,
+							"line": 673,
 							"character": 19,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L369"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L673"
 						}
 					],
 					"parameters": [
@@ -2419,6 +3515,14 @@
 							"kind": 32768,
 							"flags": {
 								"isRest": true
+							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input array of numbers or individual number arguments."
+									}
+								]
 							},
 							"type": {
 								"type": "array",
@@ -2445,9 +3549,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 394,
+					"line": 730,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L394"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L730"
 				}
 			],
 			"signatures": [
@@ -2463,14 +3567,34 @@
 								"kind": "text",
 								"text": "Returns the logical NOT of the input."
 							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nnot(true) // false\r\nfalse|not // true\r\nnot(0) // true\r\nnot(\"\") // true\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The logical NOT of the input converted to boolean."
+									}
+								]
+							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 394,
+							"line": 730,
 							"character": 19,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L394"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L730"
 						}
 					],
 					"parameters": [
@@ -2480,6 +3604,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input to apply logical NOT to."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "unknown"
@@ -2502,9 +3634,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 625,
+					"line": 1127,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L625"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L1127"
 				}
 			],
 			"signatures": [
@@ -2520,14 +3652,34 @@
 								"kind": "text",
 								"text": "Returns the current date and time in the ISO 8601 format."
 							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nnow() // \"2023-12-25T10:30:00.000Z\"\r\nnow() // \"2023-12-25T14:45:30.123Z\" (different time)\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The current date and time as an ISO 8601 string."
+									}
+								]
+							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 625,
+							"line": 1127,
 							"character": 19,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L625"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L1127"
 						}
 					],
 					"type": {
@@ -2546,9 +3698,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 596,
+					"line": 1084,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L596"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L1084"
 				}
 			],
 			"signatures": [
@@ -2564,14 +3716,34 @@
 								"kind": "text",
 								"text": "Returns an array of key-value pairs from the input object."
 							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nobjectEntries({name: \"John\", age: 30}) // [[\"name\", \"John\"], [\"age\", 30]]\r\n{a: 1, b: 2}|objectEntries // [[\"a\", 1], [\"b\", 2]]\r\nobjectEntries({}) // []\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "An array of [key, value] pairs, or undefined if input is not an object."
+									}
+								]
+							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 596,
+							"line": 1084,
 							"character": 29,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L596"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L1084"
 						}
 					],
 					"parameters": [
@@ -2581,6 +3753,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input object to get entries from."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "unknown"
@@ -2615,9 +3795,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 576,
+					"line": 1048,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L576"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L1048"
 				}
 			],
 			"signatures": [
@@ -2631,16 +3811,36 @@
 						"summary": [
 							{
 								"kind": "text",
-								"text": "Returns the keys of an object."
+								"text": "Returns the keys of an object as an array."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nobjectKeys({name: \"John\", age: 30}) // [\"name\", \"age\"]\r\n{a: 1, b: 2}|objectKeys // [\"a\", \"b\"]\r\nobjectKeys({}) // []\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "An array of object keys, or undefined if input is not an object."
+									}
+								]
 							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 576,
+							"line": 1048,
 							"character": 26,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L576"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L1048"
 						}
 					],
 					"parameters": [
@@ -2650,6 +3850,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input object to get keys from."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "unknown"
@@ -2675,9 +3883,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 606,
+					"line": 1102,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L606"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L1102"
 				}
 			],
 			"signatures": [
@@ -2693,14 +3901,34 @@
 								"kind": "text",
 								"text": "Returns a new object with the properties of the input objects merged together."
 							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nobjectMerge({a: 1}, {b: 2}) // {a: 1, b: 2}\r\n{a: 1}|objectMerge({b: 2}, {c: 3}) // {a: 1, b: 2, c: 3}\r\nobjectMerge({a: 1}, {a: 2}) // {a: 2} (later values override)\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "A new object with all properties merged together."
+									}
+								]
+							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 606,
+							"line": 1102,
 							"character": 27,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L606"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L1102"
 						}
 					],
 					"parameters": [
@@ -2711,6 +3939,14 @@
 							"kind": 32768,
 							"flags": {
 								"isRest": true
+							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input objects to merge."
+									}
+								]
 							},
 							"type": {
 								"type": "array",
@@ -2753,9 +3989,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 586,
+					"line": 1066,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L586"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L1066"
 				}
 			],
 			"signatures": [
@@ -2769,16 +4005,36 @@
 						"summary": [
 							{
 								"kind": "text",
-								"text": "Returns the values of an object."
+								"text": "Returns the values of an object as an array."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nobjectValues({name: \"John\", age: 30}) // [\"John\", 30]\r\n{a: 1, b: 2}|objectValues // [1, 2]\r\nobjectValues({}) // []\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "An array of object values, or undefined if input is not an object."
+									}
+								]
 							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 586,
+							"line": 1066,
 							"character": 28,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L586"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L1066"
 						}
 					],
 					"parameters": [
@@ -2788,6 +4044,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input object to get values from."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "unknown"
@@ -2813,9 +4077,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 182,
+					"line": 236,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L182"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L236"
 				}
 			],
 			"signatures": [
@@ -2829,16 +4093,36 @@
 						"summary": [
 							{
 								"kind": "text",
-								"text": "Pads the input string on both sides to center it."
+								"text": "Pads the input string to the specified width."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\npad(\"hello\", 10) // \"hello     \"\r\npad(\"world\", -8, \"0\") // \"000world\"\r\n\"foo\"|pad(5, \".\") // \"foo..\"\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The padded string."
+									}
+								]
 							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 182,
+							"line": 236,
 							"character": 19,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L182"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L236"
 						}
 					],
 					"parameters": [
@@ -2848,6 +4132,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input to pad. Non-string inputs are converted to JSON string first."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "unknown"
@@ -2859,6 +4151,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The target width. Positive values pad to the right, negative values pad to the left."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "number"
@@ -2870,6 +4170,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The character to use for padding. Defaults to space."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "string"
@@ -2893,9 +4201,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 283,
+					"line": 454,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L283"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L454"
 				}
 			],
 			"signatures": [
@@ -2911,14 +4219,34 @@
 								"kind": "text",
 								"text": "Parses a string and returns an integer."
 							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nparseInteger(\"123\") // 123\r\n\"45.67\"|parseInteger // 45\r\nparseInteger(123.89) // 123\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The integer value, or NaN if parsing fails."
+									}
+								]
+							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 283,
+							"line": 454,
 							"character": 28,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L283"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L454"
 						}
 					],
 					"parameters": [
@@ -2928,6 +4256,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input to parse as an integer."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "unknown"
@@ -2950,9 +4286,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 165,
+					"line": 196,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L165"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L196"
 				}
 			],
 			"signatures": [
@@ -2968,14 +4304,34 @@
 								"kind": "text",
 								"text": "Converts the input string to pascal case."
 							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\npascalCase(\"foo bar\") // \"FooBar\"\r\n\"hello-world\"|pascalCase // \"HelloWorld\"\r\npascalCase(\"HELLO_WORLD\") // \"HelloWorld\"\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The pascal case string, or empty string if input is not a string."
+									}
+								]
+							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 165,
+							"line": 196,
 							"character": 26,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L165"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L196"
 						}
 					],
 					"parameters": [
@@ -2985,6 +4341,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input string to convert to pascal case."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "unknown"
@@ -3007,9 +4371,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 317,
+					"line": 540,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L317"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L540"
 				}
 			],
 			"signatures": [
@@ -3025,14 +4389,34 @@
 								"kind": "text",
 								"text": "Returns the value of a number raised to a power."
 							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\npower(2, 3) // 8\r\n(2)|power(4) // 16\r\npower(9) // 81 (defaults to power of 2)\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The result of base raised to the exponent, or NaN if input cannot be converted to a number."
+									}
+								]
+							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 317,
+							"line": 540,
 							"character": 21,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L317"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L540"
 						}
 					],
 					"parameters": [
@@ -3042,6 +4426,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The base number."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "unknown"
@@ -3054,6 +4446,14 @@
 							"kind": 32768,
 							"flags": {
 								"isOptional": true
+							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The exponent to raise the base to. Defaults to 2."
+									}
+								]
 							},
 							"type": {
 								"type": "intrinsic",
@@ -3077,9 +4477,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 330,
+					"line": 571,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L330"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L571"
 				}
 			],
 			"signatures": [
@@ -3095,14 +4495,34 @@
 								"kind": "text",
 								"text": "Generates a random number between 0 (inclusive) and 1 (exclusive)."
 							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nrandomNumber() // 0.123456789 (example output)\r\nrandomNumber() // 0.987654321 (different each time)\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "A random floating-point number between 0 and 1."
+									}
+								]
+							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 330,
+							"line": 571,
 							"character": 28,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L330"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L571"
 						}
 					],
 					"type": {
@@ -3121,9 +4541,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 232,
+					"line": 353,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L232"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L353"
 				}
 			],
 			"signatures": [
@@ -3137,16 +4557,36 @@
 						"summary": [
 							{
 								"kind": "text",
-								"text": "Replaces occurrences of a specified string."
+								"text": "Replaces occurrences of a specified string with a replacement string."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nreplace(\"foo-bar-baz\", \"-\", \"_\") // \"foo_bar_baz\"\r\n\"hello world\"|replace(\"world\", \"there\") // \"hello there\"\r\nreplace(\"test test test\", \"test\", \"demo\") // \"demo demo demo\"\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The string with replacements made, or undefined if input is not a string."
+									}
+								]
 							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 232,
+							"line": 353,
 							"character": 23,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L232"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L353"
 						}
 					],
 					"parameters": [
@@ -3156,6 +4596,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input string to perform replacements on."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "unknown"
@@ -3167,6 +4615,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The string to search for and replace."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "string"
@@ -3178,6 +4634,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The string to replace matches with. Defaults to empty string."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "string"
@@ -3200,9 +4664,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 311,
+					"line": 523,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L311"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L523"
 				}
 			],
 			"signatures": [
@@ -3216,16 +4680,36 @@
 						"summary": [
 							{
 								"kind": "text",
-								"text": "Rounds a number to the nearest integer."
+								"text": "Rounds a number to the nearest integer or to specified decimal places."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nround(3.7) // 4\r\nround(3.14159, 2) // 3.14\r\n(2.567)|round // 3\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The rounded number, or NaN if input cannot be converted to a number."
+									}
+								]
 							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 311,
+							"line": 523,
 							"character": 21,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L311"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L523"
 						}
 					],
 					"parameters": [
@@ -3235,6 +4719,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input number to round."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "unknown"
@@ -3247,6 +4739,14 @@
 							"kind": 32768,
 							"flags": {
 								"isOptional": true
+							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Optional number of decimal places to round to."
+									}
+								]
 							},
 							"type": {
 								"type": "intrinsic",
@@ -3270,9 +4770,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 216,
+					"line": 314,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L216"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L314"
 				}
 			],
 			"signatures": [
@@ -3288,14 +4788,34 @@
 								"kind": "text",
 								"text": "Splits the input string into an array of substrings."
 							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nsplit(\"foo,bar,baz\", \",\") // [\"foo\", \"bar\", \"baz\"]\r\n\"one-two-three\"|split(\"-\") // [\"one\", \"two\", \"three\"]\r\nsplit(\"hello world\", \" \") // [\"hello\", \"world\"]\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "An array of substrings, or empty array if input is not a string."
+									}
+								]
+							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 216,
+							"line": 314,
 							"character": 21,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L216"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L314"
 						}
 					],
 					"parameters": [
@@ -3305,6 +4825,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input string to split."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "unknown"
@@ -3316,6 +4844,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The separator string to split on."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "string"
@@ -3341,9 +4877,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 324,
+					"line": 557,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L324"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L557"
 				}
 			],
 			"signatures": [
@@ -3359,14 +4895,34 @@
 								"kind": "text",
 								"text": "Returns the square root of a number."
 							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nsqrt(16) // 4\r\n(25)|sqrt // 5\r\nsqrt(2) // 1.4142135623730951\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The square root of the input, or NaN if input cannot be converted to a number."
+									}
+								]
+							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 324,
+							"line": 557,
 							"character": 20,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L324"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L557"
 						}
 					],
 					"parameters": [
@@ -3376,6 +4932,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input number to get the square root of."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "unknown"
@@ -3398,9 +4962,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 200,
+					"line": 276,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L200"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L276"
 				}
 			],
 			"signatures": [
@@ -3416,14 +4980,34 @@
 								"kind": "text",
 								"text": "Checks if the input string starts with the specified substring."
 							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nstartsWith(\"hello world\", \"hello\") // true\r\n\"foo-bar\"|startsWith(\"foo\") // true\r\nstartsWith(\"test\", \"xyz\") // false\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "True if the input starts with the search string, false otherwise."
+									}
+								]
+							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 200,
+							"line": 276,
 							"character": 26,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L200"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L276"
 						}
 					],
 					"parameters": [
@@ -3433,6 +5017,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input string to check."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "unknown"
@@ -3444,6 +5036,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The substring to search for at the beginning."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "string"
@@ -3466,9 +5066,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 73,
+					"line": 71,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L73"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L71"
 				}
 			],
 			"signatures": [
@@ -3491,7 +5091,7 @@
 								"content": [
 									{
 										"kind": "code",
-										"text": "```jexl\r\nsubstring(\"hello world\", 0, 5) // \"hello\"\r\n```"
+										"text": "```ts\nsubstring(\"hello world\", 0, 5) // \"hello\"\n```"
 									}
 								]
 							},
@@ -3509,9 +5109,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 73,
+							"line": 71,
 							"character": 25,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L73"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L71"
 						}
 					],
 					"parameters": [
@@ -3589,9 +5189,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 132,
+					"line": 125,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L132"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L125"
 				}
 			],
 			"signatures": [
@@ -3614,7 +5214,7 @@
 								"content": [
 									{
 										"kind": "code",
-										"text": "```jexl\r\nsubstringAfter(\"hello world\", \" \") // \"world\"\r\n```"
+										"text": "```ts\nsubstringAfter(\"hello world\", \" \") // \"world\"\n```"
 									}
 								]
 							},
@@ -3632,9 +5232,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 132,
+							"line": 125,
 							"character": 30,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L132"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L125"
 						}
 					],
 					"parameters": [
@@ -3693,9 +5293,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 110,
+					"line": 105,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L110"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L105"
 				}
 			],
 			"signatures": [
@@ -3718,7 +5318,7 @@
 								"content": [
 									{
 										"kind": "code",
-										"text": "```jexl\r\nsubstringBefore(\"hello world\", \" \") // \"hello\"\r\n```"
+										"text": "```ts\nsubstringBefore(\"hello world\", \" \") // \"hello\"\n```"
 									}
 								]
 							},
@@ -3736,9 +5336,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 110,
+							"line": 105,
 							"character": 31,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L110"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L105"
 						}
 					],
 					"parameters": [
@@ -3797,9 +5397,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 357,
+					"line": 641,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L357"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L641"
 				}
 			],
 			"signatures": [
@@ -3815,14 +5415,34 @@
 								"kind": "text",
 								"text": "Calculates the sum of an array of numbers."
 							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nsum([1, 2, 3, 4]) // 10\r\n[1.5, 2.5, 3.0]|sum // 7\r\nsum(1, 2, 3, 4) // 10\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The sum of all numbers, or NaN if input is not an array."
+									}
+								]
+							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 357,
+							"line": 641,
 							"character": 19,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L357"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L641"
 						}
 					],
 					"parameters": [
@@ -3833,6 +5453,14 @@
 							"kind": 32768,
 							"flags": {
 								"isRest": true
+							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input array of numbers or individual number arguments."
+									}
+								]
 							},
 							"type": {
 								"type": "array",
@@ -3859,9 +5487,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 409,
+					"line": 743,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L409"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L743"
 				}
 			],
 			"signatures": [
@@ -3884,7 +5512,7 @@
 								"content": [
 									{
 										"kind": "code",
-										"text": "```jexl\r\nswitch(expression, case1, result1, case2, result2, ..., default)\r\n```"
+										"text": "```ts\nswitch(expression, case1, result1, case2, result2, ..., default)\n```"
 									}
 								]
 							},
@@ -3902,9 +5530,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 409,
+							"line": 743,
 							"character": 26,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L409"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L743"
 						}
 					],
 					"parameters": [
@@ -3949,9 +5577,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 382,
+					"line": 707,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L382"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L707"
 				}
 			],
 			"signatures": [
@@ -3967,14 +5595,34 @@
 								"kind": "text",
 								"text": "Converts the input to a boolean."
 							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\ntoBoolean(\"true\") // true\r\n\"false\"|toBoolean // false\r\ntoBoolean(1) // true\r\ntoBoolean(0) // false\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The boolean value, or undefined for ambiguous string values."
+									}
+								]
+							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 382,
+							"line": 707,
 							"character": 25,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L382"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L707"
 						}
 					],
 					"parameters": [
@@ -3984,6 +5632,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input to convert to a boolean."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "unknown"
@@ -4006,9 +5662,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 639,
+					"line": 1157,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L639"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L1157"
 				}
 			],
 			"signatures": [
@@ -4024,14 +5680,34 @@
 								"kind": "text",
 								"text": "Parses the number of milliseconds since the Unix epoch or parses a string (with or without specified format) and returns the date and time in the ISO 8601 format."
 							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\ntoDateTime(1703505000000) // \"2023-12-25T10:30:00.000Z\"\r\ntoDateTime(\"2023-12-25\") // \"2023-12-25T00:00:00.000Z\"\r\ntoDateTime(\"25/12/2023\", \"dd/MM/yyyy\") // \"2023-12-25T00:00:00.000Z\"\r\ntoDateTime() // Current date/time (same as now())\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The date and time as an ISO 8601 string, or undefined if parsing fails."
+									}
+								]
+							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 639,
+							"line": 1157,
 							"character": 26,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L639"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L1157"
 						}
 					],
 					"parameters": [
@@ -4042,6 +5718,14 @@
 							"kind": 32768,
 							"flags": {
 								"isOptional": true
+							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Optional timestamp in milliseconds or date string."
+									}
+								]
 							},
 							"type": {
 								"type": "union",
@@ -4065,6 +5749,14 @@
 							"flags": {
 								"isOptional": true
 							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Optional format string for parsing date strings."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "string"
@@ -4087,9 +5779,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 31,
+					"line": 33,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L31"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L33"
 				}
 			],
 			"signatures": [
@@ -4112,7 +5804,25 @@
 								"content": [
 									{
 										"kind": "code",
-										"text": "```jexl\r\nparseJson('{\"key\": \"value\"}') // { key: \"value\" }\r\n'{\"key\": \"value\"}'|toJson // { key: \"value\" }"
+										"text": "```ts\ntoJson('{\"key\": \"value\"}') // { key: \"value\" }\r\n'{\"name\": \"John\", \"age\": 30}'|toJson // { name: \"John\", age: 30 }\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The parsed JSON object or value."
+									}
+								]
+							},
+							{
+								"tag": "@throws",
+								"content": [
+									{
+										"kind": "text",
+										"text": "If the string is not valid JSON."
 									}
 								]
 							}
@@ -4121,9 +5831,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 31,
+							"line": 33,
 							"character": 22,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L31"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L33"
 						}
 					],
 					"parameters": [
@@ -4133,6 +5843,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The JSON string to parse."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "string"
@@ -4155,9 +5873,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 276,
+					"line": 437,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L276"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L437"
 				}
 			],
 			"signatures": [
@@ -4173,14 +5891,34 @@
 								"kind": "text",
 								"text": "Converts the input to a number."
 							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\ntoNumber(\"123\") // 123\r\n\"45.67\"|toNumber // 45.67\r\ntoNumber(\"abc\") // NaN\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The numeric value, or NaN if conversion fails."
+									}
+								]
+							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 276,
+							"line": 437,
 							"character": 24,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L276"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L437"
 						}
 					],
 					"parameters": [
@@ -4190,6 +5928,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input to convert to a number."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "unknown"
@@ -4212,9 +5958,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 19,
+					"line": 18,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L19"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L18"
 				}
 			],
 			"signatures": [
@@ -4237,7 +5983,7 @@
 								"content": [
 									{
 										"kind": "code",
-										"text": "```jexl\r\nstring(123) // \"123\"\r\n123|string // \"123\"\r\n```"
+										"text": "```ts\nstring(123) // \"123\"\r\n123|string // \"123\"\n```"
 									}
 								]
 							},
@@ -4249,15 +5995,24 @@
 										"text": "Type Conversion"
 									}
 								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The input converted to a JSON string representation."
+									}
+								]
 							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 19,
+							"line": 18,
 							"character": 24,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L19"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L18"
 						}
 					],
 					"parameters": [
@@ -4317,9 +6072,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 171,
+					"line": 213,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L171"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L213"
 				}
 			],
 			"signatures": [
@@ -4335,14 +6090,34 @@
 								"kind": "text",
 								"text": "Trims whitespace from both ends of a string."
 							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\ntrim(\"  hello  \") // \"hello\"\r\n\"  world  \"|trim // \"world\"\r\ntrim(\"__hello__\", \"_\") // \"hello\"\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The trimmed string, or empty string if input is not a string."
+									}
+								]
+							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 171,
+							"line": 213,
 							"character": 20,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L171"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L213"
 						}
 					],
 					"parameters": [
@@ -4352,6 +6127,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input string to trim."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "unknown"
@@ -4364,6 +6147,14 @@
 							"kind": 32768,
 							"flags": {
 								"isOptional": true
+							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "Optional character to trim instead of whitespace."
+									}
+								]
 							},
 							"type": {
 								"type": "intrinsic",
@@ -4387,9 +6178,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 143,
+					"line": 145,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L143"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L145"
 				}
 			],
 			"signatures": [
@@ -4405,14 +6196,34 @@
 								"kind": "text",
 								"text": "Converts the input string to uppercase."
 							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nuppercase(\"hello\") // \"HELLO\"\r\n\"hello world\"|uppercase // \"HELLO WORLD\"\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "The uppercase string."
+									}
+								]
+							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 143,
+							"line": 145,
 							"character": 25,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L143"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L145"
 						}
 					],
 					"parameters": [
@@ -4422,6 +6233,14 @@
 							"variant": "param",
 							"kind": 32768,
 							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The input to convert to uppercase. Non-string inputs are converted to JSON string first."
+									}
+								]
+							},
 							"type": {
 								"type": "intrinsic",
 								"name": "unknown"
@@ -4444,9 +6263,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 728,
+					"line": 1277,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L728"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L1277"
 				}
 			],
 			"signatures": [
@@ -4460,16 +6279,36 @@
 						"summary": [
 							{
 								"kind": "text",
-								"text": "Generate a new UUID (Universally Unique Identifier)."
+								"text": "Generates a new UUID (Universally Unique Identifier)."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```ts\nuuid() // \"123e4567-e89b-12d3-a456-426614174000\"\r\nuuid() // \"987fcdeb-51a2-43d7-b123-456789abcdef\" (different each time)\n```"
+									}
+								]
+							},
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "text",
+										"text": "A new UUID v4 string."
+									}
+								]
 							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 728,
+							"line": 1277,
 							"character": 20,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/f08eb505596c1e77974bda5a3b2b43428824b145/src/extended-grammar.ts#L728"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/824e8e982141f1b0ed29abe83eb1c6c39fffdda9/src/extended-grammar.ts#L1277"
 						}
 					],
 					"type": {
