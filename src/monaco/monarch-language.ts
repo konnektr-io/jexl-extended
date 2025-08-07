@@ -50,19 +50,19 @@ export const jexlMonarchLanguage: IMonarchLanguage = {
       [/==|!=|<=|>=|&&|\|\||\/\//, 'operator'],
       
       // Transform pipe operator - followed by transform name
-      [/\|/, { token: 'operator.pipe', next: '@afterPipe' }],
+      [/\|/, { token: 'operator', next: '@afterPipe' }],
       
       // Single character operators and symbols
       [/[+\-*\/%\^><!=?:]/, 'operator'],
       
-      // Function calls: any identifier followed by opening parenthesis
-      [/\$?[a-zA-Z_$][\w$]*(?=\s*\()/, 'function'],
+      // Function calls: any identifier followed by opening parenthesis (use predefined.identifier)
+      [/\$?[a-zA-Z_$][\w$]*(?=\s*\()/, 'predefined.identifier'],
 
       // Keywords
       [/\b(true|false|null|undefined|in)\b/, 'keyword'],
 
-      // Property access with dot notation (including leading dot for filters)
-      [/\.[\w$]+/, 'property'],
+      // Property access with dot notation (use attribute.name)
+      [/\.[\w$]+/, 'attribute.name'],
 
       // Array access and filters
       [/\[/, { token: 'delimiter.bracket', bracket: '@open', next: '@arrayAccess' }],
@@ -74,21 +74,21 @@ export const jexlMonarchLanguage: IMonarchLanguage = {
       [/\(/, { token: 'delimiter.parenthesis', bracket: '@open' }],
       [/\)/, { token: 'delimiter.parenthesis', bracket: '@close' }],
 
-      // Regular identifiers (variables)
+      // Regular identifiers (variables) - use identifier
       [/[a-zA-Z_$][\w$]*/, 'identifier'],
 
       // Delimiters
       [/[;,]/, 'delimiter'],
-      [/\./, 'delimiter.dot'],
+      [/\./, 'delimiter'],
 
       // Whitespace
       { include: '@whitespace' }
     ],
 
-    // After pipe operator - next identifier is a transform
+    // After pipe operator - next identifier is a transform (use type.identifier)
     afterPipe: [
       [/\s+/, 'white'],
-      [/[a-zA-Z_$][\w$]*/, { token: 'transform', next: '@pop' }],
+      [/[a-zA-Z_$][\w$]*/, { token: 'type.identifier', next: '@pop' }],
       [/./, { token: '@rematch', next: '@pop' }]
     ],
 
@@ -96,14 +96,14 @@ export const jexlMonarchLanguage: IMonarchLanguage = {
     arrayAccess: [
       [/\]/, { token: 'delimiter.bracket', bracket: '@close', next: '@pop' }],
       
-      // Property access within array filters (e.g., .attributeName)
-      [/\.[\w$]+/, 'property'],
+      // Property access within array filters (use attribute.name)
+      [/\.[\w$]+/, 'attribute.name'],
       
       // Comparison operators
-      [/==|!=|<=|>=|<|>/, 'operator.comparison'],
+      [/==|!=|<=|>=|<|>/, 'operator'],
       
       // Logical operators
-      [/&&|\|\|/, 'operator.logical'],
+      [/&&|\|\|/, 'operator'],
       
       // Numbers in array context
       [/-?\d+(\.\d+)?/, 'number'],
@@ -112,7 +112,7 @@ export const jexlMonarchLanguage: IMonarchLanguage = {
       [/"([^"\\]|\\.)*"/, 'string'],
       [/'([^'\\]|\\.)*'/, 'string'],
       
-      // Identifiers in array context
+      // Identifiers in array context (use identifier)
       [/[a-zA-Z_$][\w$]*/, 'identifier'],
       
       // Other operators
