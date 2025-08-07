@@ -76,18 +76,6 @@ export function registerJexlLanguage(monaco: any) {
       // Check if we're at the start or after an operator
       const afterOperatorMatch = textBeforeCursor.match(/[+\-*/%^=!<>&|?:,(\[\s]\s*$/);
       const isAfterOperatorOrStart = afterOperatorMatch !== null || textBeforeCursor.trim() === '';
-      
-      // Debug logging
-      console.log('Completion context:', {
-        textBeforeCursor,
-        lastPipeIndex,
-        afterPipe: lastPipeIndex !== -1 ? textBeforeCursor.substring(lastPipeIndex + 1) : 'none',
-        isAfterPipe,
-        isAfterIdentifier,
-        isAfterOperatorOrStart,
-        afterIdentifierMatch: afterIdentifierMatch?.[0],
-        afterOperatorMatch: afterOperatorMatch?.[0]
-      });
 
       if (isAfterPipe) {
         // After pipe: only show transforms
@@ -133,8 +121,6 @@ export function registerJexlLanguage(monaco: any) {
       const word = model.getWordAtPosition(position);
       if (!word) return;
 
-      console.log('Hover for word:', word.word);
-
       // Check if we're after a pipe operator to determine context
       const textBeforeCursor = model.getValueInRange({
         startLineNumber: position.lineNumber,
@@ -149,13 +135,6 @@ export function registerJexlLanguage(monaco: any) {
         // Make sure there's no significant content after the pipe (just whitespace)
         /^\s*$/.test(textBeforeCursor.substring(lastPipeIndex + 1));
 
-      console.log('Hover context:', {
-        textBeforeCursor,
-        lastPipeIndex,
-        isAfterPipe,
-        wordAtPosition: word.word
-      });
-
       // Determine preferred type based on context
       const preferredType = isAfterPipe ? 'transform' : 'function';
 
@@ -163,12 +142,10 @@ export function registerJexlLanguage(monaco: any) {
       const doc = getJexlCompletionDoc(word.word, preferredType);
 
       if (doc) {
-        console.log('Found function/transform doc:', `${doc.label}(${doc.type})`);
-        
         // Create formatted markdown content
         const markdownContent = `**${doc.label}** (${doc.type}) - ${doc.detail}\n\n${doc.documentation}`;
         
-        const hoverResult = {
+        return {
           range: new monaco.Range(
             position.lineNumber,
             word.startColumn,
@@ -179,15 +156,11 @@ export function registerJexlLanguage(monaco: any) {
             { value: markdownContent }
           ]
         };
-        
-        console.log('Returning hover result:', hoverResult);
-        return hoverResult;
       }
 
       // If no function/transform found, try operators
       const operatorDoc = getOperatorDoc(word.word);
       if (operatorDoc) {
-        console.log('Found operator doc:', operatorDoc.label);
         return {
           range: new monaco.Range(
             position.lineNumber,
@@ -200,8 +173,6 @@ export function registerJexlLanguage(monaco: any) {
           ]
         };
       }
-
-      console.log('No documentation found for:', word.word);
     }
   });
 

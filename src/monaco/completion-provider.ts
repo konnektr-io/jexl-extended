@@ -77,17 +77,12 @@ export function createJexlTransformItems(): ICompletionItem[] {
 }
 
 export function getJexlCompletionDoc(functionName: string, preferredType?: 'function' | 'transform'): CompletionDocItem | undefined {
-  console.log('getJexlCompletionDoc called with:', functionName, 'preferredType:', preferredType);
-  console.log('Total docs loaded:', completionDocs.length);
-  
   // Find all matches for the function name
   const matches = completionDocs.filter(doc => 
     doc.label === functionName || 
     doc.name === functionName || 
     doc.aliases?.includes(functionName)
   );
-  
-  console.log('Found matches:', matches.length, matches.map(m => `${m.label}(${m.type})`));
   
   if (matches.length === 0) {
     return undefined;
@@ -97,15 +92,12 @@ export function getJexlCompletionDoc(functionName: string, preferredType?: 'func
   if (preferredType) {
     const preferredMatch = matches.find(doc => doc.type === preferredType);
     if (preferredMatch) {
-      console.log('Found preferred match:', preferredMatch.label, preferredMatch.type);
       return preferredMatch;
     }
   }
   
   // Otherwise return the first match
-  const result = matches[0];
-  console.log('Found result:', result ? `${result.label}(${result.type})` : 'none');
-  return result;
+  return matches[0];
 }
 
 export function getOperatorDoc(operator: string): { label: string; documentation: string; detail: string } | undefined {

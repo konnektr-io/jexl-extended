@@ -180,6 +180,17 @@ for (const [type, lib] of Object.entries(libs)) {
             if (!seenItems.has(functionKey)) {
                 seenItems.add(functionKey);
                 completionDocs.push(createCompletionItem('function'));
+            } else {
+                // Add as alias to existing function
+                const existingItem = completionDocs.find(item => item.name === functionName && item.type === 'function');
+                if (existingItem && key !== functionName) {
+                    if (!existingItem.aliases) {
+                        existingItem.aliases = [];
+                    }
+                    if (!existingItem.aliases.includes(key)) {
+                        existingItem.aliases.push(key);
+                    }
+                }
             }
             
             // If it has 1+ parameters, also add a transform version
@@ -188,6 +199,17 @@ for (const [type, lib] of Object.entries(libs)) {
                 if (!seenItems.has(transformKey)) {
                     seenItems.add(transformKey);
                     completionDocs.push(createCompletionItem('transform'));
+                } else {
+                    // Add as alias to existing transform
+                    const existingItem = completionDocs.find(item => item.name === functionName && item.type === 'transform');
+                    if (existingItem && key !== functionName) {
+                        if (!existingItem.aliases) {
+                            existingItem.aliases = [];
+                        }
+                        if (!existingItem.aliases.includes(key)) {
+                            existingItem.aliases.push(key);
+                        }
+                    }
                 }
             }
         } else {
@@ -196,6 +218,17 @@ for (const [type, lib] of Object.entries(libs)) {
             if (!seenItems.has(transformKey)) {
                 seenItems.add(transformKey);
                 completionDocs.push(createCompletionItem('transform'));
+            } else {
+                // Add as alias to existing transform
+                const existingItem = completionDocs.find(item => item.name === functionName && item.type === 'transform');
+                if (existingItem && key !== functionName) {
+                    if (!existingItem.aliases) {
+                        existingItem.aliases = [];
+                    }
+                    if (!existingItem.aliases.includes(key)) {
+                        existingItem.aliases.push(key);
+                    }
+                }
             }
         }
     }

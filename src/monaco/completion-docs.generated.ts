@@ -85,7 +85,8 @@ export const completionDocs: CompletionDocItem[] = [
     },
     "insertText": "all(${1:input}, ${2:expression})",
     "aliases": [
-      "arrayEvery"
+      "arrayEvery",
+      "every"
     ]
   },
   {
@@ -120,7 +121,8 @@ export const completionDocs: CompletionDocItem[] = [
     },
     "insertText": "any(${1:input}, ${2:expression})",
     "aliases": [
-      "arrayAny"
+      "arrayAny",
+      "some"
     ]
   },
   {
@@ -149,7 +151,8 @@ export const completionDocs: CompletionDocItem[] = [
     },
     "insertText": "append(${1:input})",
     "aliases": [
-      "arrayAppend"
+      "arrayAppend",
+      "concat"
     ]
   },
   {
@@ -176,7 +179,10 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "number",
       "description": "The average value, or NaN if input is not an array."
     },
-    "insertText": "average(${1:input})"
+    "insertText": "average(${1:input})",
+    "aliases": [
+      "avg"
+    ]
   },
   {
     "type": "function",
@@ -256,7 +262,8 @@ export const completionDocs: CompletionDocItem[] = [
     },
     "insertText": "boolean(${1:input})",
     "aliases": [
-      "toBoolean"
+      "toBoolean",
+      "bool"
     ]
   },
   {
@@ -309,7 +316,8 @@ export const completionDocs: CompletionDocItem[] = [
     },
     "insertText": "case(${1:args})",
     "aliases": [
-      "switchCase"
+      "switchCase",
+      "switch"
     ]
   },
   {
@@ -368,7 +376,10 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "boolean",
       "description": "True if the input contains the search value, false otherwise."
     },
-    "insertText": "contains(${1:input}, ${2:search})"
+    "insertText": "contains(${1:input}, ${2:search})",
+    "aliases": [
+      "includes"
+    ]
   },
   {
     "type": "function",
@@ -463,7 +474,10 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "number",
       "description": "The timestamp in milliseconds since Unix epoch."
     },
-    "insertText": "dateTimeToMillis(${1:input})"
+    "insertText": "dateTimeToMillis(${1:input})",
+    "aliases": [
+      "toMillis"
+    ]
   },
   {
     "type": "function",
@@ -868,7 +882,8 @@ export const completionDocs: CompletionDocItem[] = [
     },
     "insertText": "json(${1:input})",
     "aliases": [
-      "toJson"
+      "toJson",
+      "parseJson"
     ]
   },
   {
@@ -923,7 +938,11 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "number",
       "description": "The number of characters in a string, or the length of an array."
     },
-    "insertText": "length(${1:input})"
+    "insertText": "length(${1:input})",
+    "aliases": [
+      "count",
+      "size"
+    ]
   },
   {
     "type": "function",
@@ -948,7 +967,10 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "string",
       "description": "The lowercase string."
     },
-    "insertText": "lowercase(${1:input})"
+    "insertText": "lowercase(${1:input})",
+    "aliases": [
+      "lower"
+    ]
   },
   {
     "type": "function",
@@ -1122,7 +1144,9 @@ export const completionDocs: CompletionDocItem[] = [
     },
     "insertText": "millisToDateTime(${1:input?}, ${2:format?})",
     "aliases": [
-      "toDateTime"
+      "toDateTime",
+      "fromMillis",
+      "dateTimeString"
     ]
   },
   {
@@ -1221,7 +1245,8 @@ export const completionDocs: CompletionDocItem[] = [
     },
     "insertText": "number(${1:input})",
     "aliases": [
-      "toNumber"
+      "toNumber",
+      "parseFloat"
     ]
   },
   {
@@ -1286,7 +1311,10 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "number",
       "description": "The integer value, or NaN if parsing fails."
     },
-    "insertText": "parseInteger(${1:input})"
+    "insertText": "parseInteger(${1:input})",
+    "aliases": [
+      "parseInt"
+    ]
   },
   {
     "type": "function",
@@ -1574,7 +1602,8 @@ export const completionDocs: CompletionDocItem[] = [
     },
     "insertText": "sort(${1:input}, ${2:expression?}, ${3:descending?})",
     "aliases": [
-      "arraySort"
+      "arraySort",
+      "order"
     ]
   },
   {
@@ -1855,7 +1884,8 @@ export const completionDocs: CompletionDocItem[] = [
     },
     "insertText": "toObject(${1:input}, ${2:val?})",
     "aliases": [
-      "arrayToObject"
+      "arrayToObject",
+      "fromEntries"
     ]
   },
   {
@@ -1913,7 +1943,10 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "string",
       "description": "The uppercase string."
     },
-    "insertText": "uppercase(${1:input})"
+    "insertText": "uppercase(${1:input})",
+    "aliases": [
+      "upper"
+    ]
   },
   {
     "type": "function",
@@ -1931,7 +1964,10 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "string",
       "description": "A new UUID v4 string."
     },
-    "insertText": "uuid()"
+    "insertText": "uuid()",
+    "aliases": [
+      "uid"
+    ]
   },
   {
     "type": "function",
@@ -1988,7 +2024,8 @@ export const completionDocs: CompletionDocItem[] = [
     },
     "insertText": "abs",
     "aliases": [
-      "absoluteValue"
+      "absoluteValue",
+      "abs"
     ]
   },
   {
@@ -2023,7 +2060,9 @@ export const completionDocs: CompletionDocItem[] = [
     },
     "insertText": "all",
     "aliases": [
-      "arrayEvery"
+      "arrayEvery",
+      "every",
+      "all"
     ]
   },
   {
@@ -2058,7 +2097,9 @@ export const completionDocs: CompletionDocItem[] = [
     },
     "insertText": "any",
     "aliases": [
-      "arrayAny"
+      "arrayAny",
+      "some",
+      "any"
     ]
   },
   {
@@ -2087,7 +2128,9 @@ export const completionDocs: CompletionDocItem[] = [
     },
     "insertText": "append",
     "aliases": [
-      "arrayAppend"
+      "arrayAppend",
+      "concat",
+      "append"
     ]
   },
   {
@@ -2114,7 +2157,10 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "number",
       "description": "The average value, or NaN if input is not an array."
     },
-    "insertText": "average"
+    "insertText": "average",
+    "aliases": [
+      "avg"
+    ]
   },
   {
     "type": "transform",
@@ -2194,7 +2240,10 @@ export const completionDocs: CompletionDocItem[] = [
     },
     "insertText": "boolean",
     "aliases": [
-      "toBoolean"
+      "toBoolean",
+      "bool",
+      "boolean",
+      "toBool"
     ]
   },
   {
@@ -2221,7 +2270,11 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "string",
       "description": "The camel case string, or empty string if input is not a string."
     },
-    "insertText": "camelCase"
+    "insertText": "camelCase",
+    "aliases": [
+      "camelcase",
+      "toCamelCase"
+    ]
   },
   {
     "type": "transform",
@@ -2247,7 +2300,9 @@ export const completionDocs: CompletionDocItem[] = [
     },
     "insertText": "case",
     "aliases": [
-      "switchCase"
+      "switchCase",
+      "switch",
+      "case"
     ]
   },
   {
@@ -2306,7 +2361,10 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "boolean",
       "description": "True if the input contains the search value, false otherwise."
     },
-    "insertText": "contains"
+    "insertText": "contains",
+    "aliases": [
+      "includes"
+    ]
   },
   {
     "type": "transform",
@@ -2401,7 +2459,10 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "number",
       "description": "The timestamp in milliseconds since Unix epoch."
     },
-    "insertText": "dateTimeToMillis"
+    "insertText": "dateTimeToMillis",
+    "aliases": [
+      "toMillis"
+    ]
   },
   {
     "type": "transform",
@@ -2429,7 +2490,8 @@ export const completionDocs: CompletionDocItem[] = [
     },
     "insertText": "distinct",
     "aliases": [
-      "arrayDistinct"
+      "arrayDistinct",
+      "distinct"
     ]
   },
   {
@@ -2490,7 +2552,8 @@ export const completionDocs: CompletionDocItem[] = [
     },
     "insertText": "entries",
     "aliases": [
-      "objectEntries"
+      "objectEntries",
+      "entries"
     ]
   },
   {
@@ -2525,7 +2588,8 @@ export const completionDocs: CompletionDocItem[] = [
     },
     "insertText": "eval",
     "aliases": [
-      "_eval"
+      "_eval",
+      "eval"
     ]
   },
   {
@@ -2560,7 +2624,8 @@ export const completionDocs: CompletionDocItem[] = [
     },
     "insertText": "filter",
     "aliases": [
-      "arrayFilter"
+      "arrayFilter",
+      "filter"
     ]
   },
   {
@@ -2595,7 +2660,8 @@ export const completionDocs: CompletionDocItem[] = [
     },
     "insertText": "find",
     "aliases": [
-      "arrayFind"
+      "arrayFind",
+      "find"
     ]
   },
   {
@@ -2778,7 +2844,8 @@ export const completionDocs: CompletionDocItem[] = [
     },
     "insertText": "join",
     "aliases": [
-      "arrayJoin"
+      "arrayJoin",
+      "join"
     ]
   },
   {
@@ -2806,7 +2873,8 @@ export const completionDocs: CompletionDocItem[] = [
     },
     "insertText": "json",
     "aliases": [
-      "toJson"
+      "toJson",
+      "parseJson"
     ]
   },
   {
@@ -2835,7 +2903,8 @@ export const completionDocs: CompletionDocItem[] = [
     },
     "insertText": "keys",
     "aliases": [
-      "objectKeys"
+      "objectKeys",
+      "keys"
     ]
   },
   {
@@ -2861,7 +2930,11 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "number",
       "description": "The number of characters in a string, or the length of an array."
     },
-    "insertText": "length"
+    "insertText": "length",
+    "aliases": [
+      "count",
+      "size"
+    ]
   },
   {
     "type": "transform",
@@ -2886,7 +2959,10 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "string",
       "description": "The lowercase string."
     },
-    "insertText": "lowercase"
+    "insertText": "lowercase",
+    "aliases": [
+      "lower"
+    ]
   },
   {
     "type": "transform",
@@ -2920,7 +2996,8 @@ export const completionDocs: CompletionDocItem[] = [
     },
     "insertText": "map",
     "aliases": [
-      "arrayMap"
+      "arrayMap",
+      "map"
     ]
   },
   {
@@ -3007,7 +3084,8 @@ export const completionDocs: CompletionDocItem[] = [
     },
     "insertText": "merge",
     "aliases": [
-      "objectMerge"
+      "objectMerge",
+      "merge"
     ]
   },
   {
@@ -3042,7 +3120,10 @@ export const completionDocs: CompletionDocItem[] = [
     },
     "insertText": "millisToDateTime",
     "aliases": [
-      "toDateTime"
+      "toDateTime",
+      "fromMillis",
+      "dateTimeString",
+      "millisToDateTime"
     ]
   },
   {
@@ -3123,7 +3204,11 @@ export const completionDocs: CompletionDocItem[] = [
     },
     "insertText": "number",
     "aliases": [
-      "toNumber"
+      "toNumber",
+      "parseFloat",
+      "number",
+      "float",
+      "toFloat"
     ]
   },
   {
@@ -3188,7 +3273,12 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "number",
       "description": "The integer value, or NaN if parsing fails."
     },
-    "insertText": "parseInteger"
+    "insertText": "parseInteger",
+    "aliases": [
+      "parseInt",
+      "toInt",
+      "integer"
+    ]
   },
   {
     "type": "transform",
@@ -3214,7 +3304,11 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "string",
       "description": "The pascal case string, or empty string if input is not a string."
     },
-    "insertText": "pascalCase"
+    "insertText": "pascalCase",
+    "aliases": [
+      "pascalcase",
+      "toPascalCase"
+    ]
   },
   {
     "type": "transform",
@@ -3286,7 +3380,8 @@ export const completionDocs: CompletionDocItem[] = [
     },
     "insertText": "reduce",
     "aliases": [
-      "arrayReduce"
+      "arrayReduce",
+      "reduce"
     ]
   },
   {
@@ -3353,7 +3448,8 @@ export const completionDocs: CompletionDocItem[] = [
     },
     "insertText": "reverse",
     "aliases": [
-      "arrayReverse"
+      "arrayReverse",
+      "reverse"
     ]
   },
   {
@@ -3414,7 +3510,8 @@ export const completionDocs: CompletionDocItem[] = [
     },
     "insertText": "shuffle",
     "aliases": [
-      "arrayShuffle"
+      "arrayShuffle",
+      "shuffle"
     ]
   },
   {
@@ -3455,7 +3552,9 @@ export const completionDocs: CompletionDocItem[] = [
     },
     "insertText": "sort",
     "aliases": [
-      "arraySort"
+      "arraySort",
+      "order",
+      "sort"
     ]
   },
   {
@@ -3579,7 +3678,8 @@ export const completionDocs: CompletionDocItem[] = [
     },
     "insertText": "string",
     "aliases": [
-      "toString"
+      "toString",
+      "string"
     ]
   },
   {
@@ -3736,7 +3836,9 @@ export const completionDocs: CompletionDocItem[] = [
     },
     "insertText": "toObject",
     "aliases": [
-      "arrayToObject"
+      "arrayToObject",
+      "fromEntries",
+      "toObject"
     ]
   },
   {
@@ -3794,7 +3896,10 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "string",
       "description": "The uppercase string."
     },
-    "insertText": "uppercase"
+    "insertText": "uppercase",
+    "aliases": [
+      "upper"
+    ]
   },
   {
     "type": "transform",
@@ -3822,7 +3927,8 @@ export const completionDocs: CompletionDocItem[] = [
     },
     "insertText": "values",
     "aliases": [
-      "objectValues"
+      "objectValues",
+      "values"
     ]
   }
 ];
