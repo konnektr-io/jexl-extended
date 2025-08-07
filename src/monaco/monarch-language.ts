@@ -55,14 +55,11 @@ export const jexlMonarchLanguage: IMonarchLanguage = {
       // Single character operators and symbols
       [/[+\-*\/%\^><!=?:]/, 'operator'],
       
-      // Function calls: any identifier followed by opening parenthesis (use predefined.identifier)
-      [/\$?[a-zA-Z_$][\w$]*(?=\s*\()/, 'predefined.identifier'],
+      // Function calls: any identifier followed by opening parenthesis
+      [/[a-zA-Z_$][\w$]*(?=\s*\()/, 'support.function'],
 
       // Keywords
       [/\b(true|false|null|undefined|in)\b/, 'keyword'],
-
-      // Property access with dot notation (use attribute.name)
-      [/\.[\w$]+/, 'attribute.name'],
 
       // Array access and filters
       [/\[/, { token: 'delimiter.bracket', bracket: '@open', next: '@arrayAccess' }],

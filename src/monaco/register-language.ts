@@ -46,20 +46,40 @@ export function registerJexlLanguage(monaco: any) {
         endColumn: word.endColumn
       };
 
-      // Get all completion items (functions and transforms)
-      const functionItems = createJexlFunctionItems();
-      const transformItems = createJexlTransformItems();
-      const keywordItems = createJexlKeywords();
-      const operatorItems = createJexlOperators();
+      // Check if we're after a pipe operator
+      const textBeforeCursor = model.getValueInRange({
+        startLineNumber: position.lineNumber,
+        startColumn: 1,
+        endLineNumber: position.lineNumber,
+        endColumn: position.column
+      });
 
-      return {
-        suggestions: [
-          ...functionItems.map(item => ({ ...item, range })),
-          ...transformItems.map(item => ({ ...item, range })),
-          ...keywordItems.map(item => ({ ...item, range })),
-          ...operatorItems.map(item => ({ ...item, range }))
-        ]
-      };
+      // Look for the last pipe operator before the cursor
+      const lastPipeIndex = textBeforeCursor.lastIndexOf('|');
+      const isAfterPipe = lastPipeIndex !== -1 && 
+        // Make sure there's no significant content after the pipe (just whitespace and current word)
+        /^\s*\w*$/.test(textBeforeCursor.substring(lastPipeIndex + 1));
+
+      if (isAfterPipe) {
+        // After pipe: only show transforms
+        const transformItems = createJexlTransformItems();
+        return {
+          suggestions: transformItems.map(item => ({ ...item, range }))
+        };
+      } else {
+        // Regular context: show functions, keywords, and operators
+        const functionItems = createJexlFunctionItems();
+        const keywordItems = createJexlKeywords();
+        const operatorItems = createJexlOperators();
+
+        return {
+          suggestions: [
+            ...functionItems.map(item => ({ ...item, range })),
+            ...keywordItems.map(item => ({ ...item, range })),
+            ...operatorItems.map(item => ({ ...item, range }))
+          ]
+        };
+      }
     }
   });
 
