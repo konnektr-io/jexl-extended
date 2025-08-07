@@ -35,14 +35,14 @@ jobs:
       - name: 'Install packages'
         run: pnpm install --no-frozen-lockfile
 
-      - name: 'Run tests'
-        run: pnpm run test
-
       - name: 'Build library'
         run: pnpm run build
 
       - name: 'Build docs'
         run: pnpm run docs
+
+      - name: 'Run tests'
+        run: pnpm run test
 
       - name: 'Publish library'
         run: npm publish --provenance --access public
