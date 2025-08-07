@@ -164,7 +164,11 @@ export function registerJexlLanguage(monaco: any) {
 
       if (doc) {
         console.log('Found function/transform doc:', `${doc.label}(${doc.type})`);
-        return {
+        
+        // Create formatted markdown content
+        const markdownContent = `**${doc.label}** (${doc.type}) - ${doc.detail}\n\n${doc.documentation}`;
+        
+        const hoverResult = {
           range: new monaco.Range(
             position.lineNumber,
             word.startColumn,
@@ -172,10 +176,12 @@ export function registerJexlLanguage(monaco: any) {
             word.endColumn
           ),
           contents: [
-            { value: `**${doc.label}** (${doc.type}) - ${doc.detail}` },
-            { value: doc.documentation }
+            { value: markdownContent }
           ]
         };
+        
+        console.log('Returning hover result:', hoverResult);
+        return hoverResult;
       }
 
       // If no function/transform found, try operators

@@ -139,6 +139,7 @@ export function createJexlKeywords(): ICompletionItem[] {
 export function createJexlOperators(): ICompletionItem[] {
   // Accurate JEXL operators based on actual grammar
   const operators = [
+    { label: '|', desc: 'Transform pipe operator' },
     { label: '==', desc: 'Equality comparison' },
     { label: '!=', desc: 'Inequality comparison' },
     { label: '>', desc: 'Greater than' },
@@ -149,7 +150,6 @@ export function createJexlOperators(): ICompletionItem[] {
     { label: '||', desc: 'Logical OR' },
     { label: '!', desc: 'Logical NOT' },
     { label: 'in', desc: 'Membership test' },
-    { label: '|', desc: 'Transform pipe operator' },
     { label: '+', desc: 'Addition' },
     { label: '-', desc: 'Subtraction' },
     { label: '*', desc: 'Multiplication' },
