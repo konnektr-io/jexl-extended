@@ -59,11 +59,11 @@ export const completionDocs: CompletionDocItem[] = [
     "label": "all",
     "description": "Checks whether the provided array has all elements that match the specified expression.\r",
     "detail": "JEXL function",
-    "documentation": "Checks whether the provided array has all elements that match the specified expression.\r\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`arrayEvery([2, 4, 6], \"value % 2 == 0\") // true`\n`[{age: 25}, {age: 35}]|arrayEvery(\"value.age > 20\") // true`\n`arrayEvery([1, 2, 3], \"value > 2\") // false`\n\n**Parameters:**\n- `input` (array): The input array to test.\n- `expression` (string): The JEXL expression to test against each element.\n\n**Returns:** True if all elements match the expression, false otherwise or if input is not an array.",
+    "documentation": "Checks whether the provided array has all elements that match the specified expression.\r\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`every([2, 4, 6], \"value % 2 == 0\") // true`\n`[{age: 25}, {age: 35}]|every(\"value.age > 20\") // true`\n`every([1, 2, 3], \"value > 2\") // false`\n\n**Parameters:**\n- `input` (array): The input array to test.\n- `expression` (string): The JEXL expression to test against each element.\n\n**Returns:** True if all elements match the expression, false otherwise or if input is not an array.",
     "examples": [
-      "arrayEvery([2, 4, 6], \"value % 2 == 0\") // true",
-      "[{age: 25}, {age: 35}]|arrayEvery(\"value.age > 20\") // true",
-      "arrayEvery([1, 2, 3], \"value > 2\") // false"
+      "every([2, 4, 6], \"value % 2 == 0\") // true",
+      "[{age: 25}, {age: 35}]|every(\"value.age > 20\") // true",
+      "every([1, 2, 3], \"value > 2\") // false"
     ],
     "parameters": [
       {
@@ -95,11 +95,11 @@ export const completionDocs: CompletionDocItem[] = [
     "label": "any",
     "description": "Checks whether the provided array has any elements that match the specified expression.\r",
     "detail": "JEXL function",
-    "documentation": "Checks whether the provided array has any elements that match the specified expression.\r\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`arrayAny([1, 2, 3], \"value > 2\") // true`\n`[{age: 25}, {age: 35}]|arrayAny(\"value.age > 30\") // true`\n`arrayAny([1, 2, 3], \"value > 5\") // false`\n\n**Parameters:**\n- `input` (array): The input array to test.\n- `expression` (string): The JEXL expression to test against each element.\n\n**Returns:** True if any element matches the expression, false otherwise or if input is not an array.",
+    "documentation": "Checks whether the provided array has any elements that match the specified expression.\r\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`any([1, 2, 3], \"value > 2\") // true`\n`[{age: 25}, {age: 35}]|any(\"value.age > 30\") // true`\n`any([1, 2, 3], \"value > 5\") // false`\n\n**Parameters:**\n- `input` (array): The input array to test.\n- `expression` (string): The JEXL expression to test against each element.\n\n**Returns:** True if any element matches the expression, false otherwise or if input is not an array.",
     "examples": [
-      "arrayAny([1, 2, 3], \"value > 2\") // true",
-      "[{age: 25}, {age: 35}]|arrayAny(\"value.age > 30\") // true",
-      "arrayAny([1, 2, 3], \"value > 5\") // false"
+      "any([1, 2, 3], \"value > 2\") // true",
+      "[{age: 25}, {age: 35}]|any(\"value.age > 30\") // true",
+      "any([1, 2, 3], \"value > 5\") // false"
     ],
     "parameters": [
       {
@@ -131,11 +131,11 @@ export const completionDocs: CompletionDocItem[] = [
     "label": "append",
     "description": "Appends elements to an array.",
     "detail": "JEXL function",
-    "documentation": "Appends elements to an array.\n\n**Examples:**\n`arrayAppend([1, 2], 3) // [1, 2, 3]`\n`[1, 2]|arrayAppend(3, 4) // [1, 2, 3, 4]`\n`arrayAppend([], 1, 2, 3) // [1, 2, 3]`\n\n**Parameters:**\n- `input` (array): The input values to append to an array.\n\n**Returns:** A new array with all inputs flattened and appended, or empty array if no valid input.",
+    "documentation": "Appends elements to an array.\n\n**Examples:**\n`append([1, 2], 3) // [1, 2, 3]`\n`[1, 2]|append(3, 4) // [1, 2, 3, 4]`\n`append([], 1, 2, 3) // [1, 2, 3]`\n\n**Parameters:**\n- `input` (array): The input values to append to an array.\n\n**Returns:** A new array with all inputs flattened and appended, or empty array if no valid input.",
     "examples": [
-      "arrayAppend([1, 2], 3) // [1, 2, 3]",
-      "[1, 2]|arrayAppend(3, 4) // [1, 2, 3, 4]",
-      "arrayAppend([], 1, 2, 3) // [1, 2, 3]"
+      "append([1, 2], 3) // [1, 2, 3]",
+      "[1, 2]|append(3, 4) // [1, 2, 3, 4]",
+      "append([], 1, 2, 3) // [1, 2, 3]"
     ],
     "parameters": [
       {
@@ -485,11 +485,11 @@ export const completionDocs: CompletionDocItem[] = [
     "label": "distinct",
     "description": "Returns a new array with duplicate elements removed.",
     "detail": "JEXL function",
-    "documentation": "Returns a new array with duplicate elements removed.\n\n**Examples:**\n`arrayDistinct([1, 2, 2, 3, 1]) // [1, 2, 3]`\n`[1, 2, 2, 3]|arrayDistinct // [1, 2, 3]`\n`arrayDistinct([\"a\", \"b\", \"a\", \"c\"]) // [\"a\", \"b\", \"c\"]`\n\n**Parameters:**\n- `input` (array): The input array to remove duplicates from.\n\n**Returns:** A new array with duplicates removed, or empty array if input is not an array.",
+    "documentation": "Returns a new array with duplicate elements removed.\n\n**Examples:**\n`distinct([1, 2, 2, 3, 1]) // [1, 2, 3]`\n`[1, 2, 2, 3]|distinct // [1, 2, 3]`\n`distinct([\"a\", \"b\", \"a\", \"c\"]) // [\"a\", \"b\", \"c\"]`\n\n**Parameters:**\n- `input` (array): The input array to remove duplicates from.\n\n**Returns:** A new array with duplicates removed, or empty array if input is not an array.",
     "examples": [
-      "arrayDistinct([1, 2, 2, 3, 1]) // [1, 2, 3]",
-      "[1, 2, 2, 3]|arrayDistinct // [1, 2, 3]",
-      "arrayDistinct([\"a\", \"b\", \"a\", \"c\"]) // [\"a\", \"b\", \"c\"]"
+      "distinct([1, 2, 2, 3, 1]) // [1, 2, 3]",
+      "[1, 2, 2, 3]|distinct // [1, 2, 3]",
+      "distinct([\"a\", \"b\", \"a\", \"c\"]) // [\"a\", \"b\", \"c\"]"
     ],
     "parameters": [
       {
@@ -546,11 +546,11 @@ export const completionDocs: CompletionDocItem[] = [
     "label": "entries",
     "description": "Returns an array of key-value pairs from the input object.",
     "detail": "JEXL function",
-    "documentation": "Returns an array of key-value pairs from the input object.\n\n**Examples:**\n`objectEntries({name: \"John\", age: 30}) // [[\"name\", \"John\"], [\"age\", 30]]`\n`{a: 1, b: 2}|objectEntries // [[\"a\", 1], [\"b\", 2]]`\n`objectEntries({}) // []`\n\n**Parameters:**\n- `input` (unknown): The input object to get entries from.\n\n**Returns:** An array of [key, value] pairs, or undefined if input is not an object.",
+    "documentation": "Returns an array of key-value pairs from the input object.\n\n**Examples:**\n`entries({name: \"John\", age: 30}) // [[\"name\", \"John\"], [\"age\", 30]]`\n`{a: 1, b: 2}|entries // [[\"a\", 1], [\"b\", 2]]`\n`entries({}) // []`\n\n**Parameters:**\n- `input` (unknown): The input object to get entries from.\n\n**Returns:** An array of [key, value] pairs, or undefined if input is not an object.",
     "examples": [
-      "objectEntries({name: \"John\", age: 30}) // [[\"name\", \"John\"], [\"age\", 30]]",
-      "{a: 1, b: 2}|objectEntries // [[\"a\", 1], [\"b\", 2]]",
-      "objectEntries({}) // []"
+      "entries({name: \"John\", age: 30}) // [[\"name\", \"John\"], [\"age\", 30]]",
+      "{a: 1, b: 2}|entries // [[\"a\", 1], [\"b\", 2]]",
+      "entries({}) // []"
     ],
     "parameters": [
       {
@@ -610,11 +610,11 @@ export const completionDocs: CompletionDocItem[] = [
     "label": "filter",
     "description": "Returns a new array with the elements of the input array that match the specified expression.\r",
     "detail": "JEXL function",
-    "documentation": "Returns a new array with the elements of the input array that match the specified expression.\r\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`arrayFilter([1, 2, 3, 4], \"value > 2\") // [3, 4]`\n`[{age: 25}, {age: 35}]|arrayFilter(\"value.age > 30\") // [{age: 35}]`\n`arrayFilter([1, 2, 3, 4], \"value % 2 == 0\") // [2, 4]`\n\n**Parameters:**\n- `input` (array): The input array to filter.\n- `expression` (string): The JEXL expression to test against each element.\n\n**Returns:** A new array containing only elements that match the expression, or empty array if input is not an array.",
+    "documentation": "Returns a new array with the elements of the input array that match the specified expression.\r\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`filter([1, 2, 3, 4], \"value > 2\") // [3, 4]`\n`[{age: 25}, {age: 35}]|filter(\"value.age > 30\") // [{age: 35}]`\n`filter([1, 2, 3, 4], \"value % 2 == 0\") // [2, 4]`\n\n**Parameters:**\n- `input` (array): The input array to filter.\n- `expression` (string): The JEXL expression to test against each element.\n\n**Returns:** A new array containing only elements that match the expression, or empty array if input is not an array.",
     "examples": [
-      "arrayFilter([1, 2, 3, 4], \"value > 2\") // [3, 4]",
-      "[{age: 25}, {age: 35}]|arrayFilter(\"value.age > 30\") // [{age: 35}]",
-      "arrayFilter([1, 2, 3, 4], \"value % 2 == 0\") // [2, 4]"
+      "filter([1, 2, 3, 4], \"value > 2\") // [3, 4]",
+      "[{age: 25}, {age: 35}]|filter(\"value.age > 30\") // [{age: 35}]",
+      "filter([1, 2, 3, 4], \"value % 2 == 0\") // [2, 4]"
     ],
     "parameters": [
       {
@@ -645,11 +645,11 @@ export const completionDocs: CompletionDocItem[] = [
     "label": "find",
     "description": "Finds the first element in an array that matches the specified expression.\r",
     "detail": "JEXL function",
-    "documentation": "Finds the first element in an array that matches the specified expression.\r\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`arrayFind([1, 2, 3, 4], \"value > 2\") // 3`\n`[{name: \"John\"}, {name: \"Jane\"}]|arrayFind(\"value.name == 'Jane'\") // {name: \"Jane\"}`\n`arrayFind([1, 2, 3], \"value > 5\") // undefined`\n\n**Parameters:**\n- `input` (array): The input array to search.\n- `expression` (string): The JEXL expression to test against each element.\n\n**Returns:** The first element that matches the expression, or undefined if no match found or input is not an array.",
+    "documentation": "Finds the first element in an array that matches the specified expression.\r\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`find([1, 2, 3, 4], \"value > 2\") // 3`\n`[{name: \"John\"}, {name: \"Jane\"}]|find(\"value.name == 'Jane'\") // {name: \"Jane\"}`\n`find([1, 2, 3], \"value > 5\") // undefined`\n\n**Parameters:**\n- `input` (array): The input array to search.\n- `expression` (string): The JEXL expression to test against each element.\n\n**Returns:** The first element that matches the expression, or undefined if no match found or input is not an array.",
     "examples": [
-      "arrayFind([1, 2, 3, 4], \"value > 2\") // 3",
-      "[{name: \"John\"}, {name: \"Jane\"}]|arrayFind(\"value.name == 'Jane'\") // {name: \"Jane\"}",
-      "arrayFind([1, 2, 3], \"value > 5\") // undefined"
+      "find([1, 2, 3, 4], \"value > 2\") // 3",
+      "[{name: \"John\"}, {name: \"Jane\"}]|find(\"value.name == 'Jane'\") // {name: \"Jane\"}",
+      "find([1, 2, 3], \"value > 5\") // undefined"
     ],
     "parameters": [
       {
@@ -672,6 +672,39 @@ export const completionDocs: CompletionDocItem[] = [
     "insertText": "find(${1:input}, ${2:expression})",
     "aliases": [
       "arrayFind"
+    ]
+  },
+  {
+    "type": "function",
+    "name": "arrayFindIndex",
+    "label": "findIndex",
+    "description": "Finds the index of the first element in the input array that satisfies the given Jexl expression.",
+    "detail": "JEXL function",
+    "documentation": "Finds the index of the first element in the input array that satisfies the given Jexl expression.\n\n**Examples:**\n`[1, 2, 3, 4]|findIndex('value > 2'); // returns 2`\n\n**Parameters:**\n- `input` (array): The array to search through.\n- `expression` (string): A Jexl expression string to evaluate for each element. The expression has access to \n\n**Returns:** The index of the first matching element, or ",
+    "examples": [
+      "[1, 2, 3, 4]|findIndex('value > 2'); // returns 2"
+    ],
+    "parameters": [
+      {
+        "name": "input",
+        "description": "The array to search through.",
+        "type": "array",
+        "optional": false
+      },
+      {
+        "name": "expression",
+        "description": "A Jexl expression string to evaluate for each element. The expression has access to ",
+        "type": "string",
+        "optional": false
+      }
+    ],
+    "returns": {
+      "type": "number",
+      "description": "The index of the first matching element, or "
+    },
+    "insertText": "findIndex(${1:input}, ${2:expression})",
+    "aliases": [
+      "arrayFindIndex"
     ]
   },
   {
@@ -892,11 +925,11 @@ export const completionDocs: CompletionDocItem[] = [
     "label": "keys",
     "description": "Returns the keys of an object as an array.",
     "detail": "JEXL function",
-    "documentation": "Returns the keys of an object as an array.\n\n**Examples:**\n`objectKeys({name: \"John\", age: 30}) // [\"name\", \"age\"]`\n`{a: 1, b: 2}|objectKeys // [\"a\", \"b\"]`\n`objectKeys({}) // []`\n\n**Parameters:**\n- `input` (unknown): The input object to get keys from.\n\n**Returns:** An array of object keys, or undefined if input is not an object.",
+    "documentation": "Returns the keys of an object as an array.\n\n**Examples:**\n`keys({name: \"John\", age: 30}) // [\"name\", \"age\"]`\n`{a: 1, b: 2}|keys // [\"a\", \"b\"]`\n`keys({}) // []`\n\n**Parameters:**\n- `input` (unknown): The input object to get keys from.\n\n**Returns:** An array of object keys, or undefined if input is not an object.",
     "examples": [
-      "objectKeys({name: \"John\", age: 30}) // [\"name\", \"age\"]",
-      "{a: 1, b: 2}|objectKeys // [\"a\", \"b\"]",
-      "objectKeys({}) // []"
+      "keys({name: \"John\", age: 30}) // [\"name\", \"age\"]",
+      "{a: 1, b: 2}|keys // [\"a\", \"b\"]",
+      "keys({}) // []"
     ],
     "parameters": [
       {
@@ -978,11 +1011,11 @@ export const completionDocs: CompletionDocItem[] = [
     "label": "map",
     "description": "Returns an array containing the results of applying the expression parameter to each value in the array parameter.\r",
     "detail": "JEXL function",
-    "documentation": "Returns an array containing the results of applying the expression parameter to each value in the array parameter.\r\nThe expression must be a valid JEXL expression string, which is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`arrayMap([1, 2, 3], \"value * 2\") // [2, 4, 6]`\n`[{name: \"John\"}, {name: \"Jane\"}]|arrayMap(\"value.name\") // [\"John\", \"Jane\"]`\n`arrayMap([1, 2, 3], \"value + index\") // [1, 3, 5]`\n\n**Parameters:**\n- `input` (array): The input array to transform.\n- `expression` (string): The JEXL expression to apply to each element.\n\n**Returns:** A new array with transformed elements, or undefined if input is not an array.",
+    "documentation": "Returns an array containing the results of applying the expression parameter to each value in the array parameter.\r\nThe expression must be a valid JEXL expression string, which is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`map([1, 2, 3], \"value * 2\") // [2, 4, 6]`\n`[{name: \"John\"}, {name: \"Jane\"}]|map(\"value.name\") // [\"John\", \"Jane\"]`\n`map([1, 2, 3], \"value + index\") // [1, 3, 5]`\n\n**Parameters:**\n- `input` (array): The input array to transform.\n- `expression` (string): The JEXL expression to apply to each element.\n\n**Returns:** A new array with transformed elements, or undefined if input is not an array.",
     "examples": [
-      "arrayMap([1, 2, 3], \"value * 2\") // [2, 4, 6]",
-      "[{name: \"John\"}, {name: \"Jane\"}]|arrayMap(\"value.name\") // [\"John\", \"Jane\"]",
-      "arrayMap([1, 2, 3], \"value + index\") // [1, 3, 5]"
+      "map([1, 2, 3], \"value * 2\") // [2, 4, 6]",
+      "[{name: \"John\"}, {name: \"Jane\"}]|map(\"value.name\") // [\"John\", \"Jane\"]",
+      "map([1, 2, 3], \"value + index\") // [1, 3, 5]"
     ],
     "parameters": [
       {
@@ -1071,11 +1104,11 @@ export const completionDocs: CompletionDocItem[] = [
     "label": "merge",
     "description": "Returns a new object with the properties of the input objects merged together.",
     "detail": "JEXL function",
-    "documentation": "Returns a new object with the properties of the input objects merged together.\n\n**Examples:**\n`objectMerge({a: 1}, {b: 2}) // {a: 1, b: 2}`\n`{a: 1}|objectMerge({b: 2}, {c: 3}) // {a: 1, b: 2, c: 3}`\n`objectMerge({a: 1}, {a: 2}) // {a: 2} (later values override)`\n\n**Parameters:**\n- `args` (array): The input objects to merge.\n\n**Returns:** A new object with all properties merged together.",
+    "documentation": "Returns a new object with the properties of the input objects merged together.\n\n**Examples:**\n`merge({a: 1}, {b: 2}) // {a: 1, b: 2}`\n`{a: 1}|merge({b: 2}, {c: 3}) // {a: 1, b: 2, c: 3}`\n`merge({a: 1}, {a: 2}) // {a: 2} (later values override)`\n\n**Parameters:**\n- `args` (array): The input objects to merge.\n\n**Returns:** A new object with all properties merged together.",
     "examples": [
-      "objectMerge({a: 1}, {b: 2}) // {a: 1, b: 2}",
-      "{a: 1}|objectMerge({b: 2}, {c: 3}) // {a: 1, b: 2, c: 3}",
-      "objectMerge({a: 1}, {a: 2}) // {a: 2} (later values override)"
+      "merge({a: 1}, {b: 2}) // {a: 1, b: 2}",
+      "{a: 1}|merge({b: 2}, {c: 3}) // {a: 1, b: 2, c: 3}",
+      "merge({a: 1}, {a: 2}) // {a: 2} (later values override)"
     ],
     "parameters": [
       {
@@ -1401,11 +1434,11 @@ export const completionDocs: CompletionDocItem[] = [
     "label": "reduce",
     "description": "Returns an aggregated value derived from applying the function parameter successively to each value in array in combination with the result of the previous application of the function.\r",
     "detail": "JEXL function",
-    "documentation": "Returns an aggregated value derived from applying the function parameter successively to each value in array in combination with the result of the previous application of the function.\r\nThe expression must be a valid JEXL expression string, and behaves like an infix operator between each value within the array.\r\nThe relative context provided to the expression is an object with the properties accumulator, value, index and array (the original array).\n\n**Examples:**\n`arrayReduce([1, 2, 3, 4], \"accumulator + value\", 0) // 10`\n`[1, 2, 3]|arrayReduce(\"accumulator * value\", 1) // 6`\n`arrayReduce([\"a\", \"b\", \"c\"], \"accumulator + value\", \"\") // \"abc\"`\n\n**Parameters:**\n- `input` (array): The input array to reduce.\n- `expression` (string): The JEXL expression to apply for each reduction step.\n- `initialValue` (unknown): The initial value for the accumulator.\n\n**Returns:** The final accumulated value, or undefined if input is not an array.",
+    "documentation": "Returns an aggregated value derived from applying the function parameter successively to each value in array in combination with the result of the previous application of the function.\r\nThe expression must be a valid JEXL expression string, and behaves like an infix operator between each value within the array.\r\nThe relative context provided to the expression is an object with the properties accumulator, value, index and array (the original array).\n\n**Examples:**\n`reduce([1, 2, 3, 4], \"accumulator + value\", 0) // 10`\n`[1, 2, 3]|reduce(\"accumulator * value\", 1) // 6`\n`reduce([\"a\", \"b\", \"c\"], \"accumulator + value\", \"\") // \"abc\"`\n\n**Parameters:**\n- `input` (array): The input array to reduce.\n- `expression` (string): The JEXL expression to apply for each reduction step.\n- `initialValue` (unknown): The initial value for the accumulator.\n\n**Returns:** The final accumulated value, or undefined if input is not an array.",
     "examples": [
-      "arrayReduce([1, 2, 3, 4], \"accumulator + value\", 0) // 10",
-      "[1, 2, 3]|arrayReduce(\"accumulator * value\", 1) // 6",
-      "arrayReduce([\"a\", \"b\", \"c\"], \"accumulator + value\", \"\") // \"abc\""
+      "reduce([1, 2, 3, 4], \"accumulator + value\", 0) // 10",
+      "[1, 2, 3]|reduce(\"accumulator * value\", 1) // 6",
+      "reduce([\"a\", \"b\", \"c\"], \"accumulator + value\", \"\") // \"abc\""
     ],
     "parameters": [
       {
@@ -1480,11 +1513,11 @@ export const completionDocs: CompletionDocItem[] = [
     "label": "reverse",
     "description": "Reverses the elements of an array.",
     "detail": "JEXL function",
-    "documentation": "Reverses the elements of an array.\n\n**Examples:**\n`arrayReverse([1, 2, 3]) // [3, 2, 1]`\n`[1, 2, 3]|arrayReverse // [3, 2, 1]`\n`arrayReverse([\"a\", \"b\", \"c\"]) // [\"c\", \"b\", \"a\"]`\n\n**Parameters:**\n- `input` (array): The input values to reverse.\n\n**Returns:** A new array with elements in reverse order, or empty array if no valid input.",
+    "documentation": "Reverses the elements of an array.\n\n**Examples:**\n`reverse([1, 2, 3]) // [3, 2, 1]`\n`[1, 2, 3]|reverse // [3, 2, 1]`\n`reverse([\"a\", \"b\", \"c\"]) // [\"c\", \"b\", \"a\"]`\n\n**Parameters:**\n- `input` (array): The input values to reverse.\n\n**Returns:** A new array with elements in reverse order, or empty array if no valid input.",
     "examples": [
-      "arrayReverse([1, 2, 3]) // [3, 2, 1]",
-      "[1, 2, 3]|arrayReverse // [3, 2, 1]",
-      "arrayReverse([\"a\", \"b\", \"c\"]) // [\"c\", \"b\", \"a\"]"
+      "reverse([1, 2, 3]) // [3, 2, 1]",
+      "[1, 2, 3]|reverse // [3, 2, 1]",
+      "reverse([\"a\", \"b\", \"c\"]) // [\"c\", \"b\", \"a\"]"
     ],
     "parameters": [
       {
@@ -1541,11 +1574,11 @@ export const completionDocs: CompletionDocItem[] = [
     "label": "shuffle",
     "description": "Shuffles the elements of an array randomly.",
     "detail": "JEXL function",
-    "documentation": "Shuffles the elements of an array randomly.\n\n**Examples:**\n`arrayShuffle([1, 2, 3]) // [2, 1, 3] (random order)`\n`[1, 2, 3]|arrayShuffle // [3, 1, 2] (random order)`\n`arrayShuffle([\"a\", \"b\", \"c\"]) // [\"c\", \"a\", \"b\"] (random order)`\n\n**Parameters:**\n- `input` (array): The input array to shuffle.\n\n**Returns:** The same array with elements randomly shuffled, or empty array if input is not an array.",
+    "documentation": "Shuffles the elements of an array randomly.\n\n**Examples:**\n`shuffle([1, 2, 3]) // [2, 1, 3] (random order)`\n`[1, 2, 3]|shuffle // [3, 1, 2] (random order)`\n`shuffle([\"a\", \"b\", \"c\"]) // [\"c\", \"a\", \"b\"] (random order)`\n\n**Parameters:**\n- `input` (array): The input array to shuffle.\n\n**Returns:** The same array with elements randomly shuffled, or empty array if input is not an array.",
     "examples": [
-      "arrayShuffle([1, 2, 3]) // [2, 1, 3] (random order)",
-      "[1, 2, 3]|arrayShuffle // [3, 1, 2] (random order)",
-      "arrayShuffle([\"a\", \"b\", \"c\"]) // [\"c\", \"a\", \"b\"] (random order)"
+      "shuffle([1, 2, 3]) // [2, 1, 3] (random order)",
+      "[1, 2, 3]|shuffle // [3, 1, 2] (random order)",
+      "shuffle([\"a\", \"b\", \"c\"]) // [\"c\", \"a\", \"b\"] (random order)"
     ],
     "parameters": [
       {
@@ -1570,11 +1603,11 @@ export const completionDocs: CompletionDocItem[] = [
     "label": "sort",
     "description": "Sorts the elements of an array.",
     "detail": "JEXL function",
-    "documentation": "Sorts the elements of an array.\n\n**Examples:**\n`arraySort([3, 1, 2]) // [1, 2, 3]`\n`[3, 1, 2]|arraySort // [1, 2, 3]`\n`arraySort([{age: 30}, {age: 20}], \"age\") // [{age: 20}, {age: 30}]`\n\n**Parameters:**\n- `input` (array): The input array to sort.\n- `expression` (string?): Optional JEXL expression to determine sort value for objects.\n- `descending` (boolean?): Optional flag to sort in descending order.\n\n**Returns:** A new sorted array, or empty array if input is not an array.",
+    "documentation": "Sorts the elements of an array.\n\n**Examples:**\n`sort([3, 1, 2]) // [1, 2, 3]`\n`[3, 1, 2]|sort // [1, 2, 3]`\n`sort([{age: 30}, {age: 20}], \"age\") // [{age: 20}, {age: 30}]`\n\n**Parameters:**\n- `input` (array): The input array to sort.\n- `expression` (string?): Optional JEXL expression to determine sort value for objects.\n- `descending` (boolean?): Optional flag to sort in descending order.\n\n**Returns:** A new sorted array, or empty array if input is not an array.",
     "examples": [
-      "arraySort([3, 1, 2]) // [1, 2, 3]",
-      "[3, 1, 2]|arraySort // [1, 2, 3]",
-      "arraySort([{age: 30}, {age: 20}], \"age\") // [{age: 20}, {age: 30}]"
+      "sort([3, 1, 2]) // [1, 2, 3]",
+      "[3, 1, 2]|sort // [1, 2, 3]",
+      "sort([{age: 30}, {age: 20}], \"age\") // [{age: 20}, {age: 30}]"
     ],
     "parameters": [
       {
@@ -1858,11 +1891,11 @@ export const completionDocs: CompletionDocItem[] = [
     "label": "toObject",
     "description": "Creates a new object based on key-value pairs or string keys.",
     "detail": "JEXL function",
-    "documentation": "Creates a new object based on key-value pairs or string keys.\n\n**Examples:**\n`arrayToObject([[\"name\", \"John\"], [\"age\", 30]]) // {name: \"John\", age: 30}`\n`arrayToObject(\"name\", \"John\") // {name: \"John\"}`\n`arrayToObject([\"key1\", \"key2\"], \"defaultValue\") // {key1: \"defaultValue\", key2: \"defaultValue\"}`\n\n**Parameters:**\n- `input` (unknown): The input string key or array of key-value pairs.\n- `val` (unknown?): Optional default value for string keys or when array elements are strings.\n\n**Returns:** A new object created from the input, or empty object if input is invalid.",
+    "documentation": "Creates a new object based on key-value pairs or string keys.\n\n**Examples:**\n`toObject([[\"name\", \"John\"], [\"age\", 30]]) // {name: \"John\", age: 30}`\n`toObject(\"name\", \"John\") // {name: \"John\"}`\n`toObject([\"key1\", \"key2\"], \"defaultValue\") // {key1: \"defaultValue\", key2: \"defaultValue\"}`\n\n**Parameters:**\n- `input` (unknown): The input string key or array of key-value pairs.\n- `val` (unknown?): Optional default value for string keys or when array elements are strings.\n\n**Returns:** A new object created from the input, or empty object if input is invalid.",
     "examples": [
-      "arrayToObject([[\"name\", \"John\"], [\"age\", 30]]) // {name: \"John\", age: 30}",
-      "arrayToObject(\"name\", \"John\") // {name: \"John\"}",
-      "arrayToObject([\"key1\", \"key2\"], \"defaultValue\") // {key1: \"defaultValue\", key2: \"defaultValue\"}"
+      "toObject([[\"name\", \"John\"], [\"age\", 30]]) // {name: \"John\", age: 30}",
+      "toObject(\"name\", \"John\") // {name: \"John\"}",
+      "toObject([\"key1\", \"key2\"], \"defaultValue\") // {key1: \"defaultValue\", key2: \"defaultValue\"}"
     ],
     "parameters": [
       {
@@ -1975,11 +2008,11 @@ export const completionDocs: CompletionDocItem[] = [
     "label": "values",
     "description": "Returns the values of an object as an array.",
     "detail": "JEXL function",
-    "documentation": "Returns the values of an object as an array.\n\n**Examples:**\n`objectValues({name: \"John\", age: 30}) // [\"John\", 30]`\n`{a: 1, b: 2}|objectValues // [1, 2]`\n`objectValues({}) // []`\n\n**Parameters:**\n- `input` (unknown): The input object to get values from.\n\n**Returns:** An array of object values, or undefined if input is not an object.",
+    "documentation": "Returns the values of an object as an array.\n\n**Examples:**\n`values({name: \"John\", age: 30}) // [\"John\", 30]`\n`{a: 1, b: 2}|values // [1, 2]`\n`values({}) // []`\n\n**Parameters:**\n- `input` (unknown): The input object to get values from.\n\n**Returns:** An array of object values, or undefined if input is not an object.",
     "examples": [
-      "objectValues({name: \"John\", age: 30}) // [\"John\", 30]",
-      "{a: 1, b: 2}|objectValues // [1, 2]",
-      "objectValues({}) // []"
+      "values({name: \"John\", age: 30}) // [\"John\", 30]",
+      "{a: 1, b: 2}|values // [1, 2]",
+      "values({}) // []"
     ],
     "parameters": [
       {
@@ -2034,11 +2067,11 @@ export const completionDocs: CompletionDocItem[] = [
     "label": "all",
     "description": "Checks whether the provided array has all elements that match the specified expression.\r",
     "detail": "JEXL transform",
-    "documentation": "Checks whether the provided array has all elements that match the specified expression.\r\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`arrayEvery([2, 4, 6], \"value % 2 == 0\") // true`\n`[{age: 25}, {age: 35}]|arrayEvery(\"value.age > 20\") // true`\n`arrayEvery([1, 2, 3], \"value > 2\") // false`\n\n**Parameters:**\n- `input` (array): The input array to test.\n- `expression` (string): The JEXL expression to test against each element.\n\n**Returns:** True if all elements match the expression, false otherwise or if input is not an array.",
+    "documentation": "Checks whether the provided array has all elements that match the specified expression.\r\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`every([2, 4, 6], \"value % 2 == 0\") // true`\n`[{age: 25}, {age: 35}]|every(\"value.age > 20\") // true`\n`every([1, 2, 3], \"value > 2\") // false`\n\n**Parameters:**\n- `input` (array): The input array to test.\n- `expression` (string): The JEXL expression to test against each element.\n\n**Returns:** True if all elements match the expression, false otherwise or if input is not an array.",
     "examples": [
-      "arrayEvery([2, 4, 6], \"value % 2 == 0\") // true",
-      "[{age: 25}, {age: 35}]|arrayEvery(\"value.age > 20\") // true",
-      "arrayEvery([1, 2, 3], \"value > 2\") // false"
+      "every([2, 4, 6], \"value % 2 == 0\") // true",
+      "[{age: 25}, {age: 35}]|every(\"value.age > 20\") // true",
+      "every([1, 2, 3], \"value > 2\") // false"
     ],
     "parameters": [
       {
@@ -2071,11 +2104,11 @@ export const completionDocs: CompletionDocItem[] = [
     "label": "any",
     "description": "Checks whether the provided array has any elements that match the specified expression.\r",
     "detail": "JEXL transform",
-    "documentation": "Checks whether the provided array has any elements that match the specified expression.\r\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`arrayAny([1, 2, 3], \"value > 2\") // true`\n`[{age: 25}, {age: 35}]|arrayAny(\"value.age > 30\") // true`\n`arrayAny([1, 2, 3], \"value > 5\") // false`\n\n**Parameters:**\n- `input` (array): The input array to test.\n- `expression` (string): The JEXL expression to test against each element.\n\n**Returns:** True if any element matches the expression, false otherwise or if input is not an array.",
+    "documentation": "Checks whether the provided array has any elements that match the specified expression.\r\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`any([1, 2, 3], \"value > 2\") // true`\n`[{age: 25}, {age: 35}]|any(\"value.age > 30\") // true`\n`any([1, 2, 3], \"value > 5\") // false`\n\n**Parameters:**\n- `input` (array): The input array to test.\n- `expression` (string): The JEXL expression to test against each element.\n\n**Returns:** True if any element matches the expression, false otherwise or if input is not an array.",
     "examples": [
-      "arrayAny([1, 2, 3], \"value > 2\") // true",
-      "[{age: 25}, {age: 35}]|arrayAny(\"value.age > 30\") // true",
-      "arrayAny([1, 2, 3], \"value > 5\") // false"
+      "any([1, 2, 3], \"value > 2\") // true",
+      "[{age: 25}, {age: 35}]|any(\"value.age > 30\") // true",
+      "any([1, 2, 3], \"value > 5\") // false"
     ],
     "parameters": [
       {
@@ -2108,11 +2141,11 @@ export const completionDocs: CompletionDocItem[] = [
     "label": "append",
     "description": "Appends elements to an array.",
     "detail": "JEXL transform",
-    "documentation": "Appends elements to an array.\n\n**Examples:**\n`arrayAppend([1, 2], 3) // [1, 2, 3]`\n`[1, 2]|arrayAppend(3, 4) // [1, 2, 3, 4]`\n`arrayAppend([], 1, 2, 3) // [1, 2, 3]`\n\n**Parameters:**\n- `input` (array): The input values to append to an array.\n\n**Returns:** A new array with all inputs flattened and appended, or empty array if no valid input.",
+    "documentation": "Appends elements to an array.\n\n**Examples:**\n`append([1, 2], 3) // [1, 2, 3]`\n`[1, 2]|append(3, 4) // [1, 2, 3, 4]`\n`append([], 1, 2, 3) // [1, 2, 3]`\n\n**Parameters:**\n- `input` (array): The input values to append to an array.\n\n**Returns:** A new array with all inputs flattened and appended, or empty array if no valid input.",
     "examples": [
-      "arrayAppend([1, 2], 3) // [1, 2, 3]",
-      "[1, 2]|arrayAppend(3, 4) // [1, 2, 3, 4]",
-      "arrayAppend([], 1, 2, 3) // [1, 2, 3]"
+      "append([1, 2], 3) // [1, 2, 3]",
+      "[1, 2]|append(3, 4) // [1, 2, 3, 4]",
+      "append([], 1, 2, 3) // [1, 2, 3]"
     ],
     "parameters": [
       {
@@ -2470,11 +2503,11 @@ export const completionDocs: CompletionDocItem[] = [
     "label": "distinct",
     "description": "Returns a new array with duplicate elements removed.",
     "detail": "JEXL transform",
-    "documentation": "Returns a new array with duplicate elements removed.\n\n**Examples:**\n`arrayDistinct([1, 2, 2, 3, 1]) // [1, 2, 3]`\n`[1, 2, 2, 3]|arrayDistinct // [1, 2, 3]`\n`arrayDistinct([\"a\", \"b\", \"a\", \"c\"]) // [\"a\", \"b\", \"c\"]`\n\n**Parameters:**\n- `input` (array): The input array to remove duplicates from.\n\n**Returns:** A new array with duplicates removed, or empty array if input is not an array.",
+    "documentation": "Returns a new array with duplicate elements removed.\n\n**Examples:**\n`distinct([1, 2, 2, 3, 1]) // [1, 2, 3]`\n`[1, 2, 2, 3]|distinct // [1, 2, 3]`\n`distinct([\"a\", \"b\", \"a\", \"c\"]) // [\"a\", \"b\", \"c\"]`\n\n**Parameters:**\n- `input` (array): The input array to remove duplicates from.\n\n**Returns:** A new array with duplicates removed, or empty array if input is not an array.",
     "examples": [
-      "arrayDistinct([1, 2, 2, 3, 1]) // [1, 2, 3]",
-      "[1, 2, 2, 3]|arrayDistinct // [1, 2, 3]",
-      "arrayDistinct([\"a\", \"b\", \"a\", \"c\"]) // [\"a\", \"b\", \"c\"]"
+      "distinct([1, 2, 2, 3, 1]) // [1, 2, 3]",
+      "[1, 2, 2, 3]|distinct // [1, 2, 3]",
+      "distinct([\"a\", \"b\", \"a\", \"c\"]) // [\"a\", \"b\", \"c\"]"
     ],
     "parameters": [
       {
@@ -2532,11 +2565,11 @@ export const completionDocs: CompletionDocItem[] = [
     "label": "entries",
     "description": "Returns an array of key-value pairs from the input object.",
     "detail": "JEXL transform",
-    "documentation": "Returns an array of key-value pairs from the input object.\n\n**Examples:**\n`objectEntries({name: \"John\", age: 30}) // [[\"name\", \"John\"], [\"age\", 30]]`\n`{a: 1, b: 2}|objectEntries // [[\"a\", 1], [\"b\", 2]]`\n`objectEntries({}) // []`\n\n**Parameters:**\n- `input` (unknown): The input object to get entries from.\n\n**Returns:** An array of [key, value] pairs, or undefined if input is not an object.",
+    "documentation": "Returns an array of key-value pairs from the input object.\n\n**Examples:**\n`entries({name: \"John\", age: 30}) // [[\"name\", \"John\"], [\"age\", 30]]`\n`{a: 1, b: 2}|entries // [[\"a\", 1], [\"b\", 2]]`\n`entries({}) // []`\n\n**Parameters:**\n- `input` (unknown): The input object to get entries from.\n\n**Returns:** An array of [key, value] pairs, or undefined if input is not an object.",
     "examples": [
-      "objectEntries({name: \"John\", age: 30}) // [[\"name\", \"John\"], [\"age\", 30]]",
-      "{a: 1, b: 2}|objectEntries // [[\"a\", 1], [\"b\", 2]]",
-      "objectEntries({}) // []"
+      "entries({name: \"John\", age: 30}) // [[\"name\", \"John\"], [\"age\", 30]]",
+      "{a: 1, b: 2}|entries // [[\"a\", 1], [\"b\", 2]]",
+      "entries({}) // []"
     ],
     "parameters": [
       {
@@ -2598,11 +2631,11 @@ export const completionDocs: CompletionDocItem[] = [
     "label": "filter",
     "description": "Returns a new array with the elements of the input array that match the specified expression.\r",
     "detail": "JEXL transform",
-    "documentation": "Returns a new array with the elements of the input array that match the specified expression.\r\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`arrayFilter([1, 2, 3, 4], \"value > 2\") // [3, 4]`\n`[{age: 25}, {age: 35}]|arrayFilter(\"value.age > 30\") // [{age: 35}]`\n`arrayFilter([1, 2, 3, 4], \"value % 2 == 0\") // [2, 4]`\n\n**Parameters:**\n- `input` (array): The input array to filter.\n- `expression` (string): The JEXL expression to test against each element.\n\n**Returns:** A new array containing only elements that match the expression, or empty array if input is not an array.",
+    "documentation": "Returns a new array with the elements of the input array that match the specified expression.\r\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`filter([1, 2, 3, 4], \"value > 2\") // [3, 4]`\n`[{age: 25}, {age: 35}]|filter(\"value.age > 30\") // [{age: 35}]`\n`filter([1, 2, 3, 4], \"value % 2 == 0\") // [2, 4]`\n\n**Parameters:**\n- `input` (array): The input array to filter.\n- `expression` (string): The JEXL expression to test against each element.\n\n**Returns:** A new array containing only elements that match the expression, or empty array if input is not an array.",
     "examples": [
-      "arrayFilter([1, 2, 3, 4], \"value > 2\") // [3, 4]",
-      "[{age: 25}, {age: 35}]|arrayFilter(\"value.age > 30\") // [{age: 35}]",
-      "arrayFilter([1, 2, 3, 4], \"value % 2 == 0\") // [2, 4]"
+      "filter([1, 2, 3, 4], \"value > 2\") // [3, 4]",
+      "[{age: 25}, {age: 35}]|filter(\"value.age > 30\") // [{age: 35}]",
+      "filter([1, 2, 3, 4], \"value % 2 == 0\") // [2, 4]"
     ],
     "parameters": [
       {
@@ -2634,11 +2667,11 @@ export const completionDocs: CompletionDocItem[] = [
     "label": "find",
     "description": "Finds the first element in an array that matches the specified expression.\r",
     "detail": "JEXL transform",
-    "documentation": "Finds the first element in an array that matches the specified expression.\r\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`arrayFind([1, 2, 3, 4], \"value > 2\") // 3`\n`[{name: \"John\"}, {name: \"Jane\"}]|arrayFind(\"value.name == 'Jane'\") // {name: \"Jane\"}`\n`arrayFind([1, 2, 3], \"value > 5\") // undefined`\n\n**Parameters:**\n- `input` (array): The input array to search.\n- `expression` (string): The JEXL expression to test against each element.\n\n**Returns:** The first element that matches the expression, or undefined if no match found or input is not an array.",
+    "documentation": "Finds the first element in an array that matches the specified expression.\r\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`find([1, 2, 3, 4], \"value > 2\") // 3`\n`[{name: \"John\"}, {name: \"Jane\"}]|find(\"value.name == 'Jane'\") // {name: \"Jane\"}`\n`find([1, 2, 3], \"value > 5\") // undefined`\n\n**Parameters:**\n- `input` (array): The input array to search.\n- `expression` (string): The JEXL expression to test against each element.\n\n**Returns:** The first element that matches the expression, or undefined if no match found or input is not an array.",
     "examples": [
-      "arrayFind([1, 2, 3, 4], \"value > 2\") // 3",
-      "[{name: \"John\"}, {name: \"Jane\"}]|arrayFind(\"value.name == 'Jane'\") // {name: \"Jane\"}",
-      "arrayFind([1, 2, 3], \"value > 5\") // undefined"
+      "find([1, 2, 3, 4], \"value > 2\") // 3",
+      "[{name: \"John\"}, {name: \"Jane\"}]|find(\"value.name == 'Jane'\") // {name: \"Jane\"}",
+      "find([1, 2, 3], \"value > 5\") // undefined"
     ],
     "parameters": [
       {
@@ -2662,6 +2695,40 @@ export const completionDocs: CompletionDocItem[] = [
     "aliases": [
       "arrayFind",
       "find"
+    ]
+  },
+  {
+    "type": "transform",
+    "name": "arrayFindIndex",
+    "label": "findIndex",
+    "description": "Finds the index of the first element in the input array that satisfies the given Jexl expression.",
+    "detail": "JEXL transform",
+    "documentation": "Finds the index of the first element in the input array that satisfies the given Jexl expression.\n\n**Examples:**\n`[1, 2, 3, 4]|findIndex('value > 2'); // returns 2`\n\n**Parameters:**\n- `input` (array): The array to search through.\n- `expression` (string): A Jexl expression string to evaluate for each element. The expression has access to \n\n**Returns:** The index of the first matching element, or ",
+    "examples": [
+      "[1, 2, 3, 4]|findIndex('value > 2'); // returns 2"
+    ],
+    "parameters": [
+      {
+        "name": "input",
+        "description": "The array to search through.",
+        "type": "array",
+        "optional": false
+      },
+      {
+        "name": "expression",
+        "description": "A Jexl expression string to evaluate for each element. The expression has access to ",
+        "type": "string",
+        "optional": false
+      }
+    ],
+    "returns": {
+      "type": "number",
+      "description": "The index of the first matching element, or "
+    },
+    "insertText": "findIndex",
+    "aliases": [
+      "arrayFindIndex",
+      "findIndex"
     ]
   },
   {
@@ -2883,11 +2950,11 @@ export const completionDocs: CompletionDocItem[] = [
     "label": "keys",
     "description": "Returns the keys of an object as an array.",
     "detail": "JEXL transform",
-    "documentation": "Returns the keys of an object as an array.\n\n**Examples:**\n`objectKeys({name: \"John\", age: 30}) // [\"name\", \"age\"]`\n`{a: 1, b: 2}|objectKeys // [\"a\", \"b\"]`\n`objectKeys({}) // []`\n\n**Parameters:**\n- `input` (unknown): The input object to get keys from.\n\n**Returns:** An array of object keys, or undefined if input is not an object.",
+    "documentation": "Returns the keys of an object as an array.\n\n**Examples:**\n`keys({name: \"John\", age: 30}) // [\"name\", \"age\"]`\n`{a: 1, b: 2}|keys // [\"a\", \"b\"]`\n`keys({}) // []`\n\n**Parameters:**\n- `input` (unknown): The input object to get keys from.\n\n**Returns:** An array of object keys, or undefined if input is not an object.",
     "examples": [
-      "objectKeys({name: \"John\", age: 30}) // [\"name\", \"age\"]",
-      "{a: 1, b: 2}|objectKeys // [\"a\", \"b\"]",
-      "objectKeys({}) // []"
+      "keys({name: \"John\", age: 30}) // [\"name\", \"age\"]",
+      "{a: 1, b: 2}|keys // [\"a\", \"b\"]",
+      "keys({}) // []"
     ],
     "parameters": [
       {
@@ -2970,11 +3037,11 @@ export const completionDocs: CompletionDocItem[] = [
     "label": "map",
     "description": "Returns an array containing the results of applying the expression parameter to each value in the array parameter.\r",
     "detail": "JEXL transform",
-    "documentation": "Returns an array containing the results of applying the expression parameter to each value in the array parameter.\r\nThe expression must be a valid JEXL expression string, which is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`arrayMap([1, 2, 3], \"value * 2\") // [2, 4, 6]`\n`[{name: \"John\"}, {name: \"Jane\"}]|arrayMap(\"value.name\") // [\"John\", \"Jane\"]`\n`arrayMap([1, 2, 3], \"value + index\") // [1, 3, 5]`\n\n**Parameters:**\n- `input` (array): The input array to transform.\n- `expression` (string): The JEXL expression to apply to each element.\n\n**Returns:** A new array with transformed elements, or undefined if input is not an array.",
+    "documentation": "Returns an array containing the results of applying the expression parameter to each value in the array parameter.\r\nThe expression must be a valid JEXL expression string, which is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`map([1, 2, 3], \"value * 2\") // [2, 4, 6]`\n`[{name: \"John\"}, {name: \"Jane\"}]|map(\"value.name\") // [\"John\", \"Jane\"]`\n`map([1, 2, 3], \"value + index\") // [1, 3, 5]`\n\n**Parameters:**\n- `input` (array): The input array to transform.\n- `expression` (string): The JEXL expression to apply to each element.\n\n**Returns:** A new array with transformed elements, or undefined if input is not an array.",
     "examples": [
-      "arrayMap([1, 2, 3], \"value * 2\") // [2, 4, 6]",
-      "[{name: \"John\"}, {name: \"Jane\"}]|arrayMap(\"value.name\") // [\"John\", \"Jane\"]",
-      "arrayMap([1, 2, 3], \"value + index\") // [1, 3, 5]"
+      "map([1, 2, 3], \"value * 2\") // [2, 4, 6]",
+      "[{name: \"John\"}, {name: \"Jane\"}]|map(\"value.name\") // [\"John\", \"Jane\"]",
+      "map([1, 2, 3], \"value + index\") // [1, 3, 5]"
     ],
     "parameters": [
       {
@@ -3064,11 +3131,11 @@ export const completionDocs: CompletionDocItem[] = [
     "label": "merge",
     "description": "Returns a new object with the properties of the input objects merged together.",
     "detail": "JEXL transform",
-    "documentation": "Returns a new object with the properties of the input objects merged together.\n\n**Examples:**\n`objectMerge({a: 1}, {b: 2}) // {a: 1, b: 2}`\n`{a: 1}|objectMerge({b: 2}, {c: 3}) // {a: 1, b: 2, c: 3}`\n`objectMerge({a: 1}, {a: 2}) // {a: 2} (later values override)`\n\n**Parameters:**\n- `args` (array): The input objects to merge.\n\n**Returns:** A new object with all properties merged together.",
+    "documentation": "Returns a new object with the properties of the input objects merged together.\n\n**Examples:**\n`merge({a: 1}, {b: 2}) // {a: 1, b: 2}`\n`{a: 1}|merge({b: 2}, {c: 3}) // {a: 1, b: 2, c: 3}`\n`merge({a: 1}, {a: 2}) // {a: 2} (later values override)`\n\n**Parameters:**\n- `args` (array): The input objects to merge.\n\n**Returns:** A new object with all properties merged together.",
     "examples": [
-      "objectMerge({a: 1}, {b: 2}) // {a: 1, b: 2}",
-      "{a: 1}|objectMerge({b: 2}, {c: 3}) // {a: 1, b: 2, c: 3}",
-      "objectMerge({a: 1}, {a: 2}) // {a: 2} (later values override)"
+      "merge({a: 1}, {b: 2}) // {a: 1, b: 2}",
+      "{a: 1}|merge({b: 2}, {c: 3}) // {a: 1, b: 2, c: 3}",
+      "merge({a: 1}, {a: 2}) // {a: 2} (later values override)"
     ],
     "parameters": [
       {
@@ -3348,11 +3415,11 @@ export const completionDocs: CompletionDocItem[] = [
     "label": "reduce",
     "description": "Returns an aggregated value derived from applying the function parameter successively to each value in array in combination with the result of the previous application of the function.\r",
     "detail": "JEXL transform",
-    "documentation": "Returns an aggregated value derived from applying the function parameter successively to each value in array in combination with the result of the previous application of the function.\r\nThe expression must be a valid JEXL expression string, and behaves like an infix operator between each value within the array.\r\nThe relative context provided to the expression is an object with the properties accumulator, value, index and array (the original array).\n\n**Examples:**\n`arrayReduce([1, 2, 3, 4], \"accumulator + value\", 0) // 10`\n`[1, 2, 3]|arrayReduce(\"accumulator * value\", 1) // 6`\n`arrayReduce([\"a\", \"b\", \"c\"], \"accumulator + value\", \"\") // \"abc\"`\n\n**Parameters:**\n- `input` (array): The input array to reduce.\n- `expression` (string): The JEXL expression to apply for each reduction step.\n- `initialValue` (unknown): The initial value for the accumulator.\n\n**Returns:** The final accumulated value, or undefined if input is not an array.",
+    "documentation": "Returns an aggregated value derived from applying the function parameter successively to each value in array in combination with the result of the previous application of the function.\r\nThe expression must be a valid JEXL expression string, and behaves like an infix operator between each value within the array.\r\nThe relative context provided to the expression is an object with the properties accumulator, value, index and array (the original array).\n\n**Examples:**\n`reduce([1, 2, 3, 4], \"accumulator + value\", 0) // 10`\n`[1, 2, 3]|reduce(\"accumulator * value\", 1) // 6`\n`reduce([\"a\", \"b\", \"c\"], \"accumulator + value\", \"\") // \"abc\"`\n\n**Parameters:**\n- `input` (array): The input array to reduce.\n- `expression` (string): The JEXL expression to apply for each reduction step.\n- `initialValue` (unknown): The initial value for the accumulator.\n\n**Returns:** The final accumulated value, or undefined if input is not an array.",
     "examples": [
-      "arrayReduce([1, 2, 3, 4], \"accumulator + value\", 0) // 10",
-      "[1, 2, 3]|arrayReduce(\"accumulator * value\", 1) // 6",
-      "arrayReduce([\"a\", \"b\", \"c\"], \"accumulator + value\", \"\") // \"abc\""
+      "reduce([1, 2, 3, 4], \"accumulator + value\", 0) // 10",
+      "[1, 2, 3]|reduce(\"accumulator * value\", 1) // 6",
+      "reduce([\"a\", \"b\", \"c\"], \"accumulator + value\", \"\") // \"abc\""
     ],
     "parameters": [
       {
@@ -3428,11 +3495,11 @@ export const completionDocs: CompletionDocItem[] = [
     "label": "reverse",
     "description": "Reverses the elements of an array.",
     "detail": "JEXL transform",
-    "documentation": "Reverses the elements of an array.\n\n**Examples:**\n`arrayReverse([1, 2, 3]) // [3, 2, 1]`\n`[1, 2, 3]|arrayReverse // [3, 2, 1]`\n`arrayReverse([\"a\", \"b\", \"c\"]) // [\"c\", \"b\", \"a\"]`\n\n**Parameters:**\n- `input` (array): The input values to reverse.\n\n**Returns:** A new array with elements in reverse order, or empty array if no valid input.",
+    "documentation": "Reverses the elements of an array.\n\n**Examples:**\n`reverse([1, 2, 3]) // [3, 2, 1]`\n`[1, 2, 3]|reverse // [3, 2, 1]`\n`reverse([\"a\", \"b\", \"c\"]) // [\"c\", \"b\", \"a\"]`\n\n**Parameters:**\n- `input` (array): The input values to reverse.\n\n**Returns:** A new array with elements in reverse order, or empty array if no valid input.",
     "examples": [
-      "arrayReverse([1, 2, 3]) // [3, 2, 1]",
-      "[1, 2, 3]|arrayReverse // [3, 2, 1]",
-      "arrayReverse([\"a\", \"b\", \"c\"]) // [\"c\", \"b\", \"a\"]"
+      "reverse([1, 2, 3]) // [3, 2, 1]",
+      "[1, 2, 3]|reverse // [3, 2, 1]",
+      "reverse([\"a\", \"b\", \"c\"]) // [\"c\", \"b\", \"a\"]"
     ],
     "parameters": [
       {
@@ -3490,11 +3557,11 @@ export const completionDocs: CompletionDocItem[] = [
     "label": "shuffle",
     "description": "Shuffles the elements of an array randomly.",
     "detail": "JEXL transform",
-    "documentation": "Shuffles the elements of an array randomly.\n\n**Examples:**\n`arrayShuffle([1, 2, 3]) // [2, 1, 3] (random order)`\n`[1, 2, 3]|arrayShuffle // [3, 1, 2] (random order)`\n`arrayShuffle([\"a\", \"b\", \"c\"]) // [\"c\", \"a\", \"b\"] (random order)`\n\n**Parameters:**\n- `input` (array): The input array to shuffle.\n\n**Returns:** The same array with elements randomly shuffled, or empty array if input is not an array.",
+    "documentation": "Shuffles the elements of an array randomly.\n\n**Examples:**\n`shuffle([1, 2, 3]) // [2, 1, 3] (random order)`\n`[1, 2, 3]|shuffle // [3, 1, 2] (random order)`\n`shuffle([\"a\", \"b\", \"c\"]) // [\"c\", \"a\", \"b\"] (random order)`\n\n**Parameters:**\n- `input` (array): The input array to shuffle.\n\n**Returns:** The same array with elements randomly shuffled, or empty array if input is not an array.",
     "examples": [
-      "arrayShuffle([1, 2, 3]) // [2, 1, 3] (random order)",
-      "[1, 2, 3]|arrayShuffle // [3, 1, 2] (random order)",
-      "arrayShuffle([\"a\", \"b\", \"c\"]) // [\"c\", \"a\", \"b\"] (random order)"
+      "shuffle([1, 2, 3]) // [2, 1, 3] (random order)",
+      "[1, 2, 3]|shuffle // [3, 1, 2] (random order)",
+      "shuffle([\"a\", \"b\", \"c\"]) // [\"c\", \"a\", \"b\"] (random order)"
     ],
     "parameters": [
       {
@@ -3520,11 +3587,11 @@ export const completionDocs: CompletionDocItem[] = [
     "label": "sort",
     "description": "Sorts the elements of an array.",
     "detail": "JEXL transform",
-    "documentation": "Sorts the elements of an array.\n\n**Examples:**\n`arraySort([3, 1, 2]) // [1, 2, 3]`\n`[3, 1, 2]|arraySort // [1, 2, 3]`\n`arraySort([{age: 30}, {age: 20}], \"age\") // [{age: 20}, {age: 30}]`\n\n**Parameters:**\n- `input` (array): The input array to sort.\n- `expression` (string?): Optional JEXL expression to determine sort value for objects.\n- `descending` (boolean?): Optional flag to sort in descending order.\n\n**Returns:** A new sorted array, or empty array if input is not an array.",
+    "documentation": "Sorts the elements of an array.\n\n**Examples:**\n`sort([3, 1, 2]) // [1, 2, 3]`\n`[3, 1, 2]|sort // [1, 2, 3]`\n`sort([{age: 30}, {age: 20}], \"age\") // [{age: 20}, {age: 30}]`\n\n**Parameters:**\n- `input` (array): The input array to sort.\n- `expression` (string?): Optional JEXL expression to determine sort value for objects.\n- `descending` (boolean?): Optional flag to sort in descending order.\n\n**Returns:** A new sorted array, or empty array if input is not an array.",
     "examples": [
-      "arraySort([3, 1, 2]) // [1, 2, 3]",
-      "[3, 1, 2]|arraySort // [1, 2, 3]",
-      "arraySort([{age: 30}, {age: 20}], \"age\") // [{age: 20}, {age: 30}]"
+      "sort([3, 1, 2]) // [1, 2, 3]",
+      "[3, 1, 2]|sort // [1, 2, 3]",
+      "sort([{age: 30}, {age: 20}], \"age\") // [{age: 20}, {age: 30}]"
     ],
     "parameters": [
       {
@@ -3810,11 +3877,11 @@ export const completionDocs: CompletionDocItem[] = [
     "label": "toObject",
     "description": "Creates a new object based on key-value pairs or string keys.",
     "detail": "JEXL transform",
-    "documentation": "Creates a new object based on key-value pairs or string keys.\n\n**Examples:**\n`arrayToObject([[\"name\", \"John\"], [\"age\", 30]]) // {name: \"John\", age: 30}`\n`arrayToObject(\"name\", \"John\") // {name: \"John\"}`\n`arrayToObject([\"key1\", \"key2\"], \"defaultValue\") // {key1: \"defaultValue\", key2: \"defaultValue\"}`\n\n**Parameters:**\n- `input` (unknown): The input string key or array of key-value pairs.\n- `val` (unknown?): Optional default value for string keys or when array elements are strings.\n\n**Returns:** A new object created from the input, or empty object if input is invalid.",
+    "documentation": "Creates a new object based on key-value pairs or string keys.\n\n**Examples:**\n`toObject([[\"name\", \"John\"], [\"age\", 30]]) // {name: \"John\", age: 30}`\n`toObject(\"name\", \"John\") // {name: \"John\"}`\n`toObject([\"key1\", \"key2\"], \"defaultValue\") // {key1: \"defaultValue\", key2: \"defaultValue\"}`\n\n**Parameters:**\n- `input` (unknown): The input string key or array of key-value pairs.\n- `val` (unknown?): Optional default value for string keys or when array elements are strings.\n\n**Returns:** A new object created from the input, or empty object if input is invalid.",
     "examples": [
-      "arrayToObject([[\"name\", \"John\"], [\"age\", 30]]) // {name: \"John\", age: 30}",
-      "arrayToObject(\"name\", \"John\") // {name: \"John\"}",
-      "arrayToObject([\"key1\", \"key2\"], \"defaultValue\") // {key1: \"defaultValue\", key2: \"defaultValue\"}"
+      "toObject([[\"name\", \"John\"], [\"age\", 30]]) // {name: \"John\", age: 30}",
+      "toObject(\"name\", \"John\") // {name: \"John\"}",
+      "toObject([\"key1\", \"key2\"], \"defaultValue\") // {key1: \"defaultValue\", key2: \"defaultValue\"}"
     ],
     "parameters": [
       {
@@ -3907,11 +3974,11 @@ export const completionDocs: CompletionDocItem[] = [
     "label": "values",
     "description": "Returns the values of an object as an array.",
     "detail": "JEXL transform",
-    "documentation": "Returns the values of an object as an array.\n\n**Examples:**\n`objectValues({name: \"John\", age: 30}) // [\"John\", 30]`\n`{a: 1, b: 2}|objectValues // [1, 2]`\n`objectValues({}) // []`\n\n**Parameters:**\n- `input` (unknown): The input object to get values from.\n\n**Returns:** An array of object values, or undefined if input is not an object.",
+    "documentation": "Returns the values of an object as an array.\n\n**Examples:**\n`values({name: \"John\", age: 30}) // [\"John\", 30]`\n`{a: 1, b: 2}|values // [1, 2]`\n`values({}) // []`\n\n**Parameters:**\n- `input` (unknown): The input object to get values from.\n\n**Returns:** An array of object values, or undefined if input is not an object.",
     "examples": [
-      "objectValues({name: \"John\", age: 30}) // [\"John\", 30]",
-      "{a: 1, b: 2}|objectValues // [1, 2]",
-      "objectValues({}) // []"
+      "values({name: \"John\", age: 30}) // [\"John\", 30]",
+      "{a: 1, b: 2}|values // [1, 2]",
+      "values({}) // []"
     ],
     "parameters": [
       {
