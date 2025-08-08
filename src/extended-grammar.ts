@@ -764,9 +764,9 @@ export const switchCase = (...args: unknown[]) => {
  * Appends elements to an array.
  * 
  * @example
- * arrayAppend([1, 2], 3) // [1, 2, 3]
- * [1, 2]|arrayAppend(3, 4) // [1, 2, 3, 4]
- * arrayAppend([], 1, 2, 3) // [1, 2, 3]
+ * append([1, 2], 3) // [1, 2, 3]
+ * [1, 2]|append(3, 4) // [1, 2, 3, 4]
+ * append([], 1, 2, 3) // [1, 2, 3]
  * 
  * @param input The input values to append to an array.
  * @returns A new array with all inputs flattened and appended, or empty array if no valid input.
@@ -780,9 +780,9 @@ export const arrayAppend = (...input: unknown[]) => {
  * Reverses the elements of an array.
  * 
  * @example
- * arrayReverse([1, 2, 3]) // [3, 2, 1]
- * [1, 2, 3]|arrayReverse // [3, 2, 1]
- * arrayReverse(["a", "b", "c"]) // ["c", "b", "a"]
+ * reverse([1, 2, 3]) // [3, 2, 1]
+ * [1, 2, 3]|reverse // [3, 2, 1]
+ * reverse(["a", "b", "c"]) // ["c", "b", "a"]
  * 
  * @param input The input values to reverse.
  * @returns A new array with elements in reverse order, or empty array if no valid input.
@@ -796,9 +796,9 @@ export const arrayReverse = (...input: unknown[]) => {
  * Shuffles the elements of an array randomly.
  * 
  * @example
- * arrayShuffle([1, 2, 3]) // [2, 1, 3] (random order)
- * [1, 2, 3]|arrayShuffle // [3, 1, 2] (random order)
- * arrayShuffle(["a", "b", "c"]) // ["c", "a", "b"] (random order)
+ * shuffle([1, 2, 3]) // [2, 1, 3] (random order)
+ * [1, 2, 3]|shuffle // [3, 1, 2] (random order)
+ * shuffle(["a", "b", "c"]) // ["c", "a", "b"] (random order)
  * 
  * @param input The input array to shuffle.
  * @returns The same array with elements randomly shuffled, or empty array if input is not an array.
@@ -816,10 +816,10 @@ export const arrayShuffle = (input: unknown[]) => {
  * Sorts the elements of an array.
  * 
  * @example
- * arraySort([3, 1, 2]) // [1, 2, 3]
- * [3, 1, 2]|arraySort // [1, 2, 3]
- * arraySort([{age: 30}, {age: 20}], "age") // [{age: 20}, {age: 30}]
- * arraySort([{age: 30}, {age: 20}], "age", true) // [{age: 30}, {age: 20}]
+ * sort([3, 1, 2]) // [1, 2, 3]
+ * [3, 1, 2]|sort // [1, 2, 3]
+ * sort([{age: 30}, {age: 20}], "age") // [{age: 20}, {age: 30}]
+ * sort([{age: 30}, {age: 20}], "age", true) // [{age: 30}, {age: 20}]
  * 
  * @param input The input array to sort.
  * @param expression Optional JEXL expression to determine sort value for objects.
@@ -844,9 +844,9 @@ export const arraySort = (input: unknown[], expression?: string, descending?: bo
  * Returns a new array with duplicate elements removed.
  * 
  * @example
- * arrayDistinct([1, 2, 2, 3, 1]) // [1, 2, 3]
- * [1, 2, 2, 3]|arrayDistinct // [1, 2, 3]
- * arrayDistinct(["a", "b", "a", "c"]) // ["a", "b", "c"]
+ * distinct([1, 2, 2, 3, 1]) // [1, 2, 3]
+ * [1, 2, 2, 3]|distinct // [1, 2, 3]
+ * distinct(["a", "b", "a", "c"]) // ["a", "b", "c"]
  * 
  * @param input The input array to remove duplicates from.
  * @returns A new array with duplicates removed, or empty array if input is not an array.
@@ -860,9 +860,9 @@ export const arrayDistinct = (input: unknown[]) => {
  * Creates a new object based on key-value pairs or string keys.
  * 
  * @example
- * arrayToObject([["name", "John"], ["age", 30]]) // {name: "John", age: 30}
- * arrayToObject("name", "John") // {name: "John"}
- * arrayToObject(["key1", "key2"], "defaultValue") // {key1: "defaultValue", key2: "defaultValue"}
+ * toObject([["name", "John"], ["age", 30]]) // {name: "John", age: 30}
+ * toObject("name", "John") // {name: "John"}
+ * toObject(["key1", "key2"], "defaultValue") // {key1: "defaultValue", key2: "defaultValue"}
  * 
  * @param input The input string key or array of key-value pairs.
  * @param val Optional default value for string keys or when array elements are strings.
@@ -906,9 +906,9 @@ export const mapField = (input: unknown[], field: string) => {
  * The relative context provided to the expression is an object with the properties value, index and array (the original array).
  * 
  * @example
- * arrayMap([1, 2, 3], "value * 2") // [2, 4, 6]
- * [{name: "John"}, {name: "Jane"}]|arrayMap("value.name") // ["John", "Jane"]
- * arrayMap([1, 2, 3], "value + index") // [1, 3, 5]
+ * map([1, 2, 3], "value * 2") // [2, 4, 6]
+ * [{name: "John"}, {name: "Jane"}]|map("value.name") // ["John", "Jane"]
+ * map([1, 2, 3], "value + index") // [1, 3, 5]
  * 
  * @param input The input array to transform.
  * @param expression The JEXL expression to apply to each element.
@@ -928,9 +928,9 @@ export const arrayMap = (input: unknown[], expression: string) => {
  * The relative context provided to the expression is an object with the properties value, index and array (the original array).
  * 
  * @example
- * arrayAny([1, 2, 3], "value > 2") // true
- * [{age: 25}, {age: 35}]|arrayAny("value.age > 30") // true
- * arrayAny([1, 2, 3], "value > 5") // false
+ * any([1, 2, 3], "value > 2") // true
+ * [{age: 25}, {age: 35}]|any("value.age > 30") // true
+ * any([1, 2, 3], "value > 5") // false
  * 
  * @param input The input array to test.
  * @param expression The JEXL expression to test against each element.
@@ -950,9 +950,9 @@ export const arrayAny = (input: unknown[], expression: string) => {
  * The relative context provided to the expression is an object with the properties value, index and array (the original array).
  * 
  * @example
- * arrayEvery([2, 4, 6], "value % 2 == 0") // true
- * [{age: 25}, {age: 35}]|arrayEvery("value.age > 20") // true
- * arrayEvery([1, 2, 3], "value > 2") // false
+ * every([2, 4, 6], "value % 2 == 0") // true
+ * [{age: 25}, {age: 35}]|every("value.age > 20") // true
+ * every([1, 2, 3], "value > 2") // false
  * 
  * @param input The input array to test.
  * @param expression The JEXL expression to test against each element.
@@ -973,9 +973,9 @@ export const arrayEvery = (input: unknown[], expression: string) => {
  * The relative context provided to the expression is an object with the properties value, index and array (the original array).
  * 
  * @example
- * arrayFilter([1, 2, 3, 4], "value > 2") // [3, 4]
- * [{age: 25}, {age: 35}]|arrayFilter("value.age > 30") // [{age: 35}]
- * arrayFilter([1, 2, 3, 4], "value % 2 == 0") // [2, 4]
+ * filter([1, 2, 3, 4], "value > 2") // [3, 4]
+ * [{age: 25}, {age: 35}]|filter("value.age > 30") // [{age: 35}]
+ * filter([1, 2, 3, 4], "value % 2 == 0") // [2, 4]
  * 
  * @param input The input array to filter.
  * @param expression The JEXL expression to test against each element.
@@ -995,9 +995,9 @@ export const arrayFilter = (input: unknown[], expression: string) => {
  * The relative context provided to the expression is an object with the properties value, index and array (the original array).
  * 
  * @example
- * arrayFind([1, 2, 3, 4], "value > 2") // 3
- * [{name: "John"}, {name: "Jane"}]|arrayFind("value.name == 'Jane'") // {name: "Jane"}
- * arrayFind([1, 2, 3], "value > 5") // undefined
+ * find([1, 2, 3, 4], "value > 2") // 3
+ * [{name: "John"}, {name: "Jane"}]|find("value.name == 'Jane'") // {name: "Jane"}
+ * find([1, 2, 3], "value > 5") // undefined
  * 
  * @param input The input array to search.
  * @param expression The JEXL expression to test against each element.
@@ -1012,14 +1012,33 @@ export const arrayFind = (input: unknown[], expression: string) => {
 }
 
 /**
+ * 
+ * Finds the index of the first element in the input array that satisfies the given Jexl expression.
+ * 
+ * @example
+ * [1, 2, 3, 4]|findIndex('value > 2'); // returns 2
+ *
+ * @param input - The array to search through.
+ * @param expression - A Jexl expression string to evaluate for each element. The expression has access to `value`, `index`, and `array`.
+ * @returns The index of the first matching element, or `-1` if no element matches, or `undefined` if the input is not an array.
+ */
+export const arrayFindIndex = (input: unknown[], expression: string) => {
+    if (!Array.isArray(input)) return undefined;
+    const expr = jexl.compile(expression);
+    return input.findIndex((value, index, array) => {
+        return expr.evalSync({ value, index, array });
+    });
+}
+
+/**
  * Returns an aggregated value derived from applying the function parameter successively to each value in array in combination with the result of the previous application of the function.
  * The expression must be a valid JEXL expression string, and behaves like an infix operator between each value within the array.
  * The relative context provided to the expression is an object with the properties accumulator, value, index and array (the original array).
  * 
  * @example
- * arrayReduce([1, 2, 3, 4], "accumulator + value", 0) // 10
- * [1, 2, 3]|arrayReduce("accumulator * value", 1) // 6
- * arrayReduce(["a", "b", "c"], "accumulator + value", "") // "abc"
+ * reduce([1, 2, 3, 4], "accumulator + value", 0) // 10
+ * [1, 2, 3]|reduce("accumulator * value", 1) // 6
+ * reduce(["a", "b", "c"], "accumulator + value", "") // "abc"
  * 
  * @param input The input array to reduce.
  * @param expression The JEXL expression to apply for each reduction step.
@@ -1038,9 +1057,9 @@ export const arrayReduce = (input: unknown[], expression: string, initialValue: 
  * Returns the keys of an object as an array.
  * 
  * @example
- * objectKeys({name: "John", age: 30}) // ["name", "age"]
- * {a: 1, b: 2}|objectKeys // ["a", "b"]
- * objectKeys({}) // []
+ * keys({name: "John", age: 30}) // ["name", "age"]
+ * {a: 1, b: 2}|keys // ["a", "b"]
+ * keys({}) // []
  * 
  * @param input The input object to get keys from.
  * @returns An array of object keys, or undefined if input is not an object.
@@ -1056,9 +1075,9 @@ export const objectKeys = (input: unknown) => {
  * Returns the values of an object as an array.
  * 
  * @example
- * objectValues({name: "John", age: 30}) // ["John", 30]
- * {a: 1, b: 2}|objectValues // [1, 2]
- * objectValues({}) // []
+ * values({name: "John", age: 30}) // ["John", 30]
+ * {a: 1, b: 2}|values // [1, 2]
+ * values({}) // []
  * 
  * @param input The input object to get values from.
  * @returns An array of object values, or undefined if input is not an object.
@@ -1074,9 +1093,9 @@ export const objectValues = (input: unknown) => {
  * Returns an array of key-value pairs from the input object.
  * 
  * @example
- * objectEntries({name: "John", age: 30}) // [["name", "John"], ["age", 30]]
- * {a: 1, b: 2}|objectEntries // [["a", 1], ["b", 2]]
- * objectEntries({}) // []
+ * entries({name: "John", age: 30}) // [["name", "John"], ["age", 30]]
+ * {a: 1, b: 2}|entries // [["a", 1], ["b", 2]]
+ * entries({}) // []
  * 
  * @param input The input object to get entries from.
  * @returns An array of [key, value] pairs, or undefined if input is not an object.
@@ -1092,9 +1111,9 @@ export const objectEntries = (input: unknown) => {
  * Returns a new object with the properties of the input objects merged together.
  * 
  * @example
- * objectMerge({a: 1}, {b: 2}) // {a: 1, b: 2}
- * {a: 1}|objectMerge({b: 2}, {c: 3}) // {a: 1, b: 2, c: 3}
- * objectMerge({a: 1}, {a: 2}) // {a: 2} (later values override)
+ * merge({a: 1}, {b: 2}) // {a: 1, b: 2}
+ * {a: 1}|merge({b: 2}, {c: 3}) // {a: 1, b: 2, c: 3}
+ * merge({a: 1}, {a: 2}) // {a: 2} (later values override)
  * 
  * @param args The input objects to merge.
  * @returns A new object with all properties merged together.

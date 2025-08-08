@@ -60,6 +60,7 @@ import {
     millis,
     arrayJoin,
     arrayFind,
+    arrayFindIndex,
     startsWith,
     endsWith,
     dateTimeFormat,
@@ -325,6 +326,9 @@ export class JexlExtended extends Jexl {
         this.addFunction('find', arrayFind);
         this.addFunction('$find', arrayFind);
         this.addTransform('find', arrayFind);
+        this.addFunction('findIndex', arrayFindIndex);
+        this.addFunction('$findIndex', arrayFindIndex);
+        this.addTransform('findIndex', arrayFindIndex);
         this.addFunction('reduce', arrayReduce);
         this.addFunction('$reduce', arrayReduce);
         this.addTransform('reduce', arrayReduce);
