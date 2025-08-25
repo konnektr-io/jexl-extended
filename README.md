@@ -8,7 +8,7 @@ This package includes an extended grammar for the [Jexl expression parser and ev
 - 🎨 **Monaco Editor Support** - Syntax highlighting, IntelliSense, and hover documentation  
 - 📝 **TypeScript Support** - Full type definitions included
 - 🔧 **Modular** - Use the entire library or import individual functions
-- 🎮 **Interactive Playground** - Try expressions online at [jexl-playground.pages.dev](https://jexl-playground.pages.dev)
+- 🎮 **Interactive Playground** - Try expressions online at [nikoraes.github.io/jexl-playground/](https://nikoraes.github.io/jexl-playground/)
 
 ## Installation
 
