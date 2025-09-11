@@ -95,8 +95,21 @@ function getParameters(signature: any): CompletionDocItem['parameters'] {
 
 function createInsertText(functionName: string, parameters: CompletionDocItem['parameters'], type: 'function' | 'transform'): string {
     if (type === 'transform') {
-        // Transforms are used without parentheses (e.g., |abs, |toString)
-        return functionName;
+        // Transforms skip the first parameter (the piped value) and only include additional parameters
+        const additionalParams = parameters.slice(1);
+        
+        if (additionalParams.length === 0) {
+            // No additional parameters, just the transform name
+            return functionName;
+        }
+        
+        // Include parameter placeholders for additional parameters
+        const paramPlaceholders = additionalParams.map((param, index) => {
+            const placeholder = param.optional ? `\${${index + 1}:${param.name}?}` : `\${${index + 1}:${param.name}}`;
+            return placeholder;
+        }).join(', ');
+        
+        return `${functionName}(${paramPlaceholders})`;
     }
     
     // Functions use parentheses
