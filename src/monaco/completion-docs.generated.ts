@@ -2091,7 +2091,7 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "boolean",
       "description": "True if all elements match the expression, false otherwise or if input is not an array."
     },
-    "insertText": "all",
+    "insertText": "all(${1:expression})",
     "aliases": [
       "arrayEvery",
       "every",
@@ -2128,7 +2128,7 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "boolean",
       "description": "True if any element matches the expression, false otherwise or if input is not an array."
     },
-    "insertText": "any",
+    "insertText": "any(${1:expression})",
     "aliases": [
       "arrayAny",
       "some",
@@ -2394,7 +2394,7 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "boolean",
       "description": "True if the input contains the search value, false otherwise."
     },
-    "insertText": "contains",
+    "insertText": "contains(${1:search})",
     "aliases": [
       "includes"
     ]
@@ -2435,7 +2435,7 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "string",
       "description": "The new date and time as an ISO 8601 string."
     },
-    "insertText": "dateTimeAdd"
+    "insertText": "dateTimeAdd(${1:unit}, ${2:value})"
   },
   {
     "type": "transform",
@@ -2466,7 +2466,7 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "string",
       "description": "The date and time in the specified format."
     },
-    "insertText": "dateTimeFormat"
+    "insertText": "dateTimeFormat(${1:format})"
   },
   {
     "type": "transform",
@@ -2557,7 +2557,7 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "boolean",
       "description": "True if the input ends with the search string, false otherwise."
     },
-    "insertText": "endsWith"
+    "insertText": "endsWith(${1:search})"
   },
   {
     "type": "transform",
@@ -2619,7 +2619,7 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "any",
       "description": "The result of evaluating the expression, or undefined if evaluation fails."
     },
-    "insertText": "eval",
+    "insertText": "eval(${1:expression})",
     "aliases": [
       "_eval",
       "eval"
@@ -2655,7 +2655,7 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "array",
       "description": "A new array containing only elements that match the expression, or empty array if input is not an array."
     },
-    "insertText": "filter",
+    "insertText": "filter(${1:expression})",
     "aliases": [
       "arrayFilter",
       "filter"
@@ -2691,7 +2691,7 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "unknown",
       "description": "The first element that matches the expression, or undefined if no match found or input is not an array."
     },
-    "insertText": "find",
+    "insertText": "find(${1:expression})",
     "aliases": [
       "arrayFind",
       "find"
@@ -2725,7 +2725,7 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "number",
       "description": "The index of the first matching element, or "
     },
-    "insertText": "findIndex",
+    "insertText": "findIndex(${1:expression})",
     "aliases": [
       "arrayFindIndex",
       "findIndex"
@@ -2787,7 +2787,7 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "string",
       "description": "The number formatted in the specified base, or empty string if input cannot be converted to a number."
     },
-    "insertText": "formatBase"
+    "insertText": "formatBase(${1:base})"
   },
   {
     "type": "transform",
@@ -2819,7 +2819,7 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "string",
       "description": "The zero-padded integer string, or empty string if input cannot be converted to a number."
     },
-    "insertText": "formatInteger"
+    "insertText": "formatInteger(${1:format})"
   },
   {
     "type": "transform",
@@ -2851,7 +2851,7 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "string",
       "description": "The formatted number string, or empty string if input cannot be converted to a number."
     },
-    "insertText": "formatNumber"
+    "insertText": "formatNumber(${1:format})"
   },
   {
     "type": "transform",
@@ -2909,7 +2909,7 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "string",
       "description": "The joined string, or undefined if input is not an array."
     },
-    "insertText": "join",
+    "insertText": "join(${1:separator?})",
     "aliases": [
       "arrayJoin",
       "join"
@@ -3061,7 +3061,7 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "array",
       "description": "A new array with transformed elements, or undefined if input is not an array."
     },
-    "insertText": "map",
+    "insertText": "map(${1:expression})",
     "aliases": [
       "arrayMap",
       "map"
@@ -3097,7 +3097,7 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "array",
       "description": "A new array with extracted field values, or empty array if input is not an array."
     },
-    "insertText": "mapField"
+    "insertText": "mapField(${1:field})"
   },
   {
     "type": "transform",
@@ -3185,7 +3185,7 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "string",
       "description": "The date and time as an ISO 8601 string, or undefined if parsing fails."
     },
-    "insertText": "millisToDateTime",
+    "insertText": "millisToDateTime(${1:format?})",
     "aliases": [
       "toDateTime",
       "fromMillis",
@@ -3314,7 +3314,7 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "string",
       "description": "The padded string."
     },
-    "insertText": "pad"
+    "insertText": "pad(${1:width}, ${2:char})"
   },
   {
     "type": "transform",
@@ -3407,7 +3407,7 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "number",
       "description": "The result of base raised to the exponent, or NaN if input cannot be converted to a number."
     },
-    "insertText": "power"
+    "insertText": "power(${1:exponent?})"
   },
   {
     "type": "transform",
@@ -3445,7 +3445,7 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "unknown",
       "description": "The final accumulated value, or undefined if input is not an array."
     },
-    "insertText": "reduce",
+    "insertText": "reduce(${1:expression}, ${2:initialValue})",
     "aliases": [
       "arrayReduce",
       "reduce"
@@ -3487,7 +3487,7 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "string",
       "description": "The string with replacements made, or undefined if input is not a string."
     },
-    "insertText": "replace"
+    "insertText": "replace(${1:search}, ${2:replacement})"
   },
   {
     "type": "transform",
@@ -3549,7 +3549,7 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "number",
       "description": "The rounded number, or NaN if input cannot be converted to a number."
     },
-    "insertText": "round"
+    "insertText": "round(${1:decimals?})"
   },
   {
     "type": "transform",
@@ -3617,7 +3617,7 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "array",
       "description": "A new sorted array, or empty array if input is not an array."
     },
-    "insertText": "sort",
+    "insertText": "sort(${1:expression?}, ${2:descending?})",
     "aliases": [
       "arraySort",
       "order",
@@ -3654,7 +3654,7 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "array",
       "description": "An array of substrings, or empty array if input is not a string."
     },
-    "insertText": "split"
+    "insertText": "split(${1:separator})"
   },
   {
     "type": "transform",
@@ -3712,7 +3712,7 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "boolean",
       "description": "True if the input starts with the search string, false otherwise."
     },
-    "insertText": "startsWith"
+    "insertText": "startsWith(${1:search})"
   },
   {
     "type": "transform",
@@ -3743,7 +3743,7 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "string",
       "description": "The input converted to a JSON string representation."
     },
-    "insertText": "string",
+    "insertText": "string(${1:prettify})",
     "aliases": [
       "toString",
       "string"
@@ -3783,7 +3783,7 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "string",
       "description": "The substring of the input string."
     },
-    "insertText": "substring"
+    "insertText": "substring(${1:start}, ${2:length})"
   },
   {
     "type": "transform",
@@ -3813,7 +3813,7 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "string",
       "description": "The substring after the first occurrence of the character sequence chars in str."
     },
-    "insertText": "substringAfter"
+    "insertText": "substringAfter(${1:chars})"
   },
   {
     "type": "transform",
@@ -3843,7 +3843,7 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "string",
       "description": "The substring before the first occurrence of the character sequence chars in str."
     },
-    "insertText": "substringBefore"
+    "insertText": "substringBefore(${1:chars})"
   },
   {
     "type": "transform",
@@ -3901,7 +3901,7 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "any",
       "description": "A new object created from the input, or empty object if input is invalid."
     },
-    "insertText": "toObject",
+    "insertText": "toObject(${1:val?})",
     "aliases": [
       "arrayToObject",
       "fromEntries",
@@ -3938,7 +3938,7 @@ export const completionDocs: CompletionDocItem[] = [
       "type": "string",
       "description": "The trimmed string, or empty string if input is not a string."
     },
-    "insertText": "trim"
+    "insertText": "trim(${1:trimChar?})"
   },
   {
     "type": "transform",
