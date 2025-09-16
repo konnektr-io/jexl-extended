@@ -51,29 +51,47 @@ export const CompletionItemKind = {
   Snippet: 27
 };
 
-export function createJexlCompletionItems(type?: 'function' | 'transform'): ICompletionItem[] {
-  const filteredDocs = type ? completionDocs.filter(doc => doc.type === type) : completionDocs;
-  
-  return filteredDocs.map(doc => {
-    const kind = doc.type === 'function' ? CompletionItemKind.Function : CompletionItemKind.Method;
-    
+export function createJexlCompletionItems(
+  type?: "function" | "transform",
+  filter?: string
+): ICompletionItem[] {
+  let filteredDocs = type
+    ? completionDocs.filter((doc) => doc.type === type)
+    : completionDocs;
+  if (filter && filter.length > 0) {
+    const filterLower = filter.toLowerCase();
+    filteredDocs = filteredDocs.filter((doc) => {
+      if (doc.label.toLowerCase().startsWith(filterLower)) return true;
+      if (
+        doc.aliases &&
+        doc.aliases.some((alias) => alias.toLowerCase().startsWith(filterLower))
+      )
+        return true;
+      return false;
+    });
+  }
+  return filteredDocs.map((doc) => {
+    const kind =
+      doc.type === "function"
+        ? CompletionItemKind.Function
+        : CompletionItemKind.Method;
     return {
       label: doc.label,
       kind,
       insertText: doc.insertText,
       insertTextRules: 4, // InsertTextRule.InsertAsSnippet
       documentation: doc.documentation,
-      detail: doc.detail
+      detail: doc.detail,
     };
   });
 }
 
 export function createJexlFunctionItems(): ICompletionItem[] {
-  return createJexlCompletionItems('function');
+  return createJexlCompletionItems("function"); // legacy: no filter
 }
 
 export function createJexlTransformItems(): ICompletionItem[] {
-  return createJexlCompletionItems('transform');
+  return createJexlCompletionItems("transform"); // legacy: no filter
 }
 
 export function getJexlCompletionDoc(functionName: string, preferredType?: 'function' | 'transform'): CompletionDocItem | undefined {
