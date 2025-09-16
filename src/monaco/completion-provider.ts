@@ -60,34 +60,49 @@ export function createJexlCompletionItems(
     : completionDocs;
     const items: ICompletionItem[] = [];
     const filterLower = filter ? filter.toLowerCase() : "";
+    function createInsertTextFor(name: string, doc: CompletionDocItem): string {
+      if (doc.type === 'transform') {
+        const additionalParams = doc.parameters.slice(1);
+        if (additionalParams.length === 0) {
+          return name;
+        }
+        const paramPlaceholders = additionalParams.map((param, index) => {
+          const placeholder = param.optional ? `4${index + 1}:${param.name}?}` : `4${index + 1}:${param.name}}`;
+          return placeholder;
+        }).join(', ');
+        return `${name}(${paramPlaceholders})`;
+      }
+      if (doc.parameters.length === 0) {
+        return `${name}()`;
+      }
+      const paramPlaceholders = doc.parameters.map((param, index) => {
+        const placeholder = param.optional ? `4${index + 1}:${param.name}?}` : `4${index + 1}:${param.name}}`;
+        return placeholder;
+      }).join(', ');
+      return `${name}(${paramPlaceholders})`;
+    }
     for (const doc of filteredDocs) {
-      const kind =
-        doc.type === "function"
-          ? CompletionItemKind.Function
-          : CompletionItemKind.Method;
+      const kind = doc.type === 'function' ? CompletionItemKind.Function : CompletionItemKind.Method;
       if (!filter || doc.label.toLowerCase().startsWith(filterLower)) {
         items.push({
           label: doc.label,
           kind,
-          insertText: doc.insertText,
+          insertText: createInsertTextFor(doc.label, doc),
           insertTextRules: 4,
           documentation: doc.documentation,
-          detail: doc.detail,
+          detail: doc.detail
         });
       }
       if (doc.aliases) {
         for (const alias of doc.aliases) {
-          if (
-            (!filter || alias.toLowerCase().startsWith(filterLower)) &&
-            alias !== doc.label
-          ) {
+          if ((!filter || alias.toLowerCase().startsWith(filterLower)) && alias !== doc.label) {
             items.push({
               label: alias,
               kind,
-              insertText: doc.insertText,
+              insertText: createInsertTextFor(alias, doc),
               insertTextRules: 4,
               documentation: doc.documentation,
-              detail: doc.detail,
+              detail: doc.detail
             });
           }
         }
