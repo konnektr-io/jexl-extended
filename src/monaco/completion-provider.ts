@@ -58,32 +58,48 @@ export function createJexlCompletionItems(
   let filteredDocs = type
     ? completionDocs.filter((doc) => doc.type === type)
     : completionDocs;
-  if (filter && filter.length > 0) {
-    const filterLower = filter.toLowerCase();
-    filteredDocs = filteredDocs.filter((doc) => {
-      if (doc.label.toLowerCase().startsWith(filterLower)) return true;
-      if (
-        doc.aliases &&
-        doc.aliases.some((alias) => alias.toLowerCase().startsWith(filterLower))
-      )
-        return true;
-      return false;
+    const items: ICompletionItem[] = [];
+    const filterLower = filter ? filter.toLowerCase() : "";
+    for (const doc of filteredDocs) {
+      const kind =
+        doc.type === "function"
+          ? CompletionItemKind.Function
+          : CompletionItemKind.Method;
+      if (!filter || doc.label.toLowerCase().startsWith(filterLower)) {
+        items.push({
+          label: doc.label,
+          kind,
+          insertText: doc.insertText,
+          insertTextRules: 4,
+          documentation: doc.documentation,
+          detail: doc.detail,
+        });
+      }
+      if (doc.aliases) {
+        for (const alias of doc.aliases) {
+          if (
+            (!filter || alias.toLowerCase().startsWith(filterLower)) &&
+            alias !== doc.label
+          ) {
+            items.push({
+              label: alias,
+              kind,
+              insertText: doc.insertText,
+              insertTextRules: 4,
+              documentation: doc.documentation,
+              detail: doc.detail,
+            });
+          }
+        }
+      }
+    }
+    // Remove duplicates by label
+    const seen = new Set<string>();
+    return items.filter((item) => {
+      if (seen.has(item.label)) return false;
+      seen.add(item.label);
+      return true;
     });
-  }
-  return filteredDocs.map((doc) => {
-    const kind =
-      doc.type === "function"
-        ? CompletionItemKind.Function
-        : CompletionItemKind.Method;
-    return {
-      label: doc.label,
-      kind,
-      insertText: doc.insertText,
-      insertTextRules: 4, // InsertTextRule.InsertAsSnippet
-      documentation: doc.documentation,
-      detail: doc.detail,
-    };
-  });
 }
 
 export function createJexlFunctionItems(): ICompletionItem[] {

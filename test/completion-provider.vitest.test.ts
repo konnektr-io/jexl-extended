@@ -44,7 +44,8 @@ describe("Completion Provider", () => {
     // Partial input: simulate completion filtering
     const allTransforms = createJexlCompletionItems("transform", "toBo");
     const labels = allTransforms.map((item) => item.label);
-    expect(labels).toContain("boolean");
+    expect(labels).toContain("toBoolean");
+    expect(labels).toContain("toBool");
     // Should only return transforms whose label or alias starts with 'toBo'
     expect(allTransforms.length).toBeGreaterThan(0);
   });
