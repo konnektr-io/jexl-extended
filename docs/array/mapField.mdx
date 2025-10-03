@@ -1,0 +1,35 @@
+---
+title: mapField
+description: Returns a new array with elements transformed by extracting a specific field.
+---
+
+# mapField
+
+Returns a new array with elements transformed by extracting a specific field.
+
+**Type:** transform
+
+## Parameters
+
+- **input** (array): The input array of objects to extract fields from.
+- **field** (string): The field name to extract from each object.
+
+## Returns
+
+**Type:** `array`
+
+A new array with extracted field values, or empty array if input is not an array.
+
+## Examples
+
+```javascript
+mapField([{name: "John"}, {name: "Jane"}], "name") // ["John", "Jane"]
+```
+
+```javascript
+[{age: 30}, {age: 25}]|mapField("age") // [30, 25]
+```
+
+```javascript
+mapField([{x: 1, y: 2}, {x: 3, y: 4}], "x") // [1, 3]
+```

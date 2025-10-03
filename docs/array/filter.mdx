@@ -1,0 +1,39 @@
+---
+title: filter
+description: Returns a new array with the elements of the input array that match the specified expression.
+---
+
+# filter
+
+Returns a new array with the elements of the input array that match the specified expression.
+
+**Type:** transform
+
+## Aliases
+
+`arrayFilter`, `filter`
+
+## Parameters
+
+- **input** (array): The input array to filter.
+- **expression** (string): The JEXL expression to test against each element.
+
+## Returns
+
+**Type:** `array`
+
+A new array containing only elements that match the expression, or empty array if input is not an array.
+
+## Examples
+
+```javascript
+filter([1, 2, 3, 4], "value > 2") // [3, 4]
+```
+
+```javascript
+[{age: 25}, {age: 35}]|filter("value.age > 30") // [{age: 35}]
+```
+
+```javascript
+filter([1, 2, 3, 4], "value % 2 == 0") // [2, 4]
+```

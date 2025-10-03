@@ -1,0 +1,35 @@
+---
+title: formatBase
+description: Formats a number as a string in the specified base.
+---
+
+# formatBase
+
+Formats a number as a string in the specified base.
+
+**Type:** transform
+
+## Parameters
+
+- **input** (unknown): The input number to format.
+- **base** (number): The numeric base to convert to (2-36).
+
+## Returns
+
+**Type:** `string`
+
+The number formatted in the specified base, or empty string if input cannot be converted to a number.
+
+## Examples
+
+```javascript
+formatBase(255, 16) // "ff"
+```
+
+```javascript
+(10)|formatBase(2) // "1010"
+```
+
+```javascript
+formatBase(64, 8) // "100"
+```

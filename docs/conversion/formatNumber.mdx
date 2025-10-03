@@ -1,0 +1,35 @@
+---
+title: formatNumber
+description: Formats a number to a decimal representation as specified by the format string.
+---
+
+# formatNumber
+
+Formats a number to a decimal representation as specified by the format string.
+
+**Type:** transform
+
+## Parameters
+
+- **input** (unknown): The input number to format.
+- **format** (string): The format string specifying decimal places and grouping.
+
+## Returns
+
+**Type:** `string`
+
+The formatted number string, or empty string if input cannot be converted to a number.
+
+## Examples
+
+```javascript
+formatNumber(1234.567, "#,##0.00") // "1,234.57"
+```
+
+```javascript
+(1000)|formatNumber("0.00") // "1000.00"
+```
+
+```javascript
+formatNumber(42, "#,###") // "42"
+```

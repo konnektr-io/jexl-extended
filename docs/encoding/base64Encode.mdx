@@ -1,0 +1,34 @@
+---
+title: base64Encode
+description: Encodes a string to Base64.
+---
+
+# base64Encode
+
+Encodes a string to Base64.
+
+**Type:** transform
+
+## Parameters
+
+- **input** (unknown): The input string to encode.
+
+## Returns
+
+**Type:** `string`
+
+The Base64 encoded string, or empty string if input is not a string or encoding fails.
+
+## Examples
+
+```javascript
+base64Encode("hello") // "aGVsbG8="
+```
+
+```javascript
+"hello world"|base64Encode // "aGVsbG8gd29ybGQ="
+```
+
+```javascript
+base64Encode("test") // "dGVzdA=="
+```

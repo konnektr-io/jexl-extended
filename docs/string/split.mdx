@@ -1,0 +1,35 @@
+---
+title: split
+description: Splits the input string into an array of substrings.
+---
+
+# split
+
+Splits the input string into an array of substrings.
+
+**Type:** transform
+
+## Parameters
+
+- **input** (unknown): The input string to split.
+- **separator** (string): The separator string to split on.
+
+## Returns
+
+**Type:** `array`
+
+An array of substrings, or empty array if input is not a string.
+
+## Examples
+
+```javascript
+split("foo,bar,baz", ",") // ["foo", "bar", "baz"]
+```
+
+```javascript
+"one-two-three"|split("-") // ["one", "two", "three"]
+```
+
+```javascript
+split("hello world", " ") // ["hello", "world"]
+```

@@ -1,0 +1,30 @@
+---
+title: case
+description: Evaluates a list of predicates and returns the first result expression whose predicate is satisfied.
+---
+
+# case
+
+Evaluates a list of predicates and returns the first result expression whose predicate is satisfied.
+
+**Type:** transform
+
+## Aliases
+
+`switchCase`, `switch`, `case`
+
+## Parameters
+
+- **args** (array): The arguments array where the first element is the expression to evaluate, followed by pairs of case and result, and optionally a default value.
+
+## Returns
+
+**Type:** `unknown`
+
+The result of the first case whose predicate is satisfied, or the default value if no case is satisfied.
+
+## Examples
+
+```javascript
+switch(expression, case1, result1, case2, result2, ..., default)
+```

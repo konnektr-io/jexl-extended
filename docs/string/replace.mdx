@@ -1,0 +1,36 @@
+---
+title: replace
+description: Replaces occurrences of a specified string with a replacement string.
+---
+
+# replace
+
+Replaces occurrences of a specified string with a replacement string.
+
+**Type:** transform
+
+## Parameters
+
+- **input** (unknown): The input string to perform replacements on.
+- **search** (string): The string to search for and replace.
+- **replacement** (string): The string to replace matches with. Defaults to empty string.
+
+## Returns
+
+**Type:** `string`
+
+The string with replacements made, or undefined if input is not a string.
+
+## Examples
+
+```javascript
+replace("foo-bar-baz", "-", "_") // "foo_bar_baz"
+```
+
+```javascript
+"hello world"|replace("world", "there") // "hello there"
+```
+
+```javascript
+replace("test test test", "test", "demo") // "demo demo demo"
+```

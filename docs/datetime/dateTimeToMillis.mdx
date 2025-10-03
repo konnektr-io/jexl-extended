@@ -1,0 +1,38 @@
+---
+title: dateTimeToMillis
+description: Parses the date and time in the ISO 8601 format and returns the number of milliseconds since the Unix epoch.
+---
+
+# dateTimeToMillis
+
+Parses the date and time in the ISO 8601 format and returns the number of milliseconds since the Unix epoch.
+
+**Type:** transform
+
+## Aliases
+
+`toMillis`
+
+## Parameters
+
+- **input** (string): The date and time string to parse.
+
+## Returns
+
+**Type:** `number`
+
+The timestamp in milliseconds since Unix epoch.
+
+## Examples
+
+```javascript
+dateTimeToMillis("2023-12-25T10:30:00.000Z") // 1703505000000
+```
+
+```javascript
+"2023-01-01T00:00:00.000Z"|dateTimeToMillis // 1672531200000
+```
+
+```javascript
+dateTimeToMillis("2023-12-25") // 1703462400000
+```

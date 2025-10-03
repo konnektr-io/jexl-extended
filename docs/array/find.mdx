@@ -1,0 +1,39 @@
+---
+title: find
+description: Finds the first element in an array that matches the specified expression.
+---
+
+# find
+
+Finds the first element in an array that matches the specified expression.
+
+**Type:** transform
+
+## Aliases
+
+`arrayFind`, `find`
+
+## Parameters
+
+- **input** (array): The input array to search.
+- **expression** (string): The JEXL expression to test against each element.
+
+## Returns
+
+**Type:** `unknown`
+
+The first element that matches the expression, or undefined if no match found or input is not an array.
+
+## Examples
+
+```javascript
+find([1, 2, 3, 4], "value > 2") // 3
+```
+
+```javascript
+[{name: "John"}, {name: "Jane"}]|find("value.name == 'Jane'") // {name: "Jane"}
+```
+
+```javascript
+find([1, 2, 3], "value > 5") // undefined
+```

@@ -1,0 +1,38 @@
+---
+title: merge
+description: Returns a new object with the properties of the input objects merged together.
+---
+
+# merge
+
+Returns a new object with the properties of the input objects merged together.
+
+**Type:** transform
+
+## Aliases
+
+`objectMerge`, `merge`
+
+## Parameters
+
+- **args** (array): The input objects to merge.
+
+## Returns
+
+**Type:** `Record`
+
+A new object with all properties merged together.
+
+## Examples
+
+```javascript
+merge({a: 1}, {b: 2}) // {a: 1, b: 2}
+```
+
+```javascript
+{a: 1}|merge({b: 2}, {c: 3}) // {a: 1, b: 2, c: 3}
+```
+
+```javascript
+merge({a: 1}, {a: 2}) // {a: 2} (later values override)
+```

@@ -1,0 +1,34 @@
+---
+title: json
+description: Parses the string and returns a JSON object.
+---
+
+# json
+
+Parses the string and returns a JSON object.
+
+**Type:** transform
+
+## Aliases
+
+`toJson`, `parseJson`
+
+## Parameters
+
+- **input** (string): The JSON string to parse.
+
+## Returns
+
+**Type:** `any`
+
+The parsed JSON object or value.
+
+## Examples
+
+```javascript
+toJson('{"key": "value"}') // { key: "value" }
+```
+
+```javascript
+'{"name": "John", "age": 30}'|toJson // { name: "John", age: 30 }
+```

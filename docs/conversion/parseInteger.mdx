@@ -1,0 +1,38 @@
+---
+title: parseInteger
+description: Parses a string and returns an integer.
+---
+
+# parseInteger
+
+Parses a string and returns an integer.
+
+**Type:** transform
+
+## Aliases
+
+`parseInt`, `toInt`, `integer`
+
+## Parameters
+
+- **input** (unknown): The input to parse as an integer.
+
+## Returns
+
+**Type:** `number`
+
+The integer value, or NaN if parsing fails.
+
+## Examples
+
+```javascript
+parseInteger("123") // 123
+```
+
+```javascript
+"45.67"|parseInteger // 45
+```
+
+```javascript
+parseInteger(123.89) // 123
+```

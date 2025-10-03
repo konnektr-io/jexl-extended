@@ -1,0 +1,36 @@
+---
+title: pad
+description: Pads the input string to the specified width.
+---
+
+# pad
+
+Pads the input string to the specified width.
+
+**Type:** transform
+
+## Parameters
+
+- **input** (unknown): The input to pad. Non-string inputs are converted to JSON string first.
+- **width** (number): The target width. Positive values pad to the right, negative values pad to the left.
+- **char** (string): The character to use for padding. Defaults to space.
+
+## Returns
+
+**Type:** `string`
+
+The padded string.
+
+## Examples
+
+```javascript
+pad("hello", 10) // "hello     "
+```
+
+```javascript
+pad("world", -8, "0") // "000world"
+```
+
+```javascript
+"foo"|pad(5, ".") // "foo.."
+```

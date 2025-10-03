@@ -1,0 +1,31 @@
+---
+title: findIndex
+description: Finds the index of the first element in the input array that satisfies the given Jexl expression.
+---
+
+# findIndex
+
+Finds the index of the first element in the input array that satisfies the given Jexl expression.
+
+**Type:** transform
+
+## Aliases
+
+`arrayFindIndex`, `findIndex`
+
+## Parameters
+
+- **input** (array): The array to search through.
+- **expression** (string): A Jexl expression string to evaluate for each element. The expression has access to 
+
+## Returns
+
+**Type:** `number`
+
+The index of the first matching element, or 
+
+## Examples
+
+```javascript
+[1, 2, 3, 4]|findIndex('value > 2'); // returns 2
+```

@@ -1,0 +1,39 @@
+---
+title: contains
+description: Checks if the input string or array contains the specified value.
+---
+
+# contains
+
+Checks if the input string or array contains the specified value.
+
+**Type:** transform
+
+## Aliases
+
+`includes`
+
+## Parameters
+
+- **input** (unknown): The input string or array to search in.
+- **search** (string): The value to search for.
+
+## Returns
+
+**Type:** `boolean`
+
+True if the input contains the search value, false otherwise.
+
+## Examples
+
+```javascript
+contains("hello world", "world") // true
+```
+
+```javascript
+"foo-bar"|contains("bar") // true
+```
+
+```javascript
+contains([1, 2, 3], 2) // true
+```

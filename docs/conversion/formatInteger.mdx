@@ -1,0 +1,35 @@
+---
+title: formatInteger
+description: Formats a number as an integer with zero padding.
+---
+
+# formatInteger
+
+Formats a number as an integer with zero padding.
+
+**Type:** transform
+
+## Parameters
+
+- **input** (unknown): The input number to format.
+- **format** (string): The format string indicating the minimum number of digits.
+
+## Returns
+
+**Type:** `string`
+
+The zero-padded integer string, or empty string if input cannot be converted to a number.
+
+## Examples
+
+```javascript
+formatInteger(42, "000") // "042"
+```
+
+```javascript
+(7)|formatInteger("0000") // "0007"
+```
+
+```javascript
+formatInteger(123, "00") // "123"
+```

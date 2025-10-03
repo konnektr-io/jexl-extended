@@ -1,0 +1,40 @@
+---
+title: sort
+description: Sorts the elements of an array.
+---
+
+# sort
+
+Sorts the elements of an array.
+
+**Type:** transform
+
+## Aliases
+
+`arraySort`, `order`, `sort`
+
+## Parameters
+
+- **input** (array): The input array to sort.
+- **expression** (string?): Optional JEXL expression to determine sort value for objects.
+- **descending** (boolean?): Optional flag to sort in descending order.
+
+## Returns
+
+**Type:** `array`
+
+A new sorted array, or empty array if input is not an array.
+
+## Examples
+
+```javascript
+sort([3, 1, 2]) // [1, 2, 3]
+```
+
+```javascript
+[3, 1, 2]|sort // [1, 2, 3]
+```
+
+```javascript
+sort([{age: 30}, {age: 20}], "age") // [{age: 20}, {age: 30}]
+```

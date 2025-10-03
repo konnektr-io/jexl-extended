@@ -1,0 +1,35 @@
+---
+title: endsWith
+description: Checks if the input string ends with the specified substring.
+---
+
+# endsWith
+
+Checks if the input string ends with the specified substring.
+
+**Type:** transform
+
+## Parameters
+
+- **input** (unknown): The input string to check.
+- **search** (string): The substring to search for at the end.
+
+## Returns
+
+**Type:** `boolean`
+
+True if the input ends with the search string, false otherwise.
+
+## Examples
+
+```javascript
+endsWith("hello world", "world") // true
+```
+
+```javascript
+"foo-bar"|endsWith("bar") // true
+```
+
+```javascript
+endsWith("test", "xyz") // false
+```

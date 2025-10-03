@@ -1,0 +1,38 @@
+---
+title: values
+description: Returns the values of an object as an array.
+---
+
+# values
+
+Returns the values of an object as an array.
+
+**Type:** transform
+
+## Aliases
+
+`objectValues`, `values`
+
+## Parameters
+
+- **input** (unknown): The input object to get values from.
+
+## Returns
+
+**Type:** `array`
+
+An array of object values, or undefined if input is not an object.
+
+## Examples
+
+```javascript
+values({name: "John", age: 30}) // ["John", 30]
+```
+
+```javascript
+{a: 1, b: 2}|values // [1, 2]
+```
+
+```javascript
+values({}) // []
+```

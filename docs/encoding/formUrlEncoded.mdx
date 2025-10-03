@@ -1,0 +1,34 @@
+---
+title: formUrlEncoded
+description: Encodes a string or object to URI component format.
+---
+
+# formUrlEncoded
+
+Encodes a string or object to URI component format.
+
+**Type:** transform
+
+## Parameters
+
+- **input** (unknown): The input string or object to encode.
+
+## Returns
+
+**Type:** `string`
+
+The URL encoded string, or empty string if input is not a string or object.
+
+## Examples
+
+```javascript
+formUrlEncoded("hello world") // "hello%20world"
+```
+
+```javascript
+formUrlEncoded({name: "John", age: 30}) // "name=John&age=30"
+```
+
+```javascript
+"hello & world"|formUrlEncoded // "hello%20%26%20world"
+```

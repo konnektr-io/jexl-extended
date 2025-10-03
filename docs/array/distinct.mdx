@@ -1,0 +1,38 @@
+---
+title: distinct
+description: Returns a new array with duplicate elements removed.
+---
+
+# distinct
+
+Returns a new array with duplicate elements removed.
+
+**Type:** transform
+
+## Aliases
+
+`arrayDistinct`, `distinct`
+
+## Parameters
+
+- **input** (array): The input array to remove duplicates from.
+
+## Returns
+
+**Type:** `array`
+
+A new array with duplicates removed, or empty array if input is not an array.
+
+## Examples
+
+```javascript
+distinct([1, 2, 2, 3, 1]) // [1, 2, 3]
+```
+
+```javascript
+[1, 2, 2, 3]|distinct // [1, 2, 3]
+```
+
+```javascript
+distinct(["a", "b", "a", "c"]) // ["a", "b", "c"]
+```

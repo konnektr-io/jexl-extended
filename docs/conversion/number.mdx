@@ -1,0 +1,38 @@
+---
+title: number
+description: Converts the input to a number.
+---
+
+# number
+
+Converts the input to a number.
+
+**Type:** transform
+
+## Aliases
+
+`toNumber`, `parseFloat`, `number`, `float`, `toFloat`
+
+## Parameters
+
+- **input** (unknown): The input to convert to a number.
+
+## Returns
+
+**Type:** `number`
+
+The numeric value, or NaN if conversion fails.
+
+## Examples
+
+```javascript
+toNumber("123") // 123
+```
+
+```javascript
+"45.67"|toNumber // 45.67
+```
+
+```javascript
+toNumber("abc") // NaN
+```

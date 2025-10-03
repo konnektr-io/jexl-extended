@@ -1,0 +1,38 @@
+---
+title: shuffle
+description: Shuffles the elements of an array randomly.
+---
+
+# shuffle
+
+Shuffles the elements of an array randomly.
+
+**Type:** transform
+
+## Aliases
+
+`arrayShuffle`, `shuffle`
+
+## Parameters
+
+- **input** (array): The input array to shuffle.
+
+## Returns
+
+**Type:** `array`
+
+The same array with elements randomly shuffled, or empty array if input is not an array.
+
+## Examples
+
+```javascript
+shuffle([1, 2, 3]) // [2, 1, 3] (random order)
+```
+
+```javascript
+[1, 2, 3]|shuffle // [3, 1, 2] (random order)
+```
+
+```javascript
+shuffle(["a", "b", "c"]) // ["c", "a", "b"] (random order)
+```

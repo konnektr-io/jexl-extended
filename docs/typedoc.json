@@ -15,9 +15,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 1276,
+					"line": 1341,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L1276"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L1341"
 				}
 			],
 			"signatures": [
@@ -45,6 +45,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Utility"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -58,9 +67,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 1276,
+							"line": 1341,
 							"character": 21,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L1276"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L1341"
 						}
 					],
 					"parameters": [
@@ -119,9 +128,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 474,
+					"line": 497,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L474"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L497"
 				}
 			],
 			"signatures": [
@@ -149,6 +158,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Math"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -162,9 +180,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 474,
+							"line": 497,
 							"character": 29,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L474"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L497"
 						}
 					],
 					"parameters": [
@@ -204,9 +222,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 939,
+					"line": 988,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L939"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L988"
 				}
 			],
 			"signatures": [
@@ -234,6 +252,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Array"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -247,9 +274,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 939,
+							"line": 988,
 							"character": 24,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L939"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L988"
 						}
 					],
 					"parameters": [
@@ -311,9 +338,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 774,
+					"line": 814,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L774"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L814"
 				}
 			],
 			"signatures": [
@@ -341,6 +368,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Array"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -354,9 +390,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 774,
+							"line": 814,
 							"character": 27,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L774"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L814"
 						}
 					],
 					"parameters": [
@@ -404,9 +440,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 854,
+					"line": 898,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L854"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L898"
 				}
 			],
 			"signatures": [
@@ -434,6 +470,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Array"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -447,9 +492,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 854,
+							"line": 898,
 							"character": 29,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L854"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L898"
 						}
 					],
 					"parameters": [
@@ -495,9 +540,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 961,
+					"line": 1011,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L961"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L1011"
 				}
 			],
 			"signatures": [
@@ -525,6 +570,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Array"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -538,9 +592,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 961,
+							"line": 1011,
 							"character": 26,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L961"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L1011"
 						}
 					],
 					"parameters": [
@@ -602,9 +656,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 984,
+					"line": 1035,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L984"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L1035"
 				}
 			],
 			"signatures": [
@@ -632,6 +686,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Array"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -645,9 +708,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 984,
+							"line": 1035,
 							"character": 27,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L984"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L1035"
 						}
 					],
 					"parameters": [
@@ -712,9 +775,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 1006,
+					"line": 1058,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L1006"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L1058"
 				}
 			],
 			"signatures": [
@@ -742,6 +805,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Array"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -755,9 +827,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 1006,
+							"line": 1058,
 							"character": 25,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L1006"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L1058"
 						}
 					],
 					"parameters": [
@@ -819,9 +891,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 1025,
+					"line": 1078,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L1025"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L1078"
 				}
 			],
 			"signatures": [
@@ -845,6 +917,15 @@
 									{
 										"kind": "code",
 										"text": "```ts\n[1, 2, 3, 4]|findIndex('value > 2'); // returns 2\n```"
+									}
+								]
+							},
+							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Array"
 									}
 								]
 							},
@@ -878,9 +959,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 1025,
+							"line": 1078,
 							"character": 30,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L1025"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L1078"
 						}
 					],
 					"parameters": [
@@ -966,9 +1047,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 333,
+					"line": 349,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L333"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L349"
 				}
 			],
 			"signatures": [
@@ -996,6 +1077,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Array"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -1009,9 +1099,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 333,
+							"line": 349,
 							"character": 25,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L333"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L349"
 						}
 					],
 					"parameters": [
@@ -1072,9 +1162,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 917,
+					"line": 965,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L917"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L965"
 				}
 			],
 			"signatures": [
@@ -1102,6 +1192,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Array"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -1115,9 +1214,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 917,
+							"line": 965,
 							"character": 24,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L917"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L965"
 						}
 					],
 					"parameters": [
@@ -1182,9 +1281,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 1048,
+					"line": 1102,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L1048"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L1102"
 				}
 			],
 			"signatures": [
@@ -1212,6 +1311,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Array"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -1225,9 +1333,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 1048,
+							"line": 1102,
 							"character": 27,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L1048"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L1102"
 						}
 					],
 					"parameters": [
@@ -1308,9 +1416,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 790,
+					"line": 831,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L790"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L831"
 				}
 			],
 			"signatures": [
@@ -1338,6 +1446,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Array"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -1351,9 +1468,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 790,
+							"line": 831,
 							"character": 28,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L790"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L831"
 						}
 					],
 					"parameters": [
@@ -1401,9 +1518,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 806,
+					"line": 848,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L806"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L848"
 				}
 			],
 			"signatures": [
@@ -1431,6 +1548,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Array"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -1444,9 +1570,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 806,
+							"line": 848,
 							"character": 28,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L806"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L848"
 						}
 					],
 					"parameters": [
@@ -1492,9 +1618,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 829,
+					"line": 872,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L829"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L872"
 				}
 			],
 			"signatures": [
@@ -1522,6 +1648,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Array"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -1535,9 +1670,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 829,
+							"line": 872,
 							"character": 25,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L829"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L872"
 						}
 					],
 					"parameters": [
@@ -1625,9 +1760,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 871,
+					"line": 917,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L871"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L917"
 				}
 			],
 			"signatures": [
@@ -1655,6 +1790,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Array"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -1668,9 +1812,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 871,
+							"line": 917,
 							"character": 29,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L871"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L917"
 						}
 					],
 					"parameters": [
@@ -1731,9 +1875,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 689,
+					"line": 725,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L689"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L725"
 				}
 			],
 			"signatures": [
@@ -1761,6 +1905,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Math"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -1774,9 +1927,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 689,
+							"line": 725,
 							"character": 23,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L689"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L725"
 						}
 					],
 					"parameters": [
@@ -1821,9 +1974,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 397,
+					"line": 416,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L397"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L416"
 				}
 			],
 			"signatures": [
@@ -1851,6 +2004,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Encoding"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -1864,9 +2026,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 397,
+							"line": 416,
 							"character": 28,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L397"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L416"
 						}
 					],
 					"parameters": [
@@ -1906,9 +2068,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 372,
+					"line": 390,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L372"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L390"
 				}
 			],
 			"signatures": [
@@ -1936,6 +2098,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Encoding"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -1949,9 +2120,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 372,
+							"line": 390,
 							"character": 28,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L372"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L390"
 						}
 					],
 					"parameters": [
@@ -1991,9 +2162,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 177,
+					"line": 185,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L177"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L185"
 				}
 			],
 			"signatures": [
@@ -2021,6 +2192,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "String"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -2034,9 +2214,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 177,
+							"line": 185,
 							"character": 25,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L177"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L185"
 						}
 					],
 					"parameters": [
@@ -2076,9 +2256,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 506,
+					"line": 531,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L506"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L531"
 				}
 			],
 			"signatures": [
@@ -2106,6 +2286,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Math"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -2119,9 +2308,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 506,
+							"line": 531,
 							"character": 20,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L506"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L531"
 						}
 					],
 					"parameters": [
@@ -2161,9 +2350,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 257,
+					"line": 269,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L257"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L269"
 				}
 			],
 			"signatures": [
@@ -2191,6 +2380,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "String"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -2204,9 +2402,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 257,
+							"line": 269,
 							"character": 24,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L257"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L269"
 						}
 					],
 					"parameters": [
@@ -2265,9 +2463,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 1252,
+					"line": 1316,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L1252"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L1316"
 				}
 			],
 			"signatures": [
@@ -2295,6 +2493,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "DateTime"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -2308,9 +2515,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 1252,
+							"line": 1316,
 							"character": 27,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L1252"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L1316"
 						}
 					],
 					"parameters": [
@@ -2388,9 +2595,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 1206,
+					"line": 1268,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L1206"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L1268"
 				}
 			],
 			"signatures": [
@@ -2418,6 +2625,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "DateTime"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -2431,9 +2647,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 1206,
+							"line": 1268,
 							"character": 30,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L1206"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L1268"
 						}
 					],
 					"parameters": [
@@ -2501,9 +2717,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 1235,
+					"line": 1298,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L1235"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L1298"
 				}
 			],
 			"signatures": [
@@ -2531,6 +2747,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "DateTime"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -2544,9 +2769,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 1235,
+							"line": 1298,
 							"character": 32,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L1235"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L1298"
 						}
 					],
 					"parameters": [
@@ -2586,9 +2811,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 295,
+					"line": 309,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L295"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L309"
 				}
 			],
 			"signatures": [
@@ -2616,6 +2841,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "String"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -2629,9 +2863,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 295,
+							"line": 309,
 							"character": 24,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L295"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L309"
 						}
 					],
 					"parameters": [
@@ -2690,9 +2924,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 490,
+					"line": 514,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L490"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L514"
 				}
 			],
 			"signatures": [
@@ -2720,6 +2954,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Math"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -2733,9 +2976,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 490,
+							"line": 514,
 							"character": 21,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L490"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L514"
 						}
 					],
 					"parameters": [
@@ -2775,9 +3018,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 608,
+					"line": 639,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L608"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L639"
 				}
 			],
 			"signatures": [
@@ -2805,6 +3048,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Conversion"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -2818,9 +3070,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 608,
+							"line": 639,
 							"character": 26,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L608"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L639"
 						}
 					],
 					"parameters": [
@@ -2879,9 +3131,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 625,
+					"line": 657,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L625"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L657"
 				}
 			],
 			"signatures": [
@@ -2909,6 +3161,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Conversion"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -2922,9 +3183,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 625,
+							"line": 657,
 							"character": 29,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L625"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L657"
 						}
 					],
 					"parameters": [
@@ -2983,9 +3244,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 587,
+					"line": 617,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L587"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L617"
 				}
 			],
 			"signatures": [
@@ -3013,6 +3274,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Conversion"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -3026,9 +3296,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 587,
+							"line": 617,
 							"character": 28,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L587"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L617"
 						}
 					],
 					"parameters": [
@@ -3087,9 +3357,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 417,
+					"line": 437,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L417"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L437"
 				}
 			],
 			"signatures": [
@@ -3117,6 +3387,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Encoding"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -3130,9 +3409,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 417,
+							"line": 437,
 							"character": 30,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L417"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L437"
 						}
 					],
 					"parameters": [
@@ -3172,9 +3451,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 47,
+					"line": 49,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L47"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L49"
 				}
 			],
 			"signatures": [
@@ -3202,6 +3481,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Utility"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -3215,9 +3503,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 47,
+							"line": 49,
 							"character": 22,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L47"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L49"
 						}
 					],
 					"parameters": [
@@ -3257,9 +3545,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 160,
+					"line": 167,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L160"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L167"
 				}
 			],
 			"signatures": [
@@ -3287,6 +3575,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "String"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -3300,9 +3597,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 160,
+							"line": 167,
 							"character": 25,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L160"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L167"
 						}
 					],
 					"parameters": [
@@ -3342,9 +3639,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 898,
+					"line": 945,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L898"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L945"
 				}
 			],
 			"signatures": [
@@ -3372,6 +3669,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Array"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -3385,9 +3691,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 898,
+							"line": 945,
 							"character": 24,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L898"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L945"
 						}
 					],
 					"parameters": [
@@ -3452,9 +3758,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 657,
+					"line": 691,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L657"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L691"
 				}
 			],
 			"signatures": [
@@ -3482,6 +3788,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Math"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -3495,9 +3810,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 657,
+							"line": 691,
 							"character": 19,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L657"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L691"
 						}
 					],
 					"parameters": [
@@ -3542,9 +3857,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 1159,
+					"line": 1219,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L1159"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L1219"
 				}
 			],
 			"signatures": [
@@ -3572,6 +3887,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "DateTime"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -3585,9 +3909,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 1159,
+							"line": 1219,
 							"character": 22,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L1159"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L1219"
 						}
 					],
 					"type": {
@@ -3606,9 +3930,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 673,
+					"line": 708,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L673"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L708"
 				}
 			],
 			"signatures": [
@@ -3636,6 +3960,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Math"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -3649,9 +3982,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 673,
+							"line": 708,
 							"character": 19,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L673"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L708"
 						}
 					],
 					"parameters": [
@@ -3696,9 +4029,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 730,
+					"line": 768,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L730"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L768"
 				}
 			],
 			"signatures": [
@@ -3726,6 +4059,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Utility"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -3739,9 +4081,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 730,
+							"line": 768,
 							"character": 19,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L730"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L768"
 						}
 					],
 					"parameters": [
@@ -3781,9 +4123,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 1146,
+					"line": 1205,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L1146"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L1205"
 				}
 			],
 			"signatures": [
@@ -3811,6 +4153,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "DateTime"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -3824,9 +4175,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 1146,
+							"line": 1205,
 							"character": 19,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L1146"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L1205"
 						}
 					],
 					"type": {
@@ -3845,9 +4196,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 1103,
+					"line": 1160,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L1103"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L1160"
 				}
 			],
 			"signatures": [
@@ -3875,6 +4226,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Object"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -3888,9 +4248,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 1103,
+							"line": 1160,
 							"character": 29,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L1103"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L1160"
 						}
 					],
 					"parameters": [
@@ -3942,9 +4302,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 1067,
+					"line": 1122,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L1067"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L1122"
 				}
 			],
 			"signatures": [
@@ -3972,6 +4332,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Array"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -3985,9 +4354,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 1067,
+							"line": 1122,
 							"character": 26,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L1067"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L1122"
 						}
 					],
 					"parameters": [
@@ -4030,9 +4399,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 1121,
+					"line": 1179,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L1121"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L1179"
 				}
 			],
 			"signatures": [
@@ -4060,6 +4429,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Object"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -4073,9 +4451,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 1121,
+							"line": 1179,
 							"character": 27,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L1121"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L1179"
 						}
 					],
 					"parameters": [
@@ -4136,9 +4514,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 1085,
+					"line": 1141,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L1085"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L1141"
 				}
 			],
 			"signatures": [
@@ -4166,6 +4544,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Object"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -4179,9 +4566,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 1085,
+							"line": 1141,
 							"character": 28,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L1085"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L1141"
 						}
 					],
 					"parameters": [
@@ -4224,9 +4611,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 236,
+					"line": 247,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L236"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L247"
 				}
 			],
 			"signatures": [
@@ -4254,6 +4641,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "String"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -4267,9 +4663,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 236,
+							"line": 247,
 							"character": 19,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L236"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L247"
 						}
 					],
 					"parameters": [
@@ -4348,9 +4744,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 454,
+					"line": 476,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L454"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L476"
 				}
 			],
 			"signatures": [
@@ -4378,6 +4774,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Conversion"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -4391,9 +4796,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 454,
+							"line": 476,
 							"character": 28,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L454"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L476"
 						}
 					],
 					"parameters": [
@@ -4433,9 +4838,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 196,
+					"line": 205,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L196"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L205"
 				}
 			],
 			"signatures": [
@@ -4463,6 +4868,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "String"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -4476,9 +4890,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 196,
+							"line": 205,
 							"character": 26,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L196"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L205"
 						}
 					],
 					"parameters": [
@@ -4518,9 +4932,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 540,
+					"line": 567,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L540"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L567"
 				}
 			],
 			"signatures": [
@@ -4548,6 +4962,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Math"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -4561,9 +4984,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 540,
+							"line": 567,
 							"character": 21,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L540"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L567"
 						}
 					],
 					"parameters": [
@@ -4624,9 +5047,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 571,
+					"line": 600,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L571"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L600"
 				}
 			],
 			"signatures": [
@@ -4654,6 +5077,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Math"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -4667,9 +5099,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 571,
+							"line": 600,
 							"character": 28,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L571"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L600"
 						}
 					],
 					"type": {
@@ -4688,9 +5120,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 353,
+					"line": 370,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L353"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L370"
 				}
 			],
 			"signatures": [
@@ -4718,6 +5150,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "String"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -4731,9 +5172,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 353,
+							"line": 370,
 							"character": 23,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L353"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L370"
 						}
 					],
 					"parameters": [
@@ -4811,9 +5252,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 523,
+					"line": 549,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L523"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L549"
 				}
 			],
 			"signatures": [
@@ -4841,6 +5282,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Math"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -4854,9 +5304,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 523,
+							"line": 549,
 							"character": 21,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L523"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L549"
 						}
 					],
 					"parameters": [
@@ -4917,9 +5367,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 314,
+					"line": 329,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L314"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L329"
 				}
 			],
 			"signatures": [
@@ -4947,6 +5397,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "String"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -4960,9 +5419,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 314,
+							"line": 329,
 							"character": 21,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L314"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L329"
 						}
 					],
 					"parameters": [
@@ -5024,9 +5483,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 557,
+					"line": 585,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L557"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L585"
 				}
 			],
 			"signatures": [
@@ -5054,6 +5513,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Math"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -5067,9 +5535,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 557,
+							"line": 585,
 							"character": 20,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L557"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L585"
 						}
 					],
 					"parameters": [
@@ -5109,9 +5577,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 276,
+					"line": 289,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L276"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L289"
 				}
 			],
 			"signatures": [
@@ -5139,6 +5607,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "String"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -5152,9 +5629,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 276,
+							"line": 289,
 							"character": 26,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L276"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L289"
 						}
 					],
 					"parameters": [
@@ -5213,9 +5690,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 71,
+					"line": 74,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L71"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L74"
 				}
 			],
 			"signatures": [
@@ -5243,6 +5720,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "String"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -5256,9 +5742,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 71,
+							"line": 74,
 							"character": 25,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L71"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L74"
 						}
 					],
 					"parameters": [
@@ -5336,9 +5822,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 125,
+					"line": 130,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L125"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L130"
 				}
 			],
 			"signatures": [
@@ -5366,6 +5852,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "String"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -5379,9 +5874,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 125,
+							"line": 130,
 							"character": 30,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L125"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L130"
 						}
 					],
 					"parameters": [
@@ -5440,9 +5935,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 105,
+					"line": 109,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L105"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L109"
 				}
 			],
 			"signatures": [
@@ -5470,6 +5965,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "String"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -5483,9 +5987,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 105,
+							"line": 109,
 							"character": 31,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L105"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L109"
 						}
 					],
 					"parameters": [
@@ -5544,9 +6048,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 641,
+					"line": 674,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L641"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L674"
 				}
 			],
 			"signatures": [
@@ -5574,6 +6078,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Math"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -5587,9 +6100,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 641,
+							"line": 674,
 							"character": 19,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L641"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L674"
 						}
 					],
 					"parameters": [
@@ -5634,9 +6147,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 743,
+					"line": 782,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L743"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L782"
 				}
 			],
 			"signatures": [
@@ -5664,6 +6177,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Utility"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -5677,9 +6199,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 743,
+							"line": 782,
 							"character": 26,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L743"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L782"
 						}
 					],
 					"parameters": [
@@ -5724,9 +6246,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 707,
+					"line": 744,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L707"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L744"
 				}
 			],
 			"signatures": [
@@ -5754,6 +6276,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Conversion"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -5767,9 +6298,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 707,
+							"line": 744,
 							"character": 25,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L707"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L744"
 						}
 					],
 					"parameters": [
@@ -5809,9 +6340,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 1176,
+					"line": 1237,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L1176"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L1237"
 				}
 			],
 			"signatures": [
@@ -5839,6 +6370,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "DateTime"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -5852,9 +6392,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 1176,
+							"line": 1237,
 							"character": 26,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L1176"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L1237"
 						}
 					],
 					"parameters": [
@@ -5926,9 +6466,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 33,
+					"line": 34,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L33"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L34"
 				}
 			],
 			"signatures": [
@@ -5956,6 +6496,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Conversion"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -5978,9 +6527,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 33,
+							"line": 34,
 							"character": 22,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L33"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L34"
 						}
 					],
 					"parameters": [
@@ -6020,9 +6569,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 437,
+					"line": 458,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L437"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L458"
 				}
 			],
 			"signatures": [
@@ -6050,6 +6599,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Conversion"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -6063,9 +6621,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 437,
+							"line": 458,
 							"character": 24,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L437"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L458"
 						}
 					],
 					"parameters": [
@@ -6107,7 +6665,7 @@
 					"fileName": "extended-grammar.ts",
 					"line": 18,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L18"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L18"
 				}
 			],
 			"signatures": [
@@ -6139,7 +6697,7 @@
 								"content": [
 									{
 										"kind": "text",
-										"text": "Type Conversion"
+										"text": "Conversion"
 									}
 								]
 							},
@@ -6159,7 +6717,7 @@
 							"fileName": "extended-grammar.ts",
 							"line": 18,
 							"character": 24,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L18"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L18"
 						}
 					],
 					"parameters": [
@@ -6219,9 +6777,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 213,
+					"line": 223,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L213"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L223"
 				}
 			],
 			"signatures": [
@@ -6249,6 +6807,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "String"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -6262,9 +6829,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 213,
+							"line": 223,
 							"character": 20,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L213"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L223"
 						}
 					],
 					"parameters": [
@@ -6325,9 +6892,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 145,
+					"line": 151,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L145"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L151"
 				}
 			],
 			"signatures": [
@@ -6355,6 +6922,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "String"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -6368,9 +6944,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 145,
+							"line": 151,
 							"character": 25,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L145"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L151"
 						}
 					],
 					"parameters": [
@@ -6410,9 +6986,9 @@
 			"sources": [
 				{
 					"fileName": "extended-grammar.ts",
-					"line": 1296,
+					"line": 1362,
 					"character": 13,
-					"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L1296"
+					"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L1362"
 				}
 			],
 			"signatures": [
@@ -6440,6 +7016,15 @@
 								]
 							},
 							{
+								"tag": "@group",
+								"content": [
+									{
+										"kind": "text",
+										"text": "Utility"
+									}
+								]
+							},
+							{
 								"tag": "@returns",
 								"content": [
 									{
@@ -6453,9 +7038,9 @@
 					"sources": [
 						{
 							"fileName": "extended-grammar.ts",
-							"line": 1296,
+							"line": 1362,
 							"character": 20,
-							"url": "https://github.com/nikoraes/jexl-extended/blob/7d78abd59a7e128ffcd6f238358d1ce5e7188e27/src/extended-grammar.ts#L1296"
+							"url": "https://github.com/nikoraes/jexl-extended/blob/8943cff9f58a25359def9c646ea76bc65f48b92e/src/extended-grammar.ts#L1362"
 						}
 					],
 					"type": {
@@ -6468,10 +7053,8 @@
 	],
 	"groups": [
 		{
-			"title": "Functions",
+			"title": "Array",
 			"children": [
-				226,
-				85,
 				169,
 				140,
 				154,
@@ -6486,61 +7069,93 @@
 				146,
 				149,
 				157,
-				128,
-				73,
-				70,
-				30,
-				91,
-				45,
-				221,
-				214,
-				218,
-				53,
-				88,
+				161,
+				194
+			]
+		},
+		{
+			"title": "Conversion",
+			"children": [
 				111,
 				115,
 				107,
-				76,
-				8,
-				27,
-				161,
-				122,
-				208,
-				125,
-				134,
-				206,
-				200,
-				194,
-				203,
-				197,
-				40,
 				82,
-				33,
+				131,
+				5,
+				79,
+				1
+			]
+		},
+		{
+			"title": "DateTime",
+			"children": [
+				221,
+				214,
+				218,
+				208,
+				206,
+				210
+			]
+		},
+		{
+			"title": "Encoding",
+			"children": [
+				73,
+				70,
+				76
+			]
+		},
+		{
+			"title": "Math",
+			"children": [
+				85,
+				128,
+				91,
+				88,
+				122,
+				125,
 				98,
 				105,
-				65,
 				94,
-				57,
 				102,
+				119
+			]
+		},
+		{
+			"title": "Object",
+			"children": [
+				200,
+				203,
+				197
+			]
+		},
+		{
+			"title": "String",
+			"children": [
+				30,
+				45,
+				53,
+				27,
+				40,
+				33,
+				65,
+				57,
 				49,
 				11,
 				20,
 				16,
-				119,
-				137,
-				131,
-				210,
-				5,
-				79,
 				36,
-				24,
-				230
+				24
 			]
 		},
 		{
-			"title": "Type Conversion",
+			"title": "Utility",
 			"children": [
-				1
+				226,
+				8,
+				134,
+				137,
+				230
 			]
 		}
 	],

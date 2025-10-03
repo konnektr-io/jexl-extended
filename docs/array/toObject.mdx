@@ -1,0 +1,39 @@
+---
+title: toObject
+description: Creates a new object based on key-value pairs or string keys.
+---
+
+# toObject
+
+Creates a new object based on key-value pairs or string keys.
+
+**Type:** transform
+
+## Aliases
+
+`arrayToObject`, `fromEntries`, `toObject`
+
+## Parameters
+
+- **input** (unknown): The input string key or array of key-value pairs.
+- **val** (unknown?): Optional default value for string keys or when array elements are strings.
+
+## Returns
+
+**Type:** `any`
+
+A new object created from the input, or empty object if input is invalid.
+
+## Examples
+
+```javascript
+toObject([["name", "John"], ["age", 30]]) // {name: "John", age: 30}
+```
+
+```javascript
+toObject("name", "John") // {name: "John"}
+```
+
+```javascript
+toObject(["key1", "key2"], "defaultValue") // {key1: "defaultValue", key2: "defaultValue"}
+```

@@ -1,0 +1,38 @@
+---
+title: camelCase
+description: Converts the input string to camel case.
+---
+
+# camelCase
+
+Converts the input string to camel case.
+
+**Type:** transform
+
+## Aliases
+
+`camelcase`, `toCamelCase`
+
+## Parameters
+
+- **input** (unknown): The input string to convert to camel case.
+
+## Returns
+
+**Type:** `string`
+
+The camel case string, or empty string if input is not a string.
+
+## Examples
+
+```javascript
+camelCase("foo bar") // "fooBar"
+```
+
+```javascript
+"hello-world"|camelCase // "helloWorld"
+```
+
+```javascript
+camelCase("HELLO_WORLD") // "helloWorld"
+```

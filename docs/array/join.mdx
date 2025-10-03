@@ -1,0 +1,39 @@
+---
+title: join
+description: Joins elements of an array into a string.
+---
+
+# join
+
+Joins elements of an array into a string.
+
+**Type:** transform
+
+## Aliases
+
+`arrayJoin`, `join`
+
+## Parameters
+
+- **input** (unknown): The input array to join.
+- **separator** (string?): The separator string to use between elements. Defaults to comma.
+
+## Returns
+
+**Type:** `string`
+
+The joined string, or undefined if input is not an array.
+
+## Examples
+
+```javascript
+arrayJoin(["foo", "bar", "baz"], ",") // "foo,bar,baz"
+```
+
+```javascript
+["one", "two", "three"]|arrayJoin("-") // "one-two-three"
+```
+
+```javascript
+arrayJoin([1, 2, 3]) // "1,2,3"
+```

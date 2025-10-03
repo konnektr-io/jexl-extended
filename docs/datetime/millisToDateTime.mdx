@@ -1,0 +1,39 @@
+---
+title: millisToDateTime
+description: Parses the number of milliseconds since the Unix epoch or parses a string (with or without specified format) and returns the date and time in the ISO 8601 format.
+---
+
+# millisToDateTime
+
+Parses the number of milliseconds since the Unix epoch or parses a string (with or without specified format) and returns the date and time in the ISO 8601 format.
+
+**Type:** transform
+
+## Aliases
+
+`toDateTime`, `fromMillis`, `dateTimeString`, `millisToDateTime`
+
+## Parameters
+
+- **input** (union?): Optional timestamp in milliseconds or date string.
+- **format** (string?): Optional format string for parsing date strings.
+
+## Returns
+
+**Type:** `string`
+
+The date and time as an ISO 8601 string, or undefined if parsing fails.
+
+## Examples
+
+```javascript
+toDateTime(1703505000000) // "2023-12-25T10:30:00.000Z"
+```
+
+```javascript
+toDateTime("2023-12-25") // "2023-12-25T00:00:00.000Z"
+```
+
+```javascript
+toDateTime("25/12/2023", "dd/MM/yyyy") // "2023-12-25T00:00:00.000Z"
+```

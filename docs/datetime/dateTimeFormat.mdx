@@ -1,0 +1,31 @@
+---
+title: dateTimeFormat
+description: Converts a date and time to a provided format.
+---
+
+# dateTimeFormat
+
+Converts a date and time to a provided format.
+
+**Type:** transform
+
+## Parameters
+
+- **input** (union): The input date and time, either as a string or number.
+- **format** (string): The format to convert the date and time to.
+
+## Returns
+
+**Type:** `string`
+
+The date and time in the specified format.
+
+## Examples
+
+```javascript
+dateTimeFormat(datetime, format)
+```
+
+```javascript
+datetime|dateTimeFormat(format)
+```

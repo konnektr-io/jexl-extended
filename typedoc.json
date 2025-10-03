@@ -1,7 +1,4 @@
 {
-    "entryPoints": [
-        "./src/extended-grammar.ts"
-    ],
-    "out": "./docs",
-    "json": "./docs/typedoc.json",
+  "entryPoints": ["./src/extended-grammar.ts"],
+  "json": "./docs/typedoc.json"
 }

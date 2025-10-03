@@ -1,0 +1,36 @@
+---
+title: dateTimeAdd
+description: Adds a time range to a date and time in the ISO 8601 format.
+---
+
+# dateTimeAdd
+
+Adds a time range to a date and time in the ISO 8601 format.
+
+**Type:** transform
+
+## Parameters
+
+- **input** (string): The input date and time string in ISO 8601 format.
+- **unit** (string): The time unit to add ("day", "hour", "minute", "second", "month", "year", etc.).
+- **value** (number): The amount to add (can be negative to subtract).
+
+## Returns
+
+**Type:** `string`
+
+The new date and time as an ISO 8601 string.
+
+## Examples
+
+```javascript
+dateTimeAdd("2023-12-25T10:30:00.000Z", "day", 1) // "2023-12-26T10:30:00.000Z"
+```
+
+```javascript
+now()|dateTimeAdd("hour", -2) // Two hours ago
+```
+
+```javascript
+dateTimeAdd("2023-01-01T00:00:00.000Z", "month", 3) // "2023-04-01T00:00:00.000Z"
+```

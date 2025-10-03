@@ -1,0 +1,38 @@
+---
+title: keys
+description: Returns the keys of an object as an array.
+---
+
+# keys
+
+Returns the keys of an object as an array.
+
+**Type:** transform
+
+## Aliases
+
+`objectKeys`, `keys`
+
+## Parameters
+
+- **input** (unknown): The input object to get keys from.
+
+## Returns
+
+**Type:** `array`
+
+An array of object keys, or undefined if input is not an object.
+
+## Examples
+
+```javascript
+keys({name: "John", age: 30}) // ["name", "age"]
+```
+
+```javascript
+{a: 1, b: 2}|keys // ["a", "b"]
+```
+
+```javascript
+keys({}) // []
+```

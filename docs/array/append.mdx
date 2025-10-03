@@ -1,0 +1,38 @@
+---
+title: append
+description: Appends elements to an array.
+---
+
+# append
+
+Appends elements to an array.
+
+**Type:** transform
+
+## Aliases
+
+`arrayAppend`, `concat`, `append`
+
+## Parameters
+
+- **input** (array): The input values to append to an array.
+
+## Returns
+
+**Type:** `array`
+
+A new array with all inputs flattened and appended, or empty array if no valid input.
+
+## Examples
+
+```javascript
+append([1, 2], 3) // [1, 2, 3]
+```
+
+```javascript
+[1, 2]|append(3, 4) // [1, 2, 3, 4]
+```
+
+```javascript
+append([], 1, 2, 3) // [1, 2, 3]
+```

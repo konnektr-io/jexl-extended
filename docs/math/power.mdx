@@ -1,0 +1,35 @@
+---
+title: power
+description: Returns the value of a number raised to a power.
+---
+
+# power
+
+Returns the value of a number raised to a power.
+
+**Type:** transform
+
+## Parameters
+
+- **input** (unknown): The base number.
+- **exponent** (number?): The exponent to raise the base to. Defaults to 2.
+
+## Returns
+
+**Type:** `number`
+
+The result of base raised to the exponent, or NaN if input cannot be converted to a number.
+
+## Examples
+
+```javascript
+power(2, 3) // 8
+```
+
+```javascript
+(2)|power(4) // 16
+```
+
+```javascript
+power(9) // 81 (defaults to power of 2)
+```

@@ -1,0 +1,39 @@
+---
+title: all
+description: Checks whether the provided array has all elements that match the specified expression.
+---
+
+# all
+
+Checks whether the provided array has all elements that match the specified expression.
+
+**Type:** transform
+
+## Aliases
+
+`arrayEvery`, `every`, `all`
+
+## Parameters
+
+- **input** (array): The input array to test.
+- **expression** (string): The JEXL expression to test against each element.
+
+## Returns
+
+**Type:** `boolean`
+
+True if all elements match the expression, false otherwise or if input is not an array.
+
+## Examples
+
+```javascript
+every([2, 4, 6], "value % 2 == 0") // true
+```
+
+```javascript
+[{age: 25}, {age: 35}]|every("value.age > 20") // true
+```
+
+```javascript
+every([1, 2, 3], "value > 2") // false
+```

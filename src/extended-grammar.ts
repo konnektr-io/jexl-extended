@@ -9,7 +9,7 @@ import jexl from '.';
  * @example
  * string(123) // "123"
  * 123|string // "123"
- * @group Type Conversion
+ * @group Conversion
  *
  * @param input The input can be any type.
  * @param prettify If true, the output will be pretty-printed.
@@ -25,6 +25,7 @@ export const toString = (input: unknown, prettify = false) => {
  * @example
  * toJson('{"key": "value"}') // { key: "value" }
  * '{"name": "John", "age": 30}'|toJson // { name: "John", age: 30 }
+ * @group Conversion
  * 
  * @param input The JSON string to parse.
  * @returns The parsed JSON object or value.
@@ -40,6 +41,7 @@ export const toJson = (input: string) => {
  * @example
  * length("hello") // 5
  * length([1, 2, 3]) // 3
+ * @group Utility
  * 
  * @param input The input can be a string, an array, or an object.
  * @returns The number of characters in a string, or the length of an array.
@@ -62,6 +64,7 @@ export const length = (input: unknown) => {
  * 
  * @example
  * substring("hello world", 0, 5) // "hello"
+ * @group String
  * 
  * @param input The input string.
  * @param start The starting index of the substring.
@@ -98,6 +101,7 @@ export const substring = (input: unknown, start: number, length: number | undefi
  * Returns the substring before the first occurrence of the character sequence chars in str. 
  * 
  * @example substringBefore("hello world", " ") // "hello"
+ * @group String
  * @param input The input string.
  * @param chars The character sequence to search for.
  * @returns The substring before the first occurrence of the character sequence chars in str.
@@ -117,6 +121,7 @@ export const substringBefore = (input: unknown, chars: unknown) => {
  * 
  * @example
  * substringAfter("hello world", " ") // "world"
+ * @group String
  * 
  * @param input The input string.
  * @param chars The character sequence to search for.
@@ -138,6 +143,7 @@ export const substringAfter = (input: unknown, chars: unknown) => {
  * @example
  * uppercase("hello") // "HELLO"
  * "hello world"|uppercase // "HELLO WORLD"
+ * @group String
  * 
  * @param input The input to convert to uppercase. Non-string inputs are converted to JSON string first.
  * @returns The uppercase string.
@@ -153,6 +159,7 @@ export const uppercase = (input: unknown) => {
  * @example
  * lowercase("HELLO") // "hello"
  * "HELLO WORLD"|lowercase // "hello world"
+ * @group String
  * 
  * @param input The input to convert to lowercase. Non-string inputs are converted to JSON string first.
  * @returns The lowercase string.
@@ -170,6 +177,7 @@ const splitRegex = /(?<!^)(?=[A-Z])|[`~!@#%^&*()|+\\\-=?;:'.,\s_']+/;
  * camelCase("foo bar") // "fooBar"
  * "hello-world"|camelCase // "helloWorld"
  * camelCase("HELLO_WORLD") // "helloWorld"
+ * @group String
  * 
  * @param input The input string to convert to camel case.
  * @returns The camel case string, or empty string if input is not a string.
@@ -189,6 +197,7 @@ export const camelCase = (input: unknown) => {
  * pascalCase("foo bar") // "FooBar"
  * "hello-world"|pascalCase // "HelloWorld"
  * pascalCase("HELLO_WORLD") // "HelloWorld"
+ * @group String
  * 
  * @param input The input string to convert to pascal case.
  * @returns The pascal case string, or empty string if input is not a string.
@@ -205,6 +214,7 @@ export const pascalCase = (input: unknown) => {
  * trim("  hello  ") // "hello"
  * "  world  "|trim // "world"
  * trim("__hello__", "_") // "hello"
+ * @group String
  * 
  * @param input The input string to trim.
  * @param trimChar Optional character to trim instead of whitespace.
@@ -227,6 +237,7 @@ export const trim = (input: unknown, trimChar?: string) => {
  * pad("hello", 10) // "hello     "
  * pad("world", -8, "0") // "000world"
  * "foo"|pad(5, ".") // "foo.."
+ * @group String
  * 
  * @param input The input to pad. Non-string inputs are converted to JSON string first.
  * @param width The target width. Positive values pad to the right, negative values pad to the left.
@@ -249,6 +260,7 @@ export const pad = (input: unknown, width: number, char: string = ' ') => {
  * contains("hello world", "world") // true
  * "foo-bar"|contains("bar") // true
  * contains([1, 2, 3], 2) // true
+ * @group String
  * 
  * @param input The input string or array to search in.
  * @param search The value to search for.
@@ -268,6 +280,7 @@ export const contains = (input: unknown, search: string) => {
  * startsWith("hello world", "hello") // true
  * "foo-bar"|startsWith("foo") // true
  * startsWith("test", "xyz") // false
+ * @group String
  * 
  * @param input The input string to check.
  * @param search The substring to search for at the beginning.
@@ -287,6 +300,7 @@ export const startsWith = (input: unknown, search: string) => {
  * endsWith("hello world", "world") // true
  * "foo-bar"|endsWith("bar") // true
  * endsWith("test", "xyz") // false
+ * @group String
  * 
  * @param input The input string to check.
  * @param search The substring to search for at the end.
@@ -306,6 +320,7 @@ export const endsWith = (input: unknown, search: string) => {
  * split("foo,bar,baz", ",") // ["foo", "bar", "baz"]
  * "one-two-three"|split("-") // ["one", "two", "three"]
  * split("hello world", " ") // ["hello", "world"]
+ * @group String
  * 
  * @param input The input string to split.
  * @param separator The separator string to split on.
@@ -325,6 +340,7 @@ export const split = (input: unknown, separator: string) => {
  * arrayJoin(["foo", "bar", "baz"], ",") // "foo,bar,baz"
  * ["one", "two", "three"]|arrayJoin("-") // "one-two-three"
  * arrayJoin([1, 2, 3]) // "1,2,3"
+ * @group Array
  * 
  * @param input The input array to join.
  * @param separator The separator string to use between elements. Defaults to comma.
@@ -344,6 +360,7 @@ export const arrayJoin = (input: unknown, separator?: string) => {
  * replace("foo-bar-baz", "-", "_") // "foo_bar_baz"
  * "hello world"|replace("world", "there") // "hello there"
  * replace("test test test", "test", "demo") // "demo demo demo"
+ * @group String
  * 
  * @param input The input string to perform replacements on.
  * @param search The string to search for and replace.
@@ -365,6 +382,7 @@ export const replace = (input: unknown, search: string, replacement: string) => 
  * base64Encode("hello") // "aGVsbG8="
  * "hello world"|base64Encode // "aGVsbG8gd29ybGQ="
  * base64Encode("test") // "dGVzdA=="
+ * @group Encoding
  * 
  * @param input The input string to encode.
  * @returns The Base64 encoded string, or empty string if input is not a string or encoding fails.
@@ -390,6 +408,7 @@ export const base64Encode = (input: unknown) => {
  * base64Decode("aGVsbG8=") // "hello"
  * "aGVsbG8gd29ybGQ="|base64Decode // "hello world"
  * base64Decode("dGVzdA==") // "test"
+ * @group Encoding
  * 
  * @param input The Base64 encoded string to decode.
  * @returns The decoded string, or empty string if input is not a string.
@@ -410,6 +429,7 @@ export const base64Decode = (input: unknown) => {
  * formUrlEncoded("hello world") // "hello%20world"
  * formUrlEncoded({name: "John", age: 30}) // "name=John&age=30"
  * "hello & world"|formUrlEncoded // "hello%20%26%20world"
+ * @group Encoding
  * 
  * @param input The input string or object to encode.
  * @returns The URL encoded string, or empty string if input is not a string or object.
@@ -430,6 +450,7 @@ export const formUrlEncoded = (input: unknown) => {
  * toNumber("123") // 123
  * "45.67"|toNumber // 45.67
  * toNumber("abc") // NaN
+ * @group Conversion
  * 
  * @param input The input to convert to a number.
  * @returns The numeric value, or NaN if conversion fails.
@@ -447,6 +468,7 @@ export const toNumber = (input: unknown) => {
  * parseInteger("123") // 123
  * "45.67"|parseInteger // 45
  * parseInteger(123.89) // 123
+ * @group Conversion
  * 
  * @param input The input to parse as an integer.
  * @returns The integer value, or NaN if parsing fails.
@@ -467,6 +489,7 @@ export const parseInteger = (input: unknown) => {
  * absoluteValue(-5) // 5
  * (-10)|absoluteValue // 10
  * absoluteValue(3.14) // 3.14
+ * @group Math
  * 
  * @param input The input number to get the absolute value of.
  * @returns The absolute value, or NaN if input cannot be converted to a number.
@@ -483,6 +506,7 @@ export const absoluteValue = (input: unknown) => {
  * floor(3.7) // 3
  * (3.14)|floor // 3
  * floor(-2.8) // -3
+ * @group Math
  * 
  * @param input The input number to round down.
  * @returns The rounded down integer, or NaN if input cannot be converted to a number.
@@ -499,6 +523,7 @@ export const floor = (input: unknown) => {
  * ceil(3.2) // 4
  * (3.14)|ceil // 4
  * ceil(-2.8) // -2
+ * @group Math
  * 
  * @param input The input number to round up.
  * @returns The rounded up integer, or NaN if input cannot be converted to a number.
@@ -515,6 +540,7 @@ export const ceil = (input: unknown) => {
  * round(3.7) // 4
  * round(3.14159, 2) // 3.14
  * (2.567)|round // 3
+ * @group Math
  * 
  * @param input The input number to round.
  * @param decimals Optional number of decimal places to round to.
@@ -532,6 +558,7 @@ export const round = (input: unknown, decimals?: number) => {
  * power(2, 3) // 8
  * (2)|power(4) // 16
  * power(9) // 81 (defaults to power of 2)
+ * @group Math
  * 
  * @param input The base number.
  * @param exponent The exponent to raise the base to. Defaults to 2.
@@ -550,6 +577,7 @@ export const power = (input: unknown, exponent?: number) => {
  * sqrt(16) // 4
  * (25)|sqrt // 5
  * sqrt(2) // 1.4142135623730951
+ * @group Math
  * 
  * @param input The input number to get the square root of.
  * @returns The square root of the input, or NaN if input cannot be converted to a number.
@@ -565,6 +593,7 @@ export const sqrt = (input: unknown) => {
  * @example
  * randomNumber() // 0.123456789 (example output)
  * randomNumber() // 0.987654321 (different each time)
+ * @group Math
  * 
  * @returns A random floating-point number between 0 and 1.
  */
@@ -579,6 +608,7 @@ export const randomNumber = () => {
  * formatNumber(1234.567, "#,##0.00") // "1,234.57"
  * (1000)|formatNumber("0.00") // "1000.00"
  * formatNumber(42, "#,###") // "42"
+ * @group Conversion
  * 
  * @param input The input number to format.
  * @param format The format string specifying decimal places and grouping.
@@ -600,6 +630,7 @@ export const formatNumber = (input: unknown, format: string) => {
  * formatBase(255, 16) // "ff"
  * (10)|formatBase(2) // "1010"
  * formatBase(64, 8) // "100"
+ * @group Conversion
  * 
  * @param input The input number to format.
  * @param base The numeric base to convert to (2-36).
@@ -617,6 +648,7 @@ export const formatBase = (input: unknown, base: number) => {
  * formatInteger(42, "000") // "042"
  * (7)|formatInteger("0000") // "0007"
  * formatInteger(123, "00") // "123"
+ * @group Conversion
  * 
  * @param input The input number to format.
  * @param format The format string indicating the minimum number of digits.
@@ -634,6 +666,7 @@ export const formatInteger = (input: unknown, format: string) => {
  * sum([1, 2, 3, 4]) // 10
  * [1.5, 2.5, 3.0]|sum // 7
  * sum(1, 2, 3, 4) // 10
+ * @group Math
  * 
  * @param input The input array of numbers or individual number arguments.
  * @returns The sum of all numbers, or NaN if input is not an array.
@@ -650,6 +683,7 @@ export const sum = (...input: unknown[]) => {
  * max([1, 5, 3, 2]) // 5
  * [10, 20, 15]|max // 20
  * max(1, 5, 3, 2) // 5
+ * @group Math
  * 
  * @param input The input array of numbers or individual number arguments.
  * @returns The maximum value, or NaN if input is not an array.
@@ -666,6 +700,7 @@ export const max = (...input: unknown[]) => {
  * min([1, 5, 3, 2]) // 1
  * [10, 20, 15]|min // 10
  * min(1, 5, 3, 2) // 1
+ * @group Math
  * 
  * @param input The input array of numbers or individual number arguments.
  * @returns The minimum value, or NaN if input is not an array.
@@ -682,6 +717,7 @@ export const min = (...input: unknown[]) => {
  * average([1, 2, 3, 4]) // 2.5
  * [10, 20, 30]|average // 20
  * average(1, 2, 3, 4) // 2.5
+ * @group Math
  * 
  * @param input The input array of numbers or individual number arguments.
  * @returns The average value, or NaN if input is not an array.
@@ -700,6 +736,7 @@ export const average = (...input: unknown[]) => {
  * "false"|toBoolean // false
  * toBoolean(1) // true
  * toBoolean(0) // false
+ * @group Conversion
  * 
  * @param input The input to convert to a boolean.
  * @returns The boolean value, or undefined for ambiguous string values.
@@ -723,6 +760,7 @@ export const toBoolean = (input: unknown) => {
  * false|not // true
  * not(0) // true
  * not("") // true
+ * @group Utility
  * 
  * @param input The input to apply logical NOT to.
  * @returns The logical NOT of the input converted to boolean.
@@ -736,6 +774,7 @@ export const not = (input: unknown) => {
  * 
  * @example
  * switch(expression, case1, result1, case2, result2, ..., default)
+ * @group Utility
  * 
  * @param args The arguments array where the first element is the expression to evaluate, followed by pairs of case and result, and optionally a default value.
  * @returns The result of the first case whose predicate is satisfied, or the default value if no case is satisfied.
@@ -767,6 +806,7 @@ export const switchCase = (...args: unknown[]) => {
  * append([1, 2], 3) // [1, 2, 3]
  * [1, 2]|append(3, 4) // [1, 2, 3, 4]
  * append([], 1, 2, 3) // [1, 2, 3]
+ * @group Array
  * 
  * @param input The input values to append to an array.
  * @returns A new array with all inputs flattened and appended, or empty array if no valid input.
@@ -783,6 +823,7 @@ export const arrayAppend = (...input: unknown[]) => {
  * reverse([1, 2, 3]) // [3, 2, 1]
  * [1, 2, 3]|reverse // [3, 2, 1]
  * reverse(["a", "b", "c"]) // ["c", "b", "a"]
+ * @group Array
  * 
  * @param input The input values to reverse.
  * @returns A new array with elements in reverse order, or empty array if no valid input.
@@ -799,6 +840,7 @@ export const arrayReverse = (...input: unknown[]) => {
  * shuffle([1, 2, 3]) // [2, 1, 3] (random order)
  * [1, 2, 3]|shuffle // [3, 1, 2] (random order)
  * shuffle(["a", "b", "c"]) // ["c", "a", "b"] (random order)
+ * @group Array
  * 
  * @param input The input array to shuffle.
  * @returns The same array with elements randomly shuffled, or empty array if input is not an array.
@@ -820,6 +862,7 @@ export const arrayShuffle = (input: unknown[]) => {
  * [3, 1, 2]|sort // [1, 2, 3]
  * sort([{age: 30}, {age: 20}], "age") // [{age: 20}, {age: 30}]
  * sort([{age: 30}, {age: 20}], "age", true) // [{age: 30}, {age: 20}]
+ * @group Array
  * 
  * @param input The input array to sort.
  * @param expression Optional JEXL expression to determine sort value for objects.
@@ -847,6 +890,7 @@ export const arraySort = (input: unknown[], expression?: string, descending?: bo
  * distinct([1, 2, 2, 3, 1]) // [1, 2, 3]
  * [1, 2, 2, 3]|distinct // [1, 2, 3]
  * distinct(["a", "b", "a", "c"]) // ["a", "b", "c"]
+ * @group Array
  * 
  * @param input The input array to remove duplicates from.
  * @returns A new array with duplicates removed, or empty array if input is not an array.
@@ -863,6 +907,8 @@ export const arrayDistinct = (input: unknown[]) => {
  * toObject([["name", "John"], ["age", 30]]) // {name: "John", age: 30}
  * toObject("name", "John") // {name: "John"}
  * toObject(["key1", "key2"], "defaultValue") // {key1: "defaultValue", key2: "defaultValue"}
+ * 
+ * @group Array
  * 
  * @param input The input string key or array of key-value pairs.
  * @param val Optional default value for string keys or when array elements are strings.
@@ -890,6 +936,7 @@ export const arrayToObject = (input: unknown, val?: unknown) => {
  * mapField([{name: "John"}, {name: "Jane"}], "name") // ["John", "Jane"]
  * [{age: 30}, {age: 25}]|mapField("age") // [30, 25]
  * mapField([{x: 1, y: 2}, {x: 3, y: 4}], "x") // [1, 3]
+ * @group Array
  * 
  * @param input The input array of objects to extract fields from.
  * @param field The field name to extract from each object.
@@ -909,6 +956,7 @@ export const mapField = (input: unknown[], field: string) => {
  * map([1, 2, 3], "value * 2") // [2, 4, 6]
  * [{name: "John"}, {name: "Jane"}]|map("value.name") // ["John", "Jane"]
  * map([1, 2, 3], "value + index") // [1, 3, 5]
+ * @group Array
  * 
  * @param input The input array to transform.
  * @param expression The JEXL expression to apply to each element.
@@ -931,6 +979,7 @@ export const arrayMap = (input: unknown[], expression: string) => {
  * any([1, 2, 3], "value > 2") // true
  * [{age: 25}, {age: 35}]|any("value.age > 30") // true
  * any([1, 2, 3], "value > 5") // false
+ * @group Array
  * 
  * @param input The input array to test.
  * @param expression The JEXL expression to test against each element.
@@ -953,6 +1002,7 @@ export const arrayAny = (input: unknown[], expression: string) => {
  * every([2, 4, 6], "value % 2 == 0") // true
  * [{age: 25}, {age: 35}]|every("value.age > 20") // true
  * every([1, 2, 3], "value > 2") // false
+ * @group Array
  * 
  * @param input The input array to test.
  * @param expression The JEXL expression to test against each element.
@@ -976,6 +1026,7 @@ export const arrayEvery = (input: unknown[], expression: string) => {
  * filter([1, 2, 3, 4], "value > 2") // [3, 4]
  * [{age: 25}, {age: 35}]|filter("value.age > 30") // [{age: 35}]
  * filter([1, 2, 3, 4], "value % 2 == 0") // [2, 4]
+ * @group Array
  * 
  * @param input The input array to filter.
  * @param expression The JEXL expression to test against each element.
@@ -998,6 +1049,7 @@ export const arrayFilter = (input: unknown[], expression: string) => {
  * find([1, 2, 3, 4], "value > 2") // 3
  * [{name: "John"}, {name: "Jane"}]|find("value.name == 'Jane'") // {name: "Jane"}
  * find([1, 2, 3], "value > 5") // undefined
+ * @group Array
  * 
  * @param input The input array to search.
  * @param expression The JEXL expression to test against each element.
@@ -1017,6 +1069,7 @@ export const arrayFind = (input: unknown[], expression: string) => {
  * 
  * @example
  * [1, 2, 3, 4]|findIndex('value > 2'); // returns 2
+ * @group Array
  *
  * @param input - The array to search through.
  * @param expression - A Jexl expression string to evaluate for each element. The expression has access to `value`, `index`, and `array`.
@@ -1039,6 +1092,7 @@ export const arrayFindIndex = (input: unknown[], expression: string) => {
  * reduce([1, 2, 3, 4], "accumulator + value", 0) // 10
  * [1, 2, 3]|reduce("accumulator * value", 1) // 6
  * reduce(["a", "b", "c"], "accumulator + value", "") // "abc"
+ * @group Array
  * 
  * @param input The input array to reduce.
  * @param expression The JEXL expression to apply for each reduction step.
@@ -1060,6 +1114,7 @@ export const arrayReduce = (input: unknown[], expression: string, initialValue: 
  * keys({name: "John", age: 30}) // ["name", "age"]
  * {a: 1, b: 2}|keys // ["a", "b"]
  * keys({}) // []
+ * @group Array
  * 
  * @param input The input object to get keys from.
  * @returns An array of object keys, or undefined if input is not an object.
@@ -1078,6 +1133,7 @@ export const objectKeys = (input: unknown) => {
  * values({name: "John", age: 30}) // ["John", 30]
  * {a: 1, b: 2}|values // [1, 2]
  * values({}) // []
+ * @group Object
  * 
  * @param input The input object to get values from.
  * @returns An array of object values, or undefined if input is not an object.
@@ -1096,6 +1152,7 @@ export const objectValues = (input: unknown) => {
  * entries({name: "John", age: 30}) // [["name", "John"], ["age", 30]]
  * {a: 1, b: 2}|entries // [["a", 1], ["b", 2]]
  * entries({}) // []
+ * @group Object
  * 
  * @param input The input object to get entries from.
  * @returns An array of [key, value] pairs, or undefined if input is not an object.
@@ -1114,6 +1171,7 @@ export const objectEntries = (input: unknown) => {
  * merge({a: 1}, {b: 2}) // {a: 1, b: 2}
  * {a: 1}|merge({b: 2}, {c: 3}) // {a: 1, b: 2, c: 3}
  * merge({a: 1}, {a: 2}) // {a: 2} (later values override)
+ * @group Object
  * 
  * @param args The input objects to merge.
  * @returns A new object with all properties merged together.
@@ -1140,6 +1198,7 @@ export const objectMerge = (...args: unknown[]) => {
  * @example
  * now() // "2023-12-25T10:30:00.000Z"
  * now() // "2023-12-25T14:45:30.123Z" (different time)
+ * @group DateTime
  * 
  * @returns The current date and time as an ISO 8601 string.
  */
@@ -1153,6 +1212,7 @@ export const now = () => {
  * @example
  * millis() // 1703505000000
  * millis() // 1703505123456 (different time)
+ * @group DateTime
  * 
  * @returns The current timestamp in milliseconds.
  */
@@ -1168,6 +1228,7 @@ export const millis = () => {
  * toDateTime("2023-12-25") // "2023-12-25T00:00:00.000Z"
  * toDateTime("25/12/2023", "dd/MM/yyyy") // "2023-12-25T00:00:00.000Z"
  * toDateTime() // Current date/time (same as now())
+ * @group DateTime
  * 
  * @param input Optional timestamp in milliseconds or date string.
  * @param format Optional format string for parsing date strings.
@@ -1198,6 +1259,7 @@ export const toDateTime = (input?: number | string, format?: string) => {
  * @example
  * dateTimeFormat(datetime, format)
  * datetime|dateTimeFormat(format)
+ * @group DateTime
  * 
  * @param input The input date and time, either as a string or number.
  * @param format The format to convert the date and time to.
@@ -1228,6 +1290,7 @@ export const dateTimeFormat = (input: number | string, format: string): string |
  * dateTimeToMillis("2023-12-25T10:30:00.000Z") // 1703505000000
  * "2023-01-01T00:00:00.000Z"|dateTimeToMillis // 1672531200000
  * dateTimeToMillis("2023-12-25") // 1703462400000
+ * @group DateTime
  * 
  * @param input The date and time string to parse.
  * @returns The timestamp in milliseconds since Unix epoch.
@@ -1243,6 +1306,7 @@ export const dateTimeToMillis = (input: string) => {
  * dateTimeAdd("2023-12-25T10:30:00.000Z", "day", 1) // "2023-12-26T10:30:00.000Z"
  * now()|dateTimeAdd("hour", -2) // Two hours ago
  * dateTimeAdd("2023-01-01T00:00:00.000Z", "month", 3) // "2023-04-01T00:00:00.000Z"
+ * @group DateTime
  * 
  * @param input The input date and time string in ISO 8601 format.
  * @param unit The time unit to add ("day", "hour", "minute", "second", "month", "year", etc.).
@@ -1268,6 +1332,7 @@ export const dateTimeAdd = (input: string, unit: string, value: number) => {
  * _eval({x: 5, y: 10}, "x + y") // 15
  * "2 * 3"|_eval // 6
  * _eval({name: "John"}, "name") // "John"
+ * @group Utility
  * 
  * @param input Either a JEXL expression string or a context object.
  * @param expression Optional JEXL expression when first argument is context.
@@ -1290,6 +1355,7 @@ export const _eval = (input: unknown, expression: string) => {
  * @example
  * uuid() // "123e4567-e89b-12d3-a456-426614174000"
  * uuid() // "987fcdeb-51a2-43d7-b123-456789abcdef" (different each time)
+ * @group Utility
  * 
  * @returns A new UUID v4 string.
  */

@@ -1,0 +1,35 @@
+---
+title: round
+description: Rounds a number to the nearest integer or to specified decimal places.
+---
+
+# round
+
+Rounds a number to the nearest integer or to specified decimal places.
+
+**Type:** transform
+
+## Parameters
+
+- **input** (unknown): The input number to round.
+- **decimals** (number?): Optional number of decimal places to round to.
+
+## Returns
+
+**Type:** `number`
+
+The rounded number, or NaN if input cannot be converted to a number.
+
+## Examples
+
+```javascript
+round(3.7) // 4
+```
+
+```javascript
+round(3.14159, 2) // 3.14
+```
+
+```javascript
+(2.567)|round // 3
+```

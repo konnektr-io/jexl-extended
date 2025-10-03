@@ -1,0 +1,38 @@
+---
+title: entries
+description: Returns an array of key-value pairs from the input object.
+---
+
+# entries
+
+Returns an array of key-value pairs from the input object.
+
+**Type:** transform
+
+## Aliases
+
+`objectEntries`, `entries`
+
+## Parameters
+
+- **input** (unknown): The input object to get entries from.
+
+## Returns
+
+**Type:** `array`
+
+An array of [key, value] pairs, or undefined if input is not an object.
+
+## Examples
+
+```javascript
+entries({name: "John", age: 30}) // [["name", "John"], ["age", 30]]
+```
+
+```javascript
+{a: 1, b: 2}|entries // [["a", 1], ["b", 2]]
+```
+
+```javascript
+entries({}) // []
+```

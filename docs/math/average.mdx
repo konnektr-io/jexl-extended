@@ -1,0 +1,38 @@
+---
+title: average
+description: Calculates the average of an array of numbers.
+---
+
+# average
+
+Calculates the average of an array of numbers.
+
+**Type:** transform
+
+## Aliases
+
+`avg`
+
+## Parameters
+
+- **input** (array): The input array of numbers or individual number arguments.
+
+## Returns
+
+**Type:** `number`
+
+The average value, or NaN if input is not an array.
+
+## Examples
+
+```javascript
+average([1, 2, 3, 4]) // 2.5
+```
+
+```javascript
+[10, 20, 30]|average // 20
+```
+
+```javascript
+average(1, 2, 3, 4) // 2.5
+```

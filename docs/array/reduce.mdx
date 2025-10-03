@@ -1,0 +1,40 @@
+---
+title: reduce
+description: Returns an aggregated value derived from applying the function parameter successively to each value in array in combination with the result of the previous application of the function.
+---
+
+# reduce
+
+Returns an aggregated value derived from applying the function parameter successively to each value in array in combination with the result of the previous application of the function.
+
+**Type:** transform
+
+## Aliases
+
+`arrayReduce`, `reduce`
+
+## Parameters
+
+- **input** (array): The input array to reduce.
+- **expression** (string): The JEXL expression to apply for each reduction step.
+- **initialValue** (unknown): The initial value for the accumulator.
+
+## Returns
+
+**Type:** `unknown`
+
+The final accumulated value, or undefined if input is not an array.
+
+## Examples
+
+```javascript
+reduce([1, 2, 3, 4], "accumulator + value", 0) // 10
+```
+
+```javascript
+[1, 2, 3]|reduce("accumulator * value", 1) // 6
+```
+
+```javascript
+reduce(["a", "b", "c"], "accumulator + value", "") // "abc"
+```

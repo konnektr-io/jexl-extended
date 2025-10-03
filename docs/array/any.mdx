@@ -1,0 +1,39 @@
+---
+title: any
+description: Checks whether the provided array has any elements that match the specified expression.
+---
+
+# any
+
+Checks whether the provided array has any elements that match the specified expression.
+
+**Type:** transform
+
+## Aliases
+
+`arrayAny`, `some`, `any`
+
+## Parameters
+
+- **input** (array): The input array to test.
+- **expression** (string): The JEXL expression to test against each element.
+
+## Returns
+
+**Type:** `boolean`
+
+True if any element matches the expression, false otherwise or if input is not an array.
+
+## Examples
+
+```javascript
+any([1, 2, 3], "value > 2") // true
+```
+
+```javascript
+[{age: 25}, {age: 35}]|any("value.age > 30") // true
+```
+
+```javascript
+any([1, 2, 3], "value > 5") // false
+```

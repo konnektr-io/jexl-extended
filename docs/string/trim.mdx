@@ -1,0 +1,35 @@
+---
+title: trim
+description: Trims whitespace from both ends of a string.
+---
+
+# trim
+
+Trims whitespace from both ends of a string.
+
+**Type:** transform
+
+## Parameters
+
+- **input** (unknown): The input string to trim.
+- **trimChar** (string?): Optional character to trim instead of whitespace.
+
+## Returns
+
+**Type:** `string`
+
+The trimmed string, or empty string if input is not a string.
+
+## Examples
+
+```javascript
+trim("  hello  ") // "hello"
+```
+
+```javascript
+"  world  "|trim // "world"
+```
+
+```javascript
+trim("__hello__", "_") // "hello"
+```

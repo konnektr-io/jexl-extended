@@ -35,14 +35,17 @@ jobs:
       - name: 'Install packages'
         run: pnpm install --no-frozen-lockfile
 
+      - name: 'Generate typedoc'
+        run: pnpm run docs:typedoc
+
       - name: 'Generate completion docs'
         run: pnpm run docs:completion
 
       - name: 'Build library'
         run: pnpm run build
 
-      - name: 'Generate HTML docs'
-        run: pnpm run docs:html
+      - name: 'Generate docs json add add in dist folder'
+        run: pnpm run docs:json
 
       - name: 'Run tests'
         run: pnpm run test

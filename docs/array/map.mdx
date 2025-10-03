@@ -1,0 +1,39 @@
+---
+title: map
+description: Returns an array containing the results of applying the expression parameter to each value in the array parameter.
+---
+
+# map
+
+Returns an array containing the results of applying the expression parameter to each value in the array parameter.
+
+**Type:** transform
+
+## Aliases
+
+`arrayMap`, `map`
+
+## Parameters
+
+- **input** (array): The input array to transform.
+- **expression** (string): The JEXL expression to apply to each element.
+
+## Returns
+
+**Type:** `array`
+
+A new array with transformed elements, or undefined if input is not an array.
+
+## Examples
+
+```javascript
+map([1, 2, 3], "value * 2") // [2, 4, 6]
+```
+
+```javascript
+[{name: "John"}, {name: "Jane"}]|map("value.name") // ["John", "Jane"]
+```
+
+```javascript
+map([1, 2, 3], "value + index") // [1, 3, 5]
+```

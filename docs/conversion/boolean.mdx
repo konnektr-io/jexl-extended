@@ -1,0 +1,38 @@
+---
+title: boolean
+description: Converts the input to a boolean.
+---
+
+# boolean
+
+Converts the input to a boolean.
+
+**Type:** transform
+
+## Aliases
+
+`toBoolean`, `bool`, `boolean`, `toBool`
+
+## Parameters
+
+- **input** (unknown): The input to convert to a boolean.
+
+## Returns
+
+**Type:** `boolean`
+
+The boolean value, or undefined for ambiguous string values.
+
+## Examples
+
+```javascript
+toBoolean("true") // true
+```
+
+```javascript
+"false"|toBoolean // false
+```
+
+```javascript
+toBoolean(1) // true
+```

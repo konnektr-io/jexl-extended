@@ -1,0 +1,39 @@
+---
+title: eval
+description: Evaluates a JEXL expression and returns the result.
+---
+
+# eval
+
+Evaluates a JEXL expression and returns the result.
+
+**Type:** transform
+
+## Aliases
+
+`_eval`, `eval`
+
+## Parameters
+
+- **input** (unknown): Either a JEXL expression string or a context object.
+- **expression** (string): Optional JEXL expression when first argument is context.
+
+## Returns
+
+**Type:** `any`
+
+The result of evaluating the expression, or undefined if evaluation fails.
+
+## Examples
+
+```javascript
+_eval("1 + 2") // 3
+```
+
+```javascript
+_eval({x: 5, y: 10}, "x + y") // 15
+```
+
+```javascript
+"2 * 3"|_eval // 6
+```
