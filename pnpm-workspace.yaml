@@ -1,2 +1,6 @@
 onlyBuiltDependencies:
   - esbuild
+
+packages:
+  - 'src'
+  - 'test'
