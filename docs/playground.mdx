@@ -1,0 +1,266 @@
+---
+title: Playground Guide
+description: Complete guide to using the JEXL Extended interactive playground
+---
+
+# JEXL Extended Playground
+
+The JEXL Extended Playground is an interactive web application that lets you experiment with JEXL expressions in real-time. Perfect for learning, testing, and prototyping.
+
+## 🚀 [Launch Playground](https://konnektr-io.github.io/jexl-playground/)
+
+## Features Overview
+
+### 🎨 **Rich Expression Editor**
+- Monaco Editor with JEXL syntax highlighting
+- IntelliSense auto-completion for all 80+ functions
+- Hover documentation with examples
+- Real-time syntax validation
+
+### ⚡ **Live Evaluation**
+- Automatic expression evaluation as you type
+- 500ms debounced for optimal performance
+- Visual indicators for evaluation status
+- Detailed error messages with suggestions
+
+### 💾 **Session Management**
+- Auto-save your work (restored for 24 hours)
+- Save named sessions with descriptions
+- Load and manage saved expressions
+- Import/export functionality
+
+### 📚 **Examples Library**
+- Pre-built examples for common use cases
+- Copy examples to start experimenting
+- Learn JEXL patterns and best practices
+
+## Interface Layout
+
+### Left Panel: Sessions & Examples
+- **Saved Sessions** - Your saved expressions
+- **Examples** - Pre-built examples to learn from
+- **Quick Actions** - Save, load, and manage sessions
+
+### Right Panel: Editors
+
+#### **Top Row: Input**
+- **JEXL Expression Editor** (left) - Write your expressions here
+- **Context Editor** (right) - JSON data for your expressions
+
+#### **Bottom Row: Output**
+- **Result Display** - Formatted output with type information
+- **Error Display** - Detailed error messages when things go wrong
+
+## Getting Started
+
+### 1. **Open the Playground**
+Visit [https://konnektr-io.github.io/jexl-playground/](https://konnektr-io.github.io/jexl-playground/)
+
+### 2. **Try the Default Example**
+The playground loads with a sample expression:
+```jexl
+users|filter('value.active')|map('value.name')|sort()
+```
+
+### 3. **Modify the Expression**
+Try changing the expression to:
+```jexl
+users|filter('value.age > 25')|map('value.name + " (" + value.department + ")"')
+```
+
+### 4. **Update the Context**
+Modify the JSON context data to see how it affects the results.
+
+## Working with Context Data
+
+### **JSON Path Detection**
+Click anywhere in the context editor to see the JSON path for that location. This helps you understand how to reference data in your expressions.
+
+### **Sample Data Structure**
+The playground includes sample data with:
+```json
+{
+  "users": [
+    { "name": "Alice", "age": 28, "active": true, "department": "Engineering" },
+    { "name": "Bob", "age": 32, "active": false, "department": "Sales" },
+    // ... more users
+  ],
+  "products": [
+    { "name": "Laptop", "price": 999.99, "category": "Electronics", "inStock": true },
+    // ... more products  
+  ],
+  "settings": {
+    "theme": "dark",
+    "language": "en",
+    "notifications": true
+  }
+}
+```
+
+## Expression Examples
+
+### **Filter and Transform Users**
+```jexl
+// Get active engineering users
+users|filter('value.active && value.department == "Engineering"')|map('value.name')
+
+// Count users by department
+users|groupBy('value.department')|entries|map('[value.key, length(value.value)]')|toObject
+```
+
+### **Work with Products**
+```jexl
+// Find expensive in-stock items
+products|filter('value.price > 500 && value.inStock')|sort('value.price')
+
+// Calculate total inventory value
+products|filter('value.inStock')|map('value.price')|sum
+```
+
+### **String Processing**
+```jexl
+// Format user display names
+users|map('value.name | uppercase | pad(15) + " - " + value.department')
+
+// Create email addresses
+users|map('value.name | lowercase | replace(" ", ".") + "@company.com"')
+```
+
+### **Mathematical Operations**
+```jexl
+// Calculate statistics
+[users|map('value.age')|average, users|map('value.age')|max, users|map('value.age')|min]
+
+// Generate random sample
+users|shuffle|slice(0, 2)
+```
+
+## Keyboard Shortcuts
+
+- **Ctrl/Cmd + Enter** - Evaluate expression
+- **Ctrl/Cmd + S** - Save current session
+- **Ctrl/Cmd + /** - Toggle comments (in editors)
+- **F1** - Show command palette (Monaco)
+- **Ctrl/Cmd + F** - Find in editor
+
+## Tips & Best Practices
+
+### **💡 Learning Tips**
+1. **Start with Examples** - Use the examples library to learn patterns
+2. **Use IntelliSense** - Press Ctrl+Space to see available functions
+3. **Read Hover Docs** - Hover over function names for documentation
+4. **Experiment Incrementally** - Build complex expressions step by step
+
+### **🔧 Troubleshooting**
+
+**Expression Not Working?**
+- Check the error message in the output panel
+- Verify your JSON context is valid
+- Use the JSON path indicator to reference data correctly
+- Try simpler expressions first
+
+**Performance Issues?**
+- Large datasets may slow evaluation
+- Use filters early in expression chains
+- Consider breaking complex expressions into steps
+
+**Context Data Problems?**
+- Ensure JSON is properly formatted
+- Check for trailing commas or syntax errors
+- Use the browser's JSON validator
+
+### **🎯 Expression Best Practices**
+
+1. **Filter Early**: `data|filter(condition)|map(transform)` is faster than `data|map(transform)|filter(condition)`
+
+2. **Use Appropriate Functions**: 
+   - `find` instead of `filter` for single items
+   - `any`/`all` instead of `filter` + `length` for boolean checks
+
+3. **Chain Logically**: Build expressions that read naturally left-to-right
+
+4. **Handle Edge Cases**: Check for null/undefined values when needed
+
+## Saving and Sharing
+
+### **Auto-Save**
+- Your work is automatically saved locally
+- Restored when you return (within 24 hours)
+- No account required
+
+### **Named Sessions**
+1. Click "Save Session" in the left panel
+2. Enter a name and optional description
+3. Access saved sessions anytime
+4. Export sessions as JSON for sharing
+
+### **Sharing Expressions**
+- Copy the expression text to share with others
+- Export context data along with expressions
+- Use GitHub gists for longer examples
+
+## Advanced Features
+
+### **Custom Context**
+Replace the sample data with your own:
+```json
+{
+  "myData": [
+    // Your data here
+  ],
+  "config": {
+    // Your configuration
+  }
+}
+```
+
+### **Complex Expressions**
+Build sophisticated data transformations:
+```jexl
+// Multi-step aggregation
+users
+|groupBy('value.department')
+|entries
+|map('{
+  "department": value.key,
+  "count": length(value.value),
+  "avgAge": value.value|map("value.age")|average|round(1),
+  "activeCount": value.value|filter("value.active")|length
+}')
+|sort('value.count')
+```
+
+### **Error Handling**
+Test expressions with edge cases:
+```jexl
+// Safe property access
+users|map('value.profile?.bio || "No bio available"')
+
+// Handle missing data
+products|filter('value.price != null && value.price > 0')
+```
+
+## Browser Compatibility
+
+The playground works in all modern browsers:
+- Chrome 80+
+- Firefox 80+
+- Safari 14+
+- Edge 80+
+
+## Technical Details
+
+- Built with React and TypeScript
+- Monaco Editor for code editing
+- Real-time expression evaluation
+- Local storage for session persistence
+- Responsive design for mobile devices
+
+## Need Help?
+
+- 📖 [Language Reference](./language/) - Complete JEXL syntax guide
+- 🔍 [Function Reference](./reference/) - Documentation for all functions
+- 💬 [GitHub Issues](https://github.com/konnektr-io/jexl-extended/issues) - Report bugs or ask questions
+- 🌟 [GitHub Discussions](https://github.com/konnektr-io/jexl-extended/discussions) - Community support
+
+Happy exploring! The playground is the perfect place to learn JEXL Extended and prototype your expressions before using them in your applications.
