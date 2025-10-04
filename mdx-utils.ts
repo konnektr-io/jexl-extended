@@ -7,7 +7,7 @@ import path from "path";
  * Utility script to manage MDX documentation
  */
 
-const DOCS_DIR = "./docs";
+const DOCS_DIR = "./docs/reference";
 
 function cleanDocs(): void {
   console.log("🧹 Cleaning MDX documentation...");

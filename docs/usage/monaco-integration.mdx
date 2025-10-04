@@ -1,0 +1,164 @@
+---
+title: Monaco Editor Integration
+description: How to integrate JEXL with Monaco Editor for rich IDE experience
+---
+
+# Monaco Editor Integration
+
+JEXL Extended provides built-in Monaco Editor support with syntax highlighting, IntelliSense completion, hover documentation, and error detection.
+
+## Installation
+
+```bash
+npm install jexl-extended monaco-editor
+```
+
+## Basic Setup
+
+```typescript
+import * as monaco from "monaco-editor";
+import { Monaco } from "jexl-extended";
+
+// Register JEXL language support
+Monaco.registerJexlLanguage(monaco);
+
+// Create an editor with JEXL support
+const editor = Monaco.createJexlEditor(
+  monaco,
+  document.getElementById("editor"),
+  {
+    value: 'data.users | filter(.age > 18) | map(.name)',
+    height: 400,
+    theme: 'vs-dark'
+  }
+);
+```
+
+## React Integration
+
+```tsx
+import React, { useRef, useEffect } from 'react';
+import * as monaco from 'monaco-editor';
+import { Monaco } from 'jexl-extended';
+
+const JexlEditor: React.FC<{ value: string; onChange: (value: string) => void }> = ({ 
+  value, 
+  onChange 
+}) => {
+  const editorRef = useRef<HTMLDivElement>(null);
+  const monacoRef = useRef<monaco.editor.IStandaloneCodeEditor | null>(null);
+
+  useEffect(() => {
+    if (editorRef.current) {
+      // Register JEXL language
+      Monaco.registerJexlLanguage(monaco);
+      
+      // Create editor
+      monacoRef.current = Monaco.createJexlEditor(monaco, editorRef.current, {
+        value,
+        height: 300,
+        theme: 'vs-dark'
+      });
+
+      // Listen for changes
+      monacoRef.current.onDidChangeModelContent(() => {
+        onChange(monacoRef.current!.getValue());
+      });
+    }
+
+    return () => {
+      monacoRef.current?.dispose();
+    };
+  }, []);
+
+  return <div ref={editorRef} />;
+};
+```
+
+## Vue Integration
+
+```vue
+<template>
+  <div ref="editorContainer" />
+</template>
+
+<script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue';
+import * as monaco from 'monaco-editor';
+import { Monaco } from 'jexl-extended';
+
+const editorContainer = ref<HTMLDivElement>();
+let editor: monaco.editor.IStandaloneCodeEditor | null = null;
+
+const props = defineProps<{
+  value: string;
+}>();
+
+const emit = defineEmits<{
+  change: [value: string];
+}>();
+
+onMounted(() => {
+  if (editorContainer.value) {
+    Monaco.registerJexlLanguage(monaco);
+    
+    editor = Monaco.createJexlEditor(monaco, editorContainer.value, {
+      value: props.value,
+      height: 300,
+      theme: 'vs-dark'
+    });
+
+    editor.onDidChangeModelContent(() => {
+      emit('change', editor!.getValue());
+    });
+  }
+});
+
+onUnmounted(() => {
+  editor?.dispose();
+});
+</script>
+```
+
+## Features
+
+The Monaco integration provides:
+
+- **Syntax Highlighting** - Color coding for JEXL expressions
+- **IntelliSense** - Auto-completion for all 80+ functions
+- **Hover Documentation** - Function descriptions on hover
+- **Error Detection** - Real-time syntax validation
+- **Code Folding** - Collapse arrays and objects
+
+## Configuration Options
+
+```typescript
+const editor = Monaco.createJexlEditor(monaco, container, {
+  value: '',           // Initial expression
+  height: 400,         // Editor height
+  theme: 'vs-dark',    // vs, vs-dark, or vs-light
+  fontSize: 14,        // Font size
+  minimap: { enabled: false },  // Show/hide minimap
+  lineNumbers: 'on',   // Show line numbers
+  wordWrap: 'on',      // Enable word wrapping
+  automaticLayout: true // Auto-resize with container
+});
+```
+
+## Getting Values
+
+```typescript
+// Get current expression
+const expression = editor.getValue();
+
+// Set new expression
+editor.setValue('new.expression | here');
+
+// Listen for changes
+editor.onDidChangeModelContent(() => {
+  const currentValue = editor.getValue();
+  console.log('Expression changed:', currentValue);
+});
+```
+
+That's it! The Monaco integration handles all the complex setup internally, so you can focus on providing a great expression editing experience for your users.

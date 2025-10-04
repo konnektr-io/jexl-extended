@@ -1,0 +1,377 @@
+---
+title: JavaScript Implementation
+description: Using JEXL Extended in JavaScript and TypeScript projects
+---
+
+# JavaScript Implementation
+
+JEXL Extended is the original JavaScript/TypeScript implementation with full type support and Monaco Editor integration.
+
+## Installation
+
+```bash
+# npm
+npm install jexl-extended
+
+# yarn
+yarn add jexl-extended
+
+# pnpm
+pnpm add jexl-extended
+```
+
+## Basic Usage
+
+### ES6 Modules
+```javascript
+import jexl from 'jexl-extended';
+
+// Simple expression evaluation
+const result = jexl.evalSync('5 + 3 * 2'); // 11
+
+// With context data
+const context = { name: "Alice", scores: [85, 92, 78] };
+const greeting = jexl.evalSync('"Hello " + name', context); // "Hello Alice"
+const average = jexl.evalSync('scores | average', context); // 85
+```
+
+### CommonJS
+```javascript
+const jexl = require('jexl-extended');
+
+const result = jexl.evalSync('[1, 2, 3] | sum'); // 6
+```
+
+### TypeScript Support
+
+Full TypeScript definitions are included:
+
+```typescript
+import jexl from 'jexl-extended';
+import type { JexlExpression, Context } from 'jexl-extended';
+
+interface UserContext {
+  user: {
+    name: string;
+    age: number;
+    active: boolean;
+  };
+  settings: Record<string, any>;
+}
+
+const context: UserContext = {
+  user: { name: "John", age: 30, active: true },
+  settings: { theme: "dark" }
+};
+
+// Type-safe evaluation
+const userName: string = jexl.evalSync('user.name | uppercase', context);
+const isEligible: boolean = jexl.evalSync('user.age >= 18 && user.active', context);
+```
+
+## Expression Examples
+
+Based on the actual test suite, here are working examples:
+
+### String Operations
+```javascript
+// String conversion and manipulation
+jexl.evalSync('string(123)'); // "123"
+jexl.evalSync('123456|string'); // "123456"
+jexl.evalSync('{a:123456}|string'); // '{"a":123456}'
+
+// Case conversion
+jexl.evalSync('"hello world"|uppercase'); // "HELLO WORLD"
+jexl.evalSync('"HELLO WORLD"|lowercase'); // "hello world"
+jexl.evalSync('"FOObar"|lower'); // "foobar"
+
+// camelCase and PascalCase
+jexl.evalSync('"foo bar"|camelCase'); // "fooBar"
+jexl.evalSync('"Foo_bar"|camelCase'); // "fooBar"
+jexl.evalSync('"foo bar"|toPascalCase'); // "FooBar"
+jexl.evalSync('"fooBar"|toPascalCase'); // "FooBar"
+
+// Substring operations
+jexl.evalSync('substring(123456,2,2)'); // "34"
+jexl.evalSync('substring("test",(-2))'); // "st"
+jexl.evalSync('"hello world"|substringBefore(" ")'); // "hello"
+jexl.evalSync('"hello world"|substringAfter(" ")'); // "world"
+
+// String utilities
+jexl.evalSync('trim(" baz  ")'); // "baz"
+jexl.evalSync('pad("foo",5)'); // "foo  "
+jexl.evalSync('pad("foo",(-5),0)'); // "00foo"
+jexl.evalSync('"foo-bar"|contains("bar")'); // true
+jexl.evalSync('"foo-bar"|startsWith("foo")'); // true
+jexl.evalSync('"foo-bar"|endsWith("bar")'); // true
+```
+
+### Array Operations
+```javascript
+// Array manipulation
+jexl.evalSync('["foo", "bar", "baz"]|append("tek")'); // ['foo', 'bar', 'baz', 'tek']
+jexl.evalSync('["foo", "bar"]|append(["baz","tek"])'); // ['foo', 'bar', 'baz', 'tek']
+jexl.evalSync('["tek", "baz", "bar", "foo"]|reverse'); // ['foo', 'bar', 'baz', 'tek']
+jexl.evalSync('["tek", "baz", "bar", "foo", "foo"]|reverse|distinct'); // ['foo', 'bar', 'baz', 'tek']
+
+// Array splitting and joining
+jexl.evalSync('split("foo-bar", "-")'); // ['foo', 'bar']
+jexl.evalSync('join(["foo", "bar"], "-")'); // "foo-bar"
+jexl.evalSync('"f,b,a,d,e,c"|split(",")|sort|join'); // "a,b,c,d,e,f"
+jexl.evalSync('"f,b,a,d,e,c"|split(",")|sort|join("")'); // "abcdef"
+
+// Object operations  
+jexl.evalSync('{foo:0, bar:1, baz:2, tek:3}|keys'); // ['foo', 'bar', 'baz', 'tek']
+jexl.evalSync('{a:"foo", b:"bar", c:"baz", d:"tek"}|values'); // ['foo', 'bar', 'baz', 'tek']
+```
+
+### Mathematical Operations
+```javascript
+// Number operations
+jexl.evalSync('number("1.1")'); // 1.1
+jexl.evalSync('number(-1.1)|floor'); // -2
+jexl.evalSync('number("10.6")|ceil'); // 11
+jexl.evalSync('10.123456|round(2)'); // 10.12
+jexl.evalSync('10.123456|toInt'); // 10
+jexl.evalSync('"10.123456"|toInt'); // 10
+jexl.evalSync('3|power(2)'); // 9
+jexl.evalSync('3|power'); // 9 (defaults to power of 2)
+jexl.evalSync('9|sqrt'); // 3
+jexl.evalSync('random() < 1'); // true
+
+// Formatting
+jexl.evalSync('16325.62|formatNumber("0,0.000")'); // "16,325.620"
+jexl.evalSync('16325.62|formatNumber("0.000")'); // "16325.620"
+jexl.evalSync('12|formatBase(16)'); // "c"
+jexl.evalSync('16325.62|formatInteger("0000000")'); // "0016325"
+
+// Aggregations
+jexl.evalSync('[1,2,3]|sum'); // 6
+jexl.evalSync('sum(1,2,3,4,5)'); // 15
+jexl.evalSync('[1,3]|sum(1,2,3,4,5)'); // 19
+jexl.evalSync('[1,3]|max([1,2,3,4,5])'); // 5
+jexl.evalSync('[2,3]|min([1,2,3,4,5])'); // 1
+jexl.evalSync('[4,5,6]|avg'); // 5
+```
+
+### Boolean and Logic Operations
+```javascript
+// Boolean conversion
+jexl.evalSync('1|toBoolean'); // true
+jexl.evalSync('3|toBoolean'); // true
+jexl.evalSync('"1"|toBoolean'); // true
+jexl.evalSync('0|toBool'); // false
+jexl.evalSync('"false"|toBool'); // false
+jexl.evalSync('"True"|toBool'); // true
+jexl.evalSync('"tRUE       "|toBoolean'); // true
+
+// Case statements
+jexl.evalSync('2|case(1,"a",2,"b",3,"c")'); // "b"
+jexl.evalSync('case("bar","foo","a","bar","b","baz","c")'); // "b"
+jexl.evalSync('"notfound"|case("bar","foo","a","bar","b","baz","c","b","b")'); // "b" (default)
+
+// Logical operations
+jexl.evalSync('"False"|toBool|not'); // true
+jexl.evalSync('"TRUE"|toBool|not'); // false
+```
+
+### Encoding and Conversion
+```javascript
+// Base64 encoding
+jexl.evalSync('"foobar"|base64Encode'); // "Zm9vYmFy"
+jexl.evalSync('"Zm9vYmFy"|base64Decode'); // "foobar"
+jexl.evalSync('"hello⛳❤️🧀"|base64Encode|base64Decode'); // "hello⛳❤️🧀"
+
+// URL encoding
+jexl.evalSync('{foo:"bar",baz:"tek"}|formUrlEncoded'); // "foo=bar&baz=tek"
+
+// Text replacement
+jexl.evalSync('replace("foo-bar", "-", "_")'); // "foo_bar"
+jexl.evalSync('replace("foo-bar---", "-", "")'); // "foobar"
+jexl.evalSync('"123ab123ab123ab"|replace("123")'); // "ababab"
+```
+
+## Async vs Sync Evaluation
+
+### Synchronous (Recommended for most cases)
+```javascript
+const result = jexl.evalSync('expression', context);
+```
+
+### Asynchronous
+```javascript
+const result = await jexl.eval('expression', context);
+
+// Multiple expressions in parallel
+const expressions = ['expr1', 'expr2', 'expr3'];
+const results = await Promise.all(
+  expressions.map(expr => jexl.eval(expr, context))
+);
+```
+
+## Expression Compilation
+
+For repeated evaluations, compile expressions once:
+
+```javascript
+// Compile once
+const compiled = jexl.compile('user.name | uppercase');
+
+// Evaluate multiple times
+const result1 = compiled.evalSync({ user: { name: 'Alice' } }); // "ALICE"
+const result2 = compiled.evalSync({ user: { name: 'Bob' } });   // "BOB"
+```
+
+## Integration Patterns
+
+### React Component
+```javascript
+import React, { useMemo } from 'react';
+import jexl from 'jexl-extended';
+
+function DataDisplay({ data, expression }) {
+  const result = useMemo(() => {
+    try {
+      return jexl.evalSync(expression, data);
+    } catch (error) {
+      return `Error: ${error.message}`;
+    }
+  }, [data, expression]);
+  
+  return <div>{JSON.stringify(result)}</div>;
+}
+
+// Usage
+<DataDisplay 
+  data={{ users: [...], metrics: {...} }}
+  expression='users | filter("value.active") | length'
+/>
+```
+
+### Express.js Middleware
+```javascript
+function jexlMiddleware() {
+  return (req, res, next) => {
+    req.jexlEval = (expression, additionalContext = {}) => {
+      const context = {
+        req: {
+          params: req.params,
+          query: req.query,
+          body: req.body,
+          user: req.user
+        },
+        ...additionalContext
+      };
+      return jexl.evalSync(expression, context);
+    };
+    next();
+  };
+}
+
+// Usage
+app.use(jexlMiddleware());
+
+app.get('/api/data', (req, res) => {
+  const filtered = req.jexlEval('data | filter("value.visible")', { data: [...] });
+  res.json(filtered);
+});
+```
+
+### Form Validation
+```javascript
+const validationRules = {
+  email: 'email | contains("@") && email | contains(".")',
+  age: 'age >= 18 && age <= 120',
+  password: 'password | length >= 8'
+};
+
+function validateForm(formData) {
+  const results = {};
+  
+  for (const [field, rule] of Object.entries(validationRules)) {
+    try {
+      results[field] = jexl.evalSync(rule, formData);
+    } catch (error) {
+      results[field] = false;
+    }
+  }
+  
+  return results;
+}
+```
+
+## Error Handling
+
+```javascript
+function safeEval(expression, context, defaultValue = null) {
+  try {
+    return jexl.evalSync(expression, context);
+  } catch (error) {
+    console.warn(`Expression evaluation failed: ${error.message}`);
+    return defaultValue;
+  }
+}
+
+// Usage
+const result = safeEval('user.profile.name', context, 'Unknown User');
+```
+
+## Custom Functions and Transforms
+
+```javascript
+// Add custom transform
+jexl.addTransform('slugify', (value) => {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+});
+
+// Add custom function
+jexl.addFunction('distance', (lat1, lon1, lat2, lon2) => {
+  // Haversine formula implementation
+  const R = 6371; // Earth's radius in kilometers
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180;
+  const a = Math.sin(dLat/2) ** 2 + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon/2) ** 2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+});
+
+// Usage
+const slug = jexl.evalSync('title | slugify', { title: "Hello World!" }); // "hello-world"
+const km = jexl.evalSync('distance(40.7128, -74.0060, 34.0522, -118.2437)'); // ~3944
+```
+
+## Monaco Editor Integration
+
+See the dedicated [Monaco Editor Integration](./monaco-integration) guide for setting up rich IDE features like:
+
+- Syntax highlighting
+- IntelliSense auto-completion
+- Error detection and hints
+- Hover documentation
+- Go to definition
+
+## Performance Tips
+
+1. **Compile frequently used expressions**:
+   ```javascript
+   const compiled = jexl.compile('complex | expression | here');
+   // Reuse compiled expression multiple times
+   ```
+
+2. **Use synchronous evaluation when possible**:
+   ```javascript
+   // Faster for simple expressions
+   const result = jexl.evalSync(expression, context);
+   ```
+
+3. **Optimize context objects**:
+   ```javascript
+   // Only include necessary data in context
+   const minimalContext = { user: data.user, settings: data.settings };
+   ```
+
+## Next Steps
+
+- **Language Guide** - Learn [JEXL syntax](../language/) that works across all implementations
+- **Function Reference** - Browse all [built-in functions](../reference/)
+- **Monaco Integration** - Set up [rich editor experience](./monaco-integration)
+- **Examples** - Check the [test files](https://github.com/konnektr-io/jexl-extended/tree/main/test) for more examples

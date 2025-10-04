@@ -1,0 +1,92 @@
+---
+title: Usage Guides
+description: Learn how to integrate JEXL Extended into your projects
+---
+
+# Usage Guides
+
+These guides show you how to use JEXL Extended in your projects, from basic expression evaluation to advanced Monaco Editor integration.
+
+## Getting Started
+
+### [Getting Started Guide](./getting-started)
+Learn the basics of JEXL Extended, installation, and your first expressions. Perfect for newcomers to JEXL.
+
+### [Basic Usage](./basic-usage)
+Comprehensive guide to using JEXL Extended as an expression evaluator in your JavaScript/TypeScript applications.
+
+## Integration Guides
+
+### [Monaco Editor Integration](./monaco-integration)
+Complete guide to integrating JEXL with Monaco Editor for rich IDE experience with syntax highlighting, IntelliSense, and hover documentation.
+
+### [Advanced Usage](./advanced-usage)
+Advanced patterns, performance optimization, error handling, and extending JEXL Extended with custom functionality.
+
+## Quick Examples
+
+### Expression Evaluation
+```javascript
+import jexl from 'jexl-extended';
+
+const data = { users: [{ name: "Alice", age: 28 }, { name: "Bob", age: 32 }] };
+const result = jexl.evalSync('users|filter("value.age > 30")|map("value.name")', data);
+// ["Bob"]
+```
+
+### Monaco Editor Setup
+```typescript
+import * as monaco from "monaco-editor";
+import { Monaco } from "jexl-extended";
+
+Monaco.registerJexlLanguage(monaco);
+const editor = Monaco.createJexlEditor(monaco, container, {
+  value: 'users|filter("value.active")|map("value.name")',
+  theme: "vs-dark"
+});
+```
+
+### String Processing
+```javascript
+const text = "  Hello World  ";
+const result = jexl.evalSync('text | trim | lowercase | split(" ") | join("-")', { text });
+// "hello-world"
+```
+
+### Mathematical Operations
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+const stats = jexl.evalSync('{
+  sum: numbers | sum,
+  average: numbers | average,
+  max: numbers | max,
+  count: numbers | length
+}', { numbers });
+// { sum: 15, average: 3, max: 5, count: 5 }
+```
+
+## Common Use Cases
+
+### Data Transformation
+Transform API responses, filter arrays, and manipulate objects with powerful expression chains.
+
+### Form Validation
+Create dynamic validation rules using JEXL expressions that can be stored and evaluated at runtime.
+
+### Configuration Logic
+Build flexible configuration systems where business rules are expressed as JEXL expressions.
+
+### Template Processing
+Process templates with dynamic content using JEXL expressions for calculations and formatting.
+
+### Query Building
+Create dynamic queries and filters using JEXL expressions that can be safely evaluated.
+
+## Choose Your Guide
+
+- **New to JEXL?** Start with [Getting Started](./getting-started)
+- **Adding to existing project?** Check [Basic Usage](./basic-usage)  
+- **Want rich editor experience?** See [Monaco Integration](./monaco-integration)
+- **Need advanced features?** Explore [Advanced Usage](./advanced-usage)
+
+Each guide builds on the previous ones, so feel free to jump around based on your needs!

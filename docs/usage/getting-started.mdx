@@ -1,0 +1,320 @@
+---
+title: Getting Started with JEXL Extended
+description: Learn the basics of JEXL Extended, installation, and your first expressions
+---
+
+# Getting Started with JEXL Extended
+
+Welcome to JEXL Extended! This guide will get you up and running with JavaScript Expression Language (JEXL) and show you how to use the 80+ built-in functions to transform and manipulate data.
+
+## What is JEXL Extended?
+
+JEXL Extended is a powerful JavaScript library that extends the original JEXL (JavaScript Expression Language) with:
+
+- **80+ Built-in Functions** - String manipulation, math, arrays, objects, dates, and more
+- **Monaco Editor Support** - Rich IDE experience with syntax highlighting and IntelliSense
+- **TypeScript Support** - Full type definitions included
+- **Modular Design** - Use the entire library or import individual functions
+
+## Installation
+
+Install JEXL Extended using your preferred package manager:
+
+```bash
+# Using npm
+npm install jexl-extended
+
+# Using yarn  
+yarn add jexl-extended
+
+# Using pnpm
+pnpm add jexl-extended
+```
+
+## Your First JEXL Expression
+
+Let's start with a simple example:
+
+```javascript
+import jexl from 'jexl-extended';
+
+// Simple expression
+const result = jexl.evalSync('5 + 3');
+console.log(result); // 8
+
+// Using variables
+const data = { name: "Alice", age: 28 };
+const greeting = jexl.evalSync('"Hello " + name + "!"', data);
+console.log(greeting); // "Hello Alice!"
+```
+
+## Basic Concepts
+
+### Context and Variables
+
+JEXL expressions are evaluated against a **context** - a JavaScript object containing your data:
+
+```javascript
+const context = {
+  user: {
+    name: "John Doe",
+    age: 30,
+    email: "john@example.com"
+  },
+  scores: [85, 92, 78, 96]
+};
+
+// Access properties
+jexl.evalSync('user.name', context);        // "John Doe"
+jexl.evalSync('user.age > 25', context);    // true
+jexl.evalSync('scores[0]', context);        // 85
+```
+
+### Functions vs Transforms
+
+JEXL Extended provides two ways to call functions:
+
+**Functions** are called directly:
+```javascript
+jexl.evalSync('length("hello")');           // 5
+jexl.evalSync('max([1, 5, 3, 9, 2])');     // 9
+jexl.evalSync('uppercase("hello")');        // "HELLO"
+```
+
+**Transforms** use the pipe operator (`|`):
+```javascript
+jexl.evalSync('"hello" | length');         // 5
+jexl.evalSync('[1, 5, 3, 9, 2] | max');    // 9
+jexl.evalSync('"hello" | uppercase');      // "HELLO"
+```
+
+### Chaining Operations
+
+The real power comes from chaining operations together:
+
+```javascript
+const users = [
+  { name: "Alice", age: 28, active: true },
+  { name: "Bob", age: 32, active: false },
+  { name: "Charlie", age: 24, active: true }
+];
+
+// Chain multiple operations
+const activeUserNames = jexl.evalSync(
+  'users | filter("value.active") | map("value.name") | join(", ")',
+  { users }
+);
+console.log(activeUserNames); // "Alice, Charlie"
+```
+
+## Common Examples
+
+### String Processing
+```javascript
+// Clean and format text
+const messyText = "  Hello World  ";
+const clean = jexl.evalSync('text | trim | lowercase | split(" ") | join("-")', { text: messyText });
+console.log(clean); // "hello-world"
+
+// Extract information
+const email = "john.doe@company.com";
+const domain = jexl.evalSync('email | split("@")[1]', { email });
+console.log(domain); // "company.com"
+```
+
+### Array Operations
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+
+// Statistical operations
+const stats = jexl.evalSync(`{
+  sum: numbers | sum,
+  average: numbers | average,
+  max: numbers | max,
+  min: numbers | min,
+  count: numbers | length
+}`, { numbers });
+
+console.log(stats);
+// { sum: 15, average: 3, max: 5, min: 1, count: 5 }
+
+// Filter and transform
+const evenSquares = jexl.evalSync(
+  'numbers | filter("value % 2 == 0") | map("value * value")',
+  { numbers }
+);
+console.log(evenSquares); // [4, 16]
+```
+
+### Object Manipulation
+```javascript
+const user = {
+  firstName: "John",
+  lastName: "Doe",
+  email: "john@example.com",
+  preferences: { theme: "dark", notifications: true }
+};
+
+// Extract and transform
+const summary = jexl.evalSync(`{
+  fullName: firstName + " " + lastName,
+  domain: email | split("@")[1],
+  hasNotifications: preferences.notifications,
+  profileComplete: firstName && lastName && email
+}`, user);
+
+console.log(summary);
+// {
+//   fullName: "John Doe",
+//   domain: "example.com", 
+//   hasNotifications: true,
+//   profileComplete: true
+// }
+```
+
+### Date and Time
+```javascript
+// Current time operations
+const now = jexl.evalSync('now()');
+const formatted = jexl.evalSync('now() | dateTimeFormat("YYYY-MM-DD HH:mm")');
+const tomorrow = jexl.evalSync('now() | dateTimeAdd("days", 1)');
+
+console.log('Now:', now);
+console.log('Formatted:', formatted);
+console.log('Tomorrow:', tomorrow);
+
+// Time calculations  
+const birthDate = "1990-05-15";
+const age = jexl.evalSync(
+  '(now() | dateTimeToMillis - birthDate | dateTimeToMillis) / (365.25 * 24 * 60 * 60 * 1000) | floor',
+  { birthDate }
+);
+console.log('Age:', age);
+```
+
+## Error Handling
+
+Always handle potential errors when evaluating expressions:
+
+```javascript
+try {
+  const result = jexl.evalSync('user.name | uppercase', { user: { name: "John" } });
+  console.log(result); // "JOHN"
+} catch (error) {
+  console.error('Expression error:', error.message);
+}
+
+// Safe property access
+const safeName = jexl.evalSync('user && user.name || "Unknown"', { user: null });
+console.log(safeName); // "Unknown"
+```
+
+## Async Evaluation
+
+JEXL Extended supports both synchronous and asynchronous evaluation:
+
+```javascript
+// Synchronous (most common)
+const syncResult = jexl.evalSync('5 + 3');
+
+// Asynchronous
+const asyncResult = await jexl.eval('5 + 3');
+
+// Both produce the same result
+console.log(syncResult === asyncResult); // true
+```
+
+## Interactive Playground
+
+Want to experiment with JEXL expressions? Try the online playground at [nikoraes.github.io/jexl-playground/](https://nikoraes.github.io/jexl-playground/)
+
+The playground includes:
+- Live expression evaluation
+- Sample data to work with  
+- Function reference
+- Syntax highlighting
+- Error messages and debugging
+
+## Common Patterns
+
+### Data Validation
+```javascript
+const formData = {
+  email: "user@example.com",
+  age: 25,
+  agreedToTerms: true
+};
+
+const isValid = jexl.evalSync(`
+  email | contains("@") &&
+  age >= 18 &&
+  agreedToTerms == true
+`, formData);
+
+console.log('Form valid:', isValid); // true
+```
+
+### Configuration Logic
+```javascript
+const config = {
+  environment: "production",
+  features: { darkMode: true, analytics: true },
+  user: { role: "admin", premium: true }
+};
+
+const shouldShowFeature = jexl.evalSync(`
+  environment == "production" &&
+  features.analytics &&
+  (user.role == "admin" || user.premium)
+`, config);
+
+console.log('Show feature:', shouldShowFeature); // true
+```
+
+### Dynamic Queries
+```javascript
+const users = [
+  { name: "Alice", age: 28, department: "Engineering", salary: 75000 },
+  { name: "Bob", age: 32, department: "Marketing", salary: 65000 },
+  { name: "Charlie", age: 24, department: "Engineering", salary: 70000 }
+];
+
+// Dynamic filter based on criteria
+const criteria = {
+  minAge: 25,
+  department: "Engineering",
+  minSalary: 70000
+};
+
+const query = `users | filter("
+  value.age >= minAge &&
+  value.department == department &&
+  value.salary >= minSalary
+") | map("value.name")`;
+
+const matches = jexl.evalSync(query, { users, ...criteria });
+console.log('Matching users:', matches); // ["Alice", "Charlie"]
+```
+
+## Next Steps
+
+Now that you understand the basics:
+
+1. **Explore the Language** - Read the [JEXL Language Guide](../language/) to understand syntax, operators, and expressions in detail
+
+2. **Learn the Functions** - Browse the [Function Reference](../reference/) to discover all 80+ available functions
+
+3. **Build Something** - Check out [Basic Usage](./basic-usage) for practical integration examples
+
+4. **Add Rich Editing** - Set up [Monaco Editor Integration](./monaco-integration) for a premium development experience
+
+5. **Go Advanced** - Explore [Advanced Usage](./advanced-usage) for performance tips and custom extensions
+
+## Need Help?
+
+- **Function Reference** - Complete documentation for all functions
+- **Language Guide** - Detailed syntax and language features  
+- **Usage Examples** - Real-world integration patterns
+- **Online Playground** - Interactive expression testing
+
+Ready to dive deeper? Continue with [Basic Usage](./basic-usage) to learn how to integrate JEXL Extended into your applications!

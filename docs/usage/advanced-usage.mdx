@@ -1,0 +1,982 @@
+---
+title: Advanced Usage
+description: Advanced patterns, performance optimization, error handling, and extending JEXL Extended
+---
+
+# Advanced Usage
+
+This guide covers advanced techniques for using JEXL Extended, including performance optimization, custom extensions, error handling strategies, and integration patterns for complex applications.
+
+## Performance Optimization
+
+### Expression Compilation and Caching
+
+For applications that evaluate the same expressions repeatedly, compile and cache them:
+
+```typescript
+class ExpressionCache {
+  private cache = new Map<string, any>();
+  private jexl: any;
+
+  constructor(jexl: any) {
+    this.jexl = jexl;
+  }
+
+  compile(key: string, expression: string) {
+    if (!this.cache.has(key)) {
+      this.cache.set(key, this.jexl.compile(expression));
+    }
+    return this.cache.get(key);
+  }
+
+  eval(key: string, context: any) {
+    const compiled = this.cache.get(key);
+    if (!compiled) {
+      throw new Error(`Expression '${key}' not found in cache`);
+    }
+    return compiled.evalSync(context);
+  }
+
+  invalidate(key?: string) {
+    if (key) {
+      this.cache.delete(key);
+    } else {
+      this.cache.clear();
+    }
+  }
+
+  getStats() {
+    return {
+      size: this.cache.size,
+      keys: Array.from(this.cache.keys())
+    };
+  }
+}
+
+// Usage
+import jexl from 'jexl-extended';
+const expressionCache = new ExpressionCache(jexl);
+
+// Compile frequently used expressions
+expressionCache.compile('userFullName', 'user.firstName + " " + user.lastName');
+expressionCache.compile('eligibilityCheck', 'user.age >= 18 && user.verified && user.status == "active"');
+expressionCache.compile('salesReport', 'orders | sum("value.amount")');
+
+// Fast repeated evaluation
+const users = getUsersFromDatabase();
+users.forEach(user => {
+  const fullName = expressionCache.eval('userFullName', { user });
+  const isEligible = expressionCache.eval('eligibilityCheck', { user });
+  console.log(`${fullName}: ${isEligible ? 'Eligible' : 'Not eligible'}`);
+});
+```
+
+### Context Optimization
+
+Optimize context creation for large datasets:
+
+```typescript
+class OptimizedContext {
+  private baseContext: any;
+  private computedCache = new Map<string, any>();
+  private accessLog = new Set<string>();
+
+  constructor(baseContext: any) {
+    this.baseContext = baseContext;
+  }
+
+  // Lazy computation of expensive operations
+  get(key: string): any {
+    this.accessLog.add(key);
+
+    if (this.computedCache.has(key)) {
+      return this.computedCache.get(key);
+    }
+
+    const value = this.computeValue(key);
+    this.computedCache.set(key, value);
+    return value;
+  }
+
+  private computeValue(key: string): any {
+    switch (key) {
+      case 'totalUsers':
+        return this.baseContext.users?.length || 0;
+      
+      case 'activeUsers':
+        return this.baseContext.users?.filter((u: any) => u.active).length || 0;
+      
+      case 'totalRevenue':
+        return this.baseContext.orders?.reduce((sum: number, order: any) => sum + order.amount, 0) || 0;
+      
+      case 'averageOrderValue':
+        const orders = this.baseContext.orders || [];
+        return orders.length > 0 ? this.get('totalRevenue') / orders.length : 0;
+      
+      default:
+        return this.baseContext[key];
+    }
+  }
+
+  // Get context with only accessed properties computed
+  getOptimizedContext(): any {
+    const context = { ...this.baseContext };
+    
+    for (const key of this.accessLog) {
+      if (this.computedCache.has(key)) {
+        context[key] = this.computedCache.get(key);
+      }
+    }
+
+    return context;
+  }
+
+  // Performance metrics
+  getMetrics() {
+    return {
+      accessedKeys: Array.from(this.accessLog),
+      computedKeys: Array.from(this.computedCache.keys()),
+      cacheHitRatio: this.accessLog.size > 0 ? this.computedCache.size / this.accessLog.size : 0
+    };
+  }
+}
+
+// Usage
+function processLargeDataset(rawData: any) {
+  const optimizedContext = new OptimizedContext(rawData);
+  
+  const expressions = [
+    'totalUsers > 1000 ? "Large" : "Small"',
+    'activeUsers / totalUsers * 100',
+    'averageOrderValue > 100 ? "Premium" : "Standard"'
+  ];
+
+  const results = expressions.map(expr => 
+    jexl.evalSync(expr, optimizedContext.getOptimizedContext())
+  );
+
+  console.log('Metrics:', optimizedContext.getMetrics());
+  return results;
+}
+```
+
+### Batch Processing
+
+Process multiple expressions efficiently:
+
+```typescript
+class BatchProcessor {
+  private jexl: any;
+  private compiledExpressions = new Map<string, any>();
+
+  constructor(jexl: any) {
+    this.jexl = jexl;
+  }
+
+  // Prepare expressions for batch processing
+  prepare(expressions: { [key: string]: string }) {
+    for (const [key, expression] of Object.entries(expressions)) {
+      this.compiledExpressions.set(key, this.jexl.compile(expression));
+    }
+  }
+
+  // Process batch with shared context
+  processBatch(contexts: any[]): any[] {
+    return contexts.map(context => {
+      const result: any = {};
+      
+      for (const [key, compiled] of this.compiledExpressions) {
+        try {
+          result[key] = compiled.evalSync(context);
+        } catch (error) {
+          result[key] = { error: error.message };
+        }
+      }
+      
+      return result;
+    });
+  }
+
+  // Process with streaming for large datasets
+  async processStream(contexts: any[], onBatch?: (results: any[]) => void, batchSize = 100): Promise<any[]> {
+    const allResults: any[] = [];
+    
+    for (let i = 0; i < contexts.length; i += batchSize) {
+      const batch = contexts.slice(i, i + batchSize);
+      const batchResults = this.processBatch(batch);
+      
+      allResults.push(...batchResults);
+      
+      if (onBatch) {
+        onBatch(batchResults);
+      }
+      
+      // Allow event loop to process other tasks
+      await new Promise(resolve => setTimeout(resolve, 0));
+    }
+    
+    return allResults;
+  }
+}
+
+// Usage
+const processor = new BatchProcessor(jexl);
+
+processor.prepare({
+  fullName: 'firstName + " " + lastName',
+  isEligible: 'age >= 18 && verified',
+  scoreGrade: 'score >= 90 ? "A" : score >= 80 ? "B" : score >= 70 ? "C" : "F"',
+  monthsActive: '(now() - joinDate | dateTimeToMillis) / (30 * 24 * 60 * 60 * 1000) | floor'
+});
+
+const users = getLargeUserDataset(); // 10,000+ users
+
+// Process in batches with progress tracking
+processor.processStream(users, (batchResults) => {
+  console.log(`Processed batch of ${batchResults.length} users`);
+}, 500);
+```
+
+## Custom Extensions
+
+### Adding Transform Functions
+
+Extend JEXL with custom transform functions:
+
+```typescript
+import jexl from 'jexl-extended';
+
+// Add custom transforms
+jexl.addTransform('slugify', (value: string) => {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+});
+
+jexl.addTransform('truncate', (value: string, length: number = 50, suffix: string = '...') => {
+  if (!value || value.length <= length) return value;
+  return value.substring(0, length) + suffix;
+});
+
+jexl.addTransform('currency', (value: number, currency: string = 'USD', locale: string = 'en-US') => {
+  return new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency: currency
+  }).format(value);
+});
+
+jexl.addTransform('highlight', (text: string, searchTerm: string, highlightClass: string = 'highlight') => {
+  if (!searchTerm) return text;
+  const regex = new RegExp(`(${searchTerm})`, 'gi');
+  return text.replace(regex, `<span class="${highlightClass}">$1</span>`);
+});
+
+// Usage
+const title = "Hello World Example";
+const slugified = jexl.evalSync('title | slugify', { title }); // "hello-world-example"
+
+const longText = "This is a very long piece of text that needs truncation";
+const truncated = jexl.evalSync('text | truncate(20)', { text: longText }); // "This is a very long..."
+
+const price = 1234.56;
+const formatted = jexl.evalSync('price | currency("EUR", "de-DE")', { price }); // "1.234,56 €"
+```
+
+### Custom Functions
+
+Add custom functions for complex operations:
+
+```typescript
+// Add custom functions
+jexl.addFunction('distance', (lat1: number, lon1: number, lat2: number, lon2: number) => {
+  const R = 6371; // Earth's radius in kilometers
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180;
+  const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+            Math.sin(dLon/2) * Math.sin(dLon/2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  return R * c;
+});
+
+jexl.addFunction('creditScore', (income: number, debt: number, paymentHistory: number) => {
+  // Simplified credit score calculation
+  const debtToIncomeRatio = debt / income;
+  const baseScore = 300;
+  const incomeBonus = Math.min(income / 1000, 200);
+  const debtPenalty = debtToIncomeRatio * 100;
+  const historyBonus = paymentHistory * 50;
+  
+  return Math.max(300, Math.min(850, baseScore + incomeBonus - debtPenalty + historyBonus));
+});
+
+jexl.addFunction('validateEmail', (email: string) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+});
+
+// Usage
+const userLocation = { lat: 40.7128, lon: -74.0060 }; // New York
+const storeLocation = { lat: 34.0522, lon: -118.2437 }; // Los Angeles
+const distanceKm = jexl.evalSync(
+  'distance(user.lat, user.lon, store.lat, store.lon)',
+  { user: userLocation, store: storeLocation }
+); // ~3944 km
+
+const financialData = { income: 75000, debt: 25000, paymentHistory: 0.95 };
+const score = jexl.evalSync(
+  'creditScore(income, debt, paymentHistory)',
+  financialData
+); // Credit score calculation
+```
+
+## Advanced Error Handling
+
+### Expression Validation Pipeline
+
+```typescript
+interface ValidationResult {
+  valid: boolean;
+  errors: string[];
+  warnings: string[];
+  suggestions: string[];
+}
+
+class ExpressionValidator {
+  private jexl: any;
+  private customValidators: Array<(expr: string) => ValidationResult> = [];
+
+  constructor(jexl: any) {
+    this.jexl = jexl;
+    this.setupDefaultValidators();
+  }
+
+  private setupDefaultValidators() {
+    // Syntax validation
+    this.addValidator((expression) => {
+      try {
+        this.jexl.compile(expression);
+        return { valid: true, errors: [], warnings: [], suggestions: [] };
+      } catch (error) {
+        return {
+          valid: false,
+          errors: [`Syntax error: ${error.message}`],
+          warnings: [],
+          suggestions: ['Check parentheses and quotes', 'Verify function names']
+        };
+      }
+    });
+
+    // Performance validation
+    this.addValidator((expression) => {
+      const warnings: string[] = [];
+      const suggestions: string[] = [];
+      
+      // Check for potentially expensive operations
+      if (expression.includes('| map(') && expression.includes('| filter(')) {
+        const mapIndex = expression.indexOf('| map(');
+        const filterIndex = expression.indexOf('| filter(');
+        
+        if (mapIndex < filterIndex) {
+          warnings.push('Consider filtering before mapping for better performance');
+          suggestions.push('Move filter operations before map operations when possible');
+        }
+      }
+
+      // Check for nested function calls
+      const nestedFunctionRegex = /\w+\([^()]*\w+\([^()]*\)[^()]*\)/g;
+      if (nestedFunctionRegex.test(expression)) {
+        suggestions.push('Consider breaking down complex nested functions for readability');
+      }
+
+      return { valid: true, errors: [], warnings, suggestions };
+    });
+  }
+
+  addValidator(validator: (expr: string) => ValidationResult) {
+    this.customValidators.push(validator);
+  }
+
+  validate(expression: string): ValidationResult {
+    const results = this.customValidators.map(validator => validator(expression));
+    
+    return {
+      valid: results.every(r => r.valid),
+      errors: results.flatMap(r => r.errors),
+      warnings: results.flatMap(r => r.warnings),
+      suggestions: results.flatMap(r => r.suggestions)
+    };
+  }
+}
+
+// Usage
+const validator = new ExpressionValidator(jexl);
+
+// Add custom business logic validator
+validator.addValidator((expression) => {
+  const warnings: string[] = [];
+  
+  // Check for potentially unsafe operations
+  if (expression.includes('eval(')) {
+    return {
+      valid: false,
+      errors: ['Use of eval() function is not allowed for security reasons'],
+      warnings: [],
+      suggestions: ['Use other transformation functions instead']
+    };
+  }
+
+  // Check for deprecated functions
+  if (expression.includes('oldFunction(')) {
+    warnings.push('oldFunction() is deprecated, use newFunction() instead');
+  }
+
+  return { valid: true, errors: [], warnings, suggestions: [] };
+});
+
+const validationResult = validator.validate('users | map("value.name") | filter("value.length > 0")');
+console.log(validationResult);
+```
+
+### Graceful Error Recovery
+
+```typescript
+class SafeEvaluator {
+  private jexl: any;
+  private fallbackStrategies = new Map<string, any>();
+
+  constructor(jexl: any) {
+    this.jexl = jexl;
+    this.setupDefaultFallbacks();
+  }
+
+  private setupDefaultFallbacks() {
+    // Fallback for undefined properties
+    this.fallbackStrategies.set('undefined_property', {
+      detect: (error: Error) => error.message.includes('Cannot read property'),
+      handle: (expression: string, context: any, error: Error) => {
+        console.warn(`Property access failed: ${error.message}`);
+        return null;
+      }
+    });
+
+    // Fallback for type errors
+    this.fallbackStrategies.set('type_error', {
+      detect: (error: Error) => error.message.includes('is not a function') || error.message.includes('Cannot read property'),
+      handle: (expression: string, context: any, error: Error) => {
+        console.warn(`Type error in expression: ${error.message}`);
+        return undefined;
+      }
+    });
+  }
+
+  evalWithRecovery(expression: string, context: any, options: {
+    defaultValue?: any;
+    maxRetries?: number;
+    onError?: (error: Error, attempt: number) => void;
+  } = {}) {
+    const { defaultValue = null, maxRetries = 3, onError } = options;
+    
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
+      try {
+        return this.jexl.evalSync(expression, context);
+      } catch (error) {
+        if (onError) {
+          onError(error, attempt);
+        }
+
+        // Try fallback strategies
+        for (const [name, strategy] of this.fallbackStrategies) {
+          if (strategy.detect(error)) {
+            try {
+              return strategy.handle(expression, context, error);
+            } catch (fallbackError) {
+              console.warn(`Fallback strategy '${name}' failed:`, fallbackError.message);
+            }
+          }
+        }
+
+        // If this is the last attempt, return default value
+        if (attempt === maxRetries) {
+          console.error(`Expression evaluation failed after ${maxRetries} attempts:`, error.message);
+          return defaultValue;
+        }
+      }
+    }
+
+    return defaultValue;
+  }
+
+  // Batch evaluation with individual error handling
+  evalBatch(expressions: Array<{ key: string; expression: string; context: any; defaultValue?: any }>) {
+    const results: { [key: string]: any } = {};
+    const errors: { [key: string]: string } = {};
+
+    for (const { key, expression, context, defaultValue } of expressions) {
+      try {
+        results[key] = this.evalWithRecovery(expression, context, { defaultValue });
+      } catch (error) {
+        errors[key] = error.message;
+        results[key] = defaultValue || null;
+      }
+    }
+
+    return { results, errors };
+  }
+}
+
+// Usage
+const safeEvaluator = new SafeEvaluator(jexl);
+
+const result = safeEvaluator.evalWithRecovery(
+  'user.profile.preferences.theme || "light"',
+  { user: {} }, // Missing nested properties
+  {
+    defaultValue: 'light',
+    onError: (error, attempt) => {
+      console.log(`Attempt ${attempt} failed: ${error.message}`);
+    }
+  }
+);
+```
+
+## Integration Patterns
+
+### Plugin Architecture
+
+```typescript
+interface JexlPlugin {
+  name: string;
+  version: string;
+  install(jexl: any): void;
+  uninstall?(jexl: any): void;
+}
+
+class PluginManager {
+  private jexl: any;
+  private installedPlugins = new Map<string, JexlPlugin>();
+
+  constructor(jexl: any) {
+    this.jexl = jexl;
+  }
+
+  install(plugin: JexlPlugin) {
+    if (this.installedPlugins.has(plugin.name)) {
+      throw new Error(`Plugin '${plugin.name}' is already installed`);
+    }
+
+    try {
+      plugin.install(this.jexl);
+      this.installedPlugins.set(plugin.name, plugin);
+      console.log(`Plugin '${plugin.name}' v${plugin.version} installed successfully`);
+    } catch (error) {
+      console.error(`Failed to install plugin '${plugin.name}':`, error);
+      throw error;
+    }
+  }
+
+  uninstall(pluginName: string) {
+    const plugin = this.installedPlugins.get(pluginName);
+    if (!plugin) {
+      throw new Error(`Plugin '${pluginName}' is not installed`);
+    }
+
+    try {
+      if (plugin.uninstall) {
+        plugin.uninstall(this.jexl);
+      }
+      this.installedPlugins.delete(pluginName);
+      console.log(`Plugin '${pluginName}' uninstalled successfully`);
+    } catch (error) {
+      console.error(`Failed to uninstall plugin '${pluginName}':`, error);
+    }
+  }
+
+  getInstalledPlugins() {
+    return Array.from(this.installedPlugins.values());
+  }
+}
+
+// Example plugins
+const mathPlugin: JexlPlugin = {
+  name: 'advanced-math',
+  version: '1.0.0',
+  install: (jexl) => {
+    jexl.addFunction('factorial', (n: number) => {
+      if (n <= 1) return 1;
+      return n * jexl.evalSync('factorial(' + (n - 1) + ')');
+    });
+
+    jexl.addFunction('fibonacci', (n: number) => {
+      if (n <= 1) return n;
+      return jexl.evalSync(`fibonacci(${n - 1}) + fibonacci(${n - 2})`);
+    });
+
+    jexl.addTransform('toRadians', (degrees: number) => degrees * Math.PI / 180);
+    jexl.addTransform('toDegrees', (radians: number) => radians * 180 / Math.PI);
+  }
+};
+
+const validationPlugin: JexlPlugin = {
+  name: 'validation-helpers',
+  version: '1.0.0',
+  install: (jexl) => {
+    jexl.addFunction('isEmail', (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
+    jexl.addFunction('isPhone', (phone: string) => /^\+?[\d\s\-\(\)]+$/.test(phone));
+    jexl.addFunction('isUrl', (url: string) => {
+      try {
+        new URL(url);
+        return true;
+      } catch {
+        return false;
+      }
+    });
+
+    jexl.addTransform('sanitizeHtml', (html: string) => {
+      return html.replace(/<[^>]*>/g, '');
+    });
+  }
+};
+
+// Usage
+const pluginManager = new PluginManager(jexl);
+pluginManager.install(mathPlugin);
+pluginManager.install(validationPlugin);
+
+// Use plugin functions
+const factorialResult = jexl.evalSync('factorial(5)'); // 120
+const emailValid = jexl.evalSync('isEmail("user@example.com")'); // true
+```
+
+### Middleware System
+
+```typescript
+interface MiddlewareContext {
+  expression: string;
+  context: any;
+  result?: any;
+  error?: Error;
+  metadata: { [key: string]: any };
+}
+
+type Middleware = (ctx: MiddlewareContext, next: () => Promise<void>) => Promise<void>;
+
+class MiddlewareEngine {
+  private middlewares: Middleware[] = [];
+  private jexl: any;
+
+  constructor(jexl: any) {
+    this.jexl = jexl;
+  }
+
+  use(middleware: Middleware) {
+    this.middlewares.push(middleware);
+  }
+
+  async eval(expression: string, context: any = {}, metadata: any = {}) {
+    const ctx: MiddlewareContext = {
+      expression,
+      context,
+      metadata: { startTime: Date.now(), ...metadata }
+    };
+
+    const executeMiddleware = async (index: number): Promise<void> => {
+      if (index >= this.middlewares.length) {
+        // Execute the actual evaluation
+        try {
+          ctx.result = this.jexl.evalSync(ctx.expression, ctx.context);
+        } catch (error) {
+          ctx.error = error;
+        }
+        return;
+      }
+
+      const middleware = this.middlewares[index];
+      await middleware(ctx, () => executeMiddleware(index + 1));
+    };
+
+    await executeMiddleware(0);
+
+    if (ctx.error) {
+      throw ctx.error;
+    }
+
+    return ctx.result;
+  }
+}
+
+// Example middlewares
+const loggingMiddleware: Middleware = async (ctx, next) => {
+  console.log(`Evaluating: ${ctx.expression}`);
+  const start = Date.now();
+  
+  await next();
+  
+  const duration = Date.now() - start;
+  console.log(`Completed in ${duration}ms`);
+};
+
+const cachingMiddleware: Middleware = async (ctx, next) => {
+  const cache = new Map<string, any>();
+  const key = `${ctx.expression}:${JSON.stringify(ctx.context)}`;
+  
+  if (cache.has(key)) {
+    ctx.result = cache.get(key);
+    return;
+  }
+  
+  await next();
+  
+  if (!ctx.error) {
+    cache.set(key, ctx.result);
+  }
+};
+
+const securityMiddleware: Middleware = async (ctx, next) => {
+  // Block potentially dangerous expressions
+  const dangerousPatterns = [/eval\s*\(/, /function\s*\(/, /constructor/];
+  
+  for (const pattern of dangerousPatterns) {
+    if (pattern.test(ctx.expression)) {
+      ctx.error = new Error('Expression contains potentially dangerous code');
+      return;
+    }
+  }
+  
+  await next();
+};
+
+// Usage
+const engine = new MiddlewareEngine(jexl);
+engine.use(securityMiddleware);
+engine.use(loggingMiddleware);
+engine.use(cachingMiddleware);
+
+const result = await engine.eval('users | filter("value.active") | length', { users: [...] });
+```
+
+## Testing Strategies
+
+### Expression Testing Framework
+
+```typescript
+interface TestCase {
+  name: string;
+  expression: string;
+  context: any;
+  expected: any;
+  shouldThrow?: boolean;
+  errorMessage?: string;
+}
+
+class ExpressionTester {
+  private jexl: any;
+  private results: Array<{ name: string; passed: boolean; error?: string }> = [];
+
+  constructor(jexl: any) {
+    this.jexl = jexl;
+  }
+
+  test(testCase: TestCase) {
+    try {
+      const result = this.jexl.evalSync(testCase.expression, testCase.context);
+      
+      if (testCase.shouldThrow) {
+        this.results.push({
+          name: testCase.name,
+          passed: false,
+          error: 'Expected expression to throw an error, but it succeeded'
+        });
+        return;
+      }
+
+      const passed = this.deepEqual(result, testCase.expected);
+      this.results.push({
+        name: testCase.name,
+        passed,
+        error: passed ? undefined : `Expected ${JSON.stringify(testCase.expected)}, got ${JSON.stringify(result)}`
+      });
+
+    } catch (error) {
+      if (testCase.shouldThrow) {
+        const messageMatches = !testCase.errorMessage || error.message.includes(testCase.errorMessage);
+        this.results.push({
+          name: testCase.name,
+          passed: messageMatches,
+          error: messageMatches ? undefined : `Expected error message to contain "${testCase.errorMessage}", got "${error.message}"`
+        });
+      } else {
+        this.results.push({
+          name: testCase.name,
+          passed: false,
+          error: `Unexpected error: ${error.message}`
+        });
+      }
+    }
+  }
+
+  runSuite(testCases: TestCase[]) {
+    this.results = [];
+    testCases.forEach(testCase => this.test(testCase));
+    return this.getReport();
+  }
+
+  private deepEqual(a: any, b: any): boolean {
+    return JSON.stringify(a) === JSON.stringify(b);
+  }
+
+  getReport() {
+    const passed = this.results.filter(r => r.passed).length;
+    const total = this.results.length;
+    
+    return {
+      passed,
+      failed: total - passed,
+      total,
+      success: passed === total,
+      results: this.results
+    };
+  }
+}
+
+// Usage
+const tester = new ExpressionTester(jexl);
+
+const testSuite: TestCase[] = [
+  {
+    name: 'Basic arithmetic',
+    expression: '2 + 3 * 4',
+    context: {},
+    expected: 14
+  },
+  {
+    name: 'String operations',
+    expression: 'name | uppercase | split(" ") | join("-")',
+    context: { name: "John Doe" },
+    expected: "JOHN-DOE"
+  },
+  {
+    name: 'Array filtering',
+    expression: 'numbers | filter("value > 5") | length',
+    context: { numbers: [1, 6, 3, 8, 2, 9] },
+    expected: 3
+  },
+  {
+    name: 'Error handling',
+    expression: 'user.invalid.property',
+    context: { user: {} },
+    shouldThrow: true,
+    errorMessage: 'Cannot read property'
+  }
+];
+
+const report = tester.runSuite(testSuite);
+console.log(`Tests: ${report.passed}/${report.total} passed`);
+report.results.forEach(result => {
+  if (!result.passed) {
+    console.error(`❌ ${result.name}: ${result.error}`);
+  } else {
+    console.log(`✅ ${result.name}`);
+  }
+});
+```
+
+## Production Considerations
+
+### Monitoring and Metrics
+
+```typescript
+class ExpressionMetrics {
+  private metrics = {
+    evaluations: 0,
+    errors: 0,
+    totalTime: 0,
+    expressionCounts: new Map<string, number>(),
+    errorTypes: new Map<string, number>()
+  };
+
+  recordEvaluation(expression: string, duration: number, error?: Error) {
+    this.metrics.evaluations++;
+    this.metrics.totalTime += duration;
+    
+    const count = this.metrics.expressionCounts.get(expression) || 0;
+    this.metrics.expressionCounts.set(expression, count + 1);
+    
+    if (error) {
+      this.metrics.errors++;
+      const errorType = error.constructor.name;
+      const errorCount = this.metrics.errorTypes.get(errorType) || 0;
+      this.metrics.errorTypes.set(errorType, errorCount + 1);
+    }
+  }
+
+  getMetrics() {
+    return {
+      ...this.metrics,
+      averageTime: this.metrics.evaluations > 0 ? this.metrics.totalTime / this.metrics.evaluations : 0,
+      errorRate: this.metrics.evaluations > 0 ? this.metrics.errors / this.metrics.evaluations : 0,
+      topExpressions: Array.from(this.metrics.expressionCounts.entries())
+        .sort(([,a], [,b]) => b - a)
+        .slice(0, 10),
+      topErrors: Array.from(this.metrics.errorTypes.entries())
+        .sort(([,a], [,b]) => b - a)
+    };
+  }
+
+  reset() {
+    this.metrics = {
+      evaluations: 0,
+      errors: 0,
+      totalTime: 0,
+      expressionCounts: new Map(),
+      errorTypes: new Map()
+    };
+  }
+}
+
+// Wrapper with metrics
+class MonitoredJexl {
+  private jexl: any;
+  private metrics = new ExpressionMetrics();
+
+  constructor(jexl: any) {
+    this.jexl = jexl;
+  }
+
+  evalSync(expression: string, context: any = {}) {
+    const start = Date.now();
+    let error: Error | undefined;
+    
+    try {
+      const result = this.jexl.evalSync(expression, context);
+      return result;
+    } catch (e) {
+      error = e;
+      throw e;
+    } finally {
+      const duration = Date.now() - start;
+      this.metrics.recordEvaluation(expression, duration, error);
+    }
+  }
+
+  getMetrics() {
+    return this.metrics.getMetrics();
+  }
+
+  resetMetrics() {
+    this.metrics.reset();
+  }
+}
+```
+
+Advanced JEXL usage opens up powerful possibilities for building sophisticated expression evaluation systems. These patterns help you build maintainable, performant, and secure applications that leverage the full power of JEXL Extended.
+
+## Next Steps
+
+- **Explore Examples** - Check out real-world examples in the repository
+- **Performance Testing** - Benchmark your expressions with your data
+- **Security Review** - Validate your custom extensions for security
+- **Community** - Share your custom plugins and extensions
+
+The advanced patterns in this guide provide a foundation for building enterprise-grade applications with JEXL Extended.

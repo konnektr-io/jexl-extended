@@ -1,0 +1,528 @@
+---
+title: Context and Variables
+description: Understanding how JEXL accesses data through context variables and manages scope
+---
+
+# Context and Variables
+
+JEXL expressions are evaluated against a **context** - a JavaScript object that provides the data and variables available to the expression. Understanding how context works is essential for writing effective JEXL expressions.
+
+## What is Context?
+
+Context is the data environment in which a JEXL expression is evaluated. It's a JavaScript object that contains:
+- Variables and their values
+- Objects and their properties  
+- Arrays and their elements
+- Functions (when applicable)
+
+### Basic Context Example
+```javascript
+// Context object
+const context = {
+  name: "John Doe",
+  age: 30,
+  email: "john@example.com",
+  scores: [85, 92, 78, 96],
+  user: {
+    profile: {
+      displayName: "Johnny",
+      preferences: {
+        theme: "dark"
+      }
+    }
+  }
+};
+
+// JEXL expressions using this context
+name                           // "John Doe"
+age > 25                       // true
+scores | length                // 4
+user.profile.displayName       // "Johnny"
+```
+
+## Variable Access
+
+### Direct Variable Access
+Variables in the context root are accessed directly by name:
+
+```javascript
+// Context: { firstName: "John", lastName: "Doe", age: 30 }
+
+firstName              // "John"
+lastName               // "Doe"  
+age                    // 30
+firstName + " " + lastName  // "John Doe"
+```
+
+### Case Sensitivity
+Variable names are case-sensitive:
+
+```javascript
+// Context: { Name: "John", name: "Jane" }
+
+Name    // "John"
+name    // "Jane" 
+NAME    // undefined (would cause an error)
+```
+
+### Special Variable Names
+Variables with special characters require bracket notation:
+
+```javascript
+// Context: { "user-id": 123, "first name": "John", "2023-data": [...] }
+
+user-id          // Error - interpreted as subtraction
+["user-id"]      // 123 - correct access
+["first name"]   // "John"  
+["2023-data"]    // array data
+```
+
+## Property Access
+
+### Nested Object Access
+Access nested properties using dot notation:
+
+```javascript
+// Context
+const context = {
+  user: {
+    personal: {
+      name: "John",
+      age: 30
+    },
+    work: {
+      company: "Acme Corp",
+      position: "Developer"
+    }
+  }
+};
+
+// Property access
+user.personal.name           // "John"
+user.work.company           // "Acme Corp"
+user.personal.age > 25      // true
+```
+
+### Dynamic Property Access
+Use bracket notation for dynamic property names:
+
+```javascript
+// Context
+const context = {
+  user: { name: "John", email: "john@example.com" },
+  propertyName: "email",
+  fieldMap: { userName: "name", userEmail: "email" }
+};
+
+// Dynamic access
+user[propertyName]           // "john@example.com"
+user[fieldMap.userEmail]    // "john@example.com"
+user["name"]                // "John"
+```
+
+## Array Context
+
+### Array Element Access
+Access array elements by index:
+
+```javascript
+// Context
+const context = {
+  scores: [85, 92, 78, 96],
+  users: [
+    { name: "Alice", age: 28 },
+    { name: "Bob", age: 32 },
+    { name: "Charlie", age: 24 }
+  ]
+};
+
+// Array access
+scores[0]                   // 85
+scores[-1]                  // 96 (last element)
+users[1].name              // "Bob"
+users[0].age               // 28
+```
+
+### Array as Root Context
+When the context is an array itself:
+
+```javascript
+// Context is directly an array: [1, 2, 3, 4, 5]
+
+[0]                        // 1 (first element)
+length                     // 5
+sum                        // 15
+filter("value > 3")        // [4, 5]
+```
+
+## Context Scope
+
+### Global Context
+The main context object provides the global scope:
+
+```javascript
+// Global context
+const context = {
+  appName: "MyApp",
+  version: "1.0.0",
+  config: { debug: true },
+  users: [...]
+};
+
+// All expressions can access global context
+appName                     // "MyApp"
+config.debug               // true
+users | length             // Number of users
+```
+
+### Transform Context
+Within transforms, `value` refers to the current item being processed:
+
+```javascript
+// Context: { numbers: [1, 2, 3, 4, 5] }
+
+// In map transform, 'value' is each number
+numbers | map("value * 2")              // [2, 4, 6, 8, 10]
+
+// In filter transform, 'value' is each number being tested
+numbers | filter("value > 3")           // [4, 5]
+
+// Global context still accessible
+numbers | map("value * multiplier")     // Uses global 'multiplier'
+```
+
+### Nested Transform Context
+In nested transforms, inner transforms can access outer context:
+
+```javascript
+// Context: { users: [...], minAge: 21 }
+
+users 
+| filter("value.age >= minAge")         // Uses global minAge
+| map("value.name | uppercase")         // Inner transform on name
+```
+
+## Context Manipulation
+
+### Adding Computed Properties
+You can reference computed values within expressions:
+
+```javascript
+// Context: { firstName: "John", lastName: "Doe", scores: [85, 92, 78] }
+
+// Computed full name
+fullName = firstName + " " + lastName    // Can't assign in JEXL, but conceptually
+
+// Use in expressions  
+"Hello " + firstName + " " + lastName   // "Hello John Doe"
+```
+
+### Context Merging
+Merge objects to extend context:
+
+```javascript
+// Base context
+const baseContext = {
+  name: "John",
+  age: 30
+};
+
+// Additional data  
+const additionalData = {
+  email: "john@example.com",
+  role: "admin"
+};
+
+// Merged context (done in JavaScript, not JEXL)
+const fullContext = { ...baseContext, ...additionalData };
+
+// Now JEXL can access all properties
+name + " (" + role + ")"               // "John (admin)"
+```
+
+## Context Best Practices
+
+### 1. Structure Context Logically
+```javascript
+// Good - organized structure
+const context = {
+  user: {
+    personal: { name: "John", age: 30 },
+    work: { company: "Acme", role: "Dev" },
+    preferences: { theme: "dark" }
+  },
+  app: {
+    version: "1.0.0",
+    features: ["auth", "reporting"]
+  }
+};
+
+// Clear access patterns
+user.personal.name
+app.version
+user.preferences.theme
+```
+
+### 2. Use Consistent Naming
+```javascript
+// Good - consistent camelCase
+const context = {
+  firstName: "John",
+  lastName: "Doe", 
+  emailAddress: "john@example.com",
+  phoneNumber: "555-1234"
+};
+
+// Avoid mixed naming styles
+const badContext = {
+  first_name: "John",      // snake_case
+  LastName: "Doe",         // PascalCase  
+  "email-address": "...",  // kebab-case
+  phoneNumber: "..."       // camelCase
+};
+```
+
+### 3. Provide Safe Defaults
+```javascript
+// Good - handle missing data
+const context = {
+  user: user || {},
+  settings: settings || { theme: "light" },
+  permissions: permissions || []
+};
+
+// JEXL expressions can safely access
+user.name || "Anonymous"
+settings.theme
+permissions | length > 0
+```
+
+### 4. Avoid Deep Nesting
+```javascript
+// Good - reasonable depth
+const context = {
+  user: {
+    profile: { name: "John", email: "..." },
+    settings: { theme: "dark" }
+  }
+};
+
+// Harder to work with - too deep
+const deepContext = {
+  app: {
+    modules: {
+      user: {
+        management: {
+          profile: {
+            personal: {
+              details: {
+                name: "John"  // Too deep!
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+};
+```
+
+## Advanced Context Patterns
+
+### Context with Functions
+While JEXL Extended provides built-in functions, you can add custom functions to context:
+
+```javascript
+// Context with custom functions (JavaScript setup)
+const context = {
+  data: [1, 2, 3],
+  customMultiplier: 5,
+  // Custom functions would be added at the JEXL level, not in context
+};
+
+// Use JEXL Extended's built-in functions instead
+data | map("value * customMultiplier")
+```
+
+### Dynamic Context Building
+Build context dynamically based on conditions:
+
+```javascript
+// JavaScript context preparation
+const buildContext = (user, permissions) => {
+  const context = {
+    user: user || { name: "Guest" },
+    isAuthenticated: !!user,
+    permissions: permissions || []
+  };
+  
+  // Add computed properties
+  if (user) {
+    context.displayName = user.firstName + " " + user.lastName;
+    context.initials = (user.firstName[0] + user.lastName[0]).toUpperCase();
+  }
+  
+  return context;
+};
+
+// JEXL expressions using dynamic context
+isAuthenticated ? displayName : "Please log in"
+permissions | contains("admin") ? "Full Access" : "Limited Access"
+```
+
+### Context Validation
+Validate context structure before evaluation:
+
+```javascript
+// JavaScript validation
+const validateContext = (context) => {
+  const required = ['user', 'settings', 'data'];
+  const missing = required.filter(key => !(key in context));
+  
+  if (missing.length > 0) {
+    throw new Error(`Missing required context: ${missing.join(', ')}`);
+  }
+  
+  return context;
+};
+
+// Safe JEXL evaluation with validated context
+const safeContext = validateContext(rawContext);
+```
+
+## Context in Different Scenarios
+
+### API Response Processing
+```javascript
+// API response as context
+const apiResponse = {
+  status: "success",
+  data: {
+    users: [...],
+    pagination: { page: 1, total: 100 }
+  },
+  meta: {
+    timestamp: "2023-01-01T00:00:00Z",
+    version: "v1"
+  }
+};
+
+// JEXL expressions for API processing
+status == "success" && data.users | length > 0
+data.pagination.page * 10 <= data.pagination.total
+meta.timestamp | dateTimeFormat("YYYY-MM-DD")
+```
+
+### Form Validation Context
+```javascript
+// Form data as context
+const formContext = {
+  firstName: "John",
+  lastName: "Doe",
+  email: "john@example.com",
+  age: 25,
+  agreedToTerms: true,
+  preferences: {
+    newsletter: true,
+    notifications: false
+  }
+};
+
+// Validation expressions
+firstName | trim | length > 0
+email | contains("@") && email | contains(".")
+age >= 18
+agreedToTerms == true
+```
+
+### Configuration Context
+```javascript
+// App configuration as context
+const configContext = {
+  environment: "production",
+  features: {
+    darkMode: true,
+    analytics: true,
+    debugging: false
+  },
+  limits: {
+    maxUsers: 1000,
+    maxFileSize: 10485760  // 10MB
+  },
+  endpoints: {
+    api: "https://api.example.com",
+    auth: "https://auth.example.com"
+  }
+};
+
+// Configuration-based expressions
+features.darkMode ? "dark-theme" : "light-theme"
+environment == "development" && features.debugging
+limits.maxFileSize / 1048576 + "MB"  // Convert to MB
+```
+
+## Error Handling with Context
+
+### Safe Property Access
+```javascript
+// Safe access patterns
+user && user.profile && user.profile.name || "Unknown"
+"email" in user ? user.email : "No email provided"
+typeof user.age == "number" ? user.age : 0
+```
+
+### Context Existence Checks
+```javascript
+// Check if context properties exist
+typeof users != "undefined" && users | length > 0
+settings != null && "theme" in settings
+data && Array.isArray(data) && data | length > 0
+```
+
+### Default Context Values
+```javascript
+// Provide defaults for missing context
+name || "Anonymous"
+settings.timeout || 5000
+permissions || []
+config.maxRetries || 3
+```
+
+## Context Debugging
+
+When debugging JEXL expressions, understanding the context is crucial:
+
+### Context Inspection
+```javascript
+// JavaScript debugging
+console.log('Context:', JSON.stringify(context, null, 2));
+
+// Check specific paths
+console.log('User exists:', 'user' in context);
+console.log('User name:', context.user?.name);
+console.log('Data type:', typeof context.data);
+```
+
+### Expression Testing
+```javascript
+// Test expressions with different context values
+const testContexts = [
+  { user: { name: "John" } },
+  { user: {} },
+  { user: null },
+  {}
+];
+
+testContexts.forEach(ctx => {
+  try {
+    const result = jexl.evalSync('user.name || "Unknown"', ctx);
+    console.log('Result:', result);
+  } catch (error) {
+    console.error('Error:', error.message);
+  }
+});
+```
+
+Understanding context and variables is fundamental to mastering JEXL. The context provides the data foundation for all expressions, and proper context design makes expressions more powerful and maintainable.
+
+Next: Explore practical [Usage Guides](../usage/) to see how context works in real applications.

@@ -1,0 +1,451 @@
+---
+title: JEXL Expressions
+description: Learn how to build complex JEXL expressions using functions, transforms, and operators
+---
+
+# JEXL Expressions
+
+JEXL expressions are the heart of the language, combining literals, variables, operators, functions, and transforms to create powerful data processing pipelines. This guide covers how to build and structure complex expressions effectively.
+
+## Expression Fundamentals
+
+### Simple Expressions
+```javascript
+// Literal values
+42
+"hello world"
+true
+null
+
+// Variable access
+name
+user.email
+scores[0]
+```
+
+### Complex Expressions
+```javascript
+// Arithmetic with variables
+(score1 + score2 + score3) / 3
+
+// String manipulation
+firstName + " " + lastName | uppercase
+
+// Conditional logic
+age >= 18 ? "adult" : "minor"
+```
+
+## Function Calls
+
+Functions perform operations and return values. JEXL Extended provides 80+ built-in functions.
+
+### Basic Function Calls
+```javascript
+// Single argument
+length("hello")              // 5
+abs(-10)                     // 10
+uppercase("hello")           // "HELLO"
+
+// Multiple arguments
+max([1, 5, 3, 9, 2])        // 9
+substring("hello world", 0, 5)  // "hello"
+contains("hello world", "world")  // true
+```
+
+### Nested Function Calls
+```javascript
+// Functions within functions
+length(split("a,b,c", ","))     // 3
+max(map([1, 2, 3], "value * 2"))  // 6
+round(average([1.1, 2.7, 3.9]), 2)  // 2.57
+```
+
+### Functions with Complex Arguments
+```javascript
+// Using expressions as arguments
+filter(users, "value.age > " + minAge)
+map(items, "value.price * " + taxRate)
+sort(products, "value.priority == 'high' ? 1 : 2")
+```
+
+## Transform Operations
+
+Transforms use the pipe operator (`|`) to create data processing pipelines.
+
+### Single Transforms
+```javascript
+"  hello world  " | trim        // "hello world"
+[1, 2, 3, 4, 5] | length       // 5
+{a: 1, b: 2, c: 3} | keys      // ["a", "b", "c"]
+```
+
+### Transform Chains
+```javascript
+// String processing pipeline
+text | trim | lowercase | split(" ") | join("-")
+
+// Array processing pipeline
+numbers | filter("value > 0") | map("value * 2") | sort | reverse
+
+// Mixed data processing
+users | filter("value.active") | map("value.email") | distinct | sort
+```
+
+### Transforms with Arguments
+```javascript
+// Transform functions with parameters
+"hello world" | substring(0, 5)           // "hello"
+[1, 2, 3, 4] | filter("value > 2")       // [3, 4]
+"apple,banana,cherry" | split(",")        // ["apple", "banana", "cherry"]
+```
+
+## Conditional Expressions
+
+### Ternary Operator
+```javascript
+// Simple conditions
+status = isActive ? "online" : "offline"
+message = count == 1 ? "1 item" : count + " items"
+
+// Nested conditions
+grade = score >= 90 ? "A" :
+        score >= 80 ? "B" :
+        score >= 70 ? "C" :
+        score >= 60 ? "D" : "F"
+```
+
+### Logical Operations for Conditions
+```javascript
+// Multiple conditions
+canVote = age >= 18 && citizenship == "US" && registered == true
+hasAccess = isAdmin || (isMember && subscription.active)
+
+// Short-circuit evaluation
+userName = user && user.profile && user.profile.name || "Anonymous"
+```
+
+## Array Operations
+
+### Array Creation and Manipulation
+```javascript
+// Creating arrays
+scores = [95, 87, 92, 78, 88]
+names = ["Alice", "Bob", "Charlie"]
+mixed = [user.name, user.age, user.active]
+
+// Array transformations
+highScores = scores | filter("value > 85")          // [95, 87, 92, 88]
+upperNames = names | map("value | uppercase")       // ["ALICE", "BOB", "CHARLIE"]
+sortedScores = scores | sort | reverse              // [95, 92, 88, 87, 78]
+```
+
+### Array Aggregations
+```javascript
+// Statistical operations
+totalScore = scores | sum                           // 440
+averageScore = scores | average                     // 88
+highestScore = scores | max                         // 95
+lowestScore = scores | min                          // 78
+
+// Array analysis
+uniqueValues = data | distinct
+itemCount = items | length
+hasHighScores = scores | any("value > 90")         // true
+allPassing = scores | all("value >= 60")           // true
+```
+
+### Advanced Array Processing
+```javascript
+// Group and process
+usersByDepartment = users | groupBy("value.department")
+departmentCounts = usersByDepartment | map("length(value)")
+
+// Find operations
+firstAdult = users | find("value.age >= 18")
+adminIndex = users | findIndex("value.role == 'admin'")
+
+// Array reduction
+concatenated = strings | reduce("acc + value", "")
+product = numbers | reduce("acc * value", 1)
+```
+
+## Object Operations
+
+### Object Creation and Access
+```javascript
+// Creating objects
+user = {
+  name: firstName + " " + lastName,
+  age: currentYear - birthYear,
+  isAdult: age >= 18,
+  email: name | lowercase | replace(" ", ".") + "@company.com"
+}
+
+// Dynamic property access
+property = "email"
+userEmail = user[property]
+```
+
+### Object Transformation
+```javascript
+// Extract object information
+userKeys = user | keys                              // ["name", "age", "isAdult", "email"]
+userValues = user | values                          // ["John Doe", 30, true, "john.doe@company.com"]
+userEntries = user | entries                        // [["name", "John Doe"], ...]
+
+// Object merging
+defaults = {theme: "light", timeout: 5000}
+userPrefs = {theme: "dark"}
+settings = merge(defaults, userPrefs)               // {theme: "dark", timeout: 5000}
+```
+
+## String Processing
+
+### String Manipulation Chains
+```javascript
+// Clean and format text
+cleanTitle = rawTitle | trim | lowercase | replace(/[^a-z0-9\s]/g, "") | split(" ") | join("-")
+
+// Text analysis
+wordCount = text | split(" ") | length
+hasKeyword = text | lowercase | contains(searchTerm | lowercase)
+
+// String formatting
+formatted = template | replace("{name}", user.name) | replace("{date}", now() | dateTimeFormat("YYYY-MM-DD"))
+```
+
+### String Validation
+```javascript
+// Email validation pattern
+isValidEmail = email | contains("@") && email | contains(".") && length(email) > 5
+
+// Password strength
+isStrongPassword = password | length >= 8 && 
+                  password | contains(/[A-Z]/) && 
+                  password | contains(/[a-z]/) && 
+                  password | contains(/[0-9]/)
+```
+
+## Mathematical Expressions
+
+### Calculations
+```javascript
+// Complex calculations
+totalPrice = items | map("value.price * value.quantity") | sum
+taxAmount = totalPrice * taxRate
+finalPrice = totalPrice + taxAmount
+
+// Statistics
+variance = numbers | map("(value - " + (numbers | average) + ") ^ 2") | average
+standardDeviation = sqrt(variance)
+
+// Financial calculations
+monthlyPayment = principal * (rate * (1 + rate)^months) / ((1 + rate)^months - 1)
+```
+
+### Mathematical Functions
+```javascript
+// Trigonometry and advanced math
+hypotenuse = sqrt(a^2 + b^2)
+area = 3.14159 * radius^2
+compound = principal * (1 + rate/periods)^(periods * years)
+
+// Rounding and formatting
+formatted = value | round(2) | formatNumber("$#,##0.00")
+percentage = (value / total * 100) | round(1) + "%"
+```
+
+## Date and Time Operations
+
+### Date Calculations
+```javascript
+// Current time operations
+currentTime = now()
+currentMillis = millis()
+formatted = currentTime | dateTimeFormat("YYYY-MM-DD HH:mm:ss")
+
+// Date arithmetic
+futureDate = currentTime | dateTimeAdd("days", 30)
+pastDate = currentTime | dateTimeAdd("months", -6)
+
+// Time comparisons
+isRecent = (now() | dateTimeToMillis) - (createdDate | dateTimeToMillis) < 86400000  // 24 hours
+age = (now() | dateTimeToMillis) - (birthDate | dateTimeToMillis) | millisToDateTime | dateTimeFormat("YYYY")
+```
+
+## Error Handling and Safety
+
+### Safe Property Access
+```javascript
+// Null-safe operations
+userName = user && user.profile && user.profile.name || "Unknown"
+email = user?.profile?.contact?.email || "No email"
+
+// Checking existence
+hasEmail = "email" in user && user.email != null && user.email != ""
+validUser = user != null && "name" in user && "id" in user
+```
+
+### Type Safety
+```javascript
+// Type checking before operations
+safeLength = typeof value == "string" || Array.isArray(value) ? length(value) : 0
+safeUppercase = typeof text == "string" ? text | uppercase : text
+
+// Default values for different types
+safeName = typeof name == "string" && name | trim | length > 0 ? name | trim : "Unknown"
+safeNumber = typeof num == "number" && !isNaN(num) ? num : 0
+```
+
+## Expression Composition
+
+### Building Complex Logic
+```javascript
+// User eligibility check
+isEligible = user.age >= minAge && 
+            user.status == "active" && 
+            user.credits >= requiredCredits &&
+            user.lastLogin | dateTimeToMillis >= cutoffDate | dateTimeToMillis
+
+// Data processing pipeline
+result = rawData 
+  | filter("value != null && value.id != null")
+  | map("merge(value, {processedAt: now()})")
+  | sort("value.priority")
+  | filter("value.category in allowedCategories")
+  | map("transform(value)")
+```
+
+### Reusable Sub-expressions
+```javascript
+// Define common calculations
+taxRate = config.taxRate || 0.08
+shippingCost = weight > 50 ? 25 : weight > 20 ? 15 : 5
+discount = membership == "premium" ? 0.15 : membership == "standard" ? 0.10 : 0
+
+// Use in main calculation
+finalPrice = (basePrice * (1 - discount) * (1 + taxRate)) + shippingCost
+```
+
+## Performance Considerations
+
+### Efficient Expression Structure
+```javascript
+// Good - filter early, transform late
+result = largeArray 
+  | filter("value.active && value.score > threshold")
+  | map("complexTransformation(value)")
+
+// Less efficient - transform everything first
+result = largeArray 
+  | map("complexTransformation(value)")
+  | filter("value.active && value.score > threshold")
+```
+
+### Minimize Function Calls
+```javascript
+// Good - calculate once
+currentTime = now()
+recent = items | filter("value.timestamp > " + (currentTime - 86400000))
+
+// Less efficient - calculate repeatedly
+recent = items | filter("value.timestamp > " + (now() - 86400000))
+```
+
+## Common Expression Patterns
+
+### Data Validation
+```javascript
+// Form validation
+isValidForm = name | trim | length > 0 &&
+              email | contains("@") &&
+              age >= 18 &&
+              termsAccepted == true
+
+// Data completeness
+isComplete = requiredFields | all("value in data && data[value] != null")
+```
+
+### Data Transformation
+```javascript
+// API response transformation
+apiResponse = rawData | map("{
+  id: value.id,
+  name: value.full_name | trim,
+  email: value.email_address | lowercase,
+  isActive: value.status == 'active',
+  lastSeen: value.last_login | dateTimeFormat('YYYY-MM-DD')
+}")
+```
+
+### Aggregation and Reporting
+```javascript
+// Sales report
+report = {
+  totalSales: orders | sum("value.amount"),
+  averageOrder: orders | average("value.amount"),
+  topCustomer: orders | groupBy("value.customerId") | map("sum(value, 'amount')") | max,
+  ordersByStatus: orders | groupBy("value.status") | map("length(value)")
+}
+```
+
+### Search and Filtering
+```javascript
+// Advanced search
+searchResults = products 
+  | filter("
+    (searchTerm == null || value.name | lowercase | contains(searchTerm | lowercase)) &&
+    (minPrice == null || value.price >= minPrice) &&
+    (maxPrice == null || value.price <= maxPrice) &&
+    (category == null || value.category == category)
+  ")
+  | sort("value.relevanceScore")
+  | map("merge(value, {highlighted: highlightMatches(value.name, searchTerm)})")
+```
+
+## Best Practices
+
+### 1. Use Meaningful Names
+```javascript
+// Good
+isEligibleCustomer = customer.age >= 18 && customer.creditScore > 600
+customerFullName = customer.firstName + " " + customer.lastName
+
+// Less clear
+result = c.a >= 18 && c.cs > 600
+name = c.fn + " " + c.ln
+```
+
+### 2. Break Complex Expressions
+```javascript
+// Good - readable steps
+eligibilityAge = customer.age >= minimumAge
+eligibilityCredit = customer.creditScore >= minimumCredit
+eligibilityStatus = customer.status == "active"
+isEligible = eligibilityAge && eligibilityCredit && eligibilityStatus
+
+// Harder to read
+isEligible = customer.age >= minimumAge && customer.creditScore >= minimumCredit && customer.status == "active"
+```
+
+### 3. Use Comments for Complex Logic
+```javascript
+// Calculate compound interest: P(1 + r/n)^(nt)
+futureValue = principal * (1 + annualRate / compoundingsPerYear) ^ (compoundingsPerYear * years)
+
+// Filter active users who logged in within the last 30 days
+activeUsers = users | filter("value.status == 'active' && (now() - value.lastLogin) < 2592000000")
+```
+
+### 4. Validate Inputs
+```javascript
+// Good - safe processing
+result = input != null && typeof input == "string" ? 
+         input | trim | lowercase | split(",") | map("value | trim") :
+         []
+
+// Risky - assumes input is valid
+result = input | trim | lowercase | split(",") | map("value | trim")
+```
+
+Next: Learn about [Context and Variables](./context) in JEXL expressions.

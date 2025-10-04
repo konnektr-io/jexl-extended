@@ -1,0 +1,304 @@
+---
+title: JEXL Syntax Overview
+description: Learn the basic syntax and structure of JEXL expressions
+---
+
+# JEXL Syntax Overview
+
+JEXL (JavaScript Expression Language) uses a clean, readable syntax that combines the best features of JavaScript expressions with powerful data transformation capabilities.
+
+## Basic Structure
+
+A JEXL expression consists of:
+- **Identifiers** - Variable and property names
+- **Literals** - Fixed values (strings, numbers, booleans, etc.)
+- **Operators** - Symbols that perform operations
+- **Functions** - Callable procedures that return values
+- **Transforms** - Functions applied via the pipe operator (`|`)
+
+## Identifiers and Property Access
+
+### Simple Identifiers
+```javascript
+name          // Access 'name' property
+age           // Access 'age' property
+isActive      // Access 'isActive' property
+```
+
+### Nested Property Access
+```javascript
+user.name            // Access nested property
+user.profile.email   // Access deeply nested property
+company.address.city // Multiple levels of nesting
+```
+
+### Array Access
+```javascript
+users[0]        // Access first element
+users[0].name   // Access property of array element
+scores[-1]      // Access last element (negative indexing)
+```
+
+### Dynamic Property Access
+```javascript
+user[propertyName]     // Use variable as property name
+data["complex-key"]    // Access property with special characters
+settings[configKey]    // Dynamic configuration access
+```
+
+## Literals
+
+### String Literals
+```javascript
+"hello world"     // Double quotes
+'hello world'     // Single quotes
+"It's working"    // Escaping with different quotes
+'She said "hi"'   // Escaping with different quotes
+"Line 1\nLine 2"  // Escape sequences
+```
+
+### Number Literals
+```javascript
+42        // Integer
+3.14159   // Decimal
+-17       // Negative
+1.23e-4   // Scientific notation
+0xFF      // Hexadecimal
+```
+
+### Boolean Literals
+```javascript
+true      // Boolean true
+false     // Boolean false
+```
+
+### Array Literals
+```javascript
+[]                    // Empty array
+[1, 2, 3]            // Number array
+["a", "b", "c"]      // String array
+[true, false, null]  // Mixed types
+[user.name, user.age] // Expressions as elements
+```
+
+### Object Literals
+```javascript
+{}                           // Empty object
+{name: "John", age: 30}     // Simple object
+{x: 1, y: 2, z: x + y}     // Expressions as values
+{"complex-key": value}      // Quoted keys
+{[dynamicKey]: value}       // Computed keys
+```
+
+### Null Literal
+```javascript
+null      // Null value
+```
+
+## Operators
+
+### Arithmetic Operators
+```javascript
+a + b     // Addition
+a - b     // Subtraction
+a * b     // Multiplication
+a / b     // Division
+a % b     // Modulus
+a ^ b     // Exponentiation
+```
+
+### Comparison Operators
+```javascript
+a == b    // Equality
+a != b    // Inequality
+a < b     // Less than
+a <= b    // Less than or equal
+a > b     // Greater than
+a >= b    // Greater than or equal
+```
+
+### Logical Operators
+```javascript
+a && b    // Logical AND
+a || b    // Logical OR
+!a        // Logical NOT
+```
+
+### Other Operators
+```javascript
+a in b         // Membership test
+a ? b : c      // Ternary conditional
+a | transform  // Transform (pipe operator)
+```
+
+## Functions
+
+Functions are called with parentheses and can take multiple arguments:
+
+```javascript
+length(array)              // Single argument
+max([1, 2, 3, 4, 5])      // Array argument
+substring(text, 0, 5)     // Multiple arguments
+contains(text, "search")  // String arguments
+```
+
+## Transforms
+
+Transforms use the pipe operator (`|`) to apply functions to values:
+
+```javascript
+// Single transform
+"hello" | uppercase        // "HELLO"
+
+// Chained transforms
+"  hello world  " | trim | uppercase | split(" ")
+// ["HELLO", "WORLD"]
+
+// Transform with arguments
+array | filter("value > 10") | map("value * 2")
+// Filter then transform each element
+```
+
+## Comments
+
+JEXL supports both line and block comments:
+
+```javascript
+// This is a line comment
+name | uppercase  // Comment at end of line
+
+/*
+ * This is a block comment
+ * spanning multiple lines
+ */
+```
+
+## Expression Evaluation
+
+### Left-to-Right Evaluation
+```javascript
+a + b * c         // Evaluates as: a + (b * c)
+a | b | c         // Evaluates as: (a | b) | c
+```
+
+### Operator Precedence
+From highest to lowest precedence:
+1. Property access (`.`, `[]`)
+2. Function calls (`()`)
+3. Unary operators (`!`, `-`)
+4. Exponentiation (`^`)
+5. Multiplication, Division, Modulus (`*`, `/`, `%`)
+6. Addition, Subtraction (`+`, `-`)
+7. Comparison (`<`, `<=`, `>`, `>=`)
+8. Equality (`==`, `!=`)
+9. Membership (`in`)
+10. Logical AND (`&&`)
+11. Logical OR (`||`)
+12. Ternary (`? :`)
+13. Transforms (`|`)
+
+### Parentheses for Grouping
+```javascript
+(a + b) * c       // Force addition before multiplication
+a && (b || c)     // Group logical operations
+(user | profile).name  // Transform then access property
+```
+
+## Context Variables
+
+JEXL expressions are evaluated against a context object:
+
+```javascript
+// Context: { name: "John", age: 30, users: [...] }
+
+name                    // "John"
+age > 25               // true
+users | length         // Number of users
+```
+
+## Advanced Syntax
+
+### Nested Expressions
+```javascript
+users | filter("value.age > " + minAge) | map("value.name")
+// Uses variable in filter expression
+```
+
+### Complex Object Construction
+```javascript
+{
+  fullName: firstName + " " + lastName,
+  isAdult: age >= 18,
+  summary: name + " is " + age + " years old"
+}
+```
+
+### Conditional Chains
+```javascript
+score >= 90 ? "A" :
+score >= 80 ? "B" :
+score >= 70 ? "C" :
+score >= 60 ? "D" : "F"
+```
+
+## Best Practices
+
+### 1. Use Meaningful Names
+```javascript
+// Good
+user.profile.displayName
+
+// Less clear
+u.p.dn
+```
+
+### 2. Chain Transforms Logically
+```javascript
+// Good - logical flow
+data | filter("value.active") | sort("value.name") | map("value.email")
+
+// Harder to read
+data | map("value.email") | sort | filter("value")
+```
+
+### 3. Use Comments for Complex Logic
+```javascript
+// Calculate weighted average score
+(homework * 0.3 + midterm * 0.3 + final * 0.4) | round(2)
+```
+
+### 4. Group Related Operations
+```javascript
+// Group calculations
+score = (quiz1 + quiz2 + quiz3) / 3;
+grade = score >= 90 ? "A" : score >= 80 ? "B" : "C"
+```
+
+## Common Patterns
+
+### Data Filtering and Mapping
+```javascript
+// Get active users' names
+users | filter("value.status == 'active'") | map("value.name")
+```
+
+### Aggregations
+```javascript
+// Calculate total and average
+items | sum("value.price")
+items | average("value.rating")
+```
+
+### String Processing
+```javascript
+// Clean and format text
+title | trim | lowercase | replace(" ", "-")
+```
+
+### Conditional Logic
+```javascript
+// Status based on conditions
+status = errors > 0 ? "error" : warnings > 0 ? "warning" : "success"
+```
+
+Next: Learn about [Data Types](./data-types) in JEXL expressions.

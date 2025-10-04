@@ -1,0 +1,729 @@
+---
+title: Basic Usage
+description: Comprehensive guide to using JEXL Extended as an expression evaluator in your applications
+---
+
+# Basic Usage
+
+This guide covers practical integration of JEXL Extended into JavaScript and TypeScript applications, from simple expression evaluation to complex data processing workflows.
+
+## Installation and Setup
+
+### Package Installation
+```bash
+npm install jexl-extended
+```
+
+### Basic Import
+```javascript
+// ES6 modules
+import jexl from 'jexl-extended';
+
+// CommonJS
+const jexl = require('jexl-extended');
+
+// TypeScript (with full type support)
+import jexl from 'jexl-extended';
+import type { JexlExpression, Context } from 'jexl-extended';
+```
+
+### Creating JEXL Instance
+```javascript
+// Use default instance (recommended for most cases)
+import jexl from 'jexl-extended';
+
+// Or create a new instance
+import { Jexl } from 'jexl-extended';
+const customJexl = new Jexl();
+```
+
+## Expression Evaluation
+
+### Synchronous Evaluation
+Most use cases can use synchronous evaluation:
+
+```javascript
+// Simple expressions
+const result1 = jexl.evalSync('5 + 3 * 2');                    // 11
+const result2 = jexl.evalSync('"hello" | uppercase');          // "HELLO"
+const result3 = jexl.evalSync('[1, 2, 3] | sum');             // 6
+
+// With context data
+const context = { name: "Alice", scores: [85, 92, 78] };
+const greeting = jexl.evalSync('"Hello " + name', context);    // "Hello Alice"
+const average = jexl.evalSync('scores | average', context);    // 85
+```
+
+### Asynchronous Evaluation
+Use async evaluation for consistency with async workflows:
+
+```javascript
+async function processData() {
+  const context = { users: await fetchUsers() };
+  const result = await jexl.eval('users | filter("value.active") | length');
+  return result;
+}
+
+// Or with Promise.all for multiple expressions
+const expressions = [
+  'users | length',
+  'users | filter("value.active") | length', 
+  'users | map("value.department") | distinct | length'
+];
+
+const results = await Promise.all(
+  expressions.map(expr => jexl.eval(expr, context))
+);
+```
+
+## Working with Context
+
+### Simple Context Objects
+```javascript
+const user = {
+  id: 123,
+  name: "John Doe",
+  email: "john@example.com",
+  age: 30,
+  active: true
+};
+
+// Property access
+jexl.evalSync('name', user);                    // "John Doe"  
+jexl.evalSync('age > 25', user);               // true
+jexl.evalSync('email | split("@")[1]', user); // "example.com"
+```
+
+### Complex Nested Context
+```javascript
+const appContext = {
+  user: {
+    profile: {
+      name: "Alice Johnson",
+      avatar: "/images/alice.jpg"  
+    },
+    preferences: {
+      theme: "dark",
+      notifications: true,
+      language: "en"
+    },
+    roles: ["user", "moderator"]
+  },
+  app: {
+    version: "2.1.0",
+    features: {
+      darkMode: true,
+      betaFeatures: false
+    }
+  },
+  session: {
+    loginTime: "2023-01-15T10:30:00Z",
+    lastActivity: "2023-01-15T14:22:00Z"
+  }
+};
+
+// Complex expressions
+const displayName = jexl.evalSync('user.profile.name | split(" ")[0]', appContext);
+const hasModeratorRole = jexl.evalSync('"moderator" in user.roles', appContext);
+const sessionDuration = jexl.evalSync(
+  '(session.lastActivity | dateTimeToMillis) - (session.loginTime | dateTimeToMillis)',
+  appContext
+);
+```
+
+### Dynamic Context Building
+```javascript
+class ContextBuilder {
+  constructor() {
+    this.context = {};
+  }
+  
+  addUser(user) {
+    this.context.user = user;
+    return this;
+  }
+  
+  addConfig(config) {
+    this.context.config = config;
+    return this;
+  }
+  
+  addCurrentTime() {
+    this.context.now = new Date().toISOString();
+    return this;
+  }
+  
+  build() {
+    return { ...this.context };
+  }
+}
+
+// Usage
+const context = new ContextBuilder()
+  .addUser({ name: "John", age: 30 })
+  .addConfig({ theme: "dark" })
+  .addCurrentTime()
+  .build();
+
+const result = jexl.evalSync('user.name + " logged in at " + now', context);
+```
+
+## Common Use Cases
+
+### Data Transformation
+Transform API responses or data structures:
+
+```javascript
+// Transform API response
+const apiResponse = {
+  status: 200,
+  data: {
+    users: [
+      { id: 1, first_name: "John", last_name: "Doe", email: "john@example.com", active: 1 },
+      { id: 2, first_name: "Jane", last_name: "Smith", email: "jane@example.com", active: 0 }
+    ]
+  }
+};
+
+const transformedUsers = jexl.evalSync(`
+  data.users | map("{
+    id: value.id,
+    name: value.first_name + ' ' + value.last_name,
+    email: value.email,
+    isActive: value.active == 1
+  }")
+`, apiResponse);
+
+console.log(transformedUsers);
+// [
+//   { id: 1, name: "John Doe", email: "john@example.com", isActive: true },
+//   { id: 2, name: "Jane Smith", email: "jane@example.com", isActive: false }
+// ]
+```
+
+### Form Validation
+Create dynamic validation rules:
+
+```javascript
+class FormValidator {
+  constructor(rules) {
+    this.rules = rules;
+  }
+  
+  validate(formData) {
+    const results = {};
+    
+    for (const [field, rule] of Object.entries(this.rules)) {
+      try {
+        results[field] = {
+          valid: jexl.evalSync(rule.expression, { value: formData[field], ...formData }),
+          message: rule.message
+        };
+      } catch (error) {
+        results[field] = {
+          valid: false,
+          message: "Validation error: " + error.message
+        };
+      }
+    }
+    
+    return results;
+  }
+}
+
+// Define validation rules
+const validationRules = {
+  email: {
+    expression: 'value && value | contains("@") && value | contains(".")',
+    message: "Please enter a valid email address"
+  },
+  age: {
+    expression: 'value >= 18 && value <= 120',
+    message: "Age must be between 18 and 120"
+  },
+  password: {
+    expression: 'value && value | length >= 8',
+    message: "Password must be at least 8 characters"
+  },
+  confirmPassword: {
+    expression: 'value == password',
+    message: "Passwords do not match"
+  }
+};
+
+// Use validator
+const validator = new FormValidator(validationRules);
+const formData = {
+  email: "user@example.com",
+  age: 25,
+  password: "securepass123",
+  confirmPassword: "securepass123"
+};
+
+const validationResults = validator.validate(formData);
+console.log(validationResults);
+```
+
+### Configuration Logic
+Build flexible configuration systems:
+
+```javascript
+class FeatureFlags {
+  constructor(config, userContext) {
+    this.config = config;
+    this.userContext = userContext;
+  }
+  
+  isEnabled(featureName) {
+    const feature = this.config.features[featureName];
+    if (!feature) return false;
+    
+    const context = {
+      ...this.userContext,
+      config: this.config,
+      feature: feature
+    };
+    
+    return jexl.evalSync(feature.condition, context);
+  }
+  
+  getFeatureValue(featureName, defaultValue = null) {
+    if (!this.isEnabled(featureName)) {
+      return defaultValue;
+    }
+    
+    const feature = this.config.features[featureName];
+    return feature.value || defaultValue;
+  }
+}
+
+// Configuration
+const config = {
+  environment: "production",
+  features: {
+    darkMode: {
+      condition: "user.preferences.theme == 'dark' || user.role == 'admin'",
+      value: true
+    },
+    betaFeatures: {
+      condition: "config.environment == 'development' || user.role == 'beta-tester'",
+      value: true
+    },
+    maxFileSize: {
+      condition: "user.subscription == 'premium'",
+      value: "100MB"
+    }
+  }
+};
+
+const userContext = {
+  user: {
+    id: 123,
+    role: "user",
+    subscription: "premium",  
+    preferences: { theme: "dark" }
+  }
+};
+
+// Usage
+const featureFlags = new FeatureFlags(config, userContext);
+console.log(featureFlags.isEnabled('darkMode'));      // true
+console.log(featureFlags.isEnabled('betaFeatures'));  // false
+console.log(featureFlags.getFeatureValue('maxFileSize', '10MB')); // "100MB"
+```
+
+### Query Building
+Create dynamic queries and filters:
+
+```javascript
+class QueryBuilder {
+  constructor(data) {
+    this.data = data;
+  }
+  
+  filter(conditions) {
+    const conditionStr = Object.entries(conditions)
+      .map(([key, value]) => {
+        if (typeof value === 'string') {
+          return `value.${key} == "${value}"`;
+        } else if (typeof value === 'object' && value.$gt) {
+          return `value.${key} > ${value.$gt}`;
+        } else if (typeof value === 'object' && value.$lt) {
+          return `value.${key} < ${value.$lt}`;
+        } else if (typeof value === 'object' && value.$in) {
+          return `value.${key} in ${JSON.stringify(value.$in)}`;
+        }
+        return `value.${key} == ${JSON.stringify(value)}`;
+      })
+      .join(' && ');
+    
+    const expression = `data | filter("${conditionStr}")`;
+    return new QueryBuilder(jexl.evalSync(expression, { data: this.data }));
+  }
+  
+  sort(field, direction = 'asc') {
+    const expression = direction === 'desc' 
+      ? `data | sort("value.${field}") | reverse`
+      : `data | sort("value.${field}")`;
+    
+    return new QueryBuilder(jexl.evalSync(expression, { data: this.data }));
+  }
+  
+  limit(count) {
+    const expression = `data | filter("index < ${count}")`;
+    return new QueryBuilder(jexl.evalSync(expression, { 
+      data: this.data.map((item, index) => ({ ...item, index }))
+    }).map(item => {
+      delete item.index;
+      return item;
+    }));
+  }
+  
+  select(fields) {
+    const fieldMap = fields.map(field => `${field}: value.${field}`).join(', ');
+    const expression = `data | map("{${fieldMap}}")`;
+    return new QueryBuilder(jexl.evalSync(expression, { data: this.data }));
+  }
+  
+  execute() {
+    return this.data;
+  }
+}
+
+// Sample data
+const users = [
+  { id: 1, name: "Alice", age: 28, department: "Engineering", salary: 75000 },
+  { id: 2, name: "Bob", age: 32, department: "Marketing", salary: 65000 },
+  { id: 3, name: "Charlie", age: 24, department: "Engineering", salary: 70000 },
+  { id: 4, name: "Diana", age: 29, department: "Sales", salary: 68000 }
+];
+
+// Build and execute query
+const result = new QueryBuilder(users)
+  .filter({ 
+    department: "Engineering", 
+    age: { $gt: 25 },
+    salary: { $gt: 70000 }
+  })
+  .sort('salary', 'desc')
+  .select(['name', 'age', 'salary'])
+  .execute();
+
+console.log(result);
+// [{ name: "Alice", age: 28, salary: 75000 }]
+```
+
+## Error Handling and Validation
+
+### Expression Validation
+```javascript
+function validateExpression(expression) {
+  try {
+    // Try to compile the expression
+    jexl.compile(expression);
+    return { valid: true };
+  } catch (error) {
+    return { 
+      valid: false, 
+      error: error.message,
+      position: error.position || 0
+    };
+  }
+}
+
+// Usage
+const expressions = [
+  'user.name',           // Valid
+  'user.name |',         // Invalid - incomplete pipe
+  'user.name | unknown', // Invalid - unknown function
+  'user..name'           // Invalid - syntax error
+];
+
+expressions.forEach(expr => {
+  const result = validateExpression(expr);
+  console.log(`"${expr}": ${result.valid ? 'Valid' : 'Invalid - ' + result.error}`);
+});
+```
+
+### Safe Evaluation
+```javascript
+function safeEval(expression, context, defaultValue = null) {
+  try {
+    return jexl.evalSync(expression, context);
+  } catch (error) {
+    console.warn(`Expression evaluation failed: ${error.message}`);
+    return defaultValue;
+  }
+}
+
+// Usage
+const context = { user: { name: "John" } };
+const result1 = safeEval('user.name | uppercase', context, 'Unknown');     // "JOHN"
+const result2 = safeEval('user.email | uppercase', context, 'No email');   // "No email"
+const result3 = safeEval('invalid | syntax', context, null);               // null
+```
+
+### Context Validation
+```javascript
+function validateContext(context, requiredFields) {
+  const missing = requiredFields.filter(field => {
+    const parts = field.split('.');
+    let current = context;
+    
+    for (const part of parts) {
+      if (!current || typeof current !== 'object' || !(part in current)) {
+        return true;
+      }
+      current = current[part];
+    }
+    
+    return false;
+  });
+  
+  return {
+    valid: missing.length === 0,
+    missing: missing
+  };
+}
+
+// Usage
+const context = {
+  user: { name: "John", age: 30 },
+  config: { theme: "dark" }
+};
+
+const validation = validateContext(context, ['user.name', 'user.email', 'config.theme']);
+console.log(validation);
+// { valid: false, missing: ['user.email'] }
+```
+
+## Performance Optimization
+
+### Expression Compilation
+For repeated evaluations, compile expressions once:
+
+```javascript
+class CompiledExpressions {
+  constructor() {
+    this.compiled = new Map();
+  }
+  
+  compile(name, expression) {
+    this.compiled.set(name, jexl.compile(expression));
+  }
+  
+  eval(name, context) {
+    const compiled = this.compiled.get(name);
+    if (!compiled) {
+      throw new Error(`Expression '${name}' not found`);
+    }
+    return compiled.evalSync(context);
+  }
+}
+
+// Usage
+const expressions = new CompiledExpressions();
+expressions.compile('userFullName', 'user.firstName + " " + user.lastName');
+expressions.compile('isEligible', 'user.age >= 18 && user.verified');
+
+// Fast repeated evaluation
+const users = [
+  { firstName: "John", lastName: "Doe", age: 30, verified: true },
+  { firstName: "Jane", lastName: "Smith", age: 17, verified: true }
+];
+
+users.forEach(user => {
+  const fullName = expressions.eval('userFullName', { user });
+  const eligible = expressions.eval('isEligible', { user });
+  console.log(`${fullName}: ${eligible ? 'Eligible' : 'Not eligible'}`);
+});
+```
+
+### Context Caching
+Cache expensive context computations:
+
+```javascript
+class CachedContext {
+  constructor(baseContext) {
+    this.base = baseContext;
+    this.cache = new Map();
+  }
+  
+  addComputed(key, expression) {
+    if (!this.cache.has(key)) {
+      this.cache.set(key, jexl.evalSync(expression, this.base));
+    }
+    return this;
+  }
+  
+  getContext() {
+    const computed = Object.fromEntries(this.cache);
+    return { ...this.base, ...computed };
+  }
+}
+
+// Usage
+const baseContext = {
+  users: [/* large array */],
+  orders: [/* large array */],
+  products: [/* large array */]
+};
+
+const cachedContext = new CachedContext(baseContext)
+  .addComputed('totalUsers', 'users | length')
+  .addComputed('totalRevenue', 'orders | sum("value.amount")')
+  .addComputed('averageOrderValue', 'totalRevenue / (orders | length)')
+  .getContext();
+
+// Now expressions can use cached values
+const result = jexl.evalSync('totalUsers + " users generated $" + totalRevenue', cachedContext);
+```
+
+## Integration Patterns
+
+### React Component Integration
+```javascript
+import React, { useState, useMemo } from 'react';
+import jexl from 'jexl-extended';
+
+function DataDisplayComponent({ data, expression }) {
+  const [error, setError] = useState(null);
+  
+  const result = useMemo(() => {
+    try {
+      setError(null);
+      return jexl.evalSync(expression, data);
+    } catch (err) {
+      setError(err.message);
+      return null;
+    }
+  }, [data, expression]);
+  
+  if (error) {
+    return <div className="error">Error: {error}</div>;
+  }
+  
+  return <div className="result">{JSON.stringify(result, null, 2)}</div>;
+}
+
+// Usage
+<DataDisplayComponent 
+  data={{ users: [...], metrics: {...} }}
+  expression="users | filter('value.active') | length"
+/>
+```
+
+### Express.js Middleware
+```javascript
+function jexlMiddleware(options = {}) {
+  return (req, res, next) => {
+    req.jexl = {
+      eval: (expression, additionalContext = {}) => {
+        const context = {
+          req: {
+            params: req.params,
+            query: req.query,
+            body: req.body,
+            headers: req.headers,
+            user: req.user
+          },
+          ...additionalContext
+        };
+        
+        return jexl.evalSync(expression, context);
+      }
+    };
+    
+    next();
+  };
+}
+
+// Usage
+app.use(jexlMiddleware());
+
+app.get('/api/users', (req, res) => {
+  const users = getUsersFromDatabase();
+  
+  // Apply dynamic filtering based on query parameters
+  const filteredUsers = req.jexl.eval(
+    'users | filter("value.role in allowedRoles")',
+    { 
+      users,
+      allowedRoles: req.user.role === 'admin' ? ['user', 'admin'] : ['user']
+    }
+  );
+  
+  res.json(filteredUsers);
+});
+```
+
+## Best Practices
+
+### 1. Structure Context Logically
+```javascript
+// Good - organized context
+const context = {
+  user: { /* user data */ },
+  app: { /* app config */ },
+  session: { /* session data */ },
+  permissions: { /* user permissions */ }
+};
+
+// Avoid - flat structure
+const flatContext = {
+  userName: "...",
+  userAge: "...",
+  appVersion: "...",
+  sessionTimeout: "..."
+};
+```
+
+### 2. Use Type Guards
+```javascript
+// Type-safe evaluation
+function evaluateWithTypes(expression, context) {
+  const result = jexl.evalSync(expression, context);
+  
+  // Validate result type if needed
+  if (typeof result !== 'string') {
+    throw new Error('Expected string result');
+  }
+  
+  return result;
+}
+```
+
+### 3. Handle Edge Cases
+```javascript
+// Safe property access
+const safeName = jexl.evalSync('user && user.name || "Anonymous"', context);
+
+// Safe array operations
+const safeCount = jexl.evalSync('items && items | length || 0', context);
+
+// Safe numeric operations
+const safeTotal = jexl.evalSync('typeof total == "number" ? total : 0', context);
+```
+
+### 4. Use Meaningful Expression Names
+```javascript
+const EXPRESSIONS = {
+  USER_FULL_NAME: 'user.firstName + " " + user.lastName',
+  IS_PREMIUM_USER: 'user.subscription == "premium"',
+  DAYS_SINCE_SIGNUP: '(now() - user.signupDate | dateTimeToMillis) / 86400000 | floor'
+};
+
+// Clear usage
+const fullName = jexl.evalSync(EXPRESSIONS.USER_FULL_NAME, context);
+```
+
+## Next Steps
+
+Now that you understand basic usage:
+
+- **Monaco Integration** - Add rich editing experience with [Monaco Editor Integration](./monaco-integration)
+- **Advanced Techniques** - Explore [Advanced Usage](./advanced-usage) for performance optimization and custom extensions
+- **Function Reference** - Browse all available functions in the [Function Reference](../reference/)
+- **Language Guide** - Deep dive into JEXL syntax in the [Language Guide](../language/)
+
+JEXL Extended provides a powerful foundation for expression evaluation in JavaScript applications. With these patterns and practices, you can build flexible, maintainable data processing workflows.

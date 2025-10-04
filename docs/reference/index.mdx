@@ -1,0 +1,33 @@
+---
+title: Function Reference
+description: Complete reference for all JEXL Extended functions and transforms
+---
+
+# Function Reference
+
+JEXL Extended provides over 80 built-in functions and transforms organized into the following categories:
+
+- [**Math**](./math): Mathematical operations and calculations (11 functions, 10 transforms)
+- [**Array**](./array): Array operations and transformations (16 functions, 16 transforms)
+- [**Encoding**](./encoding): Data encoding and formatting utilities (3 functions, 3 transforms)
+- [**Conversion**](./conversion): Convert between different data types (8 functions, 8 transforms)
+- [**String**](./string): String manipulation and formatting functions (14 functions, 14 transforms)
+- [**Utility**](./utility): General utility functions (5 functions, 4 transforms)
+- [**DateTime**](./datetime): Date and time operations (6 functions, 4 transforms)
+- [**Object**](./object): Object manipulation and inspection (3 functions, 3 transforms)
+
+## Usage
+
+Functions are called directly:
+```javascript
+abs(-5) // Returns: 5
+max([1, 2, 3]) // Returns: 3
+```
+
+Transforms are used with the pipe operator:
+```javascript
+"hello world" | uppercase // Returns: "HELLO WORLD"
+[1, 2, 3] | map("value * 2") // Returns: [2, 4, 6]
+```
+
+Many functions can also be used as transforms when they have a single parameter.

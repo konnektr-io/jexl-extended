@@ -1,0 +1,472 @@
+---
+title: Python Implementation
+description: Using JEXL Extended in Python projects with pyjexl-extended
+---
+
+# Python Implementation
+
+The Python implementation of JEXL Extended provides identical functionality to the JavaScript version with Pythonic APIs.
+
+## Installation
+
+```bash
+pip install pyjexl-extended
+```
+
+## Basic Usage
+
+```python
+from pyjexl_extended import jexl
+
+# Simple expression evaluation
+result = jexl.eval('5 + 3 * 2')  # 11
+
+# With context data
+context = {'name': 'Alice', 'scores': [85, 92, 78]}
+greeting = jexl.eval('"Hello " + name', context)  # "Hello Alice"
+average = jexl.eval('scores | average', context)  # 85
+```
+
+## Expression Examples
+
+Based on the actual test suite, here are working examples:
+
+### String Operations
+```python
+# String conversion and manipulation
+jexl.eval('string(123)')  # "123"
+jexl.eval('123456|string')  # "123456"
+jexl.eval('{a:123456}|string')  # '{"a":123456}'
+
+# Case conversion
+jexl.eval('uppercase("hello world")')  # "HELLO WORLD"
+jexl.eval('lowercase("HELLO WORLD")')  # "hello world"
+jexl.eval('"FOObar"|lower')  # "foobar"
+
+# camelCase and PascalCase
+jexl.eval('"foo bar "|camelCase')  # "fooBar"
+jexl.eval('$camelCase("Foo_bar")')  # "fooBar"
+jexl.eval('"FooBar"|toCamelCase')  # "fooBar"
+jexl.eval('"foo bar"|toPascalCase')  # "FooBar"
+jexl.eval('"fooBar"|toPascalCase')  # "FooBar"
+
+# Substring operations
+jexl.eval('substring(123456,2,2)')  # "34"
+jexl.eval('$substring("test",(-2))')  # "st"
+jexl.eval('"hello world"|substringBefore(" ")')  # "hello"
+jexl.eval('substringBefore("hello world", "o")')  # "hell"
+jexl.eval('"hello world"|substringAfter(" ")')  # "world"
+jexl.eval('substringAfter("hello world", "x")')  # ""
+
+# String utilities
+jexl.eval('trim(" baz  ")')  # "baz"
+jexl.eval('trim("__baz--","--")')  # "__baz"
+jexl.eval('pad("foo",5)')  # "foo  "
+jexl.eval('pad("foo",(-5),0)')  # "00foo"
+jexl.eval('"foo-bar"|contains("bar")')  # True
+jexl.eval('"foo-bar"|contains("baz")')  # False
+```
+
+### Array Operations
+```python
+# Array manipulation
+jexl.eval('["foo", "bar", "baz"]|append("tek")')  # ['foo', 'bar', 'baz', 'tek']
+jexl.eval('["tek", "baz", "bar", "foo"]|reverse')  # ['foo', 'bar', 'baz', 'tek']
+jexl.eval('["tek", "baz", "bar", "foo", "foo"]|reverse|distinct')  # ['foo', 'bar', 'baz', 'tek']
+
+# Array splitting and joining
+jexl.eval('split("foo-bar", "-")')  # ['foo', 'bar']
+jexl.eval('split("foo-bar", "-")[1]')  # "bar"
+jexl.eval('join(["foo", "bar"], "-")')  # "foo-bar"
+jexl.eval('["foo", "bar"]|join')  # "foo,bar"
+
+# Contains operations
+jexl.eval('"foo-bar"|contains("bar")')  # True
+jexl.eval('["foo-bar"]|contains("bar")')  # False  
+jexl.eval('["foo-bar"]|contains("foo-bar")')  # True
+jexl.eval('["baz", "foo", "bar"]|contains("bar")')  # True
+
+# Object operations
+jexl.eval('{foo:0, bar:1, baz:2, tek:3}|keys')  # ['foo', 'bar', 'baz', 'tek']
+jexl.eval('{a:"foo", b:"bar", c:"baz", d:"tek"}|values')  # ['foo', 'bar', 'baz', 'tek']
+```
+
+### Mathematical Operations
+```python
+# Number operations
+jexl.eval('$number("1")')  # 1
+jexl.eval('$number("1.1")')  # 1.1
+jexl.eval('$number("-1.1")')  # -1.1
+jexl.eval('$number(-1.1)|floor')  # -2
+jexl.eval('$number("10.6")|ceil')  # 11
+jexl.eval('10.123456|round(2)')  # 10.12
+jexl.eval('10.123456|toInt')  # 10
+jexl.eval('"10.123456"|toInt')  # 10
+jexl.eval('3|power(2)')  # 9
+jexl.eval('3|power')  # 9
+jexl.eval('9|sqrt')  # 3
+jexl.eval('random() < 1')  # True
+
+# Formatting
+jexl.eval('16325.62|formatNumber("0,0.000")')  # "16,325.620"
+jexl.eval('12|formatBase(16)')  # "c"
+jexl.eval('16325.62|formatInteger("0000000")')  # "0016325"
+
+# Aggregations
+jexl.eval('[1,2,3]|sum')  # 6
+jexl.eval('sum(1,2,3,4,5)')  # 15
+jexl.eval('[1,3]|sum(1,2,3,4,5)')  # 19
+jexl.eval('[1,3]|sum([1,2,3,4,5])')  # 19
+jexl.eval('[1,3]|max([1,2,3,4,5])')  # 5
+jexl.eval('[2,3]|min([1,2,3,4,5])')  # 1
+jexl.eval('[4,5,6]|avg')  # 5
+```
+
+### Boolean Operations
+```python
+# Boolean conversion
+jexl.eval('1|toBoolean')  # True
+jexl.eval('3|toBoolean')  # True
+jexl.eval('"1"|toBoolean')  # True
+jexl.eval('0|toBool')  # False
+jexl.eval('"false"|toBool')  # False
+jexl.eval('"False"|toBool')  # False
+jexl.eval('"fALSE"|toBool')  # False
+jexl.eval('"tRUE       "|toBoolean')  # True
+
+# Logical operations
+jexl.eval('"False"|toBool|not')  # True
+jexl.eval('"TRUE"|toBool|not')  # False
+```
+
+### Encoding and Conversion
+```python
+# Base64 encoding
+jexl.eval('base64Encode("foobar")')  # "Zm9vYmFy"
+jexl.eval('base64Decode("Zm9vYmFy")')  # "foobar"
+
+# URL encoding
+jexl.eval('{foo:"bar",baz:"tek"}|formUrlEncoded')  # "foo=bar&baz=tek"
+
+# Text replacement
+jexl.eval('replace("foo-bar", "-", "_")')  # "foo_bar"
+jexl.eval('replace("foo-bar---", "-", "")')  # "foobar"
+jexl.eval('"123ab123ab123ab"|replace("123")')  # "ababab"
+```
+
+## Integration Patterns
+
+### Flask Application
+```python
+from flask import Flask, request, jsonify
+from pyjexl_extended import jexl
+
+app = Flask(__name__)
+
+@app.route('/api/filter', methods=['POST'])
+def filter_data():
+    data = request.json
+    expression = data.get('expression', '')
+    context = data.get('context', {})
+    
+    try:
+        result = jexl.eval(expression, context)
+        return jsonify({'result': result})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 400
+
+# Usage:
+# POST /api/filter
+# {
+#   "expression": "users | filter(\"value.active\") | length",
+#   "context": {"users": [...]}
+# }
+```
+
+### Django Integration
+```python
+from django.http import JsonResponse
+from pyjexl_extended import jexl
+import json
+
+def evaluate_expression(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        expression = data.get('expression')
+        context = data.get('context', {})
+        
+        try:
+            result = jexl.eval(expression, context)
+            return JsonResponse({'result': result})
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=400)
+    
+    return JsonResponse({'error': 'Method not allowed'}, status=405)
+```
+
+### Data Processing Pipeline
+```python
+from pyjexl_extended import jexl
+
+def process_user_data(users):
+    """Process user data using JEXL expressions"""
+    
+    # Filter active users
+    active_users = jexl.eval('users | filter("value.active")', {'users': users})
+    
+    # Calculate statistics
+    stats = {
+        'total_users': jexl.eval('users | length', {'users': users}),
+        'active_users': jexl.eval('users | length', {'users': active_users}),
+        'average_age': jexl.eval('users | average("value.age")', {'users': active_users}),
+        'departments': jexl.eval('users | map("value.department") | distinct', {'users': active_users})
+    }
+    
+    return stats
+
+# Usage
+users = [
+    {'name': 'Alice', 'age': 30, 'active': True, 'department': 'Engineering'},
+    {'name': 'Bob', 'age': 25, 'active': False, 'department': 'Marketing'},
+    {'name': 'Carol', 'age': 35, 'active': True, 'department': 'Engineering'}
+]
+
+stats = process_user_data(users)
+print(stats)
+```
+
+### Configuration System
+```python
+from pyjexl_extended import jexl
+
+class ConfigManager:
+    def __init__(self, config_data, user_context):
+        self.config = config_data
+        self.user_context = user_context
+    
+    def get_feature_flag(self, feature_name):
+        """Evaluate feature flag based on user context"""
+        if feature_name not in self.config['features']:
+            return False
+        
+        feature = self.config['features'][feature_name]
+        condition = feature.get('condition', 'true')
+        
+        context = {
+            **self.user_context,
+            'config': self.config
+        }
+        
+        try:
+            return jexl.eval(condition, context)
+        except:
+            return False
+    
+    def get_setting(self, setting_name, default=None):
+        """Get configuration setting with conditional logic"""
+        if setting_name not in self.config['settings']:
+            return default
+        
+        setting = self.config['settings'][setting_name]
+        
+        if isinstance(setting, dict) and 'condition' in setting:
+            context = {**self.user_context, 'config': self.config}
+            if jexl.eval(setting['condition'], context):
+                return setting['value']
+            else:
+                return setting.get('default', default)
+        
+        return setting
+
+# Usage
+config = {
+    'features': {
+        'premium_feature': {
+            'condition': 'user.subscription == "premium" || user.role == "admin"'
+        },
+        'beta_features': {
+            'condition': 'user.beta_tester == true'
+        }
+    },
+    'settings': {
+        'max_file_size': {
+            'condition': 'user.subscription == "premium"',
+            'value': '100MB',
+            'default': '10MB'
+        }
+    }
+}
+
+user_context = {
+    'user': {
+        'id': 123,
+        'subscription': 'premium',
+        'role': 'user',
+        'beta_tester': False
+    }
+}
+
+config_manager = ConfigManager(config, user_context)
+has_premium = config_manager.get_feature_flag('premium_feature')  # True
+max_size = config_manager.get_setting('max_file_size', '5MB')  # "100MB"
+```
+
+## Error Handling
+
+```python
+from pyjexl_extended import jexl
+
+def safe_eval(expression, context, default_value=None):
+    """Safely evaluate JEXL expression with error handling"""
+    try:
+        return jexl.eval(expression, context)
+    except Exception as e:
+        print(f"Expression evaluation failed: {e}")
+        return default_value
+
+# Usage
+context = {'user': {'name': 'John'}}
+result = safe_eval('user.profile.email', context, 'No email')  # "No email"
+name = safe_eval('user.name | uppercase', context, 'Unknown')  # "JOHN"
+```
+
+## Validation Example
+```python
+from pyjexl_extended import jexl
+
+def validate_form(form_data):
+    """Validate form using JEXL expressions"""
+    rules = {
+        'email': 'email && email | contains("@") && email | contains(".")',
+        'age': 'age >= 18 && age <= 120',
+        'password': 'password && password | length >= 8',
+        'confirm_password': 'password == confirm_password'
+    }
+    
+    results = {}
+    for field, rule in rules.items():
+        try:
+            results[field] = jexl.eval(rule, form_data)
+        except:
+            results[field] = False
+    
+    return results
+
+# Usage
+form_data = {
+    'email': 'user@example.com',
+    'age': 25,
+    'password': 'securepass123',
+    'confirm_password': 'securepass123'
+}
+
+validation_results = validate_form(form_data)
+all_valid = all(validation_results.values())
+```
+
+## Testing JEXL Expressions
+
+```python
+import unittest
+from pyjexl_extended import jexl
+
+class TestJexlExpressions(unittest.TestCase):
+    
+    def setUp(self):
+        self.context = {
+            'users': [
+                {'name': 'Alice', 'age': 30, 'active': True},
+                {'name': 'Bob', 'age': 25, 'active': False}
+            ]
+        }
+    
+    def test_string_operations(self):
+        self.assertEqual(jexl.eval('string(123)'), "123")
+        self.assertEqual(jexl.eval('"hello"|uppercase'), "HELLO")
+        self.assertEqual(jexl.eval('"WORLD"|lowercase'), "world")
+    
+    def test_array_operations(self):
+        result = jexl.eval('users | filter("value.active") | length', self.context)
+        self.assertEqual(result, 1)
+        
+        names = jexl.eval('users | map("value.name")', self.context)
+        self.assertEqual(names, ['Alice', 'Bob'])
+    
+    def test_math_operations(self):
+        self.assertEqual(jexl.eval('[1,2,3] | sum'), 6)
+        self.assertEqual(jexl.eval('3 | power(2)'), 9)
+        self.assertEqual(jexl.eval('9 | sqrt'), 3)
+
+if __name__ == '__main__':
+    unittest.main()
+```
+
+## Performance Considerations
+
+1. **Reuse the JEXL instance**: The `jexl` object can be reused across evaluations
+2. **Minimize context size**: Only include necessary data in the context
+3. **Cache results**: For expensive operations, consider caching results
+4. **Use appropriate data types**: Python lists and dicts work efficiently with JEXL
+
+```python
+# Efficient batch processing
+expressions = [
+    'users | length',
+    'users | filter("value.active") | length',
+    'users | average("value.age")'
+]
+
+results = {}
+for i, expr in enumerate(expressions):
+    results[f'metric_{i}'] = jexl.eval(expr, context)
+```
+
+## Common Patterns
+
+### Data Transformation
+```python
+# Transform API response
+api_data = {
+    'users': [
+        {'first_name': 'John', 'last_name': 'Doe', 'email': 'john@example.com'},
+        {'first_name': 'Jane', 'last_name': 'Smith', 'email': 'jane@example.com'}
+    ]
+}
+
+transformed = jexl.eval('''
+users | map("{
+  fullName: value.first_name + ' ' + value.last_name,
+  email: value.email,
+  domain: value.email | substringAfter('@')
+}")
+''', api_data)
+
+print(transformed)
+# [
+#   {'fullName': 'John Doe', 'email': 'john@example.com', 'domain': 'example.com'},
+#   {'fullName': 'Jane Smith', 'email': 'jane@example.com', 'domain': 'example.com'}
+# ]
+```
+
+### Conditional Logic
+```python
+# Business rules evaluation
+user = {'age': 25, 'premium': True, 'country': 'US'}
+
+discount = jexl.eval('''
+user.premium ? 0.2 : (
+  user.age < 25 ? 0.1 : (
+    user.country == "US" ? 0.05 : 0
+  )
+)
+''', {'user': user})
+
+print(f"Discount: {discount * 100}%")  # Discount: 20.0%
+```
+
+## Next Steps
+
+- **Language Guide** - Learn [JEXL syntax](../language/) that works across all implementations
+- **Function Reference** - Browse all [built-in functions](../reference/)
+- **GitHub Repository** - Check [pyjexl-extended](https://github.com/konnektr-io/pyjexl-extended) for latest updates
+- **Test Examples** - See the [test files](https://github.com/konnektr-io/pyjexl-extended/tree/main/tests) for more examples

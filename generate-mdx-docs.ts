@@ -249,7 +249,7 @@ Many functions can also be used as transforms when they have a single parameter.
 }
 
 async function generateMDXDocs(): Promise<void> {
-  const outputDir = "./docs";
+  const outputDir = "./docs/reference";
 
   console.log("🏗️  Generating MDX documentation...");
 

@@ -1,0 +1,572 @@
+---
+title: C# Implementation
+description: Using JEXL Extended in .NET projects with JexlNet
+---
+
+# C# Implementation
+
+JexlNet brings JEXL Extended functionality to .NET applications with full async support and JsonNode integration.
+
+## Installation
+
+```powershell
+# Package Manager Console
+Install-Package JexlNet
+
+# .NET CLI
+dotnet add package JexlNet
+
+# PackageReference
+<PackageReference Include="JexlNet" Version="*" />
+```
+
+## Basic Usage
+
+```csharp
+using JexlNet;
+using System.Text.Json.Nodes;
+
+// Simple expression evaluation
+var result = Jexl.Eval("5 + 3 * 2"); // 11
+
+// With context data (as anonymous object)
+var context = new { name = "Alice", scores = new[] { 85, 92, 78 } };
+var greeting = Jexl.Eval("\"Hello \" + name", context); // "Hello Alice"
+var average = Jexl.Eval("scores | average", context); // 85
+
+// With JsonObject context
+var jsonContext = new JsonObject
+{
+    ["user"] = new JsonObject
+    {
+        ["name"] = "John",
+        ["age"] = 30
+    }
+};
+var userName = Jexl.Eval("user.name | uppercase", jsonContext); // "JOHN"
+```
+
+## Async vs Sync Evaluation
+
+Both async and sync methods support async functions and transforms:
+
+```csharp
+// Synchronous evaluation
+var result = Jexl.Eval("expression", context);
+
+// Asynchronous evaluation  
+var result = await Jexl.EvalAsync("expression", context);
+
+// Creating reusable expressions
+var jexl = new Jexl();
+var compiled = jexl.CreateExpression("user.name | uppercase");
+var result1 = await compiled.EvalAsync(new { user = new { name = "Alice" } }); // "ALICE"
+var result2 = await compiled.EvalAsync(new { user = new { name = "Bob" } });   // "BOB"
+```
+
+## Expression Examples
+
+Based on the actual test suite, here are working examples:
+
+### String Operations
+```csharp
+// String conversion and manipulation
+Jexl.Eval("123456|toString"); // "123456"
+Jexl.Eval("{'a':123456}|toString"); // "{\"a\":123456}"
+Jexl.Eval("'123456'|string"); // "123456"
+
+// Case conversion
+Jexl.Eval("'baz'|uppercase"); // "BAZ"
+Jexl.Eval("$lowercase('FOObar')"); // "foobar"
+
+// camelCase and PascalCase
+Jexl.Eval("'foo bar'|camelCase"); // "fooBar"
+Jexl.Eval("$camelCase('Foo_bar')"); // "fooBar"
+Jexl.Eval("'FooBar'|toCamelCase"); // "fooBar"
+Jexl.Eval("'foo bar'|toPascalCase"); // "FooBar"
+Jexl.Eval("'fooBar'|toPascalCase"); // "FooBar"
+
+// Substring operations
+Jexl.Eval("substring(123456,2,2)"); // "34"
+Jexl.Eval("substring('foo',1)"); // "oo"
+Jexl.Eval("$substring('test',(-2))"); // "st"
+Jexl.Eval("substringBefore(123456,2)"); // "1"
+Jexl.Eval("substringAfter(123456,2)"); // "3456"
+
+// String utilities
+Jexl.Eval("'baz  '|trim"); // "baz"
+Jexl.Eval("'__baz--'|trim('-')"); // "__baz"
+Jexl.Eval("'foo'|pad(5)"); // "foo  "
+Jexl.Eval("'foo'|pad(-5,0)"); // "00foo"
+Jexl.Eval("'foo-bar'|contains('bar')"); // true
+Jexl.Eval("'foo-bar'|contains('baz')"); // false
+```
+
+### Array Operations
+```csharp
+// Array manipulation
+Jexl.Eval("['foo','bar']|join('-')"); // "foo-bar"
+Jexl.Eval("'f,b,a,d,e,c'|split(',')|sort|join"); // "a,b,c,d,e,f"
+Jexl.Eval("'f,b,a,d,e,c'|split(',')|sort|join('')"); // "abcdef"
+
+// Contains operations
+Jexl.Eval("'foo-bar'|contains('bar')"); // true
+Jexl.Eval("['foo-bar']|contains('bar')"); // false
+Jexl.Eval("['foo-bar']|contains('foo-bar')"); // true
+Jexl.Eval("['baz', 'foo', 'bar']|contains('bar')"); // true
+
+// Split operations
+var splitResult = Jexl.Eval("split('foo-bar', '-')");
+// Returns JsonArray: ["foo", "bar"]
+```
+
+### Mathematical Operations
+```csharp
+// Number operations
+Jexl.Eval("$number('1')"); // 1
+Jexl.Eval("$number('1.1')"); // 1.1
+Jexl.Eval("$number('-1.1')"); // -1.1
+Jexl.Eval("$number(-1.1)|floor"); // -2
+Jexl.Eval("$number('10.6')|ceil"); // 11
+Jexl.Eval("'5e2'|toNumber"); // 500
+Jexl.Eval("10.123456|round(2)"); // 10.12
+Jexl.Eval("3|power(2)"); // 9
+Jexl.Eval("3|power"); // 9
+Jexl.Eval("9|sqrt"); // 3
+Jexl.Eval("random() < 1 ? 1 : 0"); // 1
+
+// Formatting
+Jexl.Eval("16325.62|formatNumber('0,0.000')"); // "16,325.620"
+Jexl.Eval("12|formatBase(16)"); // "c"
+Jexl.Eval("9407886870244|formatBase(16)"); // "88e71c146e4"
+Jexl.Eval("16325.62|formatInteger('0000000')"); // "0016325"
+
+// Integer operations with different bases
+Jexl.Eval("'16325'|toInt"); // 16325
+Jexl.Eval("(9/2)|toInt"); // 4
+Jexl.Eval("'FF'|toInt(16)"); // 255
+Jexl.Eval("'1010'|toInt(2)"); // 10
+Jexl.Eval("'777'|toInt(8)"); // 511
+
+// Aggregations
+Jexl.Eval("[1,2,3]|sum"); // 6
+Jexl.Eval("sum(1,2,3,4,5)"); // 15
+Jexl.Eval("[1,3]|sum(1,2,3,4,5)"); // 19
+Jexl.Eval("[1,3]|max([1,2,3,4,5])"); // 5
+Jexl.Eval("[2,3]|min([1,2,3,4,5])"); // 1
+Jexl.Eval("[4,5,6]|avg"); // 5
+```
+
+### Boolean Operations
+```csharp
+// Boolean conversion and logic
+Jexl.Eval("1|toBoolean"); // true
+Jexl.Eval("'true'|toBoolean"); // true
+Jexl.Eval("0|toBoolean"); // false
+Jexl.Eval("'false'|toBoolean"); // false
+Jexl.Eval("''|toBoolean"); // false
+
+// Case statements
+Jexl.Eval("2|case(1,'a',2,'b',3,'c')"); // "b"
+Jexl.Eval("'bar'|case('foo','a','bar','b','baz','c')"); // "b"
+```
+
+### Encoding and Conversion
+```csharp
+// Base64 encoding
+Jexl.Eval("'foobar'|base64Encode"); // "Zm9vYmFy"
+Jexl.Eval("'Zm9vYmFy'|base64Decode"); // "foobar"
+
+// URL encoding
+Jexl.Eval("{foo:'bar',baz:'tek'}|formUrlEncoded"); // "foo=bar&baz=tek"
+
+// Regular expressions
+Jexl.Eval("'foobar'|regexMatch('foo')"); // true
+Jexl.Eval("'bazbar'|regexReplace('baz', 'foo')"); // "foobar"
+
+// Text replacement
+Jexl.Eval("replace('foo-bar', '-', '_')"); // "foo_bar"
+Jexl.Eval("'123ab123ab123ab'|replace('123')"); // "ababab"
+```
+
+## Integration Patterns
+
+### ASP.NET Core Integration
+```csharp
+using JexlNet;
+using Microsoft.AspNetCore.Mvc;
+using System.Text.Json.Nodes;
+
+[ApiController]
+[Route("api/[controller]")]
+public class ExpressionController : ControllerBase
+{
+    private readonly Jexl _jexl;
+    
+    public ExpressionController()
+    {
+        _jexl = new Jexl();
+    }
+    
+    [HttpPost("evaluate")]
+    public async Task<IActionResult> EvaluateExpression([FromBody] ExpressionRequest request)
+    {
+        try
+        {
+            var result = await _jexl.EvalAsync(request.Expression, request.Context);
+            return Ok(new { result });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { error = ex.Message });
+        }
+    }
+}
+
+public class ExpressionRequest
+{
+    public string Expression { get; set; } = "";
+    public JsonObject? Context { get; set; }
+}
+```
+
+### Dependency Injection Setup
+```csharp
+// Program.cs or Startup.cs
+services.AddSingleton<Jexl>();
+
+// Usage in controller
+public class DataController : ControllerBase
+{
+    private readonly Jexl _jexl;
+    
+    public DataController(Jexl jexl)
+    {
+        _jexl = jexl;
+    }
+    
+    [HttpGet("users/filtered")]
+    public async Task<IActionResult> GetFilteredUsers([FromQuery] string? filter = null)
+    {
+        var users = await GetUsersAsync();
+        
+        if (!string.IsNullOrEmpty(filter))
+        {
+            var context = new { users };
+            var filteredUsers = await _jexl.EvalAsync($"users | filter(\"{filter}\")", context);
+            return Ok(filteredUsers);
+        }
+        
+        return Ok(users);
+    }
+}
+```
+
+### Configuration System
+```csharp
+public class FeatureFlags
+{
+    private readonly Jexl _jexl;
+    private readonly JsonObject _config;
+    
+    public FeatureFlags(IConfiguration configuration)
+    {
+        _jexl = new Jexl();
+        _config = JsonNode.Parse(configuration.GetSection("Features").Get<string>())?.AsObject() 
+                  ?? new JsonObject();
+    }
+    
+    public async Task<bool> IsFeatureEnabledAsync(string featureName, object userContext)
+    {
+        if (!_config.ContainsKey(featureName))
+            return false;
+        
+        var feature = _config[featureName]?.AsObject();
+        var condition = feature?["condition"]?.ToString() ?? "false";
+        
+        var context = new JsonObject
+        {
+            ["user"] = JsonSerializer.SerializeToNode(userContext),
+            ["config"] = _config
+        };
+        
+        try
+        {
+            var result = await _jexl.EvalAsync(condition, context);
+            return result?.GetValue<bool>() ?? false;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+}
+
+// Usage
+var user = new { Role = "admin", Subscription = "premium" };
+var hasFeature = await featureFlags.IsFeatureEnabledAsync("advanced_analytics", user);
+```
+
+### Data Processing Pipeline
+```csharp
+public class DataProcessor
+{
+    private readonly Jexl _jexl;
+    
+    public DataProcessor()
+    {
+        _jexl = new Jexl();
+    }
+    
+    public async Task<JsonNode> ProcessDataAsync(JsonArray data, string[] expressions)
+    {
+        var results = new JsonObject();
+        var context = new JsonObject { ["data"] = data };
+        
+        foreach (var expression in expressions)
+        {
+            try
+            {
+                var result = await _jexl.EvalAsync(expression, context);
+                results[expression] = result;
+            }
+            catch (Exception ex)
+            {
+                results[expression] = JsonValue.Create($"Error: {ex.Message}");
+            }
+        }
+        
+        return results;
+    }
+}
+
+// Usage
+var processor = new DataProcessor();
+var data = JsonNode.Parse("[{\"name\":\"Alice\",\"age\":30},{\"name\":\"Bob\",\"age\":25}]")?.AsArray();
+var expressions = new[]
+{
+    "data | length",
+    "data | average(\"age\")",
+    "data | map(\"name\") | join(\", \")"
+};
+
+var results = await processor.ProcessDataAsync(data, expressions);
+```
+
+## Custom Functions and Transforms
+
+```csharp
+var jexl = new Jexl();
+
+// Add custom transform
+jexl.Grammar.AddTransform("slugify", (JsonValue val) => 
+{
+    var text = val?.ToString() ?? "";
+    return text.ToLowerInvariant()
+               .Replace(" ", "-")
+               .Replace("_", "-");
+});
+
+// Add custom function
+jexl.Grammar.AddFunction("formatCurrency", (JsonNode amount, JsonNode currency) =>
+{
+    var value = amount?.GetValue<decimal>() ?? 0;
+    var curr = currency?.ToString() ?? "USD";
+    
+    return curr switch
+    {
+        "USD" => $"${value:N2}",
+        "EUR" => $"€{value:N2}",
+        _ => $"{value:N2} {curr}"
+    };
+});
+
+// Add async function
+jexl.Grammar.AddFunction("fetchUserData", async (JsonNode userId) =>
+{
+    var id = userId?.GetValue<int>() ?? 0;
+    // Simulate async database call
+    await Task.Delay(100);
+    return new JsonObject
+    {
+        ["id"] = id,
+        ["name"] = $"User {id}",
+        ["active"] = true
+    };
+});
+
+// Usage
+var title = await jexl.EvalAsync("'Hello World'|slugify"); // "hello-world"
+var price = await jexl.EvalAsync("formatCurrency(99.99, 'EUR')"); // "€99.99"
+var userData = await jexl.EvalAsync("fetchUserData(123)");
+```
+
+## Error Handling
+
+```csharp
+public static class JexlExtensions
+{
+    public static async Task<T?> SafeEvalAsync<T>(this Jexl jexl, string expression, object? context = null, T? defaultValue = default)
+    {
+        try
+        {
+            var result = await jexl.EvalAsync(expression, context);
+            return result?.GetValue<T>() ?? defaultValue;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Expression evaluation failed: {ex.Message}");
+            return defaultValue;
+        }
+    }
+}
+
+// Usage
+var jexl = new Jexl();
+var context = new { user = new { name = "John" } };
+
+var name = await jexl.SafeEvalAsync<string>("user.name | uppercase", context, "Unknown");
+var email = await jexl.SafeEvalAsync<string>("user.profile.email", context, "No email");
+```
+
+## Form Validation Example
+```csharp
+public class FormValidator
+{
+    private readonly Jexl _jexl;
+    private readonly Dictionary<string, string> _rules;
+    
+    public FormValidator()
+    {
+        _jexl = new Jexl();
+        _rules = new Dictionary<string, string>
+        {
+            ["email"] = "email && email | contains('@') && email | contains('.')",
+            ["age"] = "age >= 18 && age <= 120",
+            ["password"] = "password && password | length >= 8",
+            ["confirmPassword"] = "password == confirmPassword"
+        };
+    }
+    
+    public async Task<Dictionary<string, bool>> ValidateAsync(object formData)
+    {
+        var results = new Dictionary<string, bool>();
+        
+        foreach (var (field, rule) in _rules)
+        {
+            try
+            {
+                var result = await _jexl.EvalAsync(rule, formData);
+                results[field] = result?.GetValue<bool>() ?? false;
+            }
+            catch
+            {
+                results[field] = false;
+            }
+        }
+        
+        return results;
+    }
+}
+
+// Usage
+var validator = new FormValidator();
+var formData = new
+{
+    email = "user@example.com",
+    age = 25,
+    password = "securepass123",
+    confirmPassword = "securepass123"
+};
+
+var results = await validator.ValidateAsync(formData);
+var isValid = results.All(r => r.Value);
+```
+
+## Testing JEXL Expressions
+
+```csharp
+using Xunit;
+using JexlNet;
+
+public class JexlExpressionTests
+{
+    private readonly Jexl _jexl;
+    
+    public JexlExpressionTests()
+    {
+        _jexl = new Jexl();
+    }
+    
+    [Theory]
+    [InlineData("string(123)", "123")]
+    [InlineData("'hello'|uppercase", "HELLO")]
+    [InlineData("'WORLD'|lowercase", "world")]
+    public async Task StringOperations_ShouldWork(string expression, string expected)
+    {
+        var result = await _jexl.EvalAsync(expression);
+        Assert.Equal(expected, result?.ToString());
+    }
+    
+    [Theory]
+    [InlineData("[1,2,3]|sum", 6)]
+    [InlineData("3|power(2)", 9)]
+    [InlineData("9|sqrt", 3)]
+    public async Task MathOperations_ShouldWork(string expression, decimal expected)
+    {
+        var result = await _jexl.EvalAsync(expression);
+        Assert.Equal(expected, result?.GetValue<decimal>());
+    }
+    
+    [Fact]
+    public async Task ArrayFiltering_ShouldWork()
+    {
+        var context = new
+        {
+            users = new[]
+            {
+                new { name = "Alice", age = 30, active = true },
+                new { name = "Bob", age = 25, active = false }
+            }
+        };
+        
+        var result = await _jexl.EvalAsync("users | filter('value.active') | length", context);
+        Assert.Equal(1, result?.GetValue<int>());
+    }
+}
+```
+
+## Performance Tips
+
+1. **Reuse Jexl instances**: Create once and reuse across your application
+2. **Use compiled expressions**: For repeated evaluations, compile expressions
+3. **Optimize context size**: Only include necessary data in the context
+4. **Consider async**: Use `EvalAsync` for I/O-bound operations
+
+```csharp
+// Efficient pattern
+public class ExpressionService
+{
+    private readonly Jexl _jexl;
+    private readonly ConcurrentDictionary<string, JexlExpression> _compiledExpressions;
+    
+    public ExpressionService()
+    {
+        _jexl = new Jexl();
+        _compiledExpressions = new ConcurrentDictionary<string, JexlExpression>();
+    }
+    
+    public async Task<JsonNode?> EvaluateAsync(string expression, object context)
+    {
+        var compiled = _compiledExpressions.GetOrAdd(expression, expr => _jexl.CreateExpression(expr));
+        return await compiled.EvalAsync(context);
+    }
+}
+```
+
+## Next Steps
+
+- **Language Guide** - Learn [JEXL syntax](../language/) that works across all implementations
+- **Function Reference** - Browse all [built-in functions](../reference/)
+- **GitHub Repository** - Check [JexlNet](https://github.com/konnektr-io/JexlNet) for latest updates
+- **Test Examples** - See the [test files](https://github.com/konnektr-io/JexlNet/tree/main/JexlNet.Test) for more examples
