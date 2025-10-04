@@ -76,5 +76,5 @@ jobs:
             - Updated documentation content in `/content/docs/jexl/`
 
             **Source:** ${{ github.repository }}@${{ github.sha }}
-          branch: update-jexl-docs-${{ github.run_number }}
+          branch: update-jexl-docs
           delete-branch: true
