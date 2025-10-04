@@ -58,13 +58,13 @@ Visit [https://konnektr-io.github.io/jexl-playground/](https://konnektr-io.githu
 
 ### 2. **Try the Default Example**
 The playground loads with a sample expression:
-```jexl
+```
 users|filter('value.active')|map('value.name')|sort()
 ```
 
 ### 3. **Modify the Expression**
 Try changing the expression to:
-```jexl
+```
 users|filter('value.age > 25')|map('value.name + " (" + value.department + ")"')
 ```
 
@@ -100,7 +100,7 @@ The playground includes sample data with:
 ## Expression Examples
 
 ### **Filter and Transform Users**
-```jexl
+```
 // Get active engineering users
 users|filter('value.active && value.department == "Engineering"')|map('value.name')
 
@@ -109,7 +109,7 @@ users|groupBy('value.department')|entries|map('[value.key, length(value.value)]'
 ```
 
 ### **Work with Products**
-```jexl
+```
 // Find expensive in-stock items
 products|filter('value.price > 500 && value.inStock')|sort('value.price')
 
@@ -118,7 +118,7 @@ products|filter('value.inStock')|map('value.price')|sum
 ```
 
 ### **String Processing**
-```jexl
+```
 // Format user display names
 users|map('value.name | uppercase | pad(15) + " - " + value.department')
 
@@ -127,7 +127,7 @@ users|map('value.name | lowercase | replace(" ", ".") + "@company.com"')
 ```
 
 ### **Mathematical Operations**
-```jexl
+```
 // Calculate statistics
 [users|map('value.age')|average, users|map('value.age')|max, users|map('value.age')|min]
 
@@ -216,7 +216,7 @@ Replace the sample data with your own:
 
 ### **Complex Expressions**
 Build sophisticated data transformations:
-```jexl
+```
 // Multi-step aggregation
 users
 |groupBy('value.department')
@@ -232,7 +232,7 @@ users
 
 ### **Error Handling**
 Test expressions with edge cases:
-```jexl
+```
 // Safe property access
 users|map('value.profile?.bio || "No bio available"')
 
