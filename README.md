@@ -2,13 +2,15 @@
 
 This package includes an extended grammar for the [Jexl expression parser and evaluator](https://github.com/TomFrost/Jexl) by TomFrost.
 
+📚 **[Complete Documentation](https://docs.konnektr.io/docs/jexl)** | 🎮 **[Try the Playground](https://jexl-playground.konnektr.io/)**
+
 ## Features
 
 - 🚀 **80+ Built-in Functions** - String manipulation, math, arrays, objects, dates, and more
 - 🎨 **Monaco Editor Support** - Syntax highlighting, IntelliSense, and hover documentation  
 - 📝 **TypeScript Support** - Full type definitions included
 - 🔧 **Modular** - Use the entire library or import individual functions
-- 🎮 **Interactive Playground** - Try expressions online at [nikoraes.github.io/jexl-playground/](https://nikoraes.github.io/jexl-playground/)
+- 🎮 **Interactive Playground** - Try expressions online at [jexl-playground.konnektr.io](https://jexl-playground.konnektr.io/)
 
 ## Installation
 
