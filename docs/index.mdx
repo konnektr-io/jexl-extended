@@ -45,7 +45,8 @@ result = jexl.eval('user.name | uppercase', {'user': {'name': 'John'}})
 **C#:**
 ```csharp
 using JexlNet;
-var result = Jexl.Eval("user.name | uppercase", new { user = new { name = "John" } });
+var jexl = new Jexl(new ExtendedGrammar());
+var result = jexl.Eval("user.name | uppercase", new { user = new { name = "John" } });
 // "JOHN"
 ```
 
@@ -68,37 +69,30 @@ Complete documentation for all 80+ functions:
 - [Date/Time Functions](./reference/datetime/) - Date handling
 - [Utility Functions](./reference/utility/) - Helpers and conversions
 
-## Implementation-Specific Guides
+## Usage Guides
 
 Choose your programming language for detailed usage instructions:
 
-### � [JavaScript Implementation](./javascript/)
+### � [JavaScript Implementation](./usage/javascript/)
 - Installation with npm/yarn
 - Basic usage and integration patterns
 - Monaco Editor setup with IntelliSense
 - TypeScript support and type definitions
 - Performance optimization techniques
 
-### 🐍 [Python Implementation](./python/)
+### 🐍 [Python Implementation](./usage/python/)
 - Installation with pip
 - Basic usage patterns
 - Integration with Flask/Django
 - Error handling strategies
 - Performance considerations
 
-### 🔷 [C# Implementation](./csharp/)
+### 🔷 [C# Implementation](./usage/csharp/)
 - NuGet package installation
 - Basic usage with JsonNode
 - ASP.NET Core integration
 - Async/sync evaluation patterns
 - Custom functions and transforms
-- [String Functions](./reference/string/) - String manipulation and formatting
-- [Math Functions](./reference/math/) - Mathematical operations and calculations
-- [DateTime Functions](./reference/datetime/) - Date and time operations
-- [Object Functions](./reference/object/) - Object manipulation and inspection
-- [Conversion Functions](./reference/conversion/) - Convert between data types
-- [Encoding Functions](./reference/encoding/) - Data encoding and formatting
-- [Utility Functions](./reference/utility/) - General utility functions
 
 ## 🎮 Interactive Playground
 

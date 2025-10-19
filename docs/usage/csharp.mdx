@@ -9,15 +9,20 @@ JexlNet brings JEXL Extended functionality to .NET applications with full async 
 
 ## Installation
 
+You need to install both the core JexlNet package and the ExtendedGrammar package:
+
 ```powershell
 # Package Manager Console
 Install-Package JexlNet
+Install-Package Jexl.ExtendedGrammar
 
 # .NET CLI
 dotnet add package JexlNet
+dotnet add package Jexl.ExtendedGrammar
 
 # PackageReference
 <PackageReference Include="JexlNet" Version="*" />
+<PackageReference Include="Jexl.ExtendedGrammar" Version="*" />
 ```
 
 ## Basic Usage
@@ -26,13 +31,16 @@ dotnet add package JexlNet
 using JexlNet;
 using System.Text.Json.Nodes;
 
+// Create a Jexl instance with ExtendedGrammar
+var jexl = new Jexl(new ExtendedGrammar());
+
 // Simple expression evaluation
-var result = Jexl.Eval("5 + 3 * 2"); // 11
+var result = jexl.Eval("5 + 3 * 2"); // 11
 
 // With context data (as anonymous object)
 var context = new { name = "Alice", scores = new[] { 85, 92, 78 } };
-var greeting = Jexl.Eval("\"Hello \" + name", context); // "Hello Alice"
-var average = Jexl.Eval("scores | average", context); // 85
+var greeting = jexl.Eval("\"Hello \" + name", context); // "Hello Alice"
+var average = jexl.Eval("scores | average", context); // 85
 
 // With JsonObject context
 var jsonContext = new JsonObject
@@ -43,7 +51,7 @@ var jsonContext = new JsonObject
         ["age"] = 30
     }
 };
-var userName = Jexl.Eval("user.name | uppercase", jsonContext); // "JOHN"
+var userName = jexl.Eval("user.name | uppercase", jsonContext); // "JOHN"
 ```
 
 ## Async vs Sync Evaluation
@@ -51,14 +59,16 @@ var userName = Jexl.Eval("user.name | uppercase", jsonContext); // "JOHN"
 Both async and sync methods support async functions and transforms:
 
 ```csharp
+// Create Jexl instance with ExtendedGrammar
+var jexl = new Jexl(new ExtendedGrammar());
+
 // Synchronous evaluation
-var result = Jexl.Eval("expression", context);
+var result = jexl.Eval("expression", context);
 
 // Asynchronous evaluation  
-var result = await Jexl.EvalAsync("expression", context);
+var result = await jexl.EvalAsync("expression", context);
 
 // Creating reusable expressions
-var jexl = new Jexl();
 var compiled = jexl.CreateExpression("user.name | uppercase");
 var result1 = await compiled.EvalAsync(new { user = new { name = "Alice" } }); // "ALICE"
 var result2 = await compiled.EvalAsync(new { user = new { name = "Bob" } });   // "BOB"
@@ -66,127 +76,130 @@ var result2 = await compiled.EvalAsync(new { user = new { name = "Bob" } });   /
 
 ## Expression Examples
 
-Based on the actual test suite, here are working examples:
+Some working examples:
 
 ### String Operations
 ```csharp
+// Create Jexl instance
+var jexl = new Jexl(new ExtendedGrammar());
+
 // String conversion and manipulation
-Jexl.Eval("123456|toString"); // "123456"
-Jexl.Eval("{'a':123456}|toString"); // "{\"a\":123456}"
-Jexl.Eval("'123456'|string"); // "123456"
+jexl.Eval("123456|toString"); // "123456"
+jexl.Eval("{'a':123456}|toString"); // "{\"a\":123456}"
+jexl.Eval("'123456'|string"); // "123456"
 
 // Case conversion
-Jexl.Eval("'baz'|uppercase"); // "BAZ"
-Jexl.Eval("$lowercase('FOObar')"); // "foobar"
+jexl.Eval("'baz'|uppercase"); // "BAZ"
+jexl.Eval("$lowercase('FOObar')"); // "foobar"
 
 // camelCase and PascalCase
-Jexl.Eval("'foo bar'|camelCase"); // "fooBar"
-Jexl.Eval("$camelCase('Foo_bar')"); // "fooBar"
-Jexl.Eval("'FooBar'|toCamelCase"); // "fooBar"
-Jexl.Eval("'foo bar'|toPascalCase"); // "FooBar"
-Jexl.Eval("'fooBar'|toPascalCase"); // "FooBar"
+jexl.Eval("'foo bar'|camelCase"); // "fooBar"
+jexl.Eval("$camelCase('Foo_bar')"); // "fooBar"
+jexl.Eval("'FooBar'|toCamelCase"); // "fooBar"
+jexl.Eval("'foo bar'|toPascalCase"); // "FooBar"
+jexl.Eval("'fooBar'|toPascalCase"); // "FooBar"
 
 // Substring operations
-Jexl.Eval("substring(123456,2,2)"); // "34"
-Jexl.Eval("substring('foo',1)"); // "oo"
-Jexl.Eval("$substring('test',(-2))"); // "st"
-Jexl.Eval("substringBefore(123456,2)"); // "1"
-Jexl.Eval("substringAfter(123456,2)"); // "3456"
+jexl.Eval("substring(123456,2,2)"); // "34"
+jexl.Eval("substring('foo',1)"); // "oo"
+jexl.Eval("$substring('test',(-2))"); // "st"
+jexl.Eval("substringBefore(123456,2)"); // "1"
+jexl.Eval("substringAfter(123456,2)"); // "3456"
 
 // String utilities
-Jexl.Eval("'baz  '|trim"); // "baz"
-Jexl.Eval("'__baz--'|trim('-')"); // "__baz"
-Jexl.Eval("'foo'|pad(5)"); // "foo  "
-Jexl.Eval("'foo'|pad(-5,0)"); // "00foo"
-Jexl.Eval("'foo-bar'|contains('bar')"); // true
-Jexl.Eval("'foo-bar'|contains('baz')"); // false
+jexl.Eval("'baz  '|trim"); // "baz"
+jexl.Eval("'__baz--'|trim('-')"); // "__baz"
+jexl.Eval("'foo'|pad(5)"); // "foo  "
+jexl.Eval("'foo'|pad(-5,0)"); // "00foo"
+jexl.Eval("'foo-bar'|contains('bar')"); // true
+jexl.Eval("'foo-bar'|contains('baz')"); // false
 ```
 
 ### Array Operations
 ```csharp
 // Array manipulation
-Jexl.Eval("['foo','bar']|join('-')"); // "foo-bar"
-Jexl.Eval("'f,b,a,d,e,c'|split(',')|sort|join"); // "a,b,c,d,e,f"
-Jexl.Eval("'f,b,a,d,e,c'|split(',')|sort|join('')"); // "abcdef"
+jexl.Eval("['foo','bar']|join('-')"); // "foo-bar"
+jexl.Eval("'f,b,a,d,e,c'|split(',')|sort|join"); // "a,b,c,d,e,f"
+jexl.Eval("'f,b,a,d,e,c'|split(',')|sort|join('')"); // "abcdef"
 
 // Contains operations
-Jexl.Eval("'foo-bar'|contains('bar')"); // true
-Jexl.Eval("['foo-bar']|contains('bar')"); // false
-Jexl.Eval("['foo-bar']|contains('foo-bar')"); // true
-Jexl.Eval("['baz', 'foo', 'bar']|contains('bar')"); // true
+jexl.Eval("'foo-bar'|contains('bar')"); // true
+jexl.Eval("['foo-bar']|contains('bar')"); // false
+jexl.Eval("['foo-bar']|contains('foo-bar')"); // true
+jexl.Eval("['baz', 'foo', 'bar']|contains('bar')"); // true
 
 // Split operations
-var splitResult = Jexl.Eval("split('foo-bar', '-')");
+var splitResult = jexl.Eval("split('foo-bar', '-')");
 // Returns JsonArray: ["foo", "bar"]
 ```
 
 ### Mathematical Operations
 ```csharp
 // Number operations
-Jexl.Eval("$number('1')"); // 1
-Jexl.Eval("$number('1.1')"); // 1.1
-Jexl.Eval("$number('-1.1')"); // -1.1
-Jexl.Eval("$number(-1.1)|floor"); // -2
-Jexl.Eval("$number('10.6')|ceil"); // 11
-Jexl.Eval("'5e2'|toNumber"); // 500
-Jexl.Eval("10.123456|round(2)"); // 10.12
-Jexl.Eval("3|power(2)"); // 9
-Jexl.Eval("3|power"); // 9
-Jexl.Eval("9|sqrt"); // 3
-Jexl.Eval("random() < 1 ? 1 : 0"); // 1
+jexl.Eval("$number('1')"); // 1
+jexl.Eval("$number('1.1')"); // 1.1
+jexl.Eval("$number('-1.1')"); // -1.1
+jexl.Eval("$number(-1.1)|floor"); // -2
+jexl.Eval("$number('10.6')|ceil"); // 11
+jexl.Eval("'5e2'|toNumber"); // 500
+jexl.Eval("10.123456|round(2)"); // 10.12
+jexl.Eval("3|power(2)"); // 9
+jexl.Eval("3|power"); // 9
+jexl.Eval("9|sqrt"); // 3
+jexl.Eval("random() < 1 ? 1 : 0"); // 1
 
 // Formatting
-Jexl.Eval("16325.62|formatNumber('0,0.000')"); // "16,325.620"
-Jexl.Eval("12|formatBase(16)"); // "c"
-Jexl.Eval("9407886870244|formatBase(16)"); // "88e71c146e4"
-Jexl.Eval("16325.62|formatInteger('0000000')"); // "0016325"
+jexl.Eval("16325.62|formatNumber('0,0.000')"); // "16,325.620"
+jexl.Eval("12|formatBase(16)"); // "c"
+jexl.Eval("9407886870244|formatBase(16)"); // "88e71c146e4"
+jexl.Eval("16325.62|formatInteger('0000000')"); // "0016325"
 
 // Integer operations with different bases
-Jexl.Eval("'16325'|toInt"); // 16325
-Jexl.Eval("(9/2)|toInt"); // 4
-Jexl.Eval("'FF'|toInt(16)"); // 255
-Jexl.Eval("'1010'|toInt(2)"); // 10
-Jexl.Eval("'777'|toInt(8)"); // 511
+jexl.Eval("'16325'|toInt"); // 16325
+jexl.Eval("(9/2)|toInt"); // 4
+jexl.Eval("'FF'|toInt(16)"); // 255
+jexl.Eval("'1010'|toInt(2)"); // 10
+jexl.Eval("'777'|toInt(8)"); // 511
 
 // Aggregations
-Jexl.Eval("[1,2,3]|sum"); // 6
-Jexl.Eval("sum(1,2,3,4,5)"); // 15
-Jexl.Eval("[1,3]|sum(1,2,3,4,5)"); // 19
-Jexl.Eval("[1,3]|max([1,2,3,4,5])"); // 5
-Jexl.Eval("[2,3]|min([1,2,3,4,5])"); // 1
-Jexl.Eval("[4,5,6]|avg"); // 5
+jexl.Eval("[1,2,3]|sum"); // 6
+jexl.Eval("sum(1,2,3,4,5)"); // 15
+jexl.Eval("[1,3]|sum(1,2,3,4,5)"); // 19
+jexl.Eval("[1,3]|max([1,2,3,4,5])"); // 5
+jexl.Eval("[2,3]|min([1,2,3,4,5])"); // 1
+jexl.Eval("[4,5,6]|avg"); // 5
 ```
 
 ### Boolean Operations
 ```csharp
 // Boolean conversion and logic
-Jexl.Eval("1|toBoolean"); // true
-Jexl.Eval("'true'|toBoolean"); // true
-Jexl.Eval("0|toBoolean"); // false
-Jexl.Eval("'false'|toBoolean"); // false
-Jexl.Eval("''|toBoolean"); // false
+jexl.Eval("1|toBoolean"); // true
+jexl.Eval("'true'|toBoolean"); // true
+jexl.Eval("0|toBoolean"); // false
+jexl.Eval("'false'|toBoolean"); // false
+jexl.Eval("''|toBoolean"); // false
 
 // Case statements
-Jexl.Eval("2|case(1,'a',2,'b',3,'c')"); // "b"
-Jexl.Eval("'bar'|case('foo','a','bar','b','baz','c')"); // "b"
+jexl.Eval("2|case(1,'a',2,'b',3,'c')"); // "b"
+jexl.Eval("'bar'|case('foo','a','bar','b','baz','c')"); // "b"
 ```
 
 ### Encoding and Conversion
 ```csharp
 // Base64 encoding
-Jexl.Eval("'foobar'|base64Encode"); // "Zm9vYmFy"
-Jexl.Eval("'Zm9vYmFy'|base64Decode"); // "foobar"
+jexl.Eval("'foobar'|base64Encode"); // "Zm9vYmFy"
+jexl.Eval("'Zm9vYmFy'|base64Decode"); // "foobar"
 
 // URL encoding
-Jexl.Eval("{foo:'bar',baz:'tek'}|formUrlEncoded"); // "foo=bar&baz=tek"
+jexl.Eval("{foo:'bar',baz:'tek'}|formUrlEncoded"); // "foo=bar&baz=tek"
 
 // Regular expressions
-Jexl.Eval("'foobar'|regexMatch('foo')"); // true
-Jexl.Eval("'bazbar'|regexReplace('baz', 'foo')"); // "foobar"
+jexl.Eval("'foobar'|regexMatch('foo')"); // true
+jexl.Eval("'bazbar'|regexReplace('baz', 'foo')"); // "foobar"
 
 // Text replacement
-Jexl.Eval("replace('foo-bar', '-', '_')"); // "foo_bar"
-Jexl.Eval("'123ab123ab123ab'|replace('123')"); // "ababab"
+jexl.Eval("replace('foo-bar', '-', '_')"); // "foo_bar"
+jexl.Eval("'123ab123ab123ab'|replace('123')"); // "ababab"
 ```
 
 ## Integration Patterns
@@ -355,8 +368,10 @@ var results = await processor.ProcessDataAsync(data, expressions);
 
 ## Custom Functions and Transforms
 
+### Basic Custom Functions
 ```csharp
-var jexl = new Jexl();
+// Create Jexl with ExtendedGrammar
+var jexl = new Jexl(new ExtendedGrammar());
 
 // Add custom transform
 jexl.Grammar.AddTransform("slugify", (JsonValue val) => 
@@ -399,6 +414,140 @@ jexl.Grammar.AddFunction("fetchUserData", async (JsonNode userId) =>
 var title = await jexl.EvalAsync("'Hello World'|slugify"); // "hello-world"
 var price = await jexl.EvalAsync("formatCurrency(99.99, 'EUR')"); // "€99.99"
 var userData = await jexl.EvalAsync("fetchUserData(123)");
+```
+
+### Advanced: Jexl Wrapper with Caching
+
+For production applications, create a wrapper class with expression caching:
+
+```csharp
+using JexlNet;
+using Microsoft.Extensions.Caching.Memory;
+using System.Text.Json.Nodes;
+
+public partial class JexlService
+{
+    private readonly Jexl _jexl;
+    private readonly MemoryCache _expressionCache;
+
+    public JexlService()
+    {
+        // Initialize with ExtendedGrammar
+        _jexl = new Jexl(new ExtendedGrammar());
+        
+        // Configure expression cache for performance
+        _expressionCache = new MemoryCache(new MemoryCacheOptions() 
+        { 
+            SizeLimit = 1000 
+        });
+        
+        // Add custom transforms
+        _jexl.Grammar.AddTransform("toEpoch", ExtendedGrammar.DateTimeToMillis);
+        _jexl.Grammar.AddTransform("hexToFloat32", HexToFloat32);
+        _jexl.Grammar.AddTransform("regExTest", RegExTest);
+        
+        // Add custom functions
+        _jexl.Grammar.AddFunction("currentEpoch", ExtendedGrammar.Millis);
+        _jexl.Grammar.AddFunction("parseDouble", ExtendedGrammar.ToNumber);
+    }
+
+    /// <summary>
+    /// Creates an expression from a string or retrieves it from cache
+    /// </summary>
+    public Expression? CreateExpression(string exprStr)
+    {
+        // Support Excel-style expressions starting with =
+        if (exprStr.StartsWith('='))
+        {
+            exprStr = exprStr[1..];
+        }
+        
+        return _expressionCache.GetOrCreate(
+            exprStr,
+            entry =>
+            {
+                entry.Size = 1;
+                return new Expression(_jexl.Grammar, exprStr);
+            }
+        );
+    }
+
+    /// <summary>
+    /// Evaluates a cached expression asynchronously
+    /// </summary>
+    public async Task<JsonNode?> EvalAsync(
+        string expression,
+        JsonObject? context = null,
+        CancellationToken cancellationToken = default)
+    {
+        if (expression.StartsWith('='))
+        {
+            expression = expression[1..];
+        }
+        
+        Expression? expr = CreateExpression(expression);
+        if (expr != null)
+        {
+            return await expr.EvalAsync(context, cancellationToken);
+        }
+        return null;
+    }
+
+    /// <summary>
+    /// Evaluates a cached expression synchronously
+    /// </summary>
+    public JsonNode? Eval(
+        string expression,
+        JsonObject? context = null,
+        CancellationToken cancellationToken = default)
+    {
+        if (expression.StartsWith('='))
+        {
+            expression = expression[1..];
+        }
+        
+        Expression? expr = CreateExpression(expression);
+        if (expr != null)
+        {
+            return expr.Eval(context, cancellationToken);
+        }
+        return null;
+    }
+
+    // Custom transform: Hex string to float32
+    private static JsonNode? HexToFloat32(JsonNode input)
+    {
+        if (input is JsonValue value && value.GetValueKind() == JsonValueKind.String)
+        {
+            string hex = value.ToString();
+            if (hex.StartsWith("0x"))
+            {
+                return float.Parse(hex[2..], NumberStyles.HexNumber);
+            }
+            return float.Parse(hex, NumberStyles.HexNumber);
+        }
+        return null;
+    }
+
+    // Custom transform: Regex test
+    private static JsonNode? RegExTest(JsonNode input, JsonNode regex)
+    {
+        if (input is JsonValue inputValue && 
+            regex is JsonValue regexValue &&
+            inputValue.GetValueKind() == JsonValueKind.String &&
+            regexValue.GetValueKind() == JsonValueKind.String)
+        {
+            return System.Text.RegularExpressions.Regex.IsMatch(
+                inputValue.ToString(),
+                regexValue.ToString()
+            );
+        }
+        return null;
+    }
+}
+
+// Usage with dependency injection
+services.AddSingleton<JexlService>();
 ```
 
 ## Error Handling
