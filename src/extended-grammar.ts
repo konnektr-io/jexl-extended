@@ -800,6 +800,25 @@ export const switchCase = (...args: unknown[]) => {
 }
 
 /**
+ * Returns a sub-array from start index to end index.
+ * 
+ * @example
+ * range([1, 2, 3, 4, 5], 1, 4) // [2, 3, 4]
+ * [10, 20, 30, 40]|range(0, 2) // [10, 20]
+ * range(["a", "b", "c", "d"], 2) // ["c", "d"]
+ * @group Array
+ * 
+ * @param array The input array.
+ * @param start The starting index (inclusive).
+ * @param end The ending index (exclusive). If not provided, slices to the end of the array.
+ * @returns The sub-array from start to end, or empty array if input is not an array.
+ */
+export const arrayRange = (array: unknown[], start: number, end?: number) => {
+  if (!Array.isArray(array)) return [];
+  return array.slice(start, end);
+};
+
+/**
  * Appends elements to an array.
  * 
  * @example
