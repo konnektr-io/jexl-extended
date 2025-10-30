@@ -1,0 +1,40 @@
+---
+title: range
+description: Returns a sub-array from start index to end index.
+---
+
+# range
+
+Returns a sub-array from start index to end index.
+
+**Type:** transform
+
+## Aliases
+
+`arrayRange`, `range`
+
+## Parameters
+
+- **array** (array): The input array.
+- **start** (number): The starting index (inclusive).
+- **end** (number?): The ending index (exclusive). If not provided, slices to the end of the array.
+
+## Returns
+
+**Type:** `array`
+
+The sub-array from start to end, or empty array if input is not an array.
+
+## Examples
+
+```javascript
+range([1, 2, 3, 4, 5], 1, 4) // [2, 3, 4]
+```
+
+```javascript
+[10, 20, 30, 40]|range(0, 2) // [10, 20]
+```
+
+```javascript
+range(["a", "b", "c", "d"], 2) // ["c", "d"]
+```

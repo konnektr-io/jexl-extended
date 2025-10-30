@@ -1,0 +1,46 @@
+name: Auto Regenerate Docs on Grammar Change
+
+on:
+    push:
+        paths:
+            - "src/extended-grammar.ts"
+    workflow_dispatch:
+
+jobs:
+    regenerate-docs:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+              with:
+                  persist-credentials: false
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "20"
+
+            - name: Install PNPM
+              uses: pnpm/action-setup@v4
+              with:
+                  version: "9"
+
+            - name: Install dependencies
+              run: pnpm install --no-frozen-lockfile
+
+            - name: Regenerate docs
+              run: pnpm run docs
+
+            - name: Commit and push changes
+              run: |
+                  git config --global user.name 'github-actions[bot]'
+                  git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+                  git add docs/ README.md
+                  if git diff --cached --quiet; then
+                    echo "No changes to commit."
+                    exit 0
+                  fi
+                  git commit -m "chore(docs): auto-regenerate docs after grammar change [skip ci]"
+                  git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:${{ github.ref }}
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1430,6 +1430,47 @@ export const completionDocs: CompletionDocItem[] = [
   },
   {
     "type": "function",
+    "name": "arrayRange",
+    "label": "range",
+    "description": "Returns a sub-array from start index to end index.",
+    "detail": "JEXL function",
+    "documentation": "Returns a sub-array from start index to end index.\n\n**Examples:**\n`range([1, 2, 3, 4, 5], 1, 4) // [2, 3, 4]`\n`[10, 20, 30, 40]|range(0, 2) // [10, 20]`\n`range([\"a\", \"b\", \"c\", \"d\"], 2) // [\"c\", \"d\"]`\n\n**Parameters:**\n- `array` (array): The input array.\n- `start` (number): The starting index (inclusive).\n- `end` (number?): The ending index (exclusive). If not provided, slices to the end of the array.\n\n**Returns:** The sub-array from start to end, or empty array if input is not an array.",
+    "examples": [
+      "range([1, 2, 3, 4, 5], 1, 4) // [2, 3, 4]",
+      "[10, 20, 30, 40]|range(0, 2) // [10, 20]",
+      "range([\"a\", \"b\", \"c\", \"d\"], 2) // [\"c\", \"d\"]"
+    ],
+    "parameters": [
+      {
+        "name": "array",
+        "description": "The input array.",
+        "type": "array",
+        "optional": false
+      },
+      {
+        "name": "start",
+        "description": "The starting index (inclusive).",
+        "type": "number",
+        "optional": false
+      },
+      {
+        "name": "end",
+        "description": "The ending index (exclusive). If not provided, slices to the end of the array.",
+        "type": "number",
+        "optional": true
+      }
+    ],
+    "returns": {
+      "type": "array",
+      "description": "The sub-array from start to end, or empty array if input is not an array."
+    },
+    "insertText": "range(${1:array}, ${2:start}, ${3:end?})",
+    "aliases": [
+      "arrayRange"
+    ]
+  },
+  {
+    "type": "function",
     "name": "arrayReduce",
     "label": "reduce",
     "description": "Returns an aggregated value derived from applying the function parameter successively to each value in array in combination with the result of the previous application of the function.\r",
@@ -3408,6 +3449,48 @@ export const completionDocs: CompletionDocItem[] = [
       "description": "The result of base raised to the exponent, or NaN if input cannot be converted to a number."
     },
     "insertText": "power(${1:exponent?})"
+  },
+  {
+    "type": "transform",
+    "name": "arrayRange",
+    "label": "range",
+    "description": "Returns a sub-array from start index to end index.",
+    "detail": "JEXL transform",
+    "documentation": "Returns a sub-array from start index to end index.\n\n**Examples:**\n`range([1, 2, 3, 4, 5], 1, 4) // [2, 3, 4]`\n`[10, 20, 30, 40]|range(0, 2) // [10, 20]`\n`range([\"a\", \"b\", \"c\", \"d\"], 2) // [\"c\", \"d\"]`\n\n**Parameters:**\n- `array` (array): The input array.\n- `start` (number): The starting index (inclusive).\n- `end` (number?): The ending index (exclusive). If not provided, slices to the end of the array.\n\n**Returns:** The sub-array from start to end, or empty array if input is not an array.",
+    "examples": [
+      "range([1, 2, 3, 4, 5], 1, 4) // [2, 3, 4]",
+      "[10, 20, 30, 40]|range(0, 2) // [10, 20]",
+      "range([\"a\", \"b\", \"c\", \"d\"], 2) // [\"c\", \"d\"]"
+    ],
+    "parameters": [
+      {
+        "name": "array",
+        "description": "The input array.",
+        "type": "array",
+        "optional": false
+      },
+      {
+        "name": "start",
+        "description": "The starting index (inclusive).",
+        "type": "number",
+        "optional": false
+      },
+      {
+        "name": "end",
+        "description": "The ending index (exclusive). If not provided, slices to the end of the array.",
+        "type": "number",
+        "optional": true
+      }
+    ],
+    "returns": {
+      "type": "array",
+      "description": "The sub-array from start to end, or empty array if input is not an array."
+    },
+    "insertText": "range(${1:start}, ${2:end?})",
+    "aliases": [
+      "arrayRange",
+      "range"
+    ]
   },
   {
     "type": "transform",
