@@ -53,10 +53,10 @@ jobs:
           git status
           echo "=== Git diff ==="
           git diff --name-status
-          echo "=== All files in content/docs/graph ==="
-          find content/docs/graph -type f | head -20
+          echo "=== All files in content/docs/jexl ==="
+          find content/docs/jexl -type f | head -20
           echo "=== Adding all files to git ==="
-          git add content/docs/graph/
+          git add content/docs/jexl/
           echo "=== Git status after add ==="
           git status
           echo "=== Git diff --cached ==="
@@ -70,7 +70,7 @@ jobs:
           commit-message: "Update Konnektr Jexl documentation"
           title: "Update Konnektr Jexl documentation"
           body: |
-            This PR updates the Konnektr Graph documentation with the latest changes from the jexl-extended repository.
+            This PR updates the Konnektr Jexl documentation with the latest changes from the jexl-extended repository.
 
             **Changes:**
             - Updated documentation content in `/content/docs/jexl/`
