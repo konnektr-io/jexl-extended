@@ -39,7 +39,7 @@
     "type": "git",
     "url": "git+https://github.com/konnektr-io/jexl-extended.git"
   },
-  "homepage": "https://github.com/konnektr-io/jexl-extended",
+  "homepage": "https://docs.konnektr.io/docs/jexl",
   "license": "MIT",
   "peerDependencies": {
     "monaco-editor": ">=0.40.0"
