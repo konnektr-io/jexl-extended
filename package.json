@@ -1,6 +1,6 @@
 {
   "name": "jexl-extended",
-  "version": "1.3.6",
+  "version": "1.3.7",
   "description": "Extended grammar for Javascript Expression Language (JEXL)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -37,9 +37,9 @@
   "author": "Niko Raes <niko.raes@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nikoraes/jexl-extended.git"
+    "url": "git+https://github.com/konnektr-io/jexl-extended.git"
   },
-  "homepage": "https://github.com/nikoraes/jexl-extended",
+  "homepage": "https://github.com/konnektr-io/jexl-extended",
   "license": "MIT",
   "peerDependencies": {
     "monaco-editor": ">=0.40.0"
