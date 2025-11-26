@@ -383,6 +383,38 @@ export const completionDocs: CompletionDocItem[] = [
   },
   {
     "type": "function",
+    "name": "convertTimeZone",
+    "label": "convertTimeZone",
+    "description": "Converts an ISO datetime string to a target timezone, handling daylight savings, and returns an ISO string with the correct offset.",
+    "detail": "JEXL function",
+    "documentation": "Converts an ISO datetime string to a target timezone, handling daylight savings, and returns an ISO string with the correct offset.\n\n**Examples:**\n`convertTimeZone(datetime, timezone)`\n`$convertTimeZone(datetime, timezone)`\n`datetime|convertTimeZone(timezone)`\n\n**Parameters:**\n- `input` (unknown): ISO datetime string\n- `targetTimeZone` (unknown): Target timezone (IANA or Windows ID or fixed offset)\n\n**Returns:** ISO datetime string with correct offset",
+    "examples": [
+      "convertTimeZone(datetime, timezone)",
+      "$convertTimeZone(datetime, timezone)",
+      "datetime|convertTimeZone(timezone)"
+    ],
+    "parameters": [
+      {
+        "name": "input",
+        "description": "ISO datetime string",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "targetTimeZone",
+        "description": "Target timezone (IANA or Windows ID or fixed offset)",
+        "type": "unknown",
+        "optional": false
+      }
+    ],
+    "returns": {
+      "type": "string",
+      "description": "ISO datetime string with correct offset"
+    },
+    "insertText": "convertTimeZone(${1:input}, ${2:targetTimeZone})"
+  },
+  {
+    "type": "function",
     "name": "dateTimeAdd",
     "label": "dateTimeAdd",
     "description": "Adds a time range to a date and time in the ISO 8601 format.",
@@ -2439,6 +2471,38 @@ export const completionDocs: CompletionDocItem[] = [
     "aliases": [
       "includes"
     ]
+  },
+  {
+    "type": "transform",
+    "name": "convertTimeZone",
+    "label": "convertTimeZone",
+    "description": "Converts an ISO datetime string to a target timezone, handling daylight savings, and returns an ISO string with the correct offset.",
+    "detail": "JEXL transform",
+    "documentation": "Converts an ISO datetime string to a target timezone, handling daylight savings, and returns an ISO string with the correct offset.\n\n**Examples:**\n`convertTimeZone(datetime, timezone)`\n`$convertTimeZone(datetime, timezone)`\n`datetime|convertTimeZone(timezone)`\n\n**Parameters:**\n- `input` (unknown): ISO datetime string\n- `targetTimeZone` (unknown): Target timezone (IANA or Windows ID or fixed offset)\n\n**Returns:** ISO datetime string with correct offset",
+    "examples": [
+      "convertTimeZone(datetime, timezone)",
+      "$convertTimeZone(datetime, timezone)",
+      "datetime|convertTimeZone(timezone)"
+    ],
+    "parameters": [
+      {
+        "name": "input",
+        "description": "ISO datetime string",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "targetTimeZone",
+        "description": "Target timezone (IANA or Windows ID or fixed offset)",
+        "type": "unknown",
+        "optional": false
+      }
+    ],
+    "returns": {
+      "type": "string",
+      "description": "ISO datetime string with correct offset"
+    },
+    "insertText": "convertTimeZone(${1:targetTimeZone})"
   },
   {
     "type": "transform",

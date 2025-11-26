@@ -1468,6 +1468,24 @@ export const convertTimeZone = (
     return null;
   }
 };
+
+/**
+ * Evaluates a JEXL expression and returns the result.
+ * If only one argument is provided, it is expected that the first argument is a JEXL expression.
+ * If two arguments are provided, the first argument is the context (must be an object) and the second argument is the JEXL expression.
+ * The expression uses the default JEXL extended grammar and can't use any custom defined functions or transforms.
+ *
+ * @example
+ * _eval("1 + 2") // 3
+ * _eval({x: 5, y: 10}, "x + y") // 15
+ * "2 * 3"|_eval // 6
+ * _eval({name: "John"}, "name") // "John"
+ * @group Utility
+ *
+ * @param input Either a JEXL expression string or a context object.
+ * @param expression Optional JEXL expression when first argument is context.
+ * @returns The result of evaluating the expression, or undefined if evaluation fails.
+ */
 export const _eval = (input: unknown, expression: string) => {
   if (expression === undefined) {
     const _input = typeof input === "string" ? input : JSON.stringify(input);

@@ -42,7 +42,7 @@ function getGroupFromTypedoc(functionName: string): string | null {
   const signature = child.signatures?.[0];
   if (!signature) return null;
 
-  const groupTag = signature.comment?.blockTags?.find(
+  const groupTag = (signature as any).comment?.blockTags?.find(
     (tag: any) => tag.tag === "@group"
   );
   if (!groupTag) return null;

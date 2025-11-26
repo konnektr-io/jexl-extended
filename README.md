@@ -51,7 +51,7 @@ const editor = Monaco.createJexlEditor(monaco, document.getElementById('editor')
 });
 ```
 
-[📖 See full Monaco integration guide](./MONACO.md)
+[📖 See full Monaco integration guide](https://docs.konnektr.io/docs/jexl/usage/monaco-integration)
 
 It is also possible to use the extended grammar in the original Jexl library by importing parts of the grammar you need and adding it to the Jexl instance.
 

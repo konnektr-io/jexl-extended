@@ -1,0 +1,35 @@
+---
+title: convertTimeZone
+description: Converts an ISO datetime string to a target timezone, handling daylight savings, and returns an ISO string with the correct offset.
+---
+
+# convertTimeZone
+
+Converts an ISO datetime string to a target timezone, handling daylight savings, and returns an ISO string with the correct offset.
+
+**Type:** transform
+
+## Parameters
+
+- **input** (unknown): ISO datetime string
+- **targetTimeZone** (unknown): Target timezone (IANA or Windows ID or fixed offset)
+
+## Returns
+
+**Type:** `string`
+
+ISO datetime string with correct offset
+
+## Examples
+
+```javascript
+convertTimeZone(datetime, timezone)
+```
+
+```javascript
+$convertTimeZone(datetime, timezone)
+```
+
+```javascript
+datetime|convertTimeZone(timezone)
+```

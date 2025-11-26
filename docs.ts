@@ -35,13 +35,19 @@ for (const [type, lib] of Object.entries(libs)) {
             continue
         }
         const docsJson = {
-            type: type as GrammarType,
-            name: key,
-            description: doc.signatures[0]?.comment?.summary[0]?.text,
-            args: (doc.signatures[0] as unknown as { parameters: { name: string }[] })?.parameters?.map(param => param.name).join(', '),
-            returns: (doc.signatures[0].type as { type: string; name: string; }).name || doc.signatures[0].type.type,
-            code: lib[key].toString()
-        }
+          type: type as GrammarType,
+          name: key,
+          description: (doc.signatures as any)[0]?.comment?.summary[0]?.text,
+          args: (
+            doc.signatures[0] as unknown as { parameters: { name: string }[] }
+          )?.parameters
+            ?.map((param) => param.name)
+            .join(", "),
+          returns:
+            (doc.signatures[0].type as { type: string; name: string }).name ||
+            doc.signatures[0].type.type,
+          code: lib[key].toString(),
+        };
         docs.push(docsJson)
     }
 }
