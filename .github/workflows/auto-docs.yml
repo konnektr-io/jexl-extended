@@ -28,6 +28,9 @@ jobs:
             - name: Install dependencies
               run: pnpm install --no-frozen-lockfile
 
+            - name: Install ts-node
+              run: pnpm add -g ts-node
+
             - name: Regenerate docs
               run: pnpm run docs
 
