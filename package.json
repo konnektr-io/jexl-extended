@@ -1,6 +1,6 @@
 {
   "name": "jexl-extended",
-  "version": "1.3.7",
+  "version": "1.4.0",
   "description": "Extended grammar for Javascript Expression Language (JEXL)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -51,8 +51,10 @@
   },
   "dependencies": {
     "date-fns": "^4.1.0",
+    "date-fns-tz": "^3.2.0",
     "jexl": "^2.3.0",
-    "uuid": "^13.0.0"
+    "uuid": "^13.0.0",
+    "windows-iana": "^5.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.5.0",

@@ -67,6 +67,7 @@ import {
   formUrlEncoded,
   toJson,
   arrayRange,
+  convertTimeZone,
 } from "./extended-grammar";
 
 export class JexlExtended extends Jexl {
@@ -381,6 +382,10 @@ export class JexlExtended extends Jexl {
     this.addFunction("dateTimeAdd", dateTimeAdd);
     this.addFunction("$dateTimeAdd", dateTimeAdd);
     this.addTransform("dateTimeAdd", dateTimeAdd);
+    // ConvertTimeZone
+    this.addFunction("convertTimeZone", convertTimeZone);
+    this.addFunction("$convertTimeZone", convertTimeZone);
+    this.addTransform("convertTimeZone", convertTimeZone);
     // Eval
     this.addFunction("eval", _eval);
     this.addFunction("$eval", _eval);
