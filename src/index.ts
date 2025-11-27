@@ -68,6 +68,7 @@ import {
   toJson,
   arrayRange,
   convertTimeZone,
+  getType,
 } from "./extended-grammar";
 
 export class JexlExtended extends Jexl {
@@ -395,6 +396,10 @@ export class JexlExtended extends Jexl {
     this.addFunction("$uuid", uuid);
     this.addFunction("uid", uuid);
     this.addFunction("$uid", uuid);
+    // Types
+    this.addFunction("type", getType);
+    this.addFunction("$type", getType);
+    this.addTransform("type", getType);
   }
 }
 

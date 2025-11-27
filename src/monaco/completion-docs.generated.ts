@@ -2028,6 +2028,35 @@ export const completionDocs: CompletionDocItem[] = [
   },
   {
     "type": "function",
+    "name": "getType",
+    "label": "type",
+    "description": "Returns the type of the input value as a string.\r",
+    "detail": "JEXL function",
+    "documentation": "Returns the type of the input value as a string.\r\n\r\nSupported return values:\r\n- \"string\", \"number\", \"boolean\", \"undefined\", \"array\", \"object\"\r\n- Only for JS: \"function\", \"symbol\", \"bigint\"\n\n**Examples:**\n`type(5); // \"number\"`\n`foo|type; // \"string\"`\n`type(true); // \"boolean\"`\n\n**Parameters:**\n- `input` (unknown): The value to check the type of.\n\n**Returns:** The type of the input value.",
+    "examples": [
+      "type(5); // \"number\"",
+      "foo|type; // \"string\"",
+      "type(true); // \"boolean\""
+    ],
+    "parameters": [
+      {
+        "name": "input",
+        "description": "The value to check the type of.",
+        "type": "unknown",
+        "optional": false
+      }
+    ],
+    "returns": {
+      "type": "string",
+      "description": "The type of the input value."
+    },
+    "insertText": "type(${1:input})",
+    "aliases": [
+      "getType"
+    ]
+  },
+  {
+    "type": "function",
     "name": "uppercase",
     "label": "uppercase",
     "description": "Converts the input string to uppercase.",
@@ -4086,6 +4115,36 @@ export const completionDocs: CompletionDocItem[] = [
       "description": "The trimmed string, or empty string if input is not a string."
     },
     "insertText": "trim(${1:trimChar?})"
+  },
+  {
+    "type": "transform",
+    "name": "getType",
+    "label": "type",
+    "description": "Returns the type of the input value as a string.\r",
+    "detail": "JEXL transform",
+    "documentation": "Returns the type of the input value as a string.\r\n\r\nSupported return values:\r\n- \"string\", \"number\", \"boolean\", \"undefined\", \"array\", \"object\"\r\n- Only for JS: \"function\", \"symbol\", \"bigint\"\n\n**Examples:**\n`type(5); // \"number\"`\n`foo|type; // \"string\"`\n`type(true); // \"boolean\"`\n\n**Parameters:**\n- `input` (unknown): The value to check the type of.\n\n**Returns:** The type of the input value.",
+    "examples": [
+      "type(5); // \"number\"",
+      "foo|type; // \"string\"",
+      "type(true); // \"boolean\""
+    ],
+    "parameters": [
+      {
+        "name": "input",
+        "description": "The value to check the type of.",
+        "type": "unknown",
+        "optional": false
+      }
+    ],
+    "returns": {
+      "type": "string",
+      "description": "The type of the input value."
+    },
+    "insertText": "type",
+    "aliases": [
+      "getType",
+      "type"
+    ]
   },
   {
     "type": "transform",

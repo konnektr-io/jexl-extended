@@ -448,6 +448,32 @@ test("eval", () => {
   expect(jexl.evalSync("assoc[2]|eval(expression)", context)).toBe(45);
 });
 
+/* [Theory]
+    [InlineData("5|type", "number")]
+    [InlineData("'5'|type", "string")]
+    [InlineData("true|type", "boolean")]
+    // [InlineData("null|type", "null")]
+    [InlineData("[1,2,3]|type", "array")]
+    [InlineData("{foo:1}|type", "object")]
+    [InlineData("undefined|type", "undefined")]
+    public void TypeTransform(string expression, string expected)
+    {
+        var jexl = new Jexl(new ExtendedGrammar());
+        var result = jexl.Eval(expression)?.ToString();
+        Assert.Equal(expected, result);
+    } */
+
+test("typeCheck", () => {
+  expect(jexl.evalSync("5|type")).toBe("number");
+  expect(jexl.evalSync("'5'|type")).toBe("string");
+  expect(jexl.evalSync("true|type")).toBe("boolean");
+  // expect(jexl.evalSync("null|type")).toBe("null");
+  expect(jexl.evalSync("[1,2,3]|type")).toBe("array");
+  expect(jexl.evalSync("{foo:1}|type")).toBe("object");
+  expect(jexl.evalSync("undefined|type")).toBe("undefined");
+});
+
+
 import jexl2 from "jexl";
 import { arrayMap } from "../src/extended-grammar";
 

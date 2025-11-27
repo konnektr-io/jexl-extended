@@ -1510,3 +1510,27 @@ export const _eval = (input: unknown, expression: string) => {
 export const uuid = () => {
   return uuidv4();
 };
+
+/**
+ * Returns the type of the input value as a string.
+ *
+ * Supported return values:
+ * - "string", "number", "boolean", "undefined", "array", "object"
+ * - Only for JS: "function", "symbol", "bigint"
+ *
+ * @param input - The value to check the type of.
+ * @returns {string} The type of the input value.
+ *
+ * @example
+ * type(5); // "number"
+ * foo|type; // "string"
+ * type(true); // "boolean"
+ * [1,2,3]|type; // "array"
+ * {foo:1}|type; // "object"
+ * undefined|type; // "undefined"
+ */
+export const getType = (input: unknown): string => {
+  if (input === null) return "null";
+  if (Array.isArray(input)) return "array";
+  return typeof input;
+};

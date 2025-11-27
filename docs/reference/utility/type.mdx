@@ -1,0 +1,38 @@
+---
+title: type
+description: Returns the type of the input value as a string.
+---
+
+# type
+
+Returns the type of the input value as a string.
+
+**Type:** transform
+
+## Aliases
+
+`getType`, `type`
+
+## Parameters
+
+- **input** (unknown): The value to check the type of.
+
+## Returns
+
+**Type:** `string`
+
+The type of the input value.
+
+## Examples
+
+```javascript
+type(5); // "number"
+```
+
+```javascript
+foo|type; // "string"
+```
+
+```javascript
+type(true); // "boolean"
+```
