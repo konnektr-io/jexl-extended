@@ -5,6 +5,9 @@ on:
         paths:
             - "src/extended-grammar.ts"
     workflow_dispatch:
+      
+permissions:
+  contents: write
 
 jobs:
     regenerate-docs:
