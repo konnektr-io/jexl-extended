@@ -1,4 +1,4 @@
-import { toZonedTime } from 'date-fns-tz';
+import { formatInTimeZone, fromZonedTime, toZonedTime } from "date-fns-tz";
 import { findIana } from "windows-iana";
 import {
   parse as dateParse,
@@ -1397,9 +1397,8 @@ export const dateTimeAdd = (input: string, unit: string, value: number) => {
  * Converts an ISO datetime string to a target timezone, handling daylight savings, and returns an ISO string with the correct offset.
  *
  * @example
- * convertTimeZone(datetime, timezone)
- * $convertTimeZone(datetime, timezone)
- * datetime|convertTimeZone(timezone)
+ * convertTimeZone('2025-06-26T12:00:00Z', 'Europe/Amsterdam') // 2025-06-26T14:00:00.0000000+02:00
+ * '2025-06-26T12:00:00Z'|convertTimeZone('Pacific Standard Time') // '2025-06-26T05:00:00.0000000-07:00'
  * @group DateTime
  *
  * @param input ISO datetime string
@@ -1410,7 +1409,8 @@ export const convertTimeZone = (
   input: unknown,
   targetTimeZone: unknown
 ): string | null => {
-  if (typeof input !== "string" || typeof targetTimeZone !== "string") return null;
+  if (typeof input !== "string" || typeof targetTimeZone !== "string")
+    return null;
   try {
     const date = new Date(input);
     if (isNaN(date.getTime())) return null;
@@ -1455,14 +1455,54 @@ export const convertTimeZone = (
     // yyyy-MM-dd'T'HH:mm:ss.SSSSSSSXXX for ISO with 7 fractional digits and offset
     // SSSSSSS is not a standard token, so pad manually after formatting
     // Use SSS for milliseconds, then pad to 7 digits
-    const { formatInTimeZone } = require('date-fns-tz'); // Use ESM import in actual code
-    let formatted = formatInTimeZone(date, ianaTz, "yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+    const { formatInTimeZone } = require("date-fns-tz"); // Use ESM import in actual code
+    let formatted = formatInTimeZone(
+      date,
+      ianaTz,
+      "yyyy-MM-dd'T'HH:mm:ss.SSSXXX"
+    );
     // Patch to 7 digits for fractional seconds
-    formatted = formatted.replace(/\.(\d{3})/, (m, ms) => `.${ms.padEnd(7, "0")}`);
+    formatted = formatted.replace(
+      /\.(\d{3})/,
+      (m, ms) => `.${ms.padEnd(7, "0")}`
+    );
     // Patch UTC output to use +00:00 instead of Z
     if (ianaTz === "UTC" && formatted.endsWith("Z")) {
       formatted = formatted.slice(0, -1) + "+00:00";
     }
+    return formatted;
+  } catch {
+    return null;
+  }
+};
+
+/**
+ * Converts a local time string in a specified timezone to an ISO datetime string with the correct offset.
+ *
+ * @example
+ * localTimeToIsoWithOffset('2025-06-26 14:00:00', 'Europe/Amsterdam') // '2025-06-26T14:00:00.0000000+02:00'
+ * '2025-06-26 05:00:00'|localTimeToIsoWithOffset('Pacific Standard Time') // '2025-06-26T05:00:00.0000000-08:00'
+ * @group DateTime
+ *
+ * @param localTime Local time string
+ * @param timeZone Timezone (IANA or Windows ID or fixed offset)
+ * @returns ISO datetime string with correct offset
+ */
+export const localTimeToIsoWithOffset = (
+  localTime: string,
+  timeZone: string
+): string | null => {
+  try {
+    const utcDate = fromZonedTime(localTime, timeZone);
+    let formatted = formatInTimeZone(
+      utcDate,
+      timeZone,
+      "yyyy-MM-dd'T'HH:mm:ss.SSSXXX"
+    );
+    formatted = formatted.replace(
+      /\.(\d{3})/,
+      (m, ms) => `.${ms.padEnd(7, "0")}`
+    );
     return formatted;
   } catch {
     return null;

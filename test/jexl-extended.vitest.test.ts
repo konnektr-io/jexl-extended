@@ -434,6 +434,14 @@ test("convertTimeZone: fixed offsets", () => {
   ).toBe("2025-12-26T04:00:00.0000000-08:00");
 });
 
+test("localTimeToIsoWithOffset", () => {
+  expect(
+    jexl.evalSync(
+      "'2025-06-26 14:00:00'|localTimeToIsoWithOffset('Europe/Amsterdam')"
+    )
+  ).toBe("2025-06-26T14:00:00.0000000+02:00");
+});
+
 test("eval", () => {
   const context = {
     assoc: [

@@ -68,6 +68,7 @@ import {
   toJson,
   arrayRange,
   convertTimeZone,
+  localTimeToIsoWithOffset,
   getType,
 } from "./extended-grammar";
 
@@ -387,6 +388,10 @@ export class JexlExtended extends Jexl {
     this.addFunction("convertTimeZone", convertTimeZone);
     this.addFunction("$convertTimeZone", convertTimeZone);
     this.addTransform("convertTimeZone", convertTimeZone);
+    // LocalTimeToIsoWithOffset
+    this.addFunction("localTimeToIsoWithOffset", localTimeToIsoWithOffset);
+    this.addFunction("$localTimeToIsoWithOffset", localTimeToIsoWithOffset);
+    this.addTransform("localTimeToIsoWithOffset", localTimeToIsoWithOffset);
     // Eval
     this.addFunction("eval", _eval);
     this.addFunction("$eval", _eval);
