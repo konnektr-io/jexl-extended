@@ -23,13 +23,9 @@ ISO datetime string with correct offset
 ## Examples
 
 ```javascript
-convertTimeZone(datetime, timezone)
+convertTimeZone('2025-06-26T12:00:00Z', 'Europe/Amsterdam') // 2025-06-26T14:00:00.0000000+02:00
 ```
 
 ```javascript
-$convertTimeZone(datetime, timezone)
-```
-
-```javascript
-datetime|convertTimeZone(timezone)
+'2025-06-26T12:00:00Z'|convertTimeZone('Pacific Standard Time') // '2025-06-26T05:00:00.0000000-07:00'
 ```
