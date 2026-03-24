@@ -177,7 +177,7 @@ function generateCategoryIndexMDX(
       ? `\n## Functions\n\n${functionItems
           .map(
             (item) =>
-              `- [\`${item.label}\`](./${item.label}): ${item.description}`
+              `- [\`${item.label}\`](./${categoryKey}/${item.label}): ${item.description}`
           )
           .join("\n")}\n`
       : "";
@@ -187,7 +187,7 @@ function generateCategoryIndexMDX(
       ? `\n## Transforms\n\n${transformItems
           .map(
             (item) =>
-              `- [\`${item.label}\`](./${item.label}): ${item.description}`
+              `- [\`${item.label}\`](./${categoryKey}/${item.label}): ${item.description}`
           )
           .join("\n")}\n`
       : "";
