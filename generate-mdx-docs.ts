@@ -35,7 +35,7 @@ interface CategorizedDocs {
 function getGroupFromTypedoc(functionName: string): string | null {
   // Search through the TypeDoc JSON to find the @group tag for this function
   const child = typedocData.children?.find(
-    (child: any) => child.name === functionName
+    (child: any) => child.name === functionName,
   );
   if (!child) return null;
 
@@ -43,7 +43,7 @@ function getGroupFromTypedoc(functionName: string): string | null {
   if (!signature) return null;
 
   const groupTag = (signature as any).comment?.blockTags?.find(
-    (tag: any) => tag.tag === "@group"
+    (tag: any) => tag.tag === "@group",
   );
   if (!groupTag) return null;
 
@@ -133,7 +133,7 @@ function generateFunctionMDX(item: CompletionDocItem): string {
             (param) =>
               `- **${param.name}** (${param.type}${
                 param.optional ? "?" : ""
-              }): ${param.description}`
+              }): ${param.description}`,
           )
           .join("\n")}\n`
       : "";
@@ -167,7 +167,7 @@ ${aliasesSection}${parametersSection}${returnsSection}${examplesSection}`;
 function generateCategoryIndexMDX(
   categoryKey: string,
   category: CategoryInfo,
-  items: CompletionDocItem[]
+  items: CompletionDocItem[],
 ): string {
   const functionItems = items.filter((item) => item.type === "function");
   const transformItems = items.filter((item) => item.type === "transform");
@@ -177,7 +177,7 @@ function generateCategoryIndexMDX(
       ? `\n## Functions\n\n${functionItems
           .map(
             (item) =>
-              `- [\`${item.label}\`](./${categoryKey}/${item.label}): ${item.description}`
+              `- [\`${item.label}\`](./${categoryKey}/${item.label}): ${item.description}`,
           )
           .join("\n")}\n`
       : "";
@@ -187,7 +187,7 @@ function generateCategoryIndexMDX(
       ? `\n## Transforms\n\n${transformItems
           .map(
             (item) =>
-              `- [\`${item.label}\`](./${categoryKey}/${item.label}): ${item.description}`
+              `- [\`${item.label}\`](./${categoryKey}/${item.label}): ${item.description}`,
           )
           .join("\n")}\n`
       : "";
@@ -208,10 +208,10 @@ function generateMainIndexMDX(categorized: CategorizedDocs): string {
     .filter(([_, data]) => data.items.length > 0)
     .map(([key, data]) => {
       const functionCount = data.items.filter(
-        (item) => item.type === "function"
+        (item) => item.type === "function",
       ).length;
       const transformCount = data.items.filter(
-        (item) => item.type === "transform"
+        (item) => item.type === "transform",
       ).length;
       const countText = `(${functionCount} functions, ${transformCount} transforms)`;
 
@@ -304,7 +304,7 @@ async function generateMDXDocs(): Promise<void> {
     const categoryIndex = generateCategoryIndexMDX(
       categoryKey,
       data.category,
-      data.items
+      data.items,
     );
     fs.writeFileSync(path.join(categoryDir, "index.mdx"), categoryIndex);
 
@@ -313,25 +313,25 @@ async function generateMDXDocs(): Promise<void> {
       const functionMDX = generateFunctionMDX(item);
       fs.writeFileSync(
         path.join(categoryDir, `${item.label}.mdx`),
-        functionMDX
+        functionMDX,
       );
       totalGenerated++;
     }
 
     console.log(
-      `✅ Generated ${data.category.name} category (${data.items.length} items)`
+      `✅ Generated ${data.category.name} category (${data.items.length} items)`,
     );
   }
 
   console.log(
-    `\n🎉 Successfully generated ${totalGenerated} MDX pages in ${outputDir}/`
+    `\n🎉 Successfully generated ${totalGenerated} MDX pages in ${outputDir}/`,
   );
   console.log(
     `📁 Categories created: ${
       Object.keys(categorized).filter(
-        (key) => categorized[key].items.length > 0
+        (key) => categorized[key].items.length > 0,
       ).length
-    }`
+    }`,
   );
 }
 
