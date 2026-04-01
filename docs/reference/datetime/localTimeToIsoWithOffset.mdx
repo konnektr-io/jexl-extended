@@ -1,0 +1,31 @@
+---
+title: localTimeToIsoWithOffset
+description: Converts a local time string in a specified timezone to an ISO datetime string with the correct offset.
+---
+
+# localTimeToIsoWithOffset
+
+Converts a local time string in a specified timezone to an ISO datetime string with the correct offset.
+
+**Type:** transform
+
+## Parameters
+
+- **localTime** (string): Local time string
+- **timeZone** (string): Timezone (IANA or Windows ID or fixed offset)
+
+## Returns
+
+**Type:** `string`
+
+ISO datetime string with correct offset
+
+## Examples
+
+```javascript
+localTimeToIsoWithOffset('2025-06-26 14:00:00', 'Europe/Amsterdam') // '2025-06-26T14:00:00.0000000+02:00'
+```
+
+```javascript
+'2025-06-26 05:00:00'|localTimeToIsoWithOffset('Pacific Standard Time') // '2025-06-26T05:00:00.0000000-08:00'
+```
