@@ -80,7 +80,7 @@ export const length = (input: unknown) => {
 export const substring = (
   input: unknown,
   start: number,
-  length: number | undefined
+  length: number | undefined,
 ) => {
   let str = input;
   if (typeof str !== "string") {
@@ -386,7 +386,7 @@ export const arrayJoin = (input: unknown, separator?: string) => {
 export const replace = (
   input: unknown,
   search: string,
-  replacement: string
+  replacement: string,
 ) => {
   if (typeof input === "string" && typeof search === "string") {
     const _replacement = replacement === undefined ? "" : replacement;
@@ -460,7 +460,7 @@ export const formUrlEncoded = (input: unknown) => {
   } else if (typeof input === "object") {
     return Object.keys(input)
       .map(
-        (key) => `${encodeURIComponent(key)}=${encodeURIComponent(input[key])}`
+        (key) => `${encodeURIComponent(key)}=${encodeURIComponent(input[key])}`,
       )
       .join("&");
   }
@@ -575,8 +575,8 @@ export const round = (input: unknown, decimals?: number) => {
   return isNaN(num)
     ? NaN
     : decimals
-    ? Math.round(num * Math.pow(10, decimals)) / Math.pow(10, decimals)
-    : Math.round(num);
+      ? Math.round(num * Math.pow(10, decimals)) / Math.pow(10, decimals)
+      : Math.round(num);
 };
 
 /**
@@ -929,7 +929,7 @@ export const arrayShuffle = (input: unknown[]) => {
 export const arraySort = (
   input: unknown[],
   expression?: string,
-  descending?: boolean
+  descending?: boolean,
 ) => {
   if (!Array.isArray(input)) return [];
   if (!expression) return [...input].sort();
@@ -1043,7 +1043,7 @@ export const arrayMap = (input: unknown[], expression: string) => {
  * @group Array
  *
  * @param input The input array to test.
- * @param expression The JEXL expression to test against each element.
+ * @param expression The JEXL expression to test against each element  (supports value, index and array as context).
  * @returns True if any element matches the expression, false otherwise or if input is not an array.
  */
 export const arrayAny = (input: unknown[], expression: string) => {
@@ -1066,7 +1066,7 @@ export const arrayAny = (input: unknown[], expression: string) => {
  * @group Array
  *
  * @param input The input array to test.
- * @param expression The JEXL expression to test against each element.
+ * @param expression The JEXL expression to test against each element  (supports value, index and array as context).
  * @returns True if all elements match the expression, false otherwise or if input is not an array.
  */
 export const arrayEvery = (input: unknown[], expression: string) => {
@@ -1089,7 +1089,7 @@ export const arrayEvery = (input: unknown[], expression: string) => {
  * @group Array
  *
  * @param input The input array to filter.
- * @param expression The JEXL expression to test against each element.
+ * @param expression The JEXL expression to test against each element (supports value, index and array as context).
  * @returns A new array containing only elements that match the expression, or empty array if input is not an array.
  */
 export const arrayFilter = (input: unknown[], expression: string) => {
@@ -1112,7 +1112,7 @@ export const arrayFilter = (input: unknown[], expression: string) => {
  * @group Array
  *
  * @param input The input array to search.
- * @param expression The JEXL expression to test against each element.
+ * @param expression The JEXL expression to test against each element  (supports value, index and array as context).
  * @returns The first element that matches the expression, or undefined if no match found or input is not an array.
  */
 export const arrayFind = (input: unknown[], expression: string) => {
@@ -1162,7 +1162,7 @@ export const arrayFindIndex = (input: unknown[], expression: string) => {
 export const arrayReduce = (
   input: unknown[],
   expression: string,
-  initialValue: unknown
+  initialValue: unknown,
 ) => {
   if (!Array.isArray(input)) return undefined;
   const expr = jexl.compile(expression);
@@ -1333,7 +1333,7 @@ export const toDateTime = (input?: number | string, format?: string) => {
  */
 export const dateTimeFormat = (
   input: number | string,
-  format: string
+  format: string,
 ): string | null => {
   let dateTime: Date;
   if (typeof input === "string") {
@@ -1346,7 +1346,7 @@ export const dateTimeFormat = (
 
   // Convert to UTC
   const utcDateTime = new Date(
-    dateTime.getTime() + dateTime.getTimezoneOffset() * 60000
+    dateTime.getTime() + dateTime.getTimezoneOffset() * 60000,
   );
 
   // Format the date
@@ -1407,7 +1407,7 @@ export const dateTimeAdd = (input: string, unit: string, value: number) => {
  */
 export const convertTimeZone = (
   input: unknown,
-  targetTimeZone: unknown
+  targetTimeZone: unknown,
 ): string | null => {
   if (typeof input !== "string" || typeof targetTimeZone !== "string")
     return null;
@@ -1459,12 +1459,12 @@ export const convertTimeZone = (
     let formatted = formatInTimeZone(
       date,
       ianaTz,
-      "yyyy-MM-dd'T'HH:mm:ss.SSSXXX"
+      "yyyy-MM-dd'T'HH:mm:ss.SSSXXX",
     );
     // Patch to 7 digits for fractional seconds
     formatted = formatted.replace(
       /\.(\d{3})/,
-      (m, ms) => `.${ms.padEnd(7, "0")}`
+      (m, ms) => `.${ms.padEnd(7, "0")}`,
     );
     // Patch UTC output to use +00:00 instead of Z
     if (ianaTz === "UTC" && formatted.endsWith("Z")) {
@@ -1490,18 +1490,18 @@ export const convertTimeZone = (
  */
 export const localTimeToIsoWithOffset = (
   localTime: string,
-  timeZone: string
+  timeZone: string,
 ): string | null => {
   try {
     const utcDate = fromZonedTime(localTime, timeZone);
     let formatted = formatInTimeZone(
       utcDate,
       timeZone,
-      "yyyy-MM-dd'T'HH:mm:ss.SSSXXX"
+      "yyyy-MM-dd'T'HH:mm:ss.SSSXXX",
     );
     formatted = formatted.replace(
       /\.(\d{3})/,
-      (m, ms) => `.${ms.padEnd(7, "0")}`
+      (m, ms) => `.${ms.padEnd(7, "0")}`,
     );
     return formatted;
   } catch {
