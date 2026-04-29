@@ -29,8 +29,8 @@ jobs:
         with:
           version: '9'
 
-      - name: 'Install ts-node'
-        run: npm install -g ts-node
+      - name: 'Install tsx'
+        run: npm install -g tsx
         
       - name: 'Install packages'
         run: pnpm install --no-frozen-lockfile

@@ -15,12 +15,12 @@
     "test": "vitest",
     "build": "tsc -p tsconfig.release.json",
     "docs:typedoc": "typedoc --json ./docs/typedoc.json --entryPoints ./src/extended-grammar.ts",
-    "docs:completion": "ts-node ./completion-docs.ts",
-    "docs:json": "ts-node ./docs.ts",
-    "docs:mdx": "ts-node ./generate-mdx-docs.ts",
-    "docs:mdx:clean": "ts-node ./mdx-utils.ts clean",
-    "docs:mdx:validate": "ts-node ./mdx-utils.ts validate",
-    "docs:mdx:stats": "ts-node ./mdx-utils.ts stats",
+    "docs:completion": "tsx ./completion-docs.ts",
+    "docs:json": "tsx ./docs.ts",
+    "docs:mdx": "tsx ./generate-mdx-docs.ts",
+    "docs:mdx:clean": "tsx ./mdx-utils.ts clean",
+    "docs:mdx:validate": "tsx ./mdx-utils.ts validate",
+    "docs:mdx:stats": "tsx ./mdx-utils.ts stats",
     "docs": "npm run docs:typedoc && npm run docs:completion && npm run build && npm run docs:json && npm run docs:mdx"
   },
   "keywords": [
