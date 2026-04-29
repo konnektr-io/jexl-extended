@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "ES2019",
-    "module": "CommonJS",
-    "moduleResolution": "node",
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
@@ -13,11 +13,6 @@
     "outDir": "dist",
     "rootDir": "src"
   },
-  "include": [
-    "src/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
 }

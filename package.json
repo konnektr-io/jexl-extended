@@ -1,6 +1,6 @@
 {
   "name": "jexl-extended",
-  "version": "1.4.2",
+  "version": "2.0.0",
   "description": "Extended grammar for Javascript Expression Language (JEXL)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -53,23 +53,24 @@
     "date-fns": "^4.1.0",
     "date-fns-tz": "^3.2.0",
     "jexl": "^2.3.0",
-    "uuid": "^13.0.0",
+    "uuid": "^14.0.0",
     "windows-iana": "^5.1.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.5.0",
+    "@eslint/js": "^9.39.4",
     "@types/jexl": "^2.3.4",
-    "@types/node": "^24.2.0",
-    "@typescript-eslint/eslint-plugin": "^8.44.0",
-    "@typescript-eslint/parser": "^8.44.0",
-    "eslint": "^9.5.0",
-    "eslint-plugin-n": "^17.9.0",
+    "@types/node": "^25.6.0",
+    "@typescript-eslint/eslint-plugin": "^8.59.0",
+    "@typescript-eslint/parser": "^8.59.0",
+    "eslint": "^9.39.4",
+    "eslint-plugin-n": "^17.24.0",
     "eslint-plugin-promise": "^7.2.1",
-    "globals": "^16.3.0",
+    "globals": "^17.5.0",
     "typedoc": "^0.28.9",
-    "typescript": "^5.5.2",
+    "typescript": "^5.9.3",
     "typescript-eslint": "^8.44.0",
-    "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^3.2.4"
+    "vite": "^8.0.10",
+    "vite-tsconfig-paths": "^6.1.1",
+    "vitest": "^4.1.5"
   }
 }
