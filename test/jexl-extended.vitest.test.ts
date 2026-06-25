@@ -24,7 +24,7 @@ test("substringBefore", () => {
   expect(jexl.evalSync('"hello world"|substringBefore(" ")')).toBe("hello");
   expect(jexl.evalSync('substringBefore("hello world", "o")')).toBe("hell");
   expect(jexl.evalSync('substringBefore("hello world", "x")')).toBe(
-    "hello world"
+    "hello world",
   );
   expect(jexl.evalSync("substringBefore(123456,2)")).toBe("1");
 });
@@ -90,10 +90,10 @@ test("join", () => {
   expect(jexl.evalSync('join(["foo", "bar"], "-")')).toBe("foo-bar");
   expect(jexl.evalSync('join(["foo", "bar"], "")')).toBe("foobar");
   expect(jexl.evalSync('"f,b,a,d,e,c"|split(",")|sort|join')).toEqual(
-    "a,b,c,d,e,f"
+    "a,b,c,d,e,f",
   );
   expect(jexl.evalSync('"f,b,a,d,e,c"|split(",")|sort|join("")')).toEqual(
-    "abcdef"
+    "abcdef",
   );
 });
 
@@ -107,13 +107,13 @@ test("convertBase64", () => {
   expect(jexl.evalSync("'foobar'|base64Encode")).toBe("Zm9vYmFy");
   expect(jexl.evalSync("'Zm9vYmFy'|base64Decode")).toBe("foobar");
   expect(jexl.evalSync("'hello⛳❤️🧀'|base64Encode|base64Decode")).toBe(
-    "hello⛳❤️🧀"
+    "hello⛳❤️🧀",
   );
 });
 
 test("formUrlEncoded", () => {
   expect(jexl.evalSync('{foo:"bar",baz:"tek"}|formUrlEncoded')).toBe(
-    "foo=bar&baz=tek"
+    "foo=bar&baz=tek",
   );
 });
 
@@ -177,8 +177,8 @@ test("case", () => {
   expect(jexl.evalSync('$case("bar","foo","a","bar","b","baz","c")')).toBe("b");
   expect(
     jexl.evalSync(
-      "'notfound'|case('bar','foo','a','bar','b','baz','c','b','b')"
-    )
+      "'notfound'|case('bar','foo','a','bar','b','baz','c','b','b')",
+    ),
   ).toBe("b");
 });
 
@@ -214,7 +214,7 @@ test("arrays", () => {
     "tek",
   ]);
   expect(
-    jexl.evalSync('["tek", "baz", "bar", "foo", "foo"]|reverse|distinct')
+    jexl.evalSync('["tek", "baz", "bar", "foo", "foo"]|reverse|distinct'),
   ).toEqual(["foo", "bar", "baz", "tek"]);
   expect(jexl.evalSync("{foo:0, bar:1, baz:2, tek:3}|keys")).toEqual([
     "foo",
@@ -230,13 +230,13 @@ test("arrays", () => {
   ]);
   expect(
     jexl.evalSync(
-      '[{name:"foo"}, {name:"bar"}, {name:"baz"}, {name:"tek"}]|mapField("name")'
-    )
+      '[{name:"foo"}, {name:"bar"}, {name:"baz"}, {name:"tek"}]|mapField("name")',
+    ),
   ).toEqual(["foo", "bar", "baz", "tek"]);
   expect(
     jexl.evalSync(
-      '[{name:"tek",age:32}, {name:"bar",age:34}, {name:"baz",age:33}, {name:"foo",age:35}]|sort("age",true)|mapField("name")'
-    )
+      '[{name:"tek",age:32}, {name:"bar",age:34}, {name:"baz",age:33}, {name:"foo",age:35}]|sort("age",true)|mapField("name")',
+    ),
   ).toEqual(["tek", "baz", "bar", "foo"]);
   expect(jexl.evalSync('["foo"]|append(["tek","baz","bar"]|sort)')).toEqual([
     "foo",
@@ -246,8 +246,8 @@ test("arrays", () => {
   ]);
   expect(
     jexl.evalSync(
-      '["foo"]|append(["tek", "baz", "bar", "foo", "foo"]|filter("value != \'foo\'")|sort)'
-    )
+      '["foo"]|append(["tek", "baz", "bar", "foo", "foo"]|filter("value != \'foo\'")|sort)',
+    ),
   ).toEqual(["foo", "bar", "baz", "tek"]);
 });
 
@@ -261,13 +261,13 @@ test("map", () => {
   };
   expect(
     jexl.evalSync(
-      '[{name:"foo"}, {name:"bar"}, {name:"baz"}, {name:"tek"}]|map("value.name")'
-    )
+      '[{name:"foo"}, {name:"bar"}, {name:"baz"}, {name:"tek"}]|map("value.name")',
+    ),
   ).toEqual(["foo", "bar", "baz", "tek"]);
   expect(
     jexl.evalSync(
-      '[{name:"tek",age:32}, {name:"bar",age:34}, {name:"baz",age:33}, {name:"foo",age:35}]|map("value.age")'
-    )
+      '[{name:"tek",age:32}, {name:"bar",age:34}, {name:"baz",age:33}, {name:"foo",age:35}]|map("value.age")',
+    ),
   ).toEqual([32, 34, 33, 35]);
   expect(jexl.evalSync("assoc|map('value.age')", context)).toEqual([
     32, 34, 45,
@@ -283,8 +283,8 @@ test("map", () => {
   expect(
     jexl.evalSync(
       "assoc|map('value.age + array[.age <= value.age][0].age + index')",
-      context
-    )
+      context,
+    ),
   ).toEqual([64, 67, 79]);
   expect(jexl.evalSync("assoc|map('value.age')|avg", context)).toBe(37);
 });
@@ -299,17 +299,17 @@ test("anyAll", () => {
   };
   expect(
     jexl.evalSync(
-      '[{name:"foo"}, {name:"bar"}, {name:"baz"}, {name:"tek"}]|any("value.name==\'foo\'")'
-    )
+      '[{name:"foo"}, {name:"bar"}, {name:"baz"}, {name:"tek"}]|any("value.name==\'foo\'")',
+    ),
   ).toBe(true);
   expect(jexl.evalSync('assoc|every("value.age>30")', context)).toBe(true);
   expect(jexl.evalSync('assoc|every("value.age>40")', context)).toBe(false);
   expect(jexl.evalSync('assoc|some("value.age>40")', context)).toBe(true);
   expect(
-    jexl.evalSync("assoc|some(\"value.lastName=='Figgis'\")", context)
+    jexl.evalSync("assoc|some(\"value.lastName=='Figgis'\")", context),
   ).toBe(true);
   expect(
-    jexl.evalSync('assoc|map("value.age")|some("value>30")', context)
+    jexl.evalSync('assoc|map("value.age")|some("value>30")', context),
   ).toBe(true);
 });
 
@@ -322,19 +322,19 @@ test("reduce", () => {
     ],
   };
   expect(
-    jexl.evalSync("assoc|reduce('accumulator + value.age', 0)", context)
+    jexl.evalSync("assoc|reduce('accumulator + value.age', 0)", context),
   ).toBe(111);
   expect(
     jexl.evalSync(
       "assoc|reduce('(value.age > array|map(\\'value.age\\')|avg) ? accumulator|append(value.age) : accumulator', [])",
-      context
-    )
+      context,
+    ),
   ).toEqual([45]);
   expect(
     jexl.evalSync(
       "assoc|reduce('(value.age < array|map(\\'value.age\\')|avg) ? accumulator|append(value.age) : accumulator', [])[1]",
-      context
-    )
+      context,
+    ),
   ).toBe(34);
 });
 
@@ -345,7 +345,7 @@ test("objects", () => {
   expect(jexl.evalSync('[{foo:"bar"},{baz:"tek"}]|merge')).toEqual(expected);
   expect(jexl.evalSync('[{foo:"bar"}]|merge([{baz:"tek"}])')).toEqual(expected);
   expect(jexl.evalSync('[["foo","bar"],["baz","tek"]]|toObject')).toEqual(
-    expected
+    expected,
   );
   expect(jexl.evalSync('["foo","bar"]|toObject(true)')).toEqual({
     foo: true,
@@ -361,84 +361,84 @@ test("objects", () => {
 
 test("time", () => {
   expect(
-    jexl.evalSync("(now()|toMillis / 1000)|ceil == (millis() / 1000)|ceil")
+    jexl.evalSync("(now()|toMillis / 1000)|ceil == (millis() / 1000)|ceil"),
   ).toBe(true);
   expect(
     jexl.evalSync(
-      "(((millis() / 1000) | ceil) * 1000) | toDateTime == ((now()|toMillis / 1000) | ceil * 1000) | toDateTime"
-    )
+      "(((millis() / 1000) | ceil) * 1000) | toDateTime == ((now()|toMillis / 1000) | ceil * 1000) | toDateTime",
+    ),
   ).toBe(true);
   expect(
     jexl.evalSync(
-      "(((millis() / 1000) | ceil) * 1000) | toDateTime | dateTimeAdd('second',5)"
-    )
+      "(((millis() / 1000) | ceil) * 1000) | toDateTime | dateTimeAdd('second',5)",
+    ),
   ).toBe(
-    jexl.evalSync("(((now()|toMillis / 1000) + 5) | ceil * 1000) | toDateTime")
+    jexl.evalSync("(((now()|toMillis / 1000) + 5) | ceil * 1000) | toDateTime"),
   );
   expect(
     jexl.evalSync(
-      "(((millis() / 1000) | ceil) * 1000) | toDateTime | dateTimeAdd('second',5) == (((now()|toMillis / 1000) + 5) | ceil * 1000) | toDateTime"
-    )
+      "(((millis() / 1000) | ceil) * 1000) | toDateTime | dateTimeAdd('second',5) == (((now()|toMillis / 1000) + 5) | ceil * 1000) | toDateTime",
+    ),
   ).toBe(true);
   expect(
     jexl.evalSync(
-      "'02-22-24 00:00:00'|toDateTime('MM-dd-yy HH:mm:ss') == '2024-02-22T00:00:00Z'|toDateTime"
-    )
+      "'02-22-24 00:00:00'|toDateTime('MM-dd-yy HH:mm:ss') == '2024-02-22T00:00:00Z'|toDateTime",
+    ),
   ).toBe(true);
   expect(
-    jexl.evalSync("'02-22-24 00:00:00'|toDateTime('MM-dd-yy HH:mm:ss')")
+    jexl.evalSync("'02-22-24 00:00:00'|toDateTime('MM-dd-yy HH:mm:ss')"),
   ).toBe(jexl.evalSync("'2024-02-22T00:00:00.0000000+00:00'|toDateTime"));
   expect(
-    jexl.evalSync("'2024-02-22T00:00:00.000000Z'|dateTimeFormat('dd.MM.yyyy')")
+    jexl.evalSync("'2024-02-22T00:00:00.000000Z'|dateTimeFormat('dd.MM.yyyy')"),
   ).toBe("22.02.2024");
   expect(jexl.evalSync('1740445200000|dateTimeFormat("yyyyMMdd-HHmmss")')).toBe(
-    "20250225-010000"
+    "20250225-010000",
   );
 });
 
 test("convertTimeZone: IANA and Windows timezones", () => {
   expect(
     jexl.evalSync(
-      "'2025-11-26T12:00:00Z'|convertTimeZone('Pacific Standard Time')"
-    )
+      "'2025-11-26T12:00:00Z'|convertTimeZone('Pacific Standard Time')",
+    ),
   ).toBe("2025-11-26T04:00:00.0000000-08:00");
   expect(
     jexl.evalSync(
-      "'2025-06-26T12:00:00Z'|convertTimeZone('Pacific Standard Time')"
-    )
+      "'2025-06-26T12:00:00Z'|convertTimeZone('Pacific Standard Time')",
+    ),
   ).toBe("2025-06-26T05:00:00.0000000-07:00");
   expect(
-    jexl.evalSync("'2025-06-26T12:00:00Z'|convertTimeZone('Europe/Amsterdam')")
+    jexl.evalSync("'2025-06-26T12:00:00Z'|convertTimeZone('Europe/Amsterdam')"),
   ).toBe("2025-06-26T14:00:00.0000000+02:00");
   expect(jexl.evalSync("'2025-11-26T12:00:00Z'|convertTimeZone('UTC')")).toBe(
-    "2025-11-26T12:00:00.0000000+00:00"
+    "2025-11-26T12:00:00.0000000+00:00",
   );
 });
 
 test("convertTimeZone: fixed offsets", () => {
   // UTC to UTC (no offset change)
   expect(jexl.evalSync("'2025-11-26T12:00:00Z'|convertTimeZone('UTC')")).toBe(
-    "2025-11-26T12:00:00.0000000+00:00"
+    "2025-11-26T12:00:00.0000000+00:00",
   );
   // UTC to fixed offset +02:00
   expect(
-    jexl.evalSync("'2025-11-26T12:00:00Z'|convertTimeZone('+02:00')")
+    jexl.evalSync("'2025-11-26T12:00:00Z'|convertTimeZone('+02:00')"),
   ).toBe("2025-11-26T14:00:00.0000000+02:00");
   // UTC to fixed offset -08:00
   expect(
-    jexl.evalSync("'2025-06-26T12:00:00Z'|convertTimeZone('-08:00')")
+    jexl.evalSync("'2025-06-26T12:00:00Z'|convertTimeZone('-08:00')"),
   ).toBe("2025-06-26T04:00:00.0000000-08:00");
   // UTC to fixed offset -08:00 (winter)
   expect(
-    jexl.evalSync("'2025-12-26T12:00:00Z'|convertTimeZone('-08:00')")
+    jexl.evalSync("'2025-12-26T12:00:00Z'|convertTimeZone('-08:00')"),
   ).toBe("2025-12-26T04:00:00.0000000-08:00");
 });
 
 test("localTimeToIsoWithOffset", () => {
   expect(
     jexl.evalSync(
-      "'2025-06-26 14:00:00'|localTimeToIsoWithOffset('Europe/Amsterdam')"
-    )
+      "'2025-06-26 14:00:00'|localTimeToIsoWithOffset('Europe/Amsterdam')",
+    ),
   ).toBe("2025-06-26T14:00:00.0000000+02:00");
 });
 
@@ -480,7 +480,6 @@ test("typeCheck", () => {
   expect(jexl.evalSync("{foo:1}|type")).toBe("object");
   expect(jexl.evalSync("undefined|type")).toBe("undefined");
 });
-
 
 import jexl2 from "jexl";
 import { arrayMap } from "../src/extended-grammar";
@@ -531,20 +530,20 @@ test("complexTest1", () => {
     ],
   };
   expect(
-    jexl.evalSync(`properties[.attributeName == 'voltage_2']|length`, context)
+    jexl.evalSync(`properties[.attributeName == 'voltage_2']|length`, context),
   ).toBeFalsy();
   expect(
     jexl.evalSync(
       `properties[.attributeName == 'voltage_2']|length > 0 ? ('; ' + properties[.attributeName == 'voltage_2'].displayValue|split('.')[0]) : ''`,
-      context
-    )
+      context,
+    ),
   ).toBe("");
   expect(
     jexl.evalSync(
       `properties[.attributeName=='voltage'].displayValue|split('.')[0] + 
     (properties[.attributeName == 'voltage_2']|length > 0 ? ('; ' + properties[.attributeName == 'voltage_2'].displayValue|split('.')[0]) : '') + 
     (properties[.attributeName == 'voltage_3']|length > 0 ? ('; ' + properties[.attributeName == 'voltage_3'].displayValue|split('.')[0]) : '')`,
-      context
-    )
+      context,
+    ),
   ).toBe("220");
 });

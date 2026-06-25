@@ -1,4 +1,4 @@
-import { formatInTimeZone, fromZonedTime, toZonedTime } from "date-fns-tz";
+import { formatInTimeZone, fromZonedTime } from "date-fns-tz";
 import { findIana } from "windows-iana";
 import {
   parse as dateParse,
@@ -435,7 +435,11 @@ export const base64Encode = (input: unknown) => {
  */
 export const base64Decode = (input: unknown) => {
   if (typeof input === "string") {
-    const binString = atob(input);
+    let sanitized = input.replace(/-/g, "+").replace(/_/g, "/");
+    if (sanitized.length % 4 !== 0) {
+      sanitized += "=".repeat(4 - (sanitized.length % 4));
+    }
+    const binString = atob(sanitized);
     const bytes = Uint8Array.from(binString, (m) => m.codePointAt(0));
     return new TextDecoder().decode(bytes);
   }
