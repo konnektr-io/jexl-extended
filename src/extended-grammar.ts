@@ -57,18 +57,32 @@ export const toString = (input: unknown, prettify = false) => {
 };
 
 /**
- * Parses the string and returns a JSON object.
+ * Parses a JSON string, or passes an already structured value straight through.
+ *
+ * Only strings are parsed. Objects, arrays, numbers, booleans, `null` and
+ * `undefined` are returned unchanged, so the transform is idempotent and safe
+ * to apply to a value that may or may not have been decoded yet.
+ *
+ * A string that is not valid JSON still throws, so a typo'd or truncated
+ * parameter remains a visible error rather than silently becoming a string.
+ * Numeric-string coercion is unchanged: `'2026'|toJson()` yields the number
+ * `2026`.
  *
  * @example
  * toJson('{"key": "value"}') // { key: "value" }
  * '{"name": "John", "age": 30}'|toJson // { name: "John", age: 30 }
+ * { key: "value" }|toJson // { key: "value" }
+ * [1, 2, 3]|toJson|length // 3
  * @group Conversion
  *
- * @param input The JSON string to parse.
- * @returns The parsed JSON object or value.
- * @throws {SyntaxError} If the string is not valid JSON.
+ * @param input The JSON string to parse, or any already structured value.
+ * @returns The parsed JSON value, or the input unchanged when it is not a string.
+ * @throws {SyntaxError} If the input is a string that is not valid JSON.
  */
-export const toJson = (input: string) => {
+export const toJson = (input: unknown) => {
+  if (typeof input !== "string") {
+    return input;
+  }
   return JSON.parse(input);
 };
 

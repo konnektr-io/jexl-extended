@@ -364,6 +364,76 @@ test("objects", () => {
   expect(jexl.evalSync('\'{"foo":"bar"}\'|toJson')).toEqual({ foo: "bar" });
 });
 
+test("toJson passes through already structured values", () => {
+  const obj = { a: 1, b: { c: 2 } };
+  const arr = [1, 2, 3];
+  const context = { obj, arr };
+
+  // Objects and arrays are returned unchanged (same reference, no parse).
+  expect(jexl.evalSync("obj|toJson", context)).toBe(obj);
+  expect(jexl.evalSync("arr|toJson", context)).toBe(arr);
+
+  // Numbers, booleans, null and undefined pass through untouched.
+  expect(jexl.evalSync("42|toJson")).toBe(42);
+  expect(jexl.evalSync("true|toJson")).toBe(true);
+  expect(jexl.evalSync("false|toJson")).toBe(false);
+  // In JEXL, `null` evaluates to undefined.
+  expect(jexl.evalSync("null|toJson")).toBeUndefined();
+  expect(jexl.evalSync("type(null|toJson)")).toBe("undefined");
+
+  // A valid JSON string is still parsed.
+  expect(jexl.evalSync('\'{"a":1}\'|toJson')).toEqual({ a: 1 });
+  expect(jexl.evalSync("'[1,2,3]'|toJson")).toEqual([1, 2, 3]);
+  expect(jexl.evalSync("'\"text\"'|toJson")).toBe("text");
+
+  // Numeric-string coercion is unchanged (out of scope for the pass-through).
+  expect(jexl.evalSync("'2026'|toJson")).toBe(2026);
+
+  // A string that is not valid JSON still fails loudly.
+  expect(() => jexl.evalSync("'not json'|toJson")).toThrow(SyntaxError);
+  expect(() => jexl.evalSync("'{\"a\":'|toJson")).toThrow(SyntaxError);
+
+  // Idempotent: applying the transform twice is the same as applying it once.
+  expect(jexl.evalSync("obj|toJson|toJson", context)).toBe(obj);
+  expect(jexl.evalSync('\'{"a":1}\'|toJson|toJson')).toEqual({ a: 1 });
+});
+
+test("toJson pass-through applies to every registered alias", () => {
+  const context = { obj: { a: 1 }, arr: [1, 2, 3] };
+
+  // Transform form.
+  expect(jexl.evalSync("obj|toJson()", context)).toEqual({ a: 1 });
+  expect(jexl.evalSync("obj|parseJson()", context)).toEqual({ a: 1 });
+  expect(jexl.evalSync("arr|parseJson()", context)).toEqual([1, 2, 3]);
+
+  // Function form.
+  expect(jexl.evalSync("json(obj)", context)).toEqual({ a: 1 });
+  expect(jexl.evalSync("$json(obj)", context)).toEqual({ a: 1 });
+  expect(jexl.evalSync("parseJson(obj)", context)).toEqual({ a: 1 });
+  expect(jexl.evalSync("$parseJson(obj)", context)).toEqual({ a: 1 });
+  expect(jexl.evalSync("$json(arr)", context)).toEqual([1, 2, 3]);
+
+  // Aliases still parse valid JSON strings.
+  expect(jexl.evalSync('json(\'{"b":2}\')')).toEqual({ b: 2 });
+  expect(jexl.evalSync('$json(\'{"b":2}\')')).toEqual({ b: 2 });
+  expect(jexl.evalSync('parseJson(\'{"b":2}\')')).toEqual({ b: 2 });
+  expect(jexl.evalSync('$parseJson(\'{"b":2}\')')).toEqual({ b: 2 });
+
+  // Aliases still reject non-JSON strings.
+  expect(() => jexl.evalSync("json('not json')")).toThrow(SyntaxError);
+  expect(() => jexl.evalSync("$parseJson('not json')")).toThrow(SyntaxError);
+  expect(() => jexl.evalSync("'not json'|parseJson()")).toThrow(SyntaxError);
+});
+
+test("toJson composes with the grammar after pass-through", () => {
+  const context = { obj: { a: 1, b: 2 }, arr: [1, 2, 3] };
+
+  expect(jexl.evalSync("obj|toJson()['a']", context)).toBe(1);
+  expect(jexl.evalSync("arr|toJson()|length", context)).toBe(3);
+  expect(jexl.evalSync("obj|toJson()|keys", context)).toEqual(["a", "b"]);
+  expect(jexl.evalSync("arr|toJson()|sum", context)).toBe(6);
+});
+
 test("time", () => {
   expect(
     jexl.evalSync("(now()|toMillis / 1000)|ceil == (millis() / 1000)|ceil"),
