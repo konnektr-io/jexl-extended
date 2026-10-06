@@ -1,11 +1,11 @@
 ---
 title: json
-description: Parses the string and returns a JSON object.
+description: Parses a JSON string, or passes an already structured value straight through.
 ---
 
 # json
 
-Parses the string and returns a JSON object.
+Parses a JSON string, or passes an already structured value straight through.
 
 **Type:** transform
 
@@ -15,13 +15,13 @@ Parses the string and returns a JSON object.
 
 ## Parameters
 
-- **input** (string): The JSON string to parse.
+- **input** (unknown): The JSON string to parse, or any already structured value.
 
 ## Returns
 
 **Type:** `any`
 
-The parsed JSON object or value.
+The parsed JSON value, or the input unchanged when it is not a string.
 
 ## Examples
 
@@ -31,4 +31,8 @@ toJson('{"key": "value"}') // { key: "value" }
 
 ```javascript
 '{"name": "John", "age": 30}'|toJson // { name: "John", age: 30 }
+```
+
+```javascript
+{ key: "value" }|toJson // { key: "value" }
 ```
