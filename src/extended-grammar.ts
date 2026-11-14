@@ -415,17 +415,26 @@ export const arrayJoin = (input: unknown, separator?: string) => {
 };
 
 /**
- * Replaces occurrences of a specified string with a replacement string.
+ * Replaces occurrences of a specified literal string with a replacement string.
+ *
+ * The `search` argument is matched literally: regular-expression
+ * metacharacters (`.`, `+`, `(`, …) have no special meaning and `$` sequences
+ * in `replacement` are inserted verbatim. This matches `str.Replace` in the
+ * .NET (JexlNet) and Python (pyjexl-extended) implementations. Use
+ * `regexReplace` when a regular expression is needed.
  *
  * @example
  * replace("foo-bar-baz", "-", "_") // "foo_bar_baz"
  * "hello world"|replace("world", "there") // "hello there"
  * replace("test test test", "test", "demo") // "demo demo demo"
+ * replace("a.b.c", ".", "-") // "a-b-c"
+ * replace("cost: 5", "5", "$$5") // "cost: $$5"
+ * replace("1+1=2", "+", " plus ") // "1 plus 1=2"
  * @group String
  *
  * @param input The input string to perform replacements on.
- * @param search The string to search for and replace.
- * @param replacement The string to replace matches with. Defaults to empty string.
+ * @param search The literal string to search for and replace. All occurrences are replaced.
+ * @param replacement The string to replace matches with, inserted verbatim. Defaults to empty string.
  * @returns The string with replacements made, or undefined if input is not a string.
  */
 export const replace = (
@@ -435,7 +444,40 @@ export const replace = (
 ) => {
   if (typeof input === "string" && typeof search === "string") {
     const _replacement = replacement === undefined ? "" : replacement;
-    return input.replace(new RegExp(search, "g"), _replacement);
+    // `replaceAll` still expands `$`-patterns in a string replacement, so
+    // escape them to get a truly literal insertion.
+    return input.replaceAll(search, _replacement.replace(/\$/g, "$$$$"));
+  }
+  return undefined;
+};
+
+/**
+ * Replaces occurrences of a regular-expression pattern with a replacement string.
+ *
+ * Unlike `replace`, `pattern` is compiled as a regular expression (global, no
+ * other flags) and the `$` replacement patterns (`$1`, `$&`, …) are honoured.
+ * Mirrors `regexReplace` in JexlNet.
+ *
+ * @example
+ * regexReplace("a.b.c", ".", "-") // "-----"
+ * "a1b2c3"|regexReplace("[0-9]", "") // "abc"
+ * regexReplace("john smith", "(\\w+) (\\w+)", "$2 $1") // "smith john"
+ * @group String
+ *
+ * @param input The input string to perform replacements on.
+ * @param pattern The regular expression source to search for. All occurrences are replaced.
+ * @param replacement The replacement string; dollar patterns ($1, $&, …) are interpreted. Defaults to empty string.
+ * @returns The string with replacements made, or undefined if input is not a string.
+ * @throws {SyntaxError} When pattern is not a valid regular expression.
+ */
+export const regexReplace = (
+  input: unknown,
+  pattern: string,
+  replacement: string,
+) => {
+  if (typeof input === "string" && typeof pattern === "string") {
+    const _replacement = replacement === undefined ? "" : replacement;
+    return input.replace(new RegExp(pattern, "g"), _replacement);
   }
   return undefined;
 };

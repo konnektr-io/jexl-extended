@@ -31,6 +31,7 @@ import {
   power,
   randomNumber,
   replace,
+  regexReplace,
   round,
   split,
   sqrt,
@@ -172,6 +173,10 @@ export class JexlExtended extends Jexl {
     this.addFunction("replace", replace);
     this.addFunction("$replace", replace);
     this.addTransform("replace", replace);
+    // RegexReplace
+    this.addFunction("regexReplace", regexReplace);
+    this.addFunction("$regexReplace", regexReplace);
+    this.addTransform("regexReplace", regexReplace);
     // Base64Encode
     this.addFunction("base64Encode", base64Encode);
     this.addFunction("$base64Encode", base64Encode);

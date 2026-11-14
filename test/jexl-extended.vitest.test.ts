@@ -101,6 +101,35 @@ test("replace", () => {
   expect(jexl.evalSync('replace("foo-bar", "-", "_")')).toBe("foo_bar");
   expect(jexl.evalSync('replace("foo-bar---", "-", "")')).toBe("foobar");
   expect(jexl.evalSync('"123ab123ab123ab"|replace("123")')).toEqual("ababab");
+  // `search` is a literal string, not a regular expression (#23).
+  expect(jexl.evalSync('replace("a.b.c", ".", "-")')).toBe("a-b-c");
+  expect(jexl.evalSync('"a.b"|replace(".", "/")')).toBe("a/b");
+  expect(jexl.evalSync('replace("cost: 5", "5", "$$5")')).toBe("cost: $$5");
+  expect(jexl.evalSync('replace("1+1=2", "+", " plus ")')).toBe("1 plus 1=2");
+  // Metacharacters that used to throw a SyntaxError as a regex.
+  expect(jexl.evalSync('replace("(a)[b]", "(", "")')).toBe("a)[b]");
+  expect(jexl.evalSync('replace("a|b", "|", "-")')).toBe("a-b");
+  // `$` sequences in the replacement are inserted verbatim.
+  expect(jexl.evalSync('replace("abc", "b", "$&")')).toBe("a$&c");
+  expect(jexl.evalSync('replace("abc", "b", "$1")')).toBe("a$1c");
+  // All occurrences, and no match is a no-op.
+  expect(jexl.evalSync('replace("aXbXc", "X", "..")')).toBe("a..b..c");
+  expect(jexl.evalSync('replace("abc", "z", "-")')).toBe("abc");
+  // Non-string input keeps returning undefined.
+  expect(jexl.evalSync("replace(123, '1', 'x')")).toBeUndefined();
+});
+
+test("regexReplace", () => {
+  // `pattern` is a regular expression: `.` matches any character.
+  expect(jexl.evalSync('regexReplace("a.b.c", ".", "-")')).toBe("-----");
+  expect(jexl.evalSync('"a1b2c3"|regexReplace("[0-9]", "")')).toBe("abc");
+  // Replacement patterns are honoured (unlike `replace`).
+  expect(jexl.evalSync('regexReplace("abc", "(a)(b)", "$2$1")')).toBe("bac");
+  expect(jexl.evalSync('regexReplace("a.b.c", "[.]", "-")')).toBe("a-b-c");
+  expect(jexl.evalSync('regexReplace("abcabc", "^abc", "X")')).toBe("Xabc");
+  // Alias + transform registrations.
+  expect(jexl.evalSync('$regexReplace("a1b", "[0-9]", "")')).toBe("ab");
+  expect(jexl.evalSync('regexReplace(123, "1", "x")')).toBeUndefined();
 });
 
 test("convertBase64", () => {
