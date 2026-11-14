@@ -57,9 +57,9 @@ export const completionDocs: CompletionDocItem[] = [
     "type": "function",
     "name": "arrayEvery",
     "label": "all",
-    "description": "Checks whether the provided array has all elements that match the specified expression.\r",
+    "description": "Checks whether the provided array has all elements that match the specified expression.",
     "detail": "JEXL function",
-    "documentation": "Checks whether the provided array has all elements that match the specified expression.\r\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`every([2, 4, 6], \"value % 2 == 0\") // true`\n`[{age: 25}, {age: 35}]|every(\"value.age > 20\") // true`\n`every([1, 2, 3], \"value > 2\") // false`\n\n**Parameters:**\n- `input` (array): The input array to test.\n- `expression` (string): The JEXL expression to test against each element.\n\n**Returns:** True if all elements match the expression, false otherwise or if input is not an array.",
+    "documentation": "Checks whether the provided array has all elements that match the specified expression.\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`every([2, 4, 6], \"value % 2 == 0\") // true`\n`[{age: 25}, {age: 35}]|every(\"value.age > 20\") // true`\n`every([1, 2, 3], \"value > 2\") // false`\n\n**Parameters:**\n- `input` (array): The input array to test.\n- `expression` (string): The JEXL expression to test against each element  (supports value, index and array as context).\n\n**Returns:** True if all elements match the expression, false otherwise or if input is not an array.",
     "examples": [
       "every([2, 4, 6], \"value % 2 == 0\") // true",
       "[{age: 25}, {age: 35}]|every(\"value.age > 20\") // true",
@@ -74,7 +74,7 @@ export const completionDocs: CompletionDocItem[] = [
       },
       {
         "name": "expression",
-        "description": "The JEXL expression to test against each element.",
+        "description": "The JEXL expression to test against each element  (supports value, index and array as context).",
         "type": "string",
         "optional": false
       }
@@ -93,9 +93,9 @@ export const completionDocs: CompletionDocItem[] = [
     "type": "function",
     "name": "arrayAny",
     "label": "any",
-    "description": "Checks whether the provided array has any elements that match the specified expression.\r",
+    "description": "Checks whether the provided array has any elements that match the specified expression.",
     "detail": "JEXL function",
-    "documentation": "Checks whether the provided array has any elements that match the specified expression.\r\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`any([1, 2, 3], \"value > 2\") // true`\n`[{age: 25}, {age: 35}]|any(\"value.age > 30\") // true`\n`any([1, 2, 3], \"value > 5\") // false`\n\n**Parameters:**\n- `input` (array): The input array to test.\n- `expression` (string): The JEXL expression to test against each element.\n\n**Returns:** True if any element matches the expression, false otherwise or if input is not an array.",
+    "documentation": "Checks whether the provided array has any elements that match the specified expression.\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`any([1, 2, 3], \"value > 2\") // true`\n`[{age: 25}, {age: 35}]|any(\"value.age > 30\") // true`\n`any([1, 2, 3], \"value > 5\") // false`\n\n**Parameters:**\n- `input` (array): The input array to test.\n- `expression` (string): The JEXL expression to test against each element  (supports value, index and array as context).\n\n**Returns:** True if any element matches the expression, false otherwise or if input is not an array.",
     "examples": [
       "any([1, 2, 3], \"value > 2\") // true",
       "[{age: 25}, {age: 35}]|any(\"value.age > 30\") // true",
@@ -110,7 +110,7 @@ export const completionDocs: CompletionDocItem[] = [
       },
       {
         "name": "expression",
-        "description": "The JEXL expression to test against each element.",
+        "description": "The JEXL expression to test against each element  (supports value, index and array as context).",
         "type": "string",
         "optional": false
       }
@@ -387,11 +387,10 @@ export const completionDocs: CompletionDocItem[] = [
     "label": "convertTimeZone",
     "description": "Converts an ISO datetime string to a target timezone, handling daylight savings, and returns an ISO string with the correct offset.",
     "detail": "JEXL function",
-    "documentation": "Converts an ISO datetime string to a target timezone, handling daylight savings, and returns an ISO string with the correct offset.\n\n**Examples:**\n`convertTimeZone(datetime, timezone)`\n`$convertTimeZone(datetime, timezone)`\n`datetime|convertTimeZone(timezone)`\n\n**Parameters:**\n- `input` (unknown): ISO datetime string\n- `targetTimeZone` (unknown): Target timezone (IANA or Windows ID or fixed offset)\n\n**Returns:** ISO datetime string with correct offset",
+    "documentation": "Converts an ISO datetime string to a target timezone, handling daylight savings, and returns an ISO string with the correct offset.\n\n**Examples:**\n`convertTimeZone('2025-06-26T12:00:00Z', 'Europe/Amsterdam') // 2025-06-26T14:00:00.0000000+02:00`\n`'2025-06-26T12:00:00Z'|convertTimeZone('Pacific Standard Time') // '2025-06-26T05:00:00.0000000-07:00'`\n\n**Parameters:**\n- `input` (unknown): ISO datetime string\n- `targetTimeZone` (unknown): Target timezone (IANA or Windows ID or fixed offset)\n\n**Returns:** ISO datetime string with correct offset",
     "examples": [
-      "convertTimeZone(datetime, timezone)",
-      "$convertTimeZone(datetime, timezone)",
-      "datetime|convertTimeZone(timezone)"
+      "convertTimeZone('2025-06-26T12:00:00Z', 'Europe/Amsterdam') // 2025-06-26T14:00:00.0000000+02:00",
+      "'2025-06-26T12:00:00Z'|convertTimeZone('Pacific Standard Time') // '2025-06-26T05:00:00.0000000-07:00'"
     ],
     "parameters": [
       {
@@ -605,9 +604,9 @@ export const completionDocs: CompletionDocItem[] = [
     "type": "function",
     "name": "_eval",
     "label": "eval",
-    "description": "Evaluates a JEXL expression and returns the result.\r",
+    "description": "Evaluates a JEXL expression and returns the result.",
     "detail": "JEXL function",
-    "documentation": "Evaluates a JEXL expression and returns the result.\r\nIf only one argument is provided, it is expected that the first argument is a JEXL expression.\r\nIf two arguments are provided, the first argument is the context (must be an object) and the second argument is the JEXL expression.\r\nThe expression uses the default JEXL extended grammar and can't use any custom defined functions or transforms.\n\n**Examples:**\n`_eval(\"1 + 2\") // 3`\n`_eval({x: 5, y: 10}, \"x + y\") // 15`\n`\"2 * 3\"|_eval // 6`\n\n**Parameters:**\n- `input` (unknown): Either a JEXL expression string or a context object.\n- `expression` (string): Optional JEXL expression when first argument is context.\n\n**Returns:** The result of evaluating the expression, or undefined if evaluation fails.",
+    "documentation": "Evaluates a JEXL expression and returns the result.\nIf only one argument is provided, it is expected that the first argument is a JEXL expression.\nIf two arguments are provided, the first argument is the context (must be an object) and the second argument is the JEXL expression.\nThe expression uses the default JEXL extended grammar and can't use any custom defined functions or transforms.\n\n**Examples:**\n`_eval(\"1 + 2\") // 3`\n`_eval({x: 5, y: 10}, \"x + y\") // 15`\n`\"2 * 3\"|_eval // 6`\n\n**Parameters:**\n- `input` (unknown): Either a JEXL expression string or a context object.\n- `expression` (string): Optional JEXL expression when first argument is context.\n\n**Returns:** The result of evaluating the expression, or undefined if evaluation fails.",
     "examples": [
       "_eval(\"1 + 2\") // 3",
       "_eval({x: 5, y: 10}, \"x + y\") // 15",
@@ -640,9 +639,9 @@ export const completionDocs: CompletionDocItem[] = [
     "type": "function",
     "name": "arrayFilter",
     "label": "filter",
-    "description": "Returns a new array with the elements of the input array that match the specified expression.\r",
+    "description": "Returns a new array with the elements of the input array that match the specified expression.",
     "detail": "JEXL function",
-    "documentation": "Returns a new array with the elements of the input array that match the specified expression.\r\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`filter([1, 2, 3, 4], \"value > 2\") // [3, 4]`\n`[{age: 25}, {age: 35}]|filter(\"value.age > 30\") // [{age: 35}]`\n`filter([1, 2, 3, 4], \"value % 2 == 0\") // [2, 4]`\n\n**Parameters:**\n- `input` (array): The input array to filter.\n- `expression` (string): The JEXL expression to test against each element.\n\n**Returns:** A new array containing only elements that match the expression, or empty array if input is not an array.",
+    "documentation": "Returns a new array with the elements of the input array that match the specified expression.\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`filter([1, 2, 3, 4], \"value > 2\") // [3, 4]`\n`[{age: 25}, {age: 35}]|filter(\"value.age > 30\") // [{age: 35}]`\n`filter([1, 2, 3, 4], \"value % 2 == 0\") // [2, 4]`\n\n**Parameters:**\n- `input` (array): The input array to filter.\n- `expression` (string): The JEXL expression to test against each element (supports value, index and array as context).\n\n**Returns:** A new array containing only elements that match the expression, or empty array if input is not an array.",
     "examples": [
       "filter([1, 2, 3, 4], \"value > 2\") // [3, 4]",
       "[{age: 25}, {age: 35}]|filter(\"value.age > 30\") // [{age: 35}]",
@@ -657,7 +656,7 @@ export const completionDocs: CompletionDocItem[] = [
       },
       {
         "name": "expression",
-        "description": "The JEXL expression to test against each element.",
+        "description": "The JEXL expression to test against each element (supports value, index and array as context).",
         "type": "string",
         "optional": false
       }
@@ -675,9 +674,9 @@ export const completionDocs: CompletionDocItem[] = [
     "type": "function",
     "name": "arrayFind",
     "label": "find",
-    "description": "Finds the first element in an array that matches the specified expression.\r",
+    "description": "Finds the first element in an array that matches the specified expression.",
     "detail": "JEXL function",
-    "documentation": "Finds the first element in an array that matches the specified expression.\r\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`find([1, 2, 3, 4], \"value > 2\") // 3`\n`[{name: \"John\"}, {name: \"Jane\"}]|find(\"value.name == 'Jane'\") // {name: \"Jane\"}`\n`find([1, 2, 3], \"value > 5\") // undefined`\n\n**Parameters:**\n- `input` (array): The input array to search.\n- `expression` (string): The JEXL expression to test against each element.\n\n**Returns:** The first element that matches the expression, or undefined if no match found or input is not an array.",
+    "documentation": "Finds the first element in an array that matches the specified expression.\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`find([1, 2, 3, 4], \"value > 2\") // 3`\n`[{name: \"John\"}, {name: \"Jane\"}]|find(\"value.name == 'Jane'\") // {name: \"Jane\"}`\n`find([1, 2, 3], \"value > 5\") // undefined`\n\n**Parameters:**\n- `input` (array): The input array to search.\n- `expression` (string): The JEXL expression to test against each element  (supports value, index and array as context).\n\n**Returns:** The first element that matches the expression, or undefined if no match found or input is not an array.",
     "examples": [
       "find([1, 2, 3, 4], \"value > 2\") // 3",
       "[{name: \"John\"}, {name: \"Jane\"}]|find(\"value.name == 'Jane'\") // {name: \"Jane\"}",
@@ -692,7 +691,7 @@ export const completionDocs: CompletionDocItem[] = [
       },
       {
         "name": "expression",
-        "description": "The JEXL expression to test against each element.",
+        "description": "The JEXL expression to test against each element  (supports value, index and array as context).",
         "type": "string",
         "optional": false
       }
@@ -926,24 +925,25 @@ export const completionDocs: CompletionDocItem[] = [
     "type": "function",
     "name": "toJson",
     "label": "json",
-    "description": "Parses the string and returns a JSON object.",
+    "description": "Parses a JSON string, or passes an already structured value straight through.",
     "detail": "JEXL function",
-    "documentation": "Parses the string and returns a JSON object.\n\n**Examples:**\n`toJson('{\"key\": \"value\"}') // { key: \"value\" }`\n`'{\"name\": \"John\", \"age\": 30}'|toJson // { name: \"John\", age: 30 }`\n\n**Parameters:**\n- `input` (string): The JSON string to parse.\n\n**Returns:** The parsed JSON object or value.",
+    "documentation": "Parses a JSON string, or passes an already structured value straight through.\n\nOnly strings are parsed. Objects, arrays, numbers, booleans, \n\n**Examples:**\n`toJson('{\"key\": \"value\"}') // { key: \"value\" }`\n`'{\"name\": \"John\", \"age\": 30}'|toJson // { name: \"John\", age: 30 }`\n`{ key: \"value\" }|toJson // { key: \"value\" }`\n\n**Parameters:**\n- `input` (unknown): The JSON string to parse, or any already structured value.\n\n**Returns:** The parsed JSON value, or the input unchanged when it is not a string.",
     "examples": [
       "toJson('{\"key\": \"value\"}') // { key: \"value\" }",
-      "'{\"name\": \"John\", \"age\": 30}'|toJson // { name: \"John\", age: 30 }"
+      "'{\"name\": \"John\", \"age\": 30}'|toJson // { name: \"John\", age: 30 }",
+      "{ key: \"value\" }|toJson // { key: \"value\" }"
     ],
     "parameters": [
       {
         "name": "input",
-        "description": "The JSON string to parse.",
-        "type": "string",
+        "description": "The JSON string to parse, or any already structured value.",
+        "type": "unknown",
         "optional": false
       }
     ],
     "returns": {
       "type": "any",
-      "description": "The parsed JSON object or value."
+      "description": "The parsed JSON value, or the input unchanged when it is not a string."
     },
     "insertText": "json(${1:input})",
     "aliases": [
@@ -1011,6 +1011,37 @@ export const completionDocs: CompletionDocItem[] = [
   },
   {
     "type": "function",
+    "name": "localTimeToIsoWithOffset",
+    "label": "localTimeToIsoWithOffset",
+    "description": "Converts a local time string in a specified timezone to an ISO datetime string with the correct offset.",
+    "detail": "JEXL function",
+    "documentation": "Converts a local time string in a specified timezone to an ISO datetime string with the correct offset.\n\n**Examples:**\n`localTimeToIsoWithOffset('2025-06-26 14:00:00', 'Europe/Amsterdam') // '2025-06-26T14:00:00.0000000+02:00'`\n`'2025-06-26 05:00:00'|localTimeToIsoWithOffset('Pacific Standard Time') // '2025-06-26T05:00:00.0000000-08:00'`\n\n**Parameters:**\n- `localTime` (string): Local time string\n- `timeZone` (string): Timezone (IANA or Windows ID or fixed offset)\n\n**Returns:** ISO datetime string with correct offset",
+    "examples": [
+      "localTimeToIsoWithOffset('2025-06-26 14:00:00', 'Europe/Amsterdam') // '2025-06-26T14:00:00.0000000+02:00'",
+      "'2025-06-26 05:00:00'|localTimeToIsoWithOffset('Pacific Standard Time') // '2025-06-26T05:00:00.0000000-08:00'"
+    ],
+    "parameters": [
+      {
+        "name": "localTime",
+        "description": "Local time string",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "timeZone",
+        "description": "Timezone (IANA or Windows ID or fixed offset)",
+        "type": "string",
+        "optional": false
+      }
+    ],
+    "returns": {
+      "type": "string",
+      "description": "ISO datetime string with correct offset"
+    },
+    "insertText": "localTimeToIsoWithOffset(${1:localTime}, ${2:timeZone})"
+  },
+  {
+    "type": "function",
     "name": "lowercase",
     "label": "lowercase",
     "description": "Converts the input string to lowercase.",
@@ -1041,9 +1072,9 @@ export const completionDocs: CompletionDocItem[] = [
     "type": "function",
     "name": "arrayMap",
     "label": "map",
-    "description": "Returns an array containing the results of applying the expression parameter to each value in the array parameter.\r",
+    "description": "Returns an array containing the results of applying the expression parameter to each value in the array parameter.",
     "detail": "JEXL function",
-    "documentation": "Returns an array containing the results of applying the expression parameter to each value in the array parameter.\r\nThe expression must be a valid JEXL expression string, which is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`map([1, 2, 3], \"value * 2\") // [2, 4, 6]`\n`[{name: \"John\"}, {name: \"Jane\"}]|map(\"value.name\") // [\"John\", \"Jane\"]`\n`map([1, 2, 3], \"value + index\") // [1, 3, 5]`\n\n**Parameters:**\n- `input` (array): The input array to transform.\n- `expression` (string): The JEXL expression to apply to each element.\n\n**Returns:** A new array with transformed elements, or undefined if input is not an array.",
+    "documentation": "Returns an array containing the results of applying the expression parameter to each value in the array parameter.\nThe expression must be a valid JEXL expression string, which is applied to each element of the array.\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`map([1, 2, 3], \"value * 2\") // [2, 4, 6]`\n`[{name: \"John\"}, {name: \"Jane\"}]|map(\"value.name\") // [\"John\", \"Jane\"]`\n`map([1, 2, 3], \"value + index\") // [1, 3, 5]`\n\n**Parameters:**\n- `input` (array): The input array to transform.\n- `expression` (string): The JEXL expression to apply to each element.\n\n**Returns:** A new array with transformed elements, or undefined if input is not an array.",
     "examples": [
       "map([1, 2, 3], \"value * 2\") // [2, 4, 6]",
       "[{name: \"John\"}, {name: \"Jane\"}]|map(\"value.name\") // [\"John\", \"Jane\"]",
@@ -1505,9 +1536,9 @@ export const completionDocs: CompletionDocItem[] = [
     "type": "function",
     "name": "arrayReduce",
     "label": "reduce",
-    "description": "Returns an aggregated value derived from applying the function parameter successively to each value in array in combination with the result of the previous application of the function.\r",
+    "description": "Returns an aggregated value derived from applying the function parameter successively to each value in array in combination with the result of the previous application of the function.",
     "detail": "JEXL function",
-    "documentation": "Returns an aggregated value derived from applying the function parameter successively to each value in array in combination with the result of the previous application of the function.\r\nThe expression must be a valid JEXL expression string, and behaves like an infix operator between each value within the array.\r\nThe relative context provided to the expression is an object with the properties accumulator, value, index and array (the original array).\n\n**Examples:**\n`reduce([1, 2, 3, 4], \"accumulator + value\", 0) // 10`\n`[1, 2, 3]|reduce(\"accumulator * value\", 1) // 6`\n`reduce([\"a\", \"b\", \"c\"], \"accumulator + value\", \"\") // \"abc\"`\n\n**Parameters:**\n- `input` (array): The input array to reduce.\n- `expression` (string): The JEXL expression to apply for each reduction step.\n- `initialValue` (unknown): The initial value for the accumulator.\n\n**Returns:** The final accumulated value, or undefined if input is not an array.",
+    "documentation": "Returns an aggregated value derived from applying the function parameter successively to each value in array in combination with the result of the previous application of the function.\nThe expression must be a valid JEXL expression string, and behaves like an infix operator between each value within the array.\nThe relative context provided to the expression is an object with the properties accumulator, value, index and array (the original array).\n\n**Examples:**\n`reduce([1, 2, 3, 4], \"accumulator + value\", 0) // 10`\n`[1, 2, 3]|reduce(\"accumulator * value\", 1) // 6`\n`reduce([\"a\", \"b\", \"c\"], \"accumulator + value\", \"\") // \"abc\"`\n\n**Parameters:**\n- `input` (array): The input array to reduce.\n- `expression` (string): The JEXL expression to apply for each reduction step.\n- `initialValue` (unknown): The initial value for the accumulator.\n\n**Returns:** The final accumulated value, or undefined if input is not an array.",
     "examples": [
       "reduce([1, 2, 3, 4], \"accumulator + value\", 0) // 10",
       "[1, 2, 3]|reduce(\"accumulator * value\", 1) // 6",
@@ -1544,11 +1575,49 @@ export const completionDocs: CompletionDocItem[] = [
   },
   {
     "type": "function",
+    "name": "regexReplace",
+    "label": "regexReplace",
+    "description": "Replaces occurrences of a regular-expression pattern with a replacement string.",
+    "detail": "JEXL function",
+    "documentation": "Replaces occurrences of a regular-expression pattern with a replacement string.\n\nUnlike \n\n**Examples:**\n`regexReplace(\"a.b.c\", \".\", \"-\") // \"-----\"`\n`\"a1b2c3\"|regexReplace(\"[0-9]\", \"\") // \"abc\"`\n`regexReplace(\"john smith\", \"(\\\\w+) (\\\\w+)\", \"$2 $1\") // \"smith john\"`\n\n**Parameters:**\n- `input` (unknown): The input string to perform replacements on.\n- `pattern` (string): The regular expression source to search for. All occurrences are replaced.\n- `replacement` (string): The replacement string; dollar patterns ($1, $&, …) are interpreted. Defaults to empty string.\n\n**Returns:** The string with replacements made, or undefined if input is not a string.",
+    "examples": [
+      "regexReplace(\"a.b.c\", \".\", \"-\") // \"-----\"",
+      "\"a1b2c3\"|regexReplace(\"[0-9]\", \"\") // \"abc\"",
+      "regexReplace(\"john smith\", \"(\\\\w+) (\\\\w+)\", \"$2 $1\") // \"smith john\""
+    ],
+    "parameters": [
+      {
+        "name": "input",
+        "description": "The input string to perform replacements on.",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "pattern",
+        "description": "The regular expression source to search for. All occurrences are replaced.",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "replacement",
+        "description": "The replacement string; dollar patterns ($1, $&, …) are interpreted. Defaults to empty string.",
+        "type": "string",
+        "optional": false
+      }
+    ],
+    "returns": {
+      "type": "string",
+      "description": "The string with replacements made, or undefined if input is not a string."
+    },
+    "insertText": "regexReplace(${1:input}, ${2:pattern}, ${3:replacement})"
+  },
+  {
+    "type": "function",
     "name": "replace",
     "label": "replace",
-    "description": "Replaces occurrences of a specified string with a replacement string.",
+    "description": "Replaces occurrences of a specified literal string with a replacement string.",
     "detail": "JEXL function",
-    "documentation": "Replaces occurrences of a specified string with a replacement string.\n\n**Examples:**\n`replace(\"foo-bar-baz\", \"-\", \"_\") // \"foo_bar_baz\"`\n`\"hello world\"|replace(\"world\", \"there\") // \"hello there\"`\n`replace(\"test test test\", \"test\", \"demo\") // \"demo demo demo\"`\n\n**Parameters:**\n- `input` (unknown): The input string to perform replacements on.\n- `search` (string): The string to search for and replace.\n- `replacement` (string): The string to replace matches with. Defaults to empty string.\n\n**Returns:** The string with replacements made, or undefined if input is not a string.",
+    "documentation": "Replaces occurrences of a specified literal string with a replacement string.\n\nThe \n\n**Examples:**\n`replace(\"foo-bar-baz\", \"-\", \"_\") // \"foo_bar_baz\"`\n`\"hello world\"|replace(\"world\", \"there\") // \"hello there\"`\n`replace(\"test test test\", \"test\", \"demo\") // \"demo demo demo\"`\n\n**Parameters:**\n- `input` (unknown): The input string to perform replacements on.\n- `search` (string): The literal string to search for and replace. All occurrences are replaced.\n- `replacement` (string): The string to replace matches with, inserted verbatim. Defaults to empty string.\n\n**Returns:** The string with replacements made, or undefined if input is not a string.",
     "examples": [
       "replace(\"foo-bar-baz\", \"-\", \"_\") // \"foo_bar_baz\"",
       "\"hello world\"|replace(\"world\", \"there\") // \"hello there\"",
@@ -1563,13 +1632,13 @@ export const completionDocs: CompletionDocItem[] = [
       },
       {
         "name": "search",
-        "description": "The string to search for and replace.",
+        "description": "The literal string to search for and replace. All occurrences are replaced.",
         "type": "string",
         "optional": false
       },
       {
         "name": "replacement",
-        "description": "The string to replace matches with. Defaults to empty string.",
+        "description": "The string to replace matches with, inserted verbatim. Defaults to empty string.",
         "type": "string",
         "optional": false
       }
@@ -2030,9 +2099,9 @@ export const completionDocs: CompletionDocItem[] = [
     "type": "function",
     "name": "getType",
     "label": "type",
-    "description": "Returns the type of the input value as a string.\r",
+    "description": "Returns the type of the input value as a string.",
     "detail": "JEXL function",
-    "documentation": "Returns the type of the input value as a string.\r\n\r\nSupported return values:\r\n- \"string\", \"number\", \"boolean\", \"undefined\", \"array\", \"object\"\r\n- Only for JS: \"function\", \"symbol\", \"bigint\"\n\n**Examples:**\n`type(5); // \"number\"`\n`foo|type; // \"string\"`\n`type(true); // \"boolean\"`\n\n**Parameters:**\n- `input` (unknown): The value to check the type of.\n\n**Returns:** The type of the input value.",
+    "documentation": "Returns the type of the input value as a string.\n\nSupported return values:\n- \"string\", \"number\", \"boolean\", \"undefined\", \"array\", \"object\"\n- Only for JS: \"function\", \"symbol\", \"bigint\"\n\n**Examples:**\n`type(5); // \"number\"`\n`foo|type; // \"string\"`\n`type(true); // \"boolean\"`\n\n**Parameters:**\n- `input` (unknown): The value to check the type of.\n\n**Returns:** The type of the input value.",
     "examples": [
       "type(5); // \"number\"",
       "foo|type; // \"string\"",
@@ -2167,9 +2236,9 @@ export const completionDocs: CompletionDocItem[] = [
     "type": "transform",
     "name": "arrayEvery",
     "label": "all",
-    "description": "Checks whether the provided array has all elements that match the specified expression.\r",
+    "description": "Checks whether the provided array has all elements that match the specified expression.",
     "detail": "JEXL transform",
-    "documentation": "Checks whether the provided array has all elements that match the specified expression.\r\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`every([2, 4, 6], \"value % 2 == 0\") // true`\n`[{age: 25}, {age: 35}]|every(\"value.age > 20\") // true`\n`every([1, 2, 3], \"value > 2\") // false`\n\n**Parameters:**\n- `input` (array): The input array to test.\n- `expression` (string): The JEXL expression to test against each element.\n\n**Returns:** True if all elements match the expression, false otherwise or if input is not an array.",
+    "documentation": "Checks whether the provided array has all elements that match the specified expression.\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`every([2, 4, 6], \"value % 2 == 0\") // true`\n`[{age: 25}, {age: 35}]|every(\"value.age > 20\") // true`\n`every([1, 2, 3], \"value > 2\") // false`\n\n**Parameters:**\n- `input` (array): The input array to test.\n- `expression` (string): The JEXL expression to test against each element  (supports value, index and array as context).\n\n**Returns:** True if all elements match the expression, false otherwise or if input is not an array.",
     "examples": [
       "every([2, 4, 6], \"value % 2 == 0\") // true",
       "[{age: 25}, {age: 35}]|every(\"value.age > 20\") // true",
@@ -2184,7 +2253,7 @@ export const completionDocs: CompletionDocItem[] = [
       },
       {
         "name": "expression",
-        "description": "The JEXL expression to test against each element.",
+        "description": "The JEXL expression to test against each element  (supports value, index and array as context).",
         "type": "string",
         "optional": false
       }
@@ -2204,9 +2273,9 @@ export const completionDocs: CompletionDocItem[] = [
     "type": "transform",
     "name": "arrayAny",
     "label": "any",
-    "description": "Checks whether the provided array has any elements that match the specified expression.\r",
+    "description": "Checks whether the provided array has any elements that match the specified expression.",
     "detail": "JEXL transform",
-    "documentation": "Checks whether the provided array has any elements that match the specified expression.\r\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`any([1, 2, 3], \"value > 2\") // true`\n`[{age: 25}, {age: 35}]|any(\"value.age > 30\") // true`\n`any([1, 2, 3], \"value > 5\") // false`\n\n**Parameters:**\n- `input` (array): The input array to test.\n- `expression` (string): The JEXL expression to test against each element.\n\n**Returns:** True if any element matches the expression, false otherwise or if input is not an array.",
+    "documentation": "Checks whether the provided array has any elements that match the specified expression.\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`any([1, 2, 3], \"value > 2\") // true`\n`[{age: 25}, {age: 35}]|any(\"value.age > 30\") // true`\n`any([1, 2, 3], \"value > 5\") // false`\n\n**Parameters:**\n- `input` (array): The input array to test.\n- `expression` (string): The JEXL expression to test against each element  (supports value, index and array as context).\n\n**Returns:** True if any element matches the expression, false otherwise or if input is not an array.",
     "examples": [
       "any([1, 2, 3], \"value > 2\") // true",
       "[{age: 25}, {age: 35}]|any(\"value.age > 30\") // true",
@@ -2221,7 +2290,7 @@ export const completionDocs: CompletionDocItem[] = [
       },
       {
         "name": "expression",
-        "description": "The JEXL expression to test against each element.",
+        "description": "The JEXL expression to test against each element  (supports value, index and array as context).",
         "type": "string",
         "optional": false
       }
@@ -2507,11 +2576,10 @@ export const completionDocs: CompletionDocItem[] = [
     "label": "convertTimeZone",
     "description": "Converts an ISO datetime string to a target timezone, handling daylight savings, and returns an ISO string with the correct offset.",
     "detail": "JEXL transform",
-    "documentation": "Converts an ISO datetime string to a target timezone, handling daylight savings, and returns an ISO string with the correct offset.\n\n**Examples:**\n`convertTimeZone(datetime, timezone)`\n`$convertTimeZone(datetime, timezone)`\n`datetime|convertTimeZone(timezone)`\n\n**Parameters:**\n- `input` (unknown): ISO datetime string\n- `targetTimeZone` (unknown): Target timezone (IANA or Windows ID or fixed offset)\n\n**Returns:** ISO datetime string with correct offset",
+    "documentation": "Converts an ISO datetime string to a target timezone, handling daylight savings, and returns an ISO string with the correct offset.\n\n**Examples:**\n`convertTimeZone('2025-06-26T12:00:00Z', 'Europe/Amsterdam') // 2025-06-26T14:00:00.0000000+02:00`\n`'2025-06-26T12:00:00Z'|convertTimeZone('Pacific Standard Time') // '2025-06-26T05:00:00.0000000-07:00'`\n\n**Parameters:**\n- `input` (unknown): ISO datetime string\n- `targetTimeZone` (unknown): Target timezone (IANA or Windows ID or fixed offset)\n\n**Returns:** ISO datetime string with correct offset",
     "examples": [
-      "convertTimeZone(datetime, timezone)",
-      "$convertTimeZone(datetime, timezone)",
-      "datetime|convertTimeZone(timezone)"
+      "convertTimeZone('2025-06-26T12:00:00Z', 'Europe/Amsterdam') // 2025-06-26T14:00:00.0000000+02:00",
+      "'2025-06-26T12:00:00Z'|convertTimeZone('Pacific Standard Time') // '2025-06-26T05:00:00.0000000-07:00'"
     ],
     "parameters": [
       {
@@ -2727,9 +2795,9 @@ export const completionDocs: CompletionDocItem[] = [
     "type": "transform",
     "name": "_eval",
     "label": "eval",
-    "description": "Evaluates a JEXL expression and returns the result.\r",
+    "description": "Evaluates a JEXL expression and returns the result.",
     "detail": "JEXL transform",
-    "documentation": "Evaluates a JEXL expression and returns the result.\r\nIf only one argument is provided, it is expected that the first argument is a JEXL expression.\r\nIf two arguments are provided, the first argument is the context (must be an object) and the second argument is the JEXL expression.\r\nThe expression uses the default JEXL extended grammar and can't use any custom defined functions or transforms.\n\n**Examples:**\n`_eval(\"1 + 2\") // 3`\n`_eval({x: 5, y: 10}, \"x + y\") // 15`\n`\"2 * 3\"|_eval // 6`\n\n**Parameters:**\n- `input` (unknown): Either a JEXL expression string or a context object.\n- `expression` (string): Optional JEXL expression when first argument is context.\n\n**Returns:** The result of evaluating the expression, or undefined if evaluation fails.",
+    "documentation": "Evaluates a JEXL expression and returns the result.\nIf only one argument is provided, it is expected that the first argument is a JEXL expression.\nIf two arguments are provided, the first argument is the context (must be an object) and the second argument is the JEXL expression.\nThe expression uses the default JEXL extended grammar and can't use any custom defined functions or transforms.\n\n**Examples:**\n`_eval(\"1 + 2\") // 3`\n`_eval({x: 5, y: 10}, \"x + y\") // 15`\n`\"2 * 3\"|_eval // 6`\n\n**Parameters:**\n- `input` (unknown): Either a JEXL expression string or a context object.\n- `expression` (string): Optional JEXL expression when first argument is context.\n\n**Returns:** The result of evaluating the expression, or undefined if evaluation fails.",
     "examples": [
       "_eval(\"1 + 2\") // 3",
       "_eval({x: 5, y: 10}, \"x + y\") // 15",
@@ -2763,9 +2831,9 @@ export const completionDocs: CompletionDocItem[] = [
     "type": "transform",
     "name": "arrayFilter",
     "label": "filter",
-    "description": "Returns a new array with the elements of the input array that match the specified expression.\r",
+    "description": "Returns a new array with the elements of the input array that match the specified expression.",
     "detail": "JEXL transform",
-    "documentation": "Returns a new array with the elements of the input array that match the specified expression.\r\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`filter([1, 2, 3, 4], \"value > 2\") // [3, 4]`\n`[{age: 25}, {age: 35}]|filter(\"value.age > 30\") // [{age: 35}]`\n`filter([1, 2, 3, 4], \"value % 2 == 0\") // [2, 4]`\n\n**Parameters:**\n- `input` (array): The input array to filter.\n- `expression` (string): The JEXL expression to test against each element.\n\n**Returns:** A new array containing only elements that match the expression, or empty array if input is not an array.",
+    "documentation": "Returns a new array with the elements of the input array that match the specified expression.\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`filter([1, 2, 3, 4], \"value > 2\") // [3, 4]`\n`[{age: 25}, {age: 35}]|filter(\"value.age > 30\") // [{age: 35}]`\n`filter([1, 2, 3, 4], \"value % 2 == 0\") // [2, 4]`\n\n**Parameters:**\n- `input` (array): The input array to filter.\n- `expression` (string): The JEXL expression to test against each element (supports value, index and array as context).\n\n**Returns:** A new array containing only elements that match the expression, or empty array if input is not an array.",
     "examples": [
       "filter([1, 2, 3, 4], \"value > 2\") // [3, 4]",
       "[{age: 25}, {age: 35}]|filter(\"value.age > 30\") // [{age: 35}]",
@@ -2780,7 +2848,7 @@ export const completionDocs: CompletionDocItem[] = [
       },
       {
         "name": "expression",
-        "description": "The JEXL expression to test against each element.",
+        "description": "The JEXL expression to test against each element (supports value, index and array as context).",
         "type": "string",
         "optional": false
       }
@@ -2799,9 +2867,9 @@ export const completionDocs: CompletionDocItem[] = [
     "type": "transform",
     "name": "arrayFind",
     "label": "find",
-    "description": "Finds the first element in an array that matches the specified expression.\r",
+    "description": "Finds the first element in an array that matches the specified expression.",
     "detail": "JEXL transform",
-    "documentation": "Finds the first element in an array that matches the specified expression.\r\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`find([1, 2, 3, 4], \"value > 2\") // 3`\n`[{name: \"John\"}, {name: \"Jane\"}]|find(\"value.name == 'Jane'\") // {name: \"Jane\"}`\n`find([1, 2, 3], \"value > 5\") // undefined`\n\n**Parameters:**\n- `input` (array): The input array to search.\n- `expression` (string): The JEXL expression to test against each element.\n\n**Returns:** The first element that matches the expression, or undefined if no match found or input is not an array.",
+    "documentation": "Finds the first element in an array that matches the specified expression.\nThe expression must be a valid JEXL expression string, and is applied to each element of the array.\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`find([1, 2, 3, 4], \"value > 2\") // 3`\n`[{name: \"John\"}, {name: \"Jane\"}]|find(\"value.name == 'Jane'\") // {name: \"Jane\"}`\n`find([1, 2, 3], \"value > 5\") // undefined`\n\n**Parameters:**\n- `input` (array): The input array to search.\n- `expression` (string): The JEXL expression to test against each element  (supports value, index and array as context).\n\n**Returns:** The first element that matches the expression, or undefined if no match found or input is not an array.",
     "examples": [
       "find([1, 2, 3, 4], \"value > 2\") // 3",
       "[{name: \"John\"}, {name: \"Jane\"}]|find(\"value.name == 'Jane'\") // {name: \"Jane\"}",
@@ -2816,7 +2884,7 @@ export const completionDocs: CompletionDocItem[] = [
       },
       {
         "name": "expression",
-        "description": "The JEXL expression to test against each element.",
+        "description": "The JEXL expression to test against each element  (supports value, index and array as context).",
         "type": "string",
         "optional": false
       }
@@ -3053,24 +3121,25 @@ export const completionDocs: CompletionDocItem[] = [
     "type": "transform",
     "name": "toJson",
     "label": "json",
-    "description": "Parses the string and returns a JSON object.",
+    "description": "Parses a JSON string, or passes an already structured value straight through.",
     "detail": "JEXL transform",
-    "documentation": "Parses the string and returns a JSON object.\n\n**Examples:**\n`toJson('{\"key\": \"value\"}') // { key: \"value\" }`\n`'{\"name\": \"John\", \"age\": 30}'|toJson // { name: \"John\", age: 30 }`\n\n**Parameters:**\n- `input` (string): The JSON string to parse.\n\n**Returns:** The parsed JSON object or value.",
+    "documentation": "Parses a JSON string, or passes an already structured value straight through.\n\nOnly strings are parsed. Objects, arrays, numbers, booleans, \n\n**Examples:**\n`toJson('{\"key\": \"value\"}') // { key: \"value\" }`\n`'{\"name\": \"John\", \"age\": 30}'|toJson // { name: \"John\", age: 30 }`\n`{ key: \"value\" }|toJson // { key: \"value\" }`\n\n**Parameters:**\n- `input` (unknown): The JSON string to parse, or any already structured value.\n\n**Returns:** The parsed JSON value, or the input unchanged when it is not a string.",
     "examples": [
       "toJson('{\"key\": \"value\"}') // { key: \"value\" }",
-      "'{\"name\": \"John\", \"age\": 30}'|toJson // { name: \"John\", age: 30 }"
+      "'{\"name\": \"John\", \"age\": 30}'|toJson // { name: \"John\", age: 30 }",
+      "{ key: \"value\" }|toJson // { key: \"value\" }"
     ],
     "parameters": [
       {
         "name": "input",
-        "description": "The JSON string to parse.",
-        "type": "string",
+        "description": "The JSON string to parse, or any already structured value.",
+        "type": "unknown",
         "optional": false
       }
     ],
     "returns": {
       "type": "any",
-      "description": "The parsed JSON object or value."
+      "description": "The parsed JSON value, or the input unchanged when it is not a string."
     },
     "insertText": "json",
     "aliases": [
@@ -3139,6 +3208,37 @@ export const completionDocs: CompletionDocItem[] = [
   },
   {
     "type": "transform",
+    "name": "localTimeToIsoWithOffset",
+    "label": "localTimeToIsoWithOffset",
+    "description": "Converts a local time string in a specified timezone to an ISO datetime string with the correct offset.",
+    "detail": "JEXL transform",
+    "documentation": "Converts a local time string in a specified timezone to an ISO datetime string with the correct offset.\n\n**Examples:**\n`localTimeToIsoWithOffset('2025-06-26 14:00:00', 'Europe/Amsterdam') // '2025-06-26T14:00:00.0000000+02:00'`\n`'2025-06-26 05:00:00'|localTimeToIsoWithOffset('Pacific Standard Time') // '2025-06-26T05:00:00.0000000-08:00'`\n\n**Parameters:**\n- `localTime` (string): Local time string\n- `timeZone` (string): Timezone (IANA or Windows ID or fixed offset)\n\n**Returns:** ISO datetime string with correct offset",
+    "examples": [
+      "localTimeToIsoWithOffset('2025-06-26 14:00:00', 'Europe/Amsterdam') // '2025-06-26T14:00:00.0000000+02:00'",
+      "'2025-06-26 05:00:00'|localTimeToIsoWithOffset('Pacific Standard Time') // '2025-06-26T05:00:00.0000000-08:00'"
+    ],
+    "parameters": [
+      {
+        "name": "localTime",
+        "description": "Local time string",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "timeZone",
+        "description": "Timezone (IANA or Windows ID or fixed offset)",
+        "type": "string",
+        "optional": false
+      }
+    ],
+    "returns": {
+      "type": "string",
+      "description": "ISO datetime string with correct offset"
+    },
+    "insertText": "localTimeToIsoWithOffset(${1:timeZone})"
+  },
+  {
+    "type": "transform",
     "name": "lowercase",
     "label": "lowercase",
     "description": "Converts the input string to lowercase.",
@@ -3169,9 +3269,9 @@ export const completionDocs: CompletionDocItem[] = [
     "type": "transform",
     "name": "arrayMap",
     "label": "map",
-    "description": "Returns an array containing the results of applying the expression parameter to each value in the array parameter.\r",
+    "description": "Returns an array containing the results of applying the expression parameter to each value in the array parameter.",
     "detail": "JEXL transform",
-    "documentation": "Returns an array containing the results of applying the expression parameter to each value in the array parameter.\r\nThe expression must be a valid JEXL expression string, which is applied to each element of the array.\r\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`map([1, 2, 3], \"value * 2\") // [2, 4, 6]`\n`[{name: \"John\"}, {name: \"Jane\"}]|map(\"value.name\") // [\"John\", \"Jane\"]`\n`map([1, 2, 3], \"value + index\") // [1, 3, 5]`\n\n**Parameters:**\n- `input` (array): The input array to transform.\n- `expression` (string): The JEXL expression to apply to each element.\n\n**Returns:** A new array with transformed elements, or undefined if input is not an array.",
+    "documentation": "Returns an array containing the results of applying the expression parameter to each value in the array parameter.\nThe expression must be a valid JEXL expression string, which is applied to each element of the array.\nThe relative context provided to the expression is an object with the properties value, index and array (the original array).\n\n**Examples:**\n`map([1, 2, 3], \"value * 2\") // [2, 4, 6]`\n`[{name: \"John\"}, {name: \"Jane\"}]|map(\"value.name\") // [\"John\", \"Jane\"]`\n`map([1, 2, 3], \"value + index\") // [1, 3, 5]`\n\n**Parameters:**\n- `input` (array): The input array to transform.\n- `expression` (string): The JEXL expression to apply to each element.\n\n**Returns:** A new array with transformed elements, or undefined if input is not an array.",
     "examples": [
       "map([1, 2, 3], \"value * 2\") // [2, 4, 6]",
       "[{name: \"John\"}, {name: \"Jane\"}]|map(\"value.name\") // [\"John\", \"Jane\"]",
@@ -3589,9 +3689,9 @@ export const completionDocs: CompletionDocItem[] = [
     "type": "transform",
     "name": "arrayReduce",
     "label": "reduce",
-    "description": "Returns an aggregated value derived from applying the function parameter successively to each value in array in combination with the result of the previous application of the function.\r",
+    "description": "Returns an aggregated value derived from applying the function parameter successively to each value in array in combination with the result of the previous application of the function.",
     "detail": "JEXL transform",
-    "documentation": "Returns an aggregated value derived from applying the function parameter successively to each value in array in combination with the result of the previous application of the function.\r\nThe expression must be a valid JEXL expression string, and behaves like an infix operator between each value within the array.\r\nThe relative context provided to the expression is an object with the properties accumulator, value, index and array (the original array).\n\n**Examples:**\n`reduce([1, 2, 3, 4], \"accumulator + value\", 0) // 10`\n`[1, 2, 3]|reduce(\"accumulator * value\", 1) // 6`\n`reduce([\"a\", \"b\", \"c\"], \"accumulator + value\", \"\") // \"abc\"`\n\n**Parameters:**\n- `input` (array): The input array to reduce.\n- `expression` (string): The JEXL expression to apply for each reduction step.\n- `initialValue` (unknown): The initial value for the accumulator.\n\n**Returns:** The final accumulated value, or undefined if input is not an array.",
+    "documentation": "Returns an aggregated value derived from applying the function parameter successively to each value in array in combination with the result of the previous application of the function.\nThe expression must be a valid JEXL expression string, and behaves like an infix operator between each value within the array.\nThe relative context provided to the expression is an object with the properties accumulator, value, index and array (the original array).\n\n**Examples:**\n`reduce([1, 2, 3, 4], \"accumulator + value\", 0) // 10`\n`[1, 2, 3]|reduce(\"accumulator * value\", 1) // 6`\n`reduce([\"a\", \"b\", \"c\"], \"accumulator + value\", \"\") // \"abc\"`\n\n**Parameters:**\n- `input` (array): The input array to reduce.\n- `expression` (string): The JEXL expression to apply for each reduction step.\n- `initialValue` (unknown): The initial value for the accumulator.\n\n**Returns:** The final accumulated value, or undefined if input is not an array.",
     "examples": [
       "reduce([1, 2, 3, 4], \"accumulator + value\", 0) // 10",
       "[1, 2, 3]|reduce(\"accumulator * value\", 1) // 6",
@@ -3629,11 +3729,49 @@ export const completionDocs: CompletionDocItem[] = [
   },
   {
     "type": "transform",
+    "name": "regexReplace",
+    "label": "regexReplace",
+    "description": "Replaces occurrences of a regular-expression pattern with a replacement string.",
+    "detail": "JEXL transform",
+    "documentation": "Replaces occurrences of a regular-expression pattern with a replacement string.\n\nUnlike \n\n**Examples:**\n`regexReplace(\"a.b.c\", \".\", \"-\") // \"-----\"`\n`\"a1b2c3\"|regexReplace(\"[0-9]\", \"\") // \"abc\"`\n`regexReplace(\"john smith\", \"(\\\\w+) (\\\\w+)\", \"$2 $1\") // \"smith john\"`\n\n**Parameters:**\n- `input` (unknown): The input string to perform replacements on.\n- `pattern` (string): The regular expression source to search for. All occurrences are replaced.\n- `replacement` (string): The replacement string; dollar patterns ($1, $&, …) are interpreted. Defaults to empty string.\n\n**Returns:** The string with replacements made, or undefined if input is not a string.",
+    "examples": [
+      "regexReplace(\"a.b.c\", \".\", \"-\") // \"-----\"",
+      "\"a1b2c3\"|regexReplace(\"[0-9]\", \"\") // \"abc\"",
+      "regexReplace(\"john smith\", \"(\\\\w+) (\\\\w+)\", \"$2 $1\") // \"smith john\""
+    ],
+    "parameters": [
+      {
+        "name": "input",
+        "description": "The input string to perform replacements on.",
+        "type": "unknown",
+        "optional": false
+      },
+      {
+        "name": "pattern",
+        "description": "The regular expression source to search for. All occurrences are replaced.",
+        "type": "string",
+        "optional": false
+      },
+      {
+        "name": "replacement",
+        "description": "The replacement string; dollar patterns ($1, $&, …) are interpreted. Defaults to empty string.",
+        "type": "string",
+        "optional": false
+      }
+    ],
+    "returns": {
+      "type": "string",
+      "description": "The string with replacements made, or undefined if input is not a string."
+    },
+    "insertText": "regexReplace(${1:pattern}, ${2:replacement})"
+  },
+  {
+    "type": "transform",
     "name": "replace",
     "label": "replace",
-    "description": "Replaces occurrences of a specified string with a replacement string.",
+    "description": "Replaces occurrences of a specified literal string with a replacement string.",
     "detail": "JEXL transform",
-    "documentation": "Replaces occurrences of a specified string with a replacement string.\n\n**Examples:**\n`replace(\"foo-bar-baz\", \"-\", \"_\") // \"foo_bar_baz\"`\n`\"hello world\"|replace(\"world\", \"there\") // \"hello there\"`\n`replace(\"test test test\", \"test\", \"demo\") // \"demo demo demo\"`\n\n**Parameters:**\n- `input` (unknown): The input string to perform replacements on.\n- `search` (string): The string to search for and replace.\n- `replacement` (string): The string to replace matches with. Defaults to empty string.\n\n**Returns:** The string with replacements made, or undefined if input is not a string.",
+    "documentation": "Replaces occurrences of a specified literal string with a replacement string.\n\nThe \n\n**Examples:**\n`replace(\"foo-bar-baz\", \"-\", \"_\") // \"foo_bar_baz\"`\n`\"hello world\"|replace(\"world\", \"there\") // \"hello there\"`\n`replace(\"test test test\", \"test\", \"demo\") // \"demo demo demo\"`\n\n**Parameters:**\n- `input` (unknown): The input string to perform replacements on.\n- `search` (string): The literal string to search for and replace. All occurrences are replaced.\n- `replacement` (string): The string to replace matches with, inserted verbatim. Defaults to empty string.\n\n**Returns:** The string with replacements made, or undefined if input is not a string.",
     "examples": [
       "replace(\"foo-bar-baz\", \"-\", \"_\") // \"foo_bar_baz\"",
       "\"hello world\"|replace(\"world\", \"there\") // \"hello there\"",
@@ -3648,13 +3786,13 @@ export const completionDocs: CompletionDocItem[] = [
       },
       {
         "name": "search",
-        "description": "The string to search for and replace.",
+        "description": "The literal string to search for and replace. All occurrences are replaced.",
         "type": "string",
         "optional": false
       },
       {
         "name": "replacement",
-        "description": "The string to replace matches with. Defaults to empty string.",
+        "description": "The string to replace matches with, inserted verbatim. Defaults to empty string.",
         "type": "string",
         "optional": false
       }
@@ -4120,9 +4258,9 @@ export const completionDocs: CompletionDocItem[] = [
     "type": "transform",
     "name": "getType",
     "label": "type",
-    "description": "Returns the type of the input value as a string.\r",
+    "description": "Returns the type of the input value as a string.",
     "detail": "JEXL transform",
-    "documentation": "Returns the type of the input value as a string.\r\n\r\nSupported return values:\r\n- \"string\", \"number\", \"boolean\", \"undefined\", \"array\", \"object\"\r\n- Only for JS: \"function\", \"symbol\", \"bigint\"\n\n**Examples:**\n`type(5); // \"number\"`\n`foo|type; // \"string\"`\n`type(true); // \"boolean\"`\n\n**Parameters:**\n- `input` (unknown): The value to check the type of.\n\n**Returns:** The type of the input value.",
+    "documentation": "Returns the type of the input value as a string.\n\nSupported return values:\n- \"string\", \"number\", \"boolean\", \"undefined\", \"array\", \"object\"\n- Only for JS: \"function\", \"symbol\", \"bigint\"\n\n**Examples:**\n`type(5); // \"number\"`\n`foo|type; // \"string\"`\n`type(true); // \"boolean\"`\n\n**Parameters:**\n- `input` (unknown): The value to check the type of.\n\n**Returns:** The type of the input value.",
     "examples": [
       "type(5); // \"number\"",
       "foo|type; // \"string\"",
